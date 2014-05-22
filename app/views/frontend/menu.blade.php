@@ -2,7 +2,7 @@
     <div class="layout clearfix">
       <div class="mob-layout wrap-left">
         <!-- Logo -->
-        <a href="http://completermp.com/marketing" class="logo"><img src="http://completermp.com/marketing/frontend/img/logo.png" alt=""></a>
+        <a href="{{ Request::root() }}" class="logo"><img src="http://completermp.com/marketing/frontend/img/logo.png" alt=""></a>
         <!-- Mobile Navigation Button -->
         <div class="btn-menu icon-reorder"></div>
         <!-- Navigation -->

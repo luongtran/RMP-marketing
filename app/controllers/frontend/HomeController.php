@@ -22,7 +22,7 @@ class HomeController extends BaseController {
         $this->layout->page = "Recruitment Management Portal";
         $this->layout->title = "Home";
         
-        $this->layout->content = View::make('frontend.index');
+        $this->layout->content = View::make('frontend.page.index');
     }
     public function about() {
         $this->layout->page = "About us";

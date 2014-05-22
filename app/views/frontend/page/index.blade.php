@@ -15,7 +15,7 @@
           <span>Recruitment Software with a difference</span>
         </div>
         <div data-easing="easeOutQuint" data-start="1600" data-speed="1000" data-y="245" data-x="40" class="tp-caption fade start" style="opacity: 1; visibility: visible; font-size: 13px; padding: 0px; margin: 0px; border-width: 0px; border-style: none; border-color: -moz-use-text-color; line-height: 20px; white-space: nowrap; left: 170.5px; top: 245px; transform: scale(1, 1) rotate(0deg);">
-          <a class="btn colored btn-uppercase" href="http://completermp.com/marketing/en/about-rmp">Read More<i style="margin: 0 0 0 7px;" class="icon-caret-right"></i></a>
+          <a class="btn colored btn-uppercase" href="{{ Request::root() }}/about">Read More<i style="margin: 0 0 0 7px;" class="icon-caret-right"></i></a>
         </div>
         <!-- End captions -->
         </li>
