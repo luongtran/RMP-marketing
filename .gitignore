@@ -1,0 +1,13 @@
+/bootstrap/compiled.php
+/app/config/database.php
+composer.phar
+composer.lock
+.DS_Store
+Thumbs.db
+nbproject/
+/app/documents/
+/public/documents/
+/public/uploads/
+app/documents
+.idea
+/vendor
