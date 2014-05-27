@@ -2,6 +2,7 @@
 
 class PageController extends BaseController {
 
+ 
     protected $layout = 'frontend.layouts.default';
 
     /*
@@ -18,10 +19,34 @@ class PageController extends BaseController {
      */
 
     public function index() {
-        $this->layout->content = View::make('frontend.index');
+        $this->layout->page = "Recruitment Management Portal";
+        $this->layout->title = "Home";
+        
+        $this->layout->content = View::make('frontend.page.index');
     }
-     public function about() {
+    public function about() {
+        $this->layout->page = "About us";
         $this->layout->content = View::make('frontend..page.about');
+    }        
+      public function features() {
+        $this->layout->page = "Features";
+        $this->layout->content = View::make('frontend..page.features');
+    }
+      public function service() {          
+        $this->layout->page = "Service";
+        $this->layout->content = View::make('frontend..page.service');
+    }
+      public function requestDemo() {          
+        $this->layout->page = "Request Demo";
+        $this->layout->content = View::make('frontend..page.requests');
+    }
+      public function supportPackages() {          
+        $this->layout->page = "Support Packages";
+        $this->layout->content = View::make('frontend..page.support');
+    }
+    public function contact() {        
+        $this->layout->page = "Contact";
+        $this->layout->content = View::make('frontend..page.contact');
     }
 
 }

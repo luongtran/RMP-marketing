@@ -1,0 +1,23 @@
+/*Style admin customs*/
+
+/* validation */
+.star-validation{
+    color:red;
+}
+
+
+.overflow-scroll
+{
+  overflow: auto;
+  height: 100px;
+}
+
+ul li.float-left
+{
+    float:left;    
+    list-style: none;
+}
+
+.clear{
+    clear:both;
+}

@@ -10,13 +10,49 @@
   | and give it the Closure to execute when that URI is requested.
   |
  */
-Route::get('/','HomeController@index' );
-Route::get('about/','HomeController@about' );
-Route::get('features/','HomeController@features' );
-Route::get('service/','HomeController@service' );
-Route::get('request-demo/','HomeController@requestDemo' );
-Route::get('support-packages/','HomeController@supportPackages' );
-Route::get('contact-us/','HomeController@contact' );
+/*====== Frontend=====*/
+
+/* Page frontend */
+Route::get( '/' , array('as' => 'frontend', 'uses' => 'PageController@index'));
+Route::get('about/',array('as' => 'about_page', 'uses' =>'PageController@about'));
+Route::get('features/',array('as' => 'feature_page', 'uses' =>'PageController@features'));
+Route::get('service/',array('as' => 'service_page', 'uses' =>'PageController@service'));
+Route::get('request-demo/',array('as' => 'request_page', 'uses' =>'PageController@requestDemo'));
+Route::get('support-packages/',array('as' => 'support_page', 'uses' =>'PageController@supportPackages'));
+Route::get('contact-us/',array('as' => 'contact_page', 'uses' =>'PageController@contact'));
+//===========================================//
+
+
+
+/*====== Backend=====*/
+
+/*Admin*/
+
+Route::get('/backend' , array('as' => 'backendend', 'uses' => 'AdminController@index') );
+
+/*Article*/ 
+Route::get('backend/article/',array('as' => 'backend_article', 'uses' =>'ArticlesController@index'));
+Route::get('backend/article/add/',array('as' => 'article_add', 'uses' =>'ArticlesController@getAdd'));
+Route::post('backend/article/add/',array('as' => 'article_add', 'uses' =>'ArticlesController@postAdd'));
+Route::get('backend/article/view/{id}',array('as' => 'article_view', 'uses' =>'ArticlesController@getArticle'));
+Route::get('backend/article/update/{id}',array('as' => 'backend_article_update', 'uses' =>'ArticlesController@getUpdate'));
+Route::post('backend/article/update/{id}',array('as' => 'backend_article_update', 'uses' =>'ArticlesController@postUpdate'));
+Route::get('backend/article/delete/{id}',array('as' => 'backend_article_delete', 'uses' =>'ArticlesController@getDelete'));
+Route::get('backend/article/filter/{id}',array('as' => 'backend_article_filter', 'uses' =>'ArticlesController@filter'));
+
+/*Category*/
+Route::get('backend/category/',array('as' => 'backend_category', 'uses' =>'CategoryController@index'));
+Route::post('backend/category/add',array('as' => 'backend_category', 'uses' =>'CategoryController@postAdd'));
+
+
+//===========================================//
+
+/* Users */
+//Route::get( 'backend/login/' , array('as' => 'backend_login', 'uses' => 'UsersController@getLogin'));
+//Route::post( 'backend/login/' , array('as' => 'backend_login', 'uses' => 'UsersController@postLogin'));
+//===========================================//
+
+
 
 /*User controller*/
 //Route::get('user','UserController@index' );

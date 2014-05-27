@@ -8,19 +8,19 @@
     </title>
     <meta title="" content="">
     <link rel="icon" type="image/ico" href="favicon.ico"/>    
-    <link href="{{ Request::root() }}/frontend/css/style.css" media="screen" rel="stylesheet" type="text/css" />     
+    <link href="{{asset('asset/frontend/css/style.css')}}" media="screen" rel="stylesheet" type="text/css" />     
     <!-- in style -->
     @section('style') 
-    <script src="{{ asset('frontend/js/jquery-1.js')}}"></script>
-    <script src="{{ asset('frontend/js/jquery_003.js')}}"></script> 
-    <script src="{{ asset('frontend/js/modernizr.js')}}"></script>
-    <script src="{{ asset('frontend/js/main.js')}}"></script>
+    <script src="{{ asset('asset/frontend/js/jquery-1.js')}}"></script>
+    <script src="{{ asset('asset/frontend/js/jquery_003.js')}}"></script> 
+    <script src="{{ asset('asset/frontend/js/modernizr.js')}}"></script>
+    <script src="{{ asset('asset/frontend/js/main.js')}}"></script>
     <!-- Revolution Slider -->
-    <script src="{{ asset('frontend/js/jquery_004.js')}}"></script>
-    <script src="{{ asset('frontend/js/jquery.js')}}"></script>
-    <script src="{{ asset('frontend/js/revolution-slider-options.js')}}"></script>
+    <script src="{{ asset('asset/frontend/js/jquery_004.js')}}"></script>
+    <script src="{{ asset('asset/frontend/js/jquery.js')}}"></script>
+    <script src="{{ asset('asset/frontend/js/revolution-slider-options.js')}}"></script>
     <!-- Prety photo -->
-    <script src="{{ asset('frontend/js/jquery_002.js')}}"></script>
+    <script src="{{ asset('asset/frontend/js/jquery_002.js')}}"></script>
     <script>
     $(document).ready(function(){
       $("a[rel^='prettyPhoto']").prettyPhoto();
