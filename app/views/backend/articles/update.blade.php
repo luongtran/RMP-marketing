@@ -84,6 +84,11 @@ tinymce.init({
                             <div class="form-group">
                               <label>Images</label>
                                  {{Form::file('fileimages[]',array('class' => 'form-control','id'=>'description','multiple'=>'on'))}}  
+                                 <div class="overflow-scroll">
+                                  @foreach($getImages as $lImage)
+                                  <a><img src="{{asset('asset/share/uploads/images/'.$lImage->name)}}" alt="{{$lImage->name}}" title="{{$lImage->name}}" width="50" height="50" /></a>
+                                  @endforeach   
+                                  </div>
                             </div>  
                                 
                             <div class="form-group">

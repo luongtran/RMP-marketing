@@ -36,13 +36,18 @@ class ImagesController extends BaseController {
           return Response::json($result);          
     }
     
-    function store($file,$Path)
+    
+    function storeMulti($file,$Path,$article_id)
     {        
-             // $group = new GroupUpload;
-             // $group->save();
-                
+            // use controller article                 
               foreach($file as $fileinfo)
-                {            
+                {
+                if($fileinfo==null)
+                {
+                  break;  
+                }
+                else
+                {                
                 $date = date('m-d-Y') ;       
                 $filename= $date.'_'.$fileinfo->getClientOriginalName();
                 $fileinfo->move($Path, $filename);
@@ -50,10 +55,33 @@ class ImagesController extends BaseController {
                 $upload->name = $filename;
                 $upload->type = $fileinfo->getClientmimeType();
                 $upload->path = $Path;
+                $upload->article_id = $article_id;
                 $upload->save();
-               // $group->upload_id=$upload->id;
+                }
+                // $group->upload_id=$upload->id;
                 }
     }
+    
+    function checkImageOld($file,$Path,$article_id)
+    {
+       $checkImage = Uploads::where('article_id','=',$article_id)->get();
+       foreach($checkImage as $check)
+       {           
+          $ar=Uploads::find($check->id);
+          $ar->delete();  
+       }
+      
+       $this->storeMulti($file,$Path,$article_id);
+    }
+    
+    
+      public function getDelete($id)
+    {        
+          $ar=Uploads::find($id);
+          $ar->delete();        
+          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.delete_message'))); 
+          return Redirect::route('backend_article');
+     }
     
     
     

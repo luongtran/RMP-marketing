@@ -41,6 +41,15 @@
                         </div>
                         
                         <div class="form-group">
+                                <p><label>Images: </label>
+                                    @foreach($getImages as $lImage)
+                                    <img src="{{asset('asset/share/uploads/images/'.$lImage->name)}}" alt="{{$lImage->name}}" width="50" height="50" />
+                                    @endforeach    
+                                </p>                        
+                        </div>
+                        
+                        
+                        <div class="form-group">
                                 <p><label>Keywords: </label>
                                     {{$article->keyword}}
                                 </p>                        

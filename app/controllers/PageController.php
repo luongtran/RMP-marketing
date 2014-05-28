@@ -26,27 +26,27 @@ class PageController extends BaseController {
     }
     public function about() {
         $this->layout->page = "About us";
-        $this->layout->content = View::make('frontend..page.about');
+        $this->layout->content = View::make('frontend.page.about');
     }        
       public function features() {
         $this->layout->page = "Features";
-        $this->layout->content = View::make('frontend..page.features');
+        $this->layout->content = View::make('frontend.page.features');
     }
       public function service() {          
         $this->layout->page = "Service";
-        $this->layout->content = View::make('frontend..page.service');
+        $this->layout->content = View::make('frontend.page.service');
     }
       public function requestDemo() {          
         $this->layout->page = "Request Demo";
-        $this->layout->content = View::make('frontend..page.requests');
+        $this->layout->content = View::make('frontend.page.requests');
     }
       public function supportPackages() {          
         $this->layout->page = "Support Packages";
-        $this->layout->content = View::make('frontend..page.support');
+        $this->layout->content = View::make('frontend.page.support');
     }
     public function contact() {        
         $this->layout->page = "Contact";
-        $this->layout->content = View::make('frontend..page.contact');
+        $this->layout->content = View::make('frontend.page.contact');
     }
 
 }

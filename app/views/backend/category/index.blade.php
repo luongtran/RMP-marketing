@@ -19,7 +19,7 @@
                     {{Form::open(array('url'=>'backend/category/add', 'method' => 'post','role'=>'form') )}}               
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Add category</h3>
+                            <h3 class="panel-title"></h3>
                         </div>
                         <div class="panel-body">                         
                              <div>                            
@@ -96,7 +96,7 @@
                                       @foreach($categories  as $category)                                      
                                       <tr <?php if($category->status == "unpublish"){echo "class='danger'";}?> >
                                           <td><input type="checkbox" value="{{$category->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
-                                        <td><a >{{$category->name}}</a></td>                                        
+                                        <td>{{$category->name}}</td>                                        
                                         <td>{{$category->status}}</td>
                                         <td>{{$category->created_at}}</td>
                                         <td><a href="{{Request::root()}}/backend/category/update/{{$category->id}}"><span class="label label-primary">Update</span></a>

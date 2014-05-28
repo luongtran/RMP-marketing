@@ -49,7 +49,8 @@ Route::post('backend/category/update/{id}',array('as' => 'category_update', 'use
 Route::get('backend/category/delete/{id}',array('as' => 'category_delete', 'uses' =>'CategoryController@getDelete'));
 Route::post('backend/category/action',array('as' => 'backend_article_filter', 'uses' =>'CategoryController@action'));
 
-
+/*Share*/
+Route::get('change-language/{id}',array('as' => 'change_language', 'uses' =>'SharedController@getChangeLanguage'));
 //===========================================//
 
 /* Users */

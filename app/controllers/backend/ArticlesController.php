@@ -60,12 +60,17 @@ class ArticlesController extends BaseController {
             ->where('categories_articles.articles_id','=',$id)    
             ->select(DB::raw('categories.id,categories.name'))->get();  
         
-        $this->layout->content = View::make('backend.articles.view')->with('article',$article)->with('listCategories',$lCategories);
+        $getImages = Uploads::where('article_id','=',$article->id)->get();
+        
+        $this->layout->content = View::make('backend.articles.view')
+             ->with('article',$article)
+             ->with('listCategories',$lCategories)
+        ->with('getImages',$getImages);
     }    
     public function getAdd()
     {    
         $this->layout->page = "Add a new article";         
-        $categories = Categories::where('status','=','publish')->get();  
+        $categories = Categories::where('status','=','publish')->get();          
         $this->layout->content = View::make('backend.articles.add')->with('categories',$categories);
     }
     
@@ -80,7 +85,7 @@ class ArticlesController extends BaseController {
                 'category'=> 'required',
                 'keyword'=> 'max:50',
                 'description'=>'max:100',
-                //'group_uploads'=>'mimes:jpeg,bmp,png,gif',
+                'group_uploads'=>'image',
             )
         );
         
@@ -105,18 +110,15 @@ class ArticlesController extends BaseController {
                $CA->save();
             }
             /*upload image*/
-//            $upload = Input::get('fileimages'); 
-//            $Path = 'public/asset/share/uploads/images/';
-//            
-//            if(isset($_POST['fileimages']))
-//            {
-//                $Image= new ImagesController();
-//                $Image->store(Input::file('fileimages'), $Path);
-//            }
+            $upload = Input::file('fileimages'); 
+            $Path = 'public/asset/share/uploads/images/';
+            $Image= new ImagesController();
+            $Image->storeMulti(Input::file('fileimages'), $Path,$article->id);            
             
             $msg_success= CommonHelper::printMsg('success',trans('messages.create_message'));            
             Session::flash('msg_flash',$msg_success);            
-            return Redirect::route('backend_article');
+            return Redirect::route('backend_article'); 
+           
         }
         /* Messages validation*/
          Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
@@ -134,9 +136,12 @@ class ArticlesController extends BaseController {
             ->select(DB::raw('categories.id,categories.name'))->get(); 
         $categories = Categories::where('status','=','publish')->get();  
         
+        $getImages = Uploads::where('article_id','=',$id)->get();
+        
         $this->layout->content = View::make('backend.articles.update')->with('article',$getArticle)
              ->with('categories',$categories)
-             ->with('category',$category);
+             ->with('category',$category)
+             ->with('getImages',$getImages);
           
     }
       public function postUpdate($id)
@@ -150,7 +155,7 @@ class ArticlesController extends BaseController {
                 'category'=> 'required',
                 'keyword'=> 'max:50',
                 'description'=>'max:100',
-                //'group_uploads'=>'mimes:jpeg,bmp,png,gif',
+                'group_uploads'=>'image',
             )
         );
         
@@ -164,7 +169,7 @@ class ArticlesController extends BaseController {
           $ar->keyword=Input::get('keyword');
           $ar->status=Input::get('status');          
           $ar->update(); 
-          
+          /*Update category*/
           $categoryArticle = CategoriesArticles::where('articles_id','=',$id)->get();
           foreach($categoryArticle as $ctA)
           {
@@ -177,6 +182,12 @@ class ArticlesController extends BaseController {
                $CA->categories_id = $value;                              
                $CA->save();
           }
+          /* Update image */          
+            $upload = Input::file('fileimages'); 
+            $Path = 'public/asset/share/uploads/images/';
+            $Image= new ImagesController();
+            $Image->checkImageOld(Input::file('fileimages'), $Path,$id);            
+          
           
           Session::flash('msg_flash',CommonHelper::printMsg('update',trans('messages.update_message'))); 
           return Redirect::route('backend_article');

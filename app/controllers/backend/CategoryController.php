@@ -17,7 +17,7 @@ class CategoryController extends BaseController {
       |
      */
 
-    public function index() {
+    public function index() {        
         $this->layout->page = "Category";
         $parentCategory = Categories::all(); 
         $categories= Categories::orderBy('id','desc')->paginate(10); 
@@ -25,12 +25,11 @@ class CategoryController extends BaseController {
              ->with('parentCategory',$parentCategory);   
     }
     
-    public function postAdd() {
-        
+    public function postAdd() {       
         $validation = Validator::make(                
                 Input::all(),
                 array(
-                'name'=> 'required',
+                'name'=> 'required|unique:categories',
                 'premalink'=> 'unique:categories',
                 )                
          );
@@ -86,10 +85,25 @@ class CategoryController extends BaseController {
     }
     
     public function getDelete($id) {
-        $at= Categories::find($id);
-        $at->delete();
-         Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.delete_message')));  
-        return Redirect::route('backend_category');        
+        
+          $checkArticle = DB::table('categories_articles')
+            ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
+            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')
+            ->where('categories.id','=',$id)
+            ->count();
+          if($checkArticle > 0)
+          {            
+            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table')));  
+            return Redirect::back();   
+          }
+          else
+          {
+            $at= Categories::find($id);
+            $at->delete();
+            Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.delete_message')));  
+            return Redirect::route('backend_category');            
+          }
+        
     }
     
      public function action()

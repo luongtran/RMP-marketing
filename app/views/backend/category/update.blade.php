@@ -8,7 +8,8 @@
     </div>   
 </div><!-- end row 1--> 
 
-<div class="row">      
+<div class="row">
+    <div class="col-lg-12">
             <div class="col-lg-6">
                              
                 {{Form::open(array('url'=>'backend/category/update/'.$getCategory->id, 'method' => 'post','role'=>'form') )}}               
@@ -62,12 +63,13 @@
                                       </label>
                                     </div>                            
                                  </div>
-                                 <button type="submit" class="btn btn-primary">Save</button>
+                                 <button type="submit" class="btn btn-primary">Update</button>
                                  
                               </div>  
                         </div>        
                     </div>
                 {{Form::close()}}
              </div><!-- col 8 -->    
+       </div><!-- col 12 -->          
 </div><!-- row 2 -->             
 @stop
