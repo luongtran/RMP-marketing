@@ -34,7 +34,17 @@
       </div><!-- /#page-wrapper -->
 
     </div><!-- /#wrapper -->
-
+    <script src="{{asset('asset/frontend/js/jquery-1.9.1.min.js')}}"></script>
+    <!-- check all  checkbox-->
+    <script>
+         $(document).ready(function () {
+            $("#ckbCheckAll").click(function () {
+                 $(".checkBoxClass").prop('checked', $(this).prop('checked'));
+            });
+        });
+    </script>    
+    
+    
     <!-- JavaScript -->
     <script src="{{asset('asset/backend/js/jquery-1.10.2.js')}}"></script>
     <script src="{{asset('asset/backend/js/bootstrap.js')}}"></script>    

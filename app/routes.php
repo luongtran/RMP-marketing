@@ -39,10 +39,15 @@ Route::get('backend/article/update/{id}',array('as' => 'backend_article_update',
 Route::post('backend/article/update/{id}',array('as' => 'backend_article_update', 'uses' =>'ArticlesController@postUpdate'));
 Route::get('backend/article/delete/{id}',array('as' => 'backend_article_delete', 'uses' =>'ArticlesController@getDelete'));
 Route::get('backend/article/filter/{id}',array('as' => 'backend_article_filter', 'uses' =>'ArticlesController@filter'));
+Route::post('backend/article/action',array('as' => 'backend_article_filter', 'uses' =>'ArticlesController@action'));
 
 /*Category*/
 Route::get('backend/category/',array('as' => 'backend_category', 'uses' =>'CategoryController@index'));
-Route::post('backend/category/add',array('as' => 'backend_category', 'uses' =>'CategoryController@postAdd'));
+Route::post('backend/category/add',array('as' => 'category_add', 'uses' =>'CategoryController@postAdd'));
+Route::get('backend/category/update/{id}',array('as' => 'category_update', 'uses' =>'CategoryController@getUpdate'));
+Route::post('backend/category/update/{id}',array('as' => 'category_update', 'uses' =>'CategoryController@postUpdate'));
+Route::get('backend/category/delete/{id}',array('as' => 'category_delete', 'uses' =>'CategoryController@getDelete'));
+Route::post('backend/category/action',array('as' => 'backend_article_filter', 'uses' =>'CategoryController@action'));
 
 
 //===========================================//
@@ -88,3 +93,5 @@ Route::get('user/{name?}', function($name = 'John')
     return $name;
 });*/
 
+
+Route::get('backend/dump',array('as' => 'backend_dump', 'uses' =>'AdminController@dump'));

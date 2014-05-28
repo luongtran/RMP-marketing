@@ -23,5 +23,11 @@ class AdminController extends BaseController {
      
     }
     
+    public function dump() {       
+        
+        var_dump(CommonHelper::test());
+    }
+    
+    
 
 }

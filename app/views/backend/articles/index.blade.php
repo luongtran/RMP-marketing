@@ -42,7 +42,7 @@
                                   <table class="table table-bordered table-hover tablesorter">
                                     <thead>
                                       <tr>
-                                        <th></th>  
+                                          <th><input type="checkbox" id="ckbCheckAll" /></th>  
                                         <th class="header">Title <i class="fa fa-sort"></i></th>
                                         <th class="header">Status <i class="fa fa-sort"></i></th>
                                         <th class="header">Create by<i class="fa fa-sort"></i></th>
@@ -52,11 +52,11 @@
                                     <tbody>
                                       @foreach($listArticles  as $article)                                      
                                       <tr <?php if($article->status == "unpublish"){echo "class='danger'";}?> >
-                                        <td><input type="checkbox" value="{{$article->id}}" id=""></td>  
+                                          <td><input type="checkbox" value="{{$article->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
                                         <td><a href="{{Request::root()}}/backend/article/view/{{$article->id}}">{{$article->title}}</a></td>
                                         <td>{{$article->status}}</td>
                                         <td>{{$article->create_by}}</td>
-                                        <td><a href="{{Request::root()}}/backend/article/update/{{$article->id}}"><span class="label label-primary">Edit</span></a>
+                                        <td><a href="{{Request::root()}}/backend/article/update/{{$article->id}}"><span class="label label-primary">Update</span></a>
                                             <a href="{{Request::root()}}/backend/article/delete/{{$article->id}}"><span class="label label-danger">Delete</span></a></td>
                                       </tr>                                      
                                       @endforeach
@@ -70,12 +70,12 @@
                         <!-- action -->
                          <div class="col-lg-3">
                                   <div class="form-group">
-                                    <select class="form-control">
-                                      <option values="publish">Publish</option>
+                                      <select class="form-control" name="action">
+                                      <option value="publish">Publish</option>
                                       <option value="unpublish">Unpublish</option>
                                       <option value="delete">Delete</option>
-                                    </select></br>                                      
-                                    <button type="button" class="btn btn-danger">Action</button>
+                                    </select></br>                                                                          
+                                    <button type="submit" class="btn btn-danger">Action</button>
                                   </div>  
                          </div>                      
                         {{ Form::close() }} 
@@ -88,6 +88,6 @@
              </div>   
             </div>
       
-</div><!-- end row 2-->                
-        
+</div><!-- end row 2-->               
+
 @stop

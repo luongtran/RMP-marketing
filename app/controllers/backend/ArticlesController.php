@@ -64,24 +64,15 @@ class ArticlesController extends BaseController {
     }    
     public function getAdd()
     {    
-        $this->layout->page = "Add new article";         
-        $categories = Categories::all();  
+        $this->layout->page = "Add a new article";         
+        $categories = Categories::where('status','=','publish')->get();  
         $this->layout->content = View::make('backend.articles.add')->with('categories',$categories);
     }
     
     public function postAdd()
     {       
         $validation = Validator::make(
-            array(
-                'title'=>Input::get('title'),
-                'permalink'=>Input::get('permalink'),
-                'content'=>Input::get('content'),
-                'description'=>Input::get('description'),
-                'keyword'=>Input::get('keyword'),
-                'category'=>Input::get('category'),
-                'group_uploads'=>Input::file('fileimages'),
-                'status'=>Input::get('status'),                
-            ),
+            Input::all(),
             array(
                 'title'=> 'required|min:5',
                 'permalink'=> 'unique:articles',                
@@ -123,19 +114,12 @@ class ArticlesController extends BaseController {
 //                $Image->store(Input::file('fileimages'), $Path);
 //            }
             
-            $msg_success= $this->printMsg('success',trans('messages.create_message'));            
-            Session::flash('msg_flash',$msg_success);
-            
+            $msg_success= CommonHelper::printMsg('success',trans('messages.create_message'));            
+            Session::flash('msg_flash',$msg_success);            
             return Redirect::route('backend_article');
         }
         /* Messages validation*/
-         $msga = $validation->messages();
-         $str="";
-         foreach($msga->all() as $er)
-         {
-           $str.= $this->printMsg('error',$er);                    
-         }
-         Session::flash('msg_flash', $str);
+         Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
          return Redirect::back()->withInput();
     }
     
@@ -148,7 +132,7 @@ class ArticlesController extends BaseController {
             ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
             ->where('categories_articles.articles_id','=',$id)    
             ->select(DB::raw('categories.id,categories.name'))->get(); 
-        $categories = Categories::all();  
+        $categories = Categories::where('status','=','publish')->get();  
         
         $this->layout->content = View::make('backend.articles.update')->with('article',$getArticle)
              ->with('categories',$categories)
@@ -158,19 +142,10 @@ class ArticlesController extends BaseController {
       public function postUpdate($id)
     {       
           $validation = Validator::make(
-            array(
-                'title'=>Input::get('title'),
-                'permalink'=>Input::get('permalink'),
-                'content'=>Input::get('content'),
-                'description'=>Input::get('description'),
-                'keyword'=>Input::get('keyword'),
-                'category'=>Input::get('category'),
-                'group_uploads'=>Input::file('fileimages'),
-                'status'=>Input::get('status'),                
-            ),
+            Input::all(),
             array(
                 'title'=> 'required|min:5',
-                'permalink'=> 'unique:articles',                
+                //'permalink'=> 'unique:articles',                
                 'content'=> 'min:10',
                 'category'=> 'required',
                 'keyword'=> 'max:50',
@@ -203,16 +178,10 @@ class ArticlesController extends BaseController {
                $CA->save();
           }
           
-          Session::flash('msg_flash',$this->printMsg('update',trans('messages.update_message'))); 
+          Session::flash('msg_flash',CommonHelper::printMsg('update',trans('messages.update_message'))); 
           return Redirect::route('backend_article');
-        }        
-         $msga = $validation->messages();
-         $str="";
-         foreach($msga->all() as $er)
-         {
-           $str.= $this->printMsg('error',$er);                    
-         }
-         Session::flash('msg_flash', $str);
+        }
+        Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
         return Redirect::back()->withInput();
      }
      
@@ -220,7 +189,7 @@ class ArticlesController extends BaseController {
     {        
           $ar=Articles::find($id);
           $ar->delete();        
-          Session::flash('msg_flash',$this->printMsg('error',trans('messages.delete_message'))); 
+          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.delete_message'))); 
           return Redirect::route('backend_article');
      }
     
@@ -239,6 +208,54 @@ class ArticlesController extends BaseController {
         $this->layout->content = View::make('backend.articles.index')->with('listArticles',$getList)
              ->with('filterCategory',$filterCategories);  
      }
+     
+     public function action()
+     {
+         $check = Input::get('checkID');
+         if($check)
+         {
+         $getAction = Input::get('action');          
+         switch($getAction)
+         {
+         case'publish':
+             foreach($check as $key=>$value)
+             {               
+               $this->changeStatus($getAction,$value);               
+             }  
+             break;         
+         case'unpublish':
+              foreach($check as $key=>$value)
+             {               
+               $this->changeStatus($getAction,$value);               
+             }  
+             break;           
+         case'delete':             
+             foreach($check as $key=>$value)
+             {               
+               $this->getDelete($value);               
+             }                          
+             break;
+         default:             
+             break;
+         }
+         return Redirect::back();
+         }
+         
+        else {             
+          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.nochoose_message')));   
+         return Redirect::back();   
+        }
+     }
+     
+     public function changeStatus($status,$id)
+     {
+         $ar= Articles::find($id);
+         $ar->status = $status;
+         $ar->update();
+         Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.changestatus_message')));   
+     }
+
+
 //     
 //    
 //     
@@ -310,33 +327,6 @@ class ArticlesController extends BaseController {
      
      
       
-    public function printMsg($type,$msg)
-    {
-       switch($type)
-       {
-         case 'success':         
-             $str ='<div class="alert alert-info  alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <a class="alert-link" >'.$msg.'</a>
-               </div>';
-             break;
-         
-         case 'error':
-             $str ='<div class="alert alert-danger  alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <a class="alert-link" >'.$msg.'</a>
-               </div>';
-             break;
-         
-         
-         default:
-             $str ='<div class="alert alert-info  alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <a class="alert-link" >'.$msg.'</a>
-               </div>';
-             break;
-       }
-       return $str;
-    }
+   
 
 }
