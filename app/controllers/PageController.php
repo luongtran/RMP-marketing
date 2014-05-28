@@ -26,7 +26,13 @@ class PageController extends BaseController {
     }
     public function about() {
         $this->layout->page = "About us";
-        $this->layout->content = View::make('frontend.page.about');
+        $content = Articles::where('permalink','=','about')->first();
+        
+        $getImages = Uploads::where('article_id','=',$content->id)->get();
+        $this->layout->content = View::make('frontend.page.about')
+             ->with('content',$content)
+             ->with('getImages',$getImages);
+                
     }        
       public function features() {
         $this->layout->page = "Features";

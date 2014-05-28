@@ -129,7 +129,6 @@ class ArticlesController extends BaseController {
     {        
         $this->layout->page = "Upadte article";           
         $getArticle = Articles::where('id','=',$id)->first(); 
-        
         $category = DB::table('categories_articles')
             ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
             ->where('categories_articles.articles_id','=',$id)    

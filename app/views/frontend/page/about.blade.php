@@ -22,19 +22,21 @@
 			<div class="row">
 
 				<div class="row-item col-1_2">
-					<h3 class="lined margin-20">Recruitment software with a difference</h3>
+					<h3 class="lined margin-20">{{$content->title}}</h3>
 					
 					<div class="b-carousel">
 						<div class="carousel-content">
-							<img alt="" src="http://completermp.com/marketing/frontend/img/about_rmp/login.jpg" class="carousel-item" style="display: none;">					
-							<img alt="" src="http://completermp.com/marketing/frontend/img/elements/img-42.jpg" class="carousel-item active" style="display: block;">
-							<img alt="" src="http://completermp.com/marketing/frontend/img/elements/img-43.jpg" class="carousel-item" style="display: none;">
+                                                        @foreach($getImages as $Im)
+                                                        <img alt="" src="{{asset('asset/share/uploads/images/'.$Im->name)}}" class="carousel-item" width="400" height="400">					
+                                                        @endforeach
 						</div>
-					<div class="carousel-control"><div class="carousel-prev"></div><div class="carousel-next"></div><ul class="carousel-pagination"><li class=""></li><li class="active"></li><li></li></ul></div></div>
+					<div class="carousel-control">
+                                            <div class="carousel-prev"></div><div class="carousel-next"></div>
+                                            <ul class="carousel-pagination"><li class=""></li><li class="active"></li><li></li></ul>
+                                        </div>
+                                        </div>
 
-					
-							
-					<p>CompleteRMP recruitment software has been developed for the Internet right from the start, in both its delivery and the core features it offers. Embracing new technology and ideas has enabled us to develop the cutting edge web based recruitment solution - CompleteRMP.</p>
+									<p>CompleteRMP recruitment software has been developed for the Internet right from the start, in both its delivery and the core features it offers. Embracing new technology and ideas has enabled us to develop the cutting edge web based recruitment solution - CompleteRMP.</p>
 
 					<p>CompleteRMP has been built from the ground up as an online recruitment solution, and is specifically designed for access via a standard web browser so our client's don't have to install third party software to access their recruitment software via the Internet. This leads to a much more efficient, stable and accessible system with significantly reduced cost.</p>
 

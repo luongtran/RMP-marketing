@@ -99,8 +99,8 @@
                                         <td>{{$category->name}}</td>                                        
                                         <td>{{$category->status}}</td>
                                         <td>{{$category->created_at}}</td>
-                                        <td><a href="{{Request::root()}}/backend/category/update/{{$category->id}}"><span class="label label-primary">Update</span></a>
-                                            <a href="{{Request::root()}}/backend/category/delete/{{$category->id}}"><span class="label label-danger">Delete</span></a>
+                                        <td><a  href="{{Request::root()}}/backend/category/update/{{$category->id}}"><span class="label label-primary">Update</span></a>
+                                            <a  href="{{Request::root()}}/backend/category/delete/{{$category->id}}" onclick="return confirm('Have you want delete record !');" ><span class="label label-danger">Delete</span></a>
                                         </td>
                                       </tr>                                      
                                       @endforeach
@@ -139,5 +139,5 @@
        </div><!--col 12 -->        
        </div><!--col 12 -->
 </div><!-- end row 2-->                
-        
+     
 @stop
