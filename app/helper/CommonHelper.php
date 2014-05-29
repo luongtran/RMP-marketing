@@ -69,4 +69,17 @@ class CommonHelper {
         }
         return $files;
     }
+    
+    
+    public static function readOption($selectName,$array,$value,$title,$class='')
+    {
+        $str="<select name='".$selectName."'  class='".$class."'>";
+         foreach($array as $option):
+             $str.="<option value='".$option->$value."'>".$option->$title."</option>";
+         endforeach;    
+        $str.="</select>"; 
+         return $str;
+    }
+    
+    
 }

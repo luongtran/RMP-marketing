@@ -61,6 +61,9 @@ Route::post('backend/slider/update/{id}',array('as' => 'slider_update', 'uses' =
 Route::get('backend/slider/delete/{id}',array('as' => 'slider_delete', 'uses' =>'SliderController@getDelete'));
 Route::post('backend/slider/action',array('as' => 'slider_delete', 'uses' =>'SliderController@action'));
 
+/*Menu*/
+Route::get('backend/menu',array('as' => 'backend_menu', 'uses' =>'MenuController@index'));
+
 /*Share*/
 Route::get('change-language/{id}',array('as' => 'change_language', 'uses' =>'SharedController@getChangeLanguage'));
 //===========================================//

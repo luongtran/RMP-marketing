@@ -36,6 +36,7 @@ return array(
       'user'=>'User',
       'images'=>'Images',
       'image'=>'Image',
+      'menu'=>'Menu',
       'keywords'=>'Keywords',
       'status'=>'Status',  
       'publish'=>'Publish',

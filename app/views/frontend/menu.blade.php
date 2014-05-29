@@ -37,6 +37,15 @@
 
 
             <li> <a href="{{ Request::root() }}/request-demo">  <i class="icon-time"></i> Request Demo </a> </li>
+            <li>
+            <a href="about-us.html">Blog</a>
+
+						<ul class="submenu">
+							<li><a href="about-us.html">News</a></li>
+							<li><a href="services-1.html">Category</a>
+                                                </ul>	
+								
+	    </li>
 
 
 

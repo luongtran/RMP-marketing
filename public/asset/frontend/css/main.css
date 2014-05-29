@@ -848,7 +848,8 @@ i.ita {
 --------------------------------------------------------------*/
 
 .wrap-left .menu {
-	margin-left: 40px;
+/*	margin-left: 40px;*/
+	margin-left: 30px;
 }
 
 

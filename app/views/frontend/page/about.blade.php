@@ -12,32 +12,37 @@
       </ul>
       <!-- Title -->
       <h1> 
-                  About RMP              </h1>
+                    About RMP   
+      </h1>
     </div>
   </div>
 @stop
 @section('content')
 <div class="content">
 		<div class="layout">
-			<div class="row">
+			
+                        
+							
+			
+                         <div class="row">
 
 				<div class="row-item col-1_2">
-					<h3 class="lined margin-20">{{$content->title}}</h3>
+					<h3 class="lined margin-20">   {{$content->title}}   </h3>
 					
 					<div class="b-carousel">
 						<div class="carousel-content">
-                                                        @foreach($getImages as $Im)
+							@foreach($getImages as $Im)
                                                         <img alt="" src="{{asset('asset/share/uploads/images/'.$Im->name)}}" class="carousel-item" width="400" height="400">					
                                                         @endforeach
 						</div>
-					<div class="carousel-control">
-                                            <div class="carousel-prev"></div><div class="carousel-next"></div>
-                                            <ul class="carousel-pagination"><li class=""></li><li class="active"></li><li></li></ul>
-                                        </div>
-                                        </div>
-                                <!-- content -->                
+					<div class="carousel-control"><div class="carousel-prev"></div><div class="carousel-next"></div><ul class="carousel-pagination"><li class=""></li><li class=""></li><li class="active"></li></ul></div></div>
+					{{$content->content}}
+<!--							
 					<p>CompleteRMP recruitment software has been developed for the Internet right from the start, in both its delivery and the core features it offers. Embracing new technology and ideas has enabled us to develop the cutting edge web based recruitment solution - CompleteRMP.</p>
+
 					<p>CompleteRMP has been built from the ground up as an online recruitment solution, and is specifically designed for access via a standard web browser so our client's don't have to install third party software to access their recruitment software via the Internet. This leads to a much more efficient, stable and accessible system with significantly reduced cost.</p>
+
+
 					<div style="height: 30px;" class="gap">
 					</div>
 				</div>
@@ -77,11 +82,12 @@
 					</div>
 					<div style="height: 30px;" class="gap">
 					</div>
-				</div>
+				</div>-->
+			</div>                               
+			<!--end row -->
                                 
-                             <!-- end content -->           
-                            
-			</div>
+                         <!-- end content -->           
+                       
 
 			<h3 class="lined margin-20">Dedicated User Interfaces</h3>
 			<div class="row">
@@ -151,6 +157,7 @@
 					<p>Inventore veritatis et quasi architectos beatae vitae dicta sunt explicabo. Nemo enims sadips ipsums un</p>
 				</div>
 			</div>
+                        <!--end row 3-->
 
 
 		</div>

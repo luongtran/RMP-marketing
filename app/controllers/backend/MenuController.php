@@ -18,7 +18,15 @@ class MenuController extends BaseController {
      */
 
     public function index() {
-        $this->layout->content = View::make('index');
+        
+        $this->layout->page = "Menu";  
+        $getMenu = Menus::orderBy('order','asc')->paginate(10);
+        
+        $category= Categories::all();
+        $test = CommonHelper::readOption('parent',$category,'id','name','form-control');
+        
+        $this->layout->content = View::make('backend.menu.index')->with('getMenu',$getMenu)
+             ->with('cate',$test);
     }
 
 }
