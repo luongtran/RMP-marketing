@@ -11,16 +11,17 @@
     <link href="{{asset('asset/frontend/css/style.css')}}" media="screen" rel="stylesheet" type="text/css" />     
     <!-- in style -->
     @section('style') 
-    <script src="{{ asset('asset/frontend/js/jquery-1.js')}}"></script>
-    <script src="{{ asset('asset/frontend/js/jquery_003.js')}}"></script> 
-    <script src="{{ asset('asset/frontend/js/modernizr.js')}}"></script>
-    <script src="{{ asset('asset/frontend/js/main.js')}}"></script>
+    <link rel="stylesheet" href="css/main.css">
+    
+    <script src="{{ asset('asset/frontend/js/jquery-1.9.1.min.js')}}"></script>
+    <script src="{{ asset('asset/frontend/js/main.js')}}"></script>   
+    
     <!-- Revolution Slider -->
-    <script src="{{ asset('asset/frontend/js/jquery_004.js')}}"></script>
-    <script src="{{ asset('asset/frontend/js/jquery.js')}}"></script>
+    <script src="{{ asset('asset/frontend/js/jquery.themepunch.plugins.min.js')}}"></script>
+    <script src="{{ asset('asset/frontend/js/jquery.themepunch.revolution.min.js')}}"></script>
     <script src="{{ asset('asset/frontend/js/revolution-slider-options.js')}}"></script>
     <!-- Prety photo -->
-    <script src="{{ asset('asset/frontend/js/jquery_002.js')}}"></script>
+    <script src="{{ asset('asset/frontend/js/jquery.prettyPhoto.js')}}"></script>    
     <script>
     $(document).ready(function(){
       $("a[rel^='prettyPhoto']").prettyPhoto();

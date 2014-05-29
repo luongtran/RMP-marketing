@@ -3,49 +3,44 @@
      <div class="col-lg-12">
             <ol class="breadcrumb">
               <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i> {{trans('common.menu.dashboard')}}</a></li>
-              <li class="active"><a href="{{Request::root()}}/backend/category"><i class="fa fa-desktop"></i> {{trans('common.table.category')}}</a></li>            
+              <li class="active"><a href="{{Request::root()}}/backend/slider"><i class="fa fa-desktop"></i> {{trans('common.table.slider')}}</a></li>            
             </ol>
     </div>   
 </div><!-- end row 1--> 
 
 <div class="row">
             
-            <div class="col-lg-12">   
-                  <div class="messages_validation">                           
-                      {{Session::get('msg_flash')}}
-                  </div>
             <div class="col-lg-12"> 
+            <div class="col-lg-12">
+                <div class="messages_validation col-lg-12">                           
+                      {{Session::get('msg_flash')}}
+                </div>
                 <div class="col-lg-4">              
-                    {{Form::open(array('url'=>'backend/category/add', 'method' => 'post','role'=>'form') )}}               
+                    {{Form::open(array('url'=>'backend/slider/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{trans('titlepage.title.add_category')}}</h3>
+                            <h3 class="panel-title">{{trans('titlepage.title.add_slider')}}</h3>
                         </div>
                         <div class="panel-body">                         
                              <div>                            
                                 <div class="form-group">                                
-                                    <label>{{trans('common.table.name')}}<span class="star-validation">(*)</span></label>
-                                        {{Form::text('name','',array('class' => 'form-control','id'=>'name'))}}       
+                                    <label>{{trans('common.table.title')}}<span class="star-validation">(*)</span></label>
+                                        {{Form::text('title','',array('class' => 'form-control','id'=>'name'))}}       
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{trans('common.table.permalink')}}</label>                                
-                                    {{Form::text('permalink','',array('class' => 'form-control','id'=>'permalink'))}}       
+                                    <label>{{trans('common.table.link')}}</label>                                
+                                    {{Form::text('link','',array('class' => 'form-control','id'=>'permalink'))}}       
                                 </div>
 
                                   <div class="form-group">
-                                 <label>{{trans('common.table.description')}}</label>
-                                    {{Form::textarea('description','',array('class' => 'form-control','id'=>'description','rows'=>'2'))}}                                     
+                                 <label>{{trans('common.table.caption')}}</label>
+                                    {{Form::textarea('caption','',array('class' => 'form-control','id'=>'description','rows'=>'2'))}}                                     
                                  </div>
                                  
                                   <div class="form-group">                                      
-                                    <label>{{trans('common.table.parent')}}</label>
-                                    <select class="form-control" name="parent">                                        
-                                    <option value="0">None</option>
-                                    @foreach($parentCategory as $parentItem)                                    
-                                     <option value="{{$parentItem->id}}">{{$parentItem->name}}</option>                                         
-                                    @endforeach
-                                    </select>
+                                    <label>{{trans('common.table.image')}}</label>
+                                     {{Form::file('image') }}  
                                   </div>
                                  
                                  <div class="form-group">
@@ -75,12 +70,12 @@
                 <div class="col-lg-12">
                 <div class="panel panel-success">
                     <div class="panel-heading"> 
-                       {{trans('titlepage.title.list_category')}}
+                       {{trans('titlepage.title.list_slider')}}
                     </div>
                     <div class="panel-body"> 
                                
                                 <h2></h2>
-                                 {{Form::open(array('url'=>'backend/category/action', 'method' => 'post','role'=>'form'))}}               
+                                 {{Form::open(array('url'=>'backend/slider/action', 'method' => 'post','role'=>'form'))}}               
                                 <div class="table-responsive">
                                   <table class="table table-bordered table-hover tablesorter">
                                     <thead>
@@ -93,21 +88,23 @@
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      @foreach($categories  as $category)                                      
-                                      <tr <?php if($category->status == "unpublish"){echo "class='danger'";}?> >
-                                          <td><input type="checkbox" value="{{$category->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
-                                        <td>{{$category->name}}</td>                                        
-                                        <td>{{$category->status}}</td>
-                                        <td>{{$category->created_at}}</td>
-                                        <td><a  href="{{Request::root()}}/backend/category/update/{{$category->id}}"><span class="label label-primary">{{trans('common.button.update')}}</span></a>
-                                            <a  href="{{Request::root()}}/backend/category/delete/{{$category->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a>
+                                      @foreach($getSlider  as $slider)                                      
+                                      <tr <?php if($slider->status == "unpublish"){echo "class='danger'";}?> >
+                                          <td><input type="checkbox" value="{{$slider->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
+                                        <td>{{$slider->title}}</td>                                        
+                                        <td>{{$slider->status}}</td>
+                                        <td>{{$slider->created_at}}</td>
+                                        <td><a  href="{{Request::root()}}/backend/slider/update/{{$slider->id}}"><span class="label label-primary">{{trans('common.button.update')}}</span></a>
+                                            <a  href="{{Request::root()}}/backend/slider/delete/{{$slider->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a>
                                         </td>
                                       </tr>                                      
                                       @endforeach
                                     </tbody>
                                   </table> 
-                                     
-                                     <div class="row col-lg-3">
+                                </div>
+                                
+                                    
+                                    <div class="row col-lg-3">
                                         <div class="form-group">
                                         <select class="form-control " name="action">
                                           <option value="publish">{{trans('common.table.publish')}}</option>
@@ -116,20 +113,19 @@
                                         </select></br>                                         
                                         <button type="submit" class="btn btn-danger">{{trans('common.button.action')}}</button>                                   
                                         </div>
-                                    </div>   
-                                   
-                                </div>                               
-                                  
-                              {{Form::close()}} 
-                             
-                             
-                          </div> 
-                      
-                       
-                              <div class="row col-lg-3">
-                                  <?php echo $categories->links(); ?>      
-                              </div> 
-                </div><!--panel -->   
+                                    </div>
+                                 
+                                 
+                          </div>                                
+                                                                    
+                              
+                                 
+                             {{Form::close()}} 
+                               
+                </div><!--panel -->  
+                     <!-- paging -->                
+                         <?php echo $getSlider->links(); ?>  
+                     <!-- end paging -->  
                 </div><!-- 12-->   
                   
                             

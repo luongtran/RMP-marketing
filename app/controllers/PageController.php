@@ -21,8 +21,12 @@ class PageController extends BaseController {
     public function index() {
         $this->layout->page = "Recruitment Management Portal";
         $this->layout->title = "Home";
-        
-        $this->layout->content = View::make('frontend.page.index');
+        $slider = DB::table('slider')               
+            ->join('uploads', 'uploads.id', '=', 'slider.image')            
+            ->where('slider.status','=','publish')
+            ->select(DB::raw('title,caption,link,uploads.name'))
+            ->get();
+        $this->layout->content = View::make('frontend.page.index')->with('slider',$slider);
     }
     public function about() {
         $this->layout->page = "About us";
@@ -53,6 +57,39 @@ class PageController extends BaseController {
     public function contact() {        
         $this->layout->page = "Contact";
         $this->layout->content = View::make('frontend.page.contact');
+    }
+    
+    public function view($id) {
+        
+        $content = Articles::where('permalink','=',$id)->first();
+        
+        if(!$content)
+        {
+          $content = Articles::where('id','=',$id)->first();          
+          if(!$content)
+          {
+                return Redirect::route('notfound_page');
+          }
+          else
+          {
+          $this->layout->page = $content->title;
+          }
+        }
+        else
+        {
+            $this->layout->page = $content->title;
+        }
+        
+        $getImages = Uploads::where('article_id','=',$content->id)->get();
+        $this->layout->content = View::make('frontend.page.view')
+             ->with('content',$content)
+             ->with('getImages',$getImages);
+                
+    }
+    function notFound()
+    {
+        $this->layout->page = "Not found!";
+        $this->layout->content = View::make('frontend.page.notfound');
     }
 
 }

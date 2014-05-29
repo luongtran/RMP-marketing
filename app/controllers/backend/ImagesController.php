@@ -22,32 +22,35 @@ class ImagesController extends BaseController {
         $this->layout->content = View::make('backend.images.index');
      
     }
-    
-    public function getUpload()
-    {
-        $this->layout->content = View::make('backend.images.upload');
+ 
+    function store($file,$Path)
+    {       
+                $date = date('m-d-Y') ;       
+                $filename= $date.'_'.$file->getClientOriginalName();
+                $file->move($Path, $filename);
+                $upload =  new Uploads;
+                $upload->name = $filename;
+                $upload->type = $file->getClientmimeType();
+                $upload->path = $Path;
+                $upload->save();
+                return $upload->id;                
     }
-    
-        public function postUpload()
+     function storeOld($file,$Path,$id)
     {          
-          $Path = 'public/backend/uploads/images';
-          $upload_success = Input::file('fileImage');  
-          $result=$this->save($upload_success,$Path);
-          return Response::json($result);          
+            $checkImage = Uploads::where('id','=',$id)->first();
+            if($checkImage)
+            {
+            $ar=Uploads::find($checkImage->id);
+            $ar->delete();  
+            }
+            return $this->store($file, $Path);
     }
-    
     
     function storeMulti($file,$Path,$article_id)
     {        
             // use controller article                 
               foreach($file as $fileinfo)
-                {
-                if($fileinfo==null)
-                {
-                  break;  
-                }
-                else
-                {                
+                {                            
                 $date = date('m-d-Y') ;       
                 $filename= $date.'_'.$fileinfo->getClientOriginalName();
                 $fileinfo->move($Path, $filename);
@@ -56,19 +59,19 @@ class ImagesController extends BaseController {
                 $upload->type = $fileinfo->getClientmimeType();
                 $upload->path = $Path;
                 $upload->article_id = $article_id;
-                $upload->save();
-                }
-                // $group->upload_id=$upload->id;
+                $upload->save();              
                 }
     }
     
     function checkImageOld($file,$Path,$article_id)
     {
+        
+        
        $checkImage = Uploads::where('article_id','=',$article_id)->get();
        foreach($checkImage as $check)
        {           
           $ar=Uploads::find($check->id);
-          $ar->delete();  
+          $ar->delete(); 
        }
       
        $this->storeMulti($file,$Path,$article_id);

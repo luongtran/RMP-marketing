@@ -16,7 +16,8 @@ return array(
         'contact'=>'Contact',
         'back'=>'Back',
         'service'=>'Service',
-        'dashboard'=>'Dashboard'
+        'dashboard'=>'Dashboard',
+        'view'=>'View',
         
     ),
     'table'=>array(
@@ -29,8 +30,13 @@ return array(
       'column'=>'Column',  
       'article'=>'Article',    
       'category'=>'Category',
+      'slider'=>'Slider',
+      'link'=>'Link',
+      'caption'=>'Caption',
       'user'=>'User',
+      'images'=>'Images',
       'image'=>'Image',
+      'keywords'=>'Keywords',
       'status'=>'Status',  
       'publish'=>'Publish',
       'unpublish'=>'Unpublish',

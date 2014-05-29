@@ -111,9 +111,12 @@ class ArticlesController extends BaseController {
             }
             /*upload image*/
             $upload = Input::file('fileimages'); 
-            $Path = 'public/asset/share/uploads/images/';
-            $Image= new ImagesController();
-            $Image->storeMulti(Input::file('fileimages'), $Path,$article->id);            
+            if(!empty(CommonHelper::check_files_empty($upload)))
+            {
+              $Path = 'public/asset/share/uploads/images/';
+              $Image= new ImagesController();
+              $Image->storeMulti(Input::file('fileimages'), $Path,$article->id);            
+            }
             
             $msg_success= CommonHelper::printMsg('success',trans('messages.create_message'));            
             Session::flash('msg_flash',$msg_success);            
@@ -182,14 +185,19 @@ class ArticlesController extends BaseController {
                $CA->save();
           }
           /* Update image */          
+          
             $upload = Input::file('fileimages'); 
-            $Path = 'public/asset/share/uploads/images/';
-            $Image= new ImagesController();
-            $Image->checkImageOld(Input::file('fileimages'), $Path,$id);            
           
-          
-          Session::flash('msg_flash',CommonHelper::printMsg('update',trans('messages.update_message'))); 
-          return Redirect::route('backend_article');
+            if(!empty(CommonHelper::check_files_empty($upload)))
+            {
+               $upload = Input::file('fileimages'); 
+               $Path = 'public/asset/share/uploads/images/';
+               $Image= new ImagesController();
+               $Image->checkImageOld(Input::file('fileimages'), $Path,$id); 
+            }
+                      
+          Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message'))); 
+          return Redirect::route('article_view',array('id'=>$id));
         }
         Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
         return Redirect::back()->withInput();

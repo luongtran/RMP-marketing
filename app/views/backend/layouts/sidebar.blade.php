@@ -36,8 +36,8 @@
             <li class="dropdown alerts-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Language <span class="badge"></span> <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                  <li><a href="<?php echo Route('change_language', array('lang' => 'en', 'return_url' => Request::url()) );?>"><span class="label label-default"> English </span></a></li>
-                  <li><a href="<?php echo Route('change_language', array('lang' => 'sa', 'return_url' => Request::url()) );?>"><span class="label label-default"> عربي </span></a></li>
+                  <li><a href="<?php echo Route('change_language', array('lang' => 'en', 'return_url' => Request::url()) );?>"><span class="<?php if(Session::get('current_locale')=='en'){echo 'label label-default';}?>" > English </span></a></li>
+                  <li><a href="<?php echo Route('change_language', array('lang' => 'sa', 'return_url' => Request::url()) );?>"><span class="<?php if(Session::get('current_locale')=='sa'){echo 'label label-default';}?>"> عربي </span></a></li>
               </ul>
             </li>
             <li class="dropdown user-dropdown">

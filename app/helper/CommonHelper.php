@@ -56,4 +56,17 @@ class CommonHelper {
          }
          return $str;
     }
+    
+    
+      public static function check_files_empty($files) {
+        if (!is_array($files)) {
+            $files = array($files);
+        }
+        foreach ($files as $key => $value) {
+            if (empty($value) || $value == '' || $value == NULL || $value == 0) {
+                unset($files[$key]);
+            }
+        }
+        return $files;
+    }
 }

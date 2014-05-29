@@ -13,17 +13,17 @@ class CreateCategoriesTable extends Migration {
 	public function up()
 	{
 	 DB::statement("CREATE TABLE `categories` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-        `description` text COLLATE utf8_unicode_ci,
-        `order` int(11) DEFAULT NULL,
-        `status` int(11) DEFAULT NULL,
-        `created_at` timestamp NULL DEFAULT NULL,
-        `updated_at` timestamp NULL DEFAULT NULL,
-        `parent` int(11) DEFAULT NULL,
-        `permalink` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-        PRIMARY KEY (`id`)
-      ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci");
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+            `description` text COLLATE utf8_unicode_ci,
+            `order` int(11) DEFAULT NULL,
+            `status` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+            `created_at` timestamp NULL DEFAULT NULL,
+            `updated_at` timestamp NULL DEFAULT NULL,
+            `parent` int(11) DEFAULT NULL,
+            `permalink` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+            PRIMARY KEY (`id`)
+          ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci");
 	}
 
 	/**

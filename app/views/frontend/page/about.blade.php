@@ -35,12 +35,9 @@
                                             <ul class="carousel-pagination"><li class=""></li><li class="active"></li><li></li></ul>
                                         </div>
                                         </div>
-
-									<p>CompleteRMP recruitment software has been developed for the Internet right from the start, in both its delivery and the core features it offers. Embracing new technology and ideas has enabled us to develop the cutting edge web based recruitment solution - CompleteRMP.</p>
-
+                                <!-- content -->                
+					<p>CompleteRMP recruitment software has been developed for the Internet right from the start, in both its delivery and the core features it offers. Embracing new technology and ideas has enabled us to develop the cutting edge web based recruitment solution - CompleteRMP.</p>
 					<p>CompleteRMP has been built from the ground up as an online recruitment solution, and is specifically designed for access via a standard web browser so our client's don't have to install third party software to access their recruitment software via the Internet. This leads to a much more efficient, stable and accessible system with significantly reduced cost.</p>
-
-
 					<div style="height: 30px;" class="gap">
 					</div>
 				</div>
@@ -81,6 +78,9 @@
 					<div style="height: 30px;" class="gap">
 					</div>
 				</div>
+                                
+                             <!-- end content -->           
+                            
 			</div>
 
 			<h3 class="lined margin-20">Dedicated User Interfaces</h3>

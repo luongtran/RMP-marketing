@@ -13,15 +13,17 @@ class CreateUploadsTable extends Migration {
 	public function up()
 	{
 	DB::statement("CREATE TABLE `uploads` (
-                `id` int(11) NOT NULL AUTO_INCREMENT,
-                `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-                `path` text COLLATE utf8_unicode_ci,
-                `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-                `size` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-                `created_at` timestamp NULL DEFAULT NULL,
-                `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-                PRIMARY KEY (`id`)
-              ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+            `path` text COLLATE utf8_unicode_ci,
+            `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+            `size` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+            `created_at` timestamp NULL DEFAULT NULL,
+            `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+            `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+            `article_id` int(11) DEFAULT NULL,
+            PRIMARY KEY (`id`)
+          ) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
               ");
 	}
 

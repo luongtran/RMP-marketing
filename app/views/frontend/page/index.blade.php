@@ -1,34 +1,31 @@
 @section('header')
 <div class="fullwidthbanner-container top-shadow">
-    <div class="fullwidthbanner revslider-initialised tp-simpleresponsive" style="height: 545px;">
-      <ul style="display: block;">
-        <!-- Slide 1 -->
-        <li data-masterspeed="1000" data-slotamount="1" data-transition="fade" style="visibility: visible; left: 0px; top: 0px; z-index: 20; opacity: 1;">
-        <!-- Main Image -->
-        <div class="slotholder"><img alt="" src="http://completermp.com/marketing/frontend/img/slider/Slider-14.jpg" class="defaultimg" style="width: 2050px; height: 440px; position: relative; left: -349.5px; top: 0px; opacity: 1;"></div>
-        <!-- End Main Image -->
-        <!-- Captions -->
-        <div data-easing="easeOutQuint" data-start="800" data-speed="1000" data-y="150" data-x="40" class="tp-caption m-4em m-bold m-letter-spacing-1 m-uppercase m-text-white fade start" style="opacity: 1; visibility: visible; font-size: 13px; padding: 0px; margin: 0px; border-width: 0px; border-style: none; border-color: -moz-use-text-color; line-height: 20px; white-space: nowrap; left: 170.5px; top: 150px; transform: scale(1, 1) rotate(0deg);">
-          <span>Full Control</span>
-        </div>
-        <div data-easing="easeOutQuint" data-start="1200" data-speed="1000" data-y="205" data-x="40" class="tp-caption m-1-8em m-lowercase m-text-white fade start" style="opacity: 1; visibility: visible; font-size: 13px; padding: 0px; margin: 0px; border-width: 0px; border-style: none; border-color: -moz-use-text-color; line-height: 20px; white-space: nowrap; left: 170.5px; top: 205px; transform: scale(1, 1) rotate(0deg);">
-          <span>Recruitment Software with a difference</span>
-        </div>
-        <div data-easing="easeOutQuint" data-start="1600" data-speed="1000" data-y="245" data-x="40" class="tp-caption fade start" style="opacity: 1; visibility: visible; font-size: 13px; padding: 0px; margin: 0px; border-width: 0px; border-style: none; border-color: -moz-use-text-color; line-height: 20px; white-space: nowrap; left: 170.5px; top: 245px; transform: scale(1, 1) rotate(0deg);">
-          <a class="btn colored btn-uppercase" href="{{ Request::root() }}/about">Read More<i style="margin: 0 0 0 7px;" class="icon-caret-right"></i></a>
-        </div>
-        <!-- End captions -->
-        </li>
-        <!-- End Slide 1 -->
-
-
-
+    <div class="fullwidthbanner">
+      <ul>
+          @foreach($slider as $sl)
+        <!-- Slide -->
+				<li data-transition="fade" data-slotamount="1" data-masterspeed="1000">
+				<!-- Main Image -->
+				<img src="{{asset('asset/share/uploads/images/'.$sl->name)}}" alt="">
+				<!-- End Main Image -->
+				<!-- Captions -->
+				<div class="tp-caption m-4em m-bold m-letter-spacing-1 m-uppercase m-text-white fade" data-x="40" data-y="110" data-speed="300" data-start="800" data-easing="easeOutQuint">
+					<span>{{$sl->title}}</span>
+				</div>
+				<div class="tp-caption m-2-2em m-light m-text-white lfl" data-x="40" data-y="217" data-speed="400" data-start="1400" data-easing="easeOutExpo">
+					<span>{{$sl->caption}}</span>
+				</div>
+				<div class="tp-caption lfl" data-x="40" data-y="265" data-speed="400" data-start="1600" data-easing="easeOutExpo">
+					<a href="{{Request::root()}}/{{$sl->link}}" class="btn btn-uppercase colored">Readmore<i class="icon-caret-right" style="margin: 0 0 0 7px;"></i></a>
+				</div>
+				<!-- End captions -->
+				</li>
+	 <!-- End Slide  -->
+         @endforeach
       </ul>
-    <div class="tp-loader" style="display: none;"></div>
-        <div style="visibility: hidden; width: 0%;" class="tp-bannertimer"></div>        
-    </div>
+      
   </div>
-
+ </div>
 <div class="content gray-content">
     <div style="padding-bottom: 8px;" class="layout">
       <div class="row">

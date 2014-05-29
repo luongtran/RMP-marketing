@@ -16,6 +16,9 @@
     <link href="{{ asset('asset/backend/font-awesome/css/font-awesome.min.css') }}">
     <!-- Page Specific CSS -->
 <!--    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">-->
+    <style>
+        .breadcrumb{margin-bottom: 5px ;}
+    </style>
   </head>
 
   <body>
