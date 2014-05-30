@@ -15,7 +15,12 @@ return array(
         'add_menu'=>'Add menu',
         'list_menu'=>'List menu',
         'update_menu'=>'Update menu',
+        'update_user'=>'Update user',
+        'add_user'=>'Add user',
+        
+        
         'extends'=>'Extends',
+        'basic'=>'Basic',
         
     ),
     'page'=>array(

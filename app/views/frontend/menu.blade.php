@@ -8,51 +8,26 @@
         <!-- Navigation -->
         <ul class="menu">
 
-
-          <!-- Item 1 -->
-          <li><a href="{{ Request::root() }}" class="active"> <i class="icon-home"></i>  Home </a> </li>
-
-
-
-
-          <li> <a href="{{ Request::root() }}/about"> <i class="icon-folder-open"></i>  About RMP</a> </li>
-
-
-
-
-          <li> <a href="{{ Request::root() }}/features"> <i class="icon-file-text-alt"></i>  Features </a> </li>
-
-
-
-          <li> <a href="{{ Request::root() }}/service"> <i class="icon-random"></i>  Services </a></li>
-
-
-
-
-
-
-          <li> <a href="{{ Request::root() }}/support-packages">  <i class="icon-headphones"></i> Support </a> </li>
-
-
-
-
-            <li> <a href="{{ Request::root() }}/request-demo">  <i class="icon-time"></i> Request Demo </a> </li>
-            <li>
-            <a href="about-us.html">Blog</a>
-
-						<ul class="submenu">
-							<li><a href="about-us.html">News</a></li>
-							<li><a href="services-1.html">Category</a>
-                                                </ul>	
-								
-	    </li>
-
-
-
-          <!-- Item 6 -->
-          <li>   <a href="{{ Request::root() }}/contact-us"> <i class="icon-envelope"></i> Contact</a> </li>
-
-        </ul>
+          <?php
+         $setMenu = Menus::where('status','=','publish')->where('parent','=',0)->orderBy('order','asc')->get();          
+         foreach($setMenu as $prMenu):
+           
+             echo "<li><a href='".Request::root().$prMenu->link."'><i class=".$prMenu->icon."></i>".$prMenu->title."</a>";                
+                $subMenu = Menus::where('status','=','publish')->where('parent','=',$prMenu->id)->get();                 
+                $checkEmpty=false;
+                if($subMenu){
+                    $ulSub= "<ul class='submenu'>";
+                 foreach($subMenu as $sub):                      
+                    $ulSub.= "<li><a href='".$sub->link."'><i class=".$sub->icon."></i>".$sub->title."</a></li>";
+                 $checkEmpty=true;
+                 endforeach;   
+		    $ulSub.= "</ul>";
+                    if($checkEmpty)echo $ulSub;
+               }                  
+             echo "</li>";
+         endforeach;         
+          ?>           
+        </ul>             
       </div>
   
     </div>

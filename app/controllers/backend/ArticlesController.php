@@ -344,7 +344,21 @@ class ArticlesController extends BaseController {
 //     
      
      
-      
+ public function search() {
+        $this->layout->page = "Result article";        
+        $getList = DB::table('categories_articles')
+            ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
+            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')   
+            ->join('users', 'articles.user_id', '=', 'users.id')
+            ->orderBy('articles.id', 'desc') 
+            ->where('title', 'like','%'.Input::get('keyfind').'%') 
+            ->select(DB::raw(' DISTINCT articles_id as id,title,articles.permalink,users.username as create_by,articles.status as status'))
+            ->paginate(10);
+        $filterCategories  =  Categories::all();        
+        $this->layout->content = View::make('backend.articles.index')->with('listArticles',$getList)
+             ->with('filterCategory',$filterCategories);
+       
+    }     
    
 
 }

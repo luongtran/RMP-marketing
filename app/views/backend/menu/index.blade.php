@@ -50,22 +50,9 @@
                                     <label>{{trans('common.table.icon')}}(Ex: icon-home)</label>                                
                                     {{Form::text('icon','',array('class' => 'form-control','id'=>'icon'))}}       
                                 </div>
-                                 
-                                 <div class="form-group">
-                                    <label>{{trans('common.table.status')}}</label>
-                                    <div class="radio">
-                                      <label>
-                                       {{Form::radio('status', 'publish',true )}}
-                                       {{trans('common.table.publish')}}
-                                      </label>
-                                    </div>
-                                   <div class="radio">
-                                      <label>
-                                        {{Form::radio('status', 'unpublish',false)}}
-                                        {{trans('common.table.unpublish')}}
-                                      </label>
-                                    </div>                            
-                                 </div>
+                          
+                                 <?php echo CommonHelper::createFormStatus();?>
+                                
                                  <button type="submit" class="btn btn-primary">{{trans('common.button.save')}}</button>
                              </div>
                            </div>

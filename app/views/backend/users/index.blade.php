@@ -3,7 +3,7 @@
      <div class="col-lg-12">
             <ol class="breadcrumb">
               <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i>{{trans('common.menu.dashboard')}}</a></li>
-              <li class="active"><a href="{{Request::root()}}/backend/article"><i class="fa fa-desktop"></i> {{trans('common.table.article')}} </a></li>            
+              <li class="active"><a href="{{Request::root()}}/backend/user"><i class="fa fa-desktop"></i> {{trans('common.table.user')}} </a></li>            
             </ol>
     </div>   
 </div><!-- end row 1--> 
@@ -23,46 +23,41 @@
                             <div class="col-lg-12">
                                 
                                  <ul class="nav nav-pills">
-                                    <li class="active"><a href="{{Request::root()}}/backend/article/add">{{trans('common.button.add')}}</a></li>
+                                    <li class="active"><a href="{{Request::root()}}/backend/user/add">{{trans('common.button.add')}}</a></li>
                                     <li class="dropdown active">
                                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                         {{trans('common.table.category')}} <span class="caret"></span>
-                                      </a>
-                                      <ul class="dropdown-menu">
-                                        @foreach($filterCategory as $ct)
-                                        <li><a href="{{Request::root()}}/backend/article/filter/{{$ct->id}}">{{$ct->name}}</a></li>
-                                        @endforeach                                        
-                                      </ul>
+                                      </a>                                    
                                     </li>
                                     <li >
-                                         {{Form::open(array('url'=>'backend/article/search', 'method' => 'get','role'=>'form') )}}                                                     
+                                         {{Form::open(array('url'=>'backend/user/search', 'method' => 'get','role'=>'form') )}}                                                     
                                                 {{Form::text('keyfind','',array('class' => 'form-control','id'=>'keyfind','placeholder'=>'Search...'))}}   
                                          {{Form::close()}}                                                    
                                     </li>
                                   </ul>
                                
                                 <h2></h2>
-                                {{Form::open(array('url'=>'backend/article/action', 'method' => 'post','role'=>'form'))}}               
+                                {{Form::open(array('url'=>'backend/user/action', 'method' => 'post','role'=>'form'))}}               
                                 <div class="table-responsive">
                                   <table class="table table-bordered table-hover tablesorter">
                                     <thead>
                                       <tr>
                                           <th><input type="checkbox" id="ckbCheckAll" /></th>  
-                                        <th class="header">{{trans('common.table.title')}} <i class="fa fa-sort"></i></th>
-                                        <th class="header">{{trans('common.table.status')}} <i class="fa fa-sort"></i></th>
-                                        <th class="header">{{trans('common.table.create_by')}}<i class="fa fa-sort"></i></th>
+                                        <th class="header">{{trans('common.table.username')}} <i class="fa fa-sort"></i></th>
+                                        <th class="header">{{trans('common.table.permission')}} <i class="fa fa-sort"></i></th>
+                                        <th class="header">{{trans('common.table.create_at')}}<i class="fa fa-sort"></i></th>
                                         <th class="header"><i class="fa fa-sort"></i></th>                                        
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      @foreach($listArticles  as $article)                                      
-                                      <tr <?php if($article->status == "unpublish"){echo "class='danger'";}?> >
-                                          <td><input type="checkbox" value="{{$article->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
-                                        <td><a href="{{Request::root()}}/backend/article/view/{{$article->id}}">{{$article->title}}</a></td>
-                                        <td>{{$article->status}}</td>
-                                        <td>{{$article->create_by}}</td>
-                                        <td><a href="{{Request::root()}}/backend/article/update/{{$article->id}}" ><span class="label label-primary">{{trans('common.button.update')}}</span></a>
-                                            <a href="{{Request::root()}}/backend/article/delete/{{$article->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a></td>
+                                      @foreach($getUser  as $list)                                      
+                                      <tr <?php if($list->status == "unpublish"){echo "class='danger'";}?> >
+                                          <td><input type="checkbox" value="{{$list->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
+                                        <td><a href="{{Request::root()}}/backend/article/view/{{$list->id}}">{{$list->username}}</a></td>
+                                        <td>{{$list->status}}</td>
+                                        <td>{{$list->create_by}}</td>
+                                        <td><a href="{{Request::root()}}/backend/article/update/{{$list->id}}" ><span class="label label-primary">{{trans('common.button.update')}}</span></a>
+                                            <a href="{{Request::root()}}/backend/article/delete/{{$list->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a></td>
                                       </tr>                                      
                                       @endforeach
                                     </tbody>
@@ -88,7 +83,7 @@
                     
                 </div>
                      <!-- paging -->                
-                         <?php echo $listArticles->links(); ?>  
+                         <?php echo $getUser->links(); ?>  
                      <!-- end paging -->  
              </div>   
             </div>

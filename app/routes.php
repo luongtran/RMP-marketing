@@ -43,6 +43,7 @@ Route::post('backend/article/update/{id}',array('as' => 'article_update', 'uses'
 Route::get('backend/article/delete/{id}',array('as' => 'article_delete', 'uses' =>'ArticlesController@getDelete'));
 Route::get('backend/article/filter/{id}',array('as' => 'article_filter', 'uses' =>'ArticlesController@filter'));
 Route::post('backend/article/action',array('as' => 'article_filter', 'uses' =>'ArticlesController@action'));
+Route::get('backend/article/search',array('as' => 'article_search', 'uses' =>'ArticlesController@search'));
 
 /*Category*/
 Route::get('backend/category/',array('as' => 'backend_category', 'uses' =>'CategoryController@index'));
@@ -69,50 +70,25 @@ Route::get('backend/menu/update/{id}',array('as' => 'menu_update', 'uses' =>'Men
 Route::post('backend/menu/update/{id}',array('as' => 'menu_update', 'uses' =>'MenuController@postUpdate'));
 Route::post('backend/menu/action',array('as' => 'menu_update', 'uses' =>'MenuController@action'));
 
+/*Setting*/
+Route::get('backend/setting',array('as' => 'backend_setting', 'uses' =>'SettingController@index'));
+Route::post('backend/setting/update',array('as' => 'setting_update', 'uses' =>'SettingController@postUpdate'));
+Route::get('backend/setting/create-data',array('as' => 'menu_update', 'uses' =>'SettingController@createData'));
+
+/* Users */
+Route::get( 'backend/login/' , array('as' => 'user_login', 'uses' => 'UserController@getLogin'));
+Route::post( 'backend/login/' , array('as' => 'user_login', 'uses' => 'UserController@postLogin'));
+Route::get( 'backend/user' , array('as' => 'backend_user', 'uses' => 'UserController@index'));
+Route::get( 'backend/user/add' , array('as' => 'user_add', 'uses' => 'UserController@getAdd'));
+Route::post( 'backend/user/add' , array('as' => 'user_add', 'uses' => 'UserController@postAdd'));
+Route::get( 'backend/user/update/{id}' , array('as' => 'user_update', 'uses' => 'UserController@getUpdate'));
+Route::post( 'backend/user/update/{id}' , array('as' => 'user_update', 'uses' => 'UserController@postUpdate'));
+Route::get( 'backend/user/delete/{id}' , array('as' => 'user_delete', 'uses' => 'UserController@getDelete'));
+//===========================================//
+
+
 /*Share*/
 Route::get('change-language/{id}',array('as' => 'change_language', 'uses' =>'SharedController@getChangeLanguage'));
 //===========================================//
-
-/* Users */
-//Route::get( 'backend/login/' , array('as' => 'backend_login', 'uses' => 'UsersController@getLogin'));
-//Route::post( 'backend/login/' , array('as' => 'backend_login', 'uses' => 'UsersController@postLogin'));
-//===========================================//
-
-
-
-/*User controller*/
-//Route::get('user','UserController@index' );
-//Route::get('user/register','UserController@register');
-//Route::post('user/register','UserController@postRegister');
-//Route::get('user/view/{id}','UserController@view' );
-//Route::get('user/update/{id}','UserController@update' );
-//Route::post('user/update/{id}','UserController@postUpdate' );
-////Route::get('user/do_update/{id}','UserController@do_update' );
-//Route::get('user/delete/{id}','UserController@delete' );
-//Route::get('user/login','UserController@login');
-//Route::post('user/login','UserController@postLogin');
-//Route::get('user/logout','UserController@logout');
-//Route::resource('user', 'UserController');
-/*end User controller*/
-
-//Route::post('user/do_register', 'UserController@do_register');
-/*Model user*/
-
-//Route::get('/user/register/','UserController@register' );
-/*
-Route::get('User/{id}', function($id)
-{
-    return 'User '.$id;
-});
-Route::get('user/{name?}', function($name = null)
-{
-    return $name;
-});
-
-Route::get('user/{name?}', function($name = 'John')
-{
-    return $name;
-});*/
-
 
 Route::get('backend/dump',array('as' => 'backend_dump', 'uses' =>'AdminController@dump'));

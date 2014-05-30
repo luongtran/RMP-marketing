@@ -17,7 +17,15 @@ class UserController extends BaseController {
      */
 
     public function index() {
-        $this->layout->content = View::make('index');
+        $this->layout->page = "Users";
+        $user = Users::paginate(10);
+        $this->layout->content = View::make('backend.users.index')->with('getUser',$user);
+    }
+    
+     public function getAdd()
+    {    
+        $this->layout->page = "Add a new user";                 
+        $this->layout->content = View::make('backend.users.add');
     }
 
 }

@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Users extends Eloquent implements UserInterface, RemindableInterface {
+class Users extends Eloquent {
 
 	/**
 	 * The database table used by the model.
@@ -22,11 +20,6 @@ class Users extends Eloquent implements UserInterface, RemindableInterface {
         if($check>0)
         return true;
         else return false;        
-    }
-    
-    public function getProfile()
-    {
-        
     }
     
 

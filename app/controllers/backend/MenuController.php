@@ -23,7 +23,7 @@ class MenuController extends BaseController {
         
         $getMenu = Menus::orderBy('order','asc')->paginate(10);        
         $getP = Menus::all(); 
-         function listDrop($parent_id,$span=' ')
+         function listDrop($parent_id,$span='')
         {  
             $str="";
             $getParent= Menus::all();

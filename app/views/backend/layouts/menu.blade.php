@@ -26,9 +26,9 @@
             </li>
             
             <li><a href="{{ Request::root() }}/backend/slider"><i class="fa fa-bar-chart-o"></i> Slider</a></li>
-            <li><a href="forms.html"><i class="fa fa-edit"></i> Media</a></li>
-            <li><a href="typography.html"><i class="fa fa-font"></i> Users </a></li>
+            <!--  <li><a href="forms.html"><i class="fa fa-edit"></i> Media</a></li>-->
+            <li><a href="{{ Request::root() }}/backend/user"><i class="fa fa-font"></i> Users </a></li>
             <li><a href="bootstrap-elements.html"><i class="fa fa-desktop"></i> Group Users</a></li>
              <li><a href="{{ Request::root() }}/backend/menu"><i class="fa fa-bar-chart-o"></i> Menu</a></li>
-            <li><a href="{{ Request::root()}}/backedn/setting"><i class="fa fa-desktop"></i> Setting</a></li>
+            <li><a href="{{ Request::root()}}/backend/setting"><i class="fa fa-desktop"></i> Setting</a></li>
           </ul>
