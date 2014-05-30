@@ -63,6 +63,11 @@ Route::post('backend/slider/action',array('as' => 'slider_delete', 'uses' =>'Sli
 
 /*Menu*/
 Route::get('backend/menu',array('as' => 'backend_menu', 'uses' =>'MenuController@index'));
+Route::post('backend/menu/add',array('as' => 'menu_add', 'uses' =>'MenuController@postAdd'));
+Route::get('backend/menu/delete/{id}',array('as' => 'menu_delete', 'uses' =>'MenuController@getDelete'));
+Route::get('backend/menu/update/{id}',array('as' => 'menu_update', 'uses' =>'MenuController@getUpdate'));
+Route::post('backend/menu/update/{id}',array('as' => 'menu_update', 'uses' =>'MenuController@postUpdate'));
+Route::post('backend/menu/action',array('as' => 'menu_update', 'uses' =>'MenuController@action'));
 
 /*Share*/
 Route::get('change-language/{id}',array('as' => 'change_language', 'uses' =>'SharedController@getChangeLanguage'));

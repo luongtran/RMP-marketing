@@ -37,6 +37,8 @@ return array(
       'images'=>'Images',
       'image'=>'Image',
       'menu'=>'Menu',
+      'icon'=>'Icon',
+      'order'=>'Order',
       'keywords'=>'Keywords',
       'status'=>'Status',  
       'publish'=>'Publish',

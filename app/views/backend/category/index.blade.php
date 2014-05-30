@@ -41,10 +41,8 @@
                                   <div class="form-group">                                      
                                     <label>{{trans('common.table.parent')}}</label>
                                     <select class="form-control" name="parent">                                        
-                                    <option value="0">None</option>
-                                    @foreach($parentCategory as $parentItem)                                    
-                                     <option value="{{$parentItem->id}}">{{$parentItem->name}}</option>                                         
-                                    @endforeach
+                                        <option value="0">None</option>
+                                        {{$listParent}}                                                                  
                                     </select>
                                   </div>
                                  

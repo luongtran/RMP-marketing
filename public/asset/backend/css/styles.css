@@ -21,3 +21,8 @@ ul li.float-left
 .clear{
     clear:both;
 }
+
+.border-basic{
+    border:1px solid #dedede;
+    padding-bottom:4px;
+}

@@ -19,7 +19,7 @@
                     {{Form::open(array('url'=>'backend/menu/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{trans('titlepage.title.add_slider')}}</h3>
+                            <h3 class="panel-title">{{trans('titlepage.title.add_menu')}}</h3>
                         </div>
                         <div class="panel-body">                         
                              <div>                            
@@ -35,7 +35,20 @@
 
                                 <div class="form-group">
                                     <label>{{trans('common.table.parent')}}</label> 
-                                    {{$cate}}
+                                    <select class="form-control" name="parent">
+                                        <option value="0">None</option>
+                                    {{$parent}}
+                                    </select>
+                                </div>                                 
+                                
+                                <div class="form-group">
+                                    <label>{{trans('common.table.order')}} </label>                                
+                                    {{Form::text('order','0',array('class' => 'form-control','id'=>'order'))}}       
+                                </div>
+                                 
+                                <div class="form-group">
+                                    <label>{{trans('common.table.icon')}}(Ex: icon-home)</label>                                
+                                    {{Form::text('icon','',array('class' => 'form-control','id'=>'icon'))}}       
                                 </div>
                                  
                                  <div class="form-group">
@@ -65,7 +78,7 @@
                 <div class="col-lg-12">
                 <div class="panel panel-success">
                     <div class="panel-heading"> 
-                       {{trans('titlepage.title.list_slider')}}
+                       {{trans('titlepage.title.list_menu')}}
                     </div>
                     <div class="panel-body"> 
                                
@@ -77,8 +90,9 @@
                                       <tr>
                                         <th><input type="checkbox" id="ckbCheckAll" /></th>  
                                         <th class="header">{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
-                                        <th class="header">{{trans('common.table.status')}} <i class="fa fa-sort"></i></th>                                        
-                                        <th class="header">{{trans('common.table.create_at')}}<i class="fa fa-sort"></i></th>
+                                        <th class="header">{{trans('common.table.parent')}} <i class="fa fa-sort"></i></th>      
+                                        <th class="header">{{trans('common.table.order')}} <i class="fa fa-sort"></i></th>      
+                                        <th class="header">{{trans('common.table.icon')}} <i class="fa fa-sort"></i></th>      
                                         <th class="header"><i class="fa fa-sort"></i></th>
                                       </tr>
                                     </thead>
@@ -86,11 +100,17 @@
                                       @foreach($getMenu  as $menu)                                      
                                       <tr <?php if($menu->status == "unpublish"){echo "class='danger'";}?> >
                                           <td><input type="checkbox" value="{{$menu->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
-                                        <td>{{$menu->title}}</td>                                        
-                                        <td>{{$menu->status}}</td>
-                                        <td>{{$menu->created_at}}</td>
-                                        <td><a  href="{{Request::root()}}/backend/slider/update/{{$menu->id}}"><span class="label label-primary">{{trans('common.button.update')}}</span></a>
-                                            <a  href="{{Request::root()}}/backend/slider/delete/{{$menu->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a>
+                                        <td>{{$menu->title}}</td>
+                                        <td>
+                                            @foreach($getP as $parent)
+                                              @if($parent->id == $menu->parent)
+                                              {{$parent->title}}
+                                              @endif
+                                            @endforeach               
+                                        <td>{{$menu->order}}</td>                      
+                                        <td>{{$menu->icon}}</td>          
+                                        <td><a  href="{{Request::root()}}/backend/menu/update/{{$menu->id}}"><span class="label label-primary">{{trans('common.button.update')}}</span></a>
+                                            <a  href="{{Request::root()}}/backend/menu/delete/{{$menu->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a>
                                         </td>
                                       </tr>                                      
                                       @endforeach

@@ -74,11 +74,30 @@ class CommonHelper {
     public static function readOption($selectName,$array,$value,$title,$class='')
     {
         $str="<select name='".$selectName."'  class='".$class."'>";
+        $str.="<option value='0'>None</option>";
          foreach($array as $option):
              $str.="<option value='".$option->$value."'>".$option->$title."</option>";
          endforeach;    
         $str.="</select>"; 
          return $str;
+    }
+    
+    
+    public static function listDrop($array)
+    {
+        function back($parent_id,$span='',$array)
+        {
+            
+          foreach($array as $list)  
+          {
+              if($list->parent == $parent_id)
+              {
+                  echo "<a>".$span.$list->name."</a>";
+                  back($list->id,$span='--',$array);
+              }
+          }
+        }
+        back(0,'',$array);
     }
     
     

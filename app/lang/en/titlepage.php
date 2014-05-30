@@ -12,6 +12,9 @@ return array(
         'add_slider'=>'Add slider',
         'list_slider'=>'List slider',
         'update_slider'=>'Update slider',
+        'add_menu'=>'Add menu',
+        'list_menu'=>'List menu',
+        'update_menu'=>'Update menu',
         'extends'=>'Extends',
         
     ),

@@ -19,10 +19,25 @@ class CategoryController extends BaseController {
 
     public function index() {        
         $this->layout->page = "Category";
-        $parentCategory = Categories::all(); 
+        //       
+        function listDrop($parent_id,$span=' ')
+        {  
+            $str="";
+            $Category = Categories::all(); 
+            foreach($Category as $list)
+            {
+                if($list->parent == $parent_id)
+                {                    
+                   $str.= "<option value='".$list->id."' class='border-basic'>".$span.$list->name."</option>"; 
+                   $str.=listDrop($list->id,'&nbsp&nbsp');                
+                }
+            }
+           return $str;
+        }
+        //
         $categories= Categories::orderBy('id','desc')->paginate(10); 
         $this->layout->content = View::make('backend.category.index')->with('categories',$categories)
-             ->with('parentCategory',$parentCategory);   
+             ->with('listParent',listDrop(0));
     }
     
     public function postAdd() {       

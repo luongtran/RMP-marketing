@@ -67,7 +67,7 @@ tinymce.init({
             <div class="col-lg-4">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{trans('common.titlepage.extands')}}</h3>
+                        <h3 class="panel-title">{{trans('titlepage.title.extends')}}</h3>
                     </div>
                     <div class="panel-body">                                              
                                 
@@ -77,7 +77,7 @@ tinymce.init({
                             </div>
                                 
                             <div class="form-group">
-                                <label>{{trans('common.tables.keywords')}}</label>
+                                <label>{{trans('common.table.keywords')}}</label>
                                 {{Form::text('keyword',$article->keyword,array('class' => 'form-control','id'=>'keyword'))}}                           
                             </div>
 

@@ -3,7 +3,7 @@
      <div class="col-lg-12">
             <ol class="breadcrumb">
               <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i>{{trans('common.menu.dashboard')}}</a></li>
-              <li class="active"><a href="{{Request::root()}}/backend/slider"><i class="fa fa-desktop"></i>{{trans('common.table.slider')}}</a></li>            
+              <li class="active"><a href="{{Request::root()}}/backend/menu"><i class="fa fa-desktop"></i>{{trans('common.table.menu')}}</a></li>            
               <li class="active"><i class="fa fa-desktop"></i>{{trans('common.button.update')}}</li>            
             </ol>
     </div>   
@@ -13,47 +13,51 @@
     <div class="col-lg-12">
             <div class="col-lg-6">
                              
-                {{Form::open(array('url'=>'backend/slider/update/'.$getSlider->id, 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
+                {{Form::open(array('url'=>'backend/menu/update/'.$getMenu->id, 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{trans('titlepage.title.update_slider')}}</h3>
+                            <h3 class="panel-title">{{trans('titlepage.title.update_menu')}}</h3>
                         </div>
                         <div class="panel-body">
                             <p>{{Session::get('msg_flash')}}</p>   
                              <div>                            
                                 <div class="form-group">                                
                                     <label>{{trans('common.table.title')}}<span class="star-validation">(*)</span></label>
-                                        {{Form::text('title',$getSlider->title,array('class' => 'form-control','id'=>'name'))}}       
+                                        {{Form::text('title',$getMenu->title,array('class' => 'form-control','id'=>'name'))}}       
                                 </div>
 
                                 <div class="form-group">
                                     <label>{{trans('common.table.link')}}</label>                                
-                                    {{Form::text('link',$getSlider->link,array('class' => 'form-control','id'=>'permalink'))}}       
+                                    {{Form::text('link',$getMenu->link,array('class' => 'form-control','id'=>'permalink'))}}       
                                 </div>
-
                                  <div class="form-group">
-                                 <label>{{trans('common.table.caption')}}</label>
-                                    {{Form::textarea('caption',$getSlider->caption,array('class' => 'form-control','id'=>'description','rows'=>'2'))}}                                     
-                                  </div>                               
-                                  <div class="form-group">
-                                   <label>{{trans('common.table.image')}}</label>
-                                     {{Form::file('image') }}
-                                     @if($image)
-                                     <img src="{{asset('asset/share/uploads/images/'.$image->name)}}" height="100" />
-                                     @endif
-                                  </div>    
+                                     <label>{{trans('common.table.parent')}}</label>       
+                                     <select name="parent" class="form-control">
+                                         <option value="0">None</option>
+                                         {{$getParent}}
+                                     </select>
+                                 </div>     
                                  
+                                 <div class="form-group">
+                                    <label>{{trans('common.table.order')}} </label>                                
+                                    {{Form::text('order',$getMenu->order,array('class' => 'form-control','id'=>'order'))}}       
+                                </div>
+                                 
+                                <div class="form-group">
+                                    <label>{{trans('common.table.icon')}}(Ex: icon-home)</label>                                
+                                    {{Form::text('icon',$getMenu->icon,array('class' => 'form-control','id'=>'icon'))}}       
+                                </div>
                                  <div class="form-group">
                                     <label>{{trans('common.table.status')}}</label>
                                     <div class="radio">
                                       <label>
-                                       {{Form::radio('status', 'publish',true )}}
+                                       {{Form::radio('status', 'publish',$getMenu->status=='publish'?true:false )}}
                                        {{trans('common.table.publish')}}
                                       </label>
                                     </div>
                                    <div class="radio">
                                       <label>
-                                        {{Form::radio('status', 'unpublish',false)}}
+                                        {{Form::radio('status', 'unpublish',$getMenu->status=='unpublish'?true:false)}}
                                         {{trans('common.table.unpublish')}}
                                       </label>
                                     </div>                            
