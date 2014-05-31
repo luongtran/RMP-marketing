@@ -23,12 +23,7 @@
                             <div class="col-lg-12">
                                 
                                  <ul class="nav nav-pills">
-                                    <li class="active"><a href="{{Request::root()}}/backend/user/add">{{trans('common.button.add')}}</a></li>
-                                    <li class="dropdown active">
-                                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        {{trans('common.table.category')}} <span class="caret"></span>
-                                      </a>                                    
-                                    </li>
+                                    <li class="active"><a href="{{Request::root()}}/backend/user/add">{{trans('common.button.add')}}</a></li>                                   
                                     <li >
                                          {{Form::open(array('url'=>'backend/user/search', 'method' => 'get','role'=>'form') )}}                                                     
                                                 {{Form::text('keyfind','',array('class' => 'form-control','id'=>'keyfind','placeholder'=>'Search...'))}}   
@@ -53,11 +48,11 @@
                                       @foreach($getUser  as $list)                                      
                                       <tr <?php if($list->status == "unpublish"){echo "class='danger'";}?> >
                                           <td><input type="checkbox" value="{{$list->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
-                                        <td><a href="{{Request::root()}}/backend/article/view/{{$list->id}}">{{$list->username}}</a></td>
-                                        <td>{{$list->status}}</td>
-                                        <td>{{$list->create_by}}</td>
-                                        <td><a href="{{Request::root()}}/backend/article/update/{{$list->id}}" ><span class="label label-primary">{{trans('common.button.update')}}</span></a>
-                                            <a href="{{Request::root()}}/backend/article/delete/{{$list->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a></td>
+                                        <td><a href="{{Request::root()}}/backend/user/view/{{$list->id}}">{{$list->username}}</a></td>
+                                        <td>{{$list->permission}}</td>
+                                        <td>{{$list->created_at}}</td>
+                                        <td><a href="{{Request::root()}}/backend/user/update/{{$list->id}}" ><span class="label label-primary">{{trans('common.button.update')}}</span></a>
+                                            <a href="{{Request::root()}}/backend/user/delete/{{$list->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a></td>
                                       </tr>                                      
                                       @endforeach
                                     </tbody>
@@ -69,14 +64,7 @@
                         
                         <!-- action -->
                          <div class="col-lg-3">
-                                  <div class="form-group">
-                                      <select class="form-control" name="action">
-                                      <option value="publish">{{trans('common.table.publish')}}</option>
-                                      <option value="unpublish">{{trans('common.table.unpublish')}}</option>
-                                      <option value="delete">{{trans('common.button.delete')}}</option>
-                                    </select></br>                                                                          
-                                    <button type="submit" class="btn btn-danger">{{trans('common.button.action')}}</button>
-                                  </div>  
+                                 <?php echo CommonHelper::createFormAction();?>
                          </div>                      
                         {{ Form::close() }} 
                     </div>

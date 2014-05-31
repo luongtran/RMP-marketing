@@ -8,6 +8,9 @@ class Settings extends Eloquent  {
 	 * @var string
 	 */
 	protected $table = 'setting';
+  
+
+    
 
 
 }

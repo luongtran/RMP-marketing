@@ -48,22 +48,9 @@
                                      @endforeach                                  
                                     </select>  
                                   </div>    
+                                
+                                <?php echo CommonHelper::createFormStatus($getCategory->status);?>
                                  
-                                 <div class="form-group">
-                                    <label>{{trans('common.table.status')}}</label>
-                                    <div class="radio">
-                                      <label>
-                                       {{Form::radio('status', 'publish',($getCategory->status=='publish')?true:false)}}
-                                       {{trans('common.table.publish')}}
-                                      </label>
-                                    </div>
-                                   <div class="radio">
-                                      <label>
-                                        {{Form::radio('status', 'unpublish',($getCategory->status=='unpublish')?true:false)}}
-                                        {{trans('common.table.unpublish')}}
-                                      </label>
-                                    </div>                            
-                                 </div>
                                  <button type="submit" class="btn btn-primary">{{trans('common.button.update')}}</button>
                                  
                               </div>  

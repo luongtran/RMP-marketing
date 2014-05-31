@@ -24,7 +24,7 @@
                 <li><a href="{{ Request::root() }}/backend/category"> Category </a></li>                
               </ul>
             </li>
-            
+          
             <li><a href="{{ Request::root() }}/backend/slider"><i class="fa fa-bar-chart-o"></i> Slider</a></li>
             <!--  <li><a href="forms.html"><i class="fa fa-edit"></i> Media</a></li>-->
             <li><a href="{{ Request::root() }}/backend/user"><i class="fa fa-font"></i> Users </a></li>

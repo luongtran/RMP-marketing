@@ -1,26 +1,4 @@
 @section('content')
-<script src="{{asset('asset/backend/plusin/tinymce/tinymce.min.js')}}" type="text/javascript"></script>
-<script type="text/javascript">
-tinymce.init({
-     selector: "#content",
-     plugins: [
-         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-         "save table contextmenu directionality emoticons template paste textcolor"
-   ],
-   paste_data_images: true,
-   image_advtab: true,
-   image_list: function(success) {
-        success([
-             {title: 'Dog', value: 'mydog.jpg'},
-             {title: 'Cat', value: 'mycat.gif'}
-        ]);
-    }
-
- });
-</script>
-
-
 <div class="row"
      <div class="col-lg-12">
             <ol class="breadcrumb">
@@ -37,7 +15,7 @@ tinymce.init({
             <div class="messages_validation">                           
                             {{Session::get('msg_flash')}}
             </div>
-            {{Form::open(array('url'=>'backend/article/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
+            {{Form::open(array('url'=>'backend/user/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
             <div class="col-lg-6">
                 <div class="panel panel-success">
                     <div class="panel-heading">
@@ -47,40 +25,40 @@ tinymce.init({
                          <div>                            
                             <div class="form-group">                                
                                 <label>{{trans('common.table.username')}}<span class="star-validation">(*)</span></label>
-                                    {{Form::text('username','',array('class' => 'form-control','id'=>'title'))}}       
+                                    {{Form::text('username','',array('class' => 'form-control','id'=>'username','required'))}}       
                             </div>
                             
                             <div class="form-group">
-                                <label>{{trans('common.table.password')}}</label>                                
-                                {{Form::text('password','',array('class' => 'form-control','id'=>'permalink'))}}       
+                                <label>{{trans('common.table.password')}}<span class="star-validation">(*)</span></label>                                
+                                {{Form::password('password',array('class' => 'form-control','id'=>'password','required'))}}       
                             </div> 
                             
                             <div class="form-group">
-                                <label>{{trans('common.table.password')}}</label>                                
-                                {{Form::text('password_confirm','',array('class' => 'form-control','id'=>'permalink'))}}       
+                                <label>{{trans('common.table.password_confirm')}}<span class="star-validation">(*)</span></label>                                
+                                {{Form::password('password_confirmation',array('class' => 'form-control','id'=>'password_confirm','required'))}}       
                             </div> 
                              
                             <div class="form-group">
-                                <label>{{trans('common.table.email')}}</label>                                
-                                {{Form::text('email','',array('class' => 'form-control','id'=>'permalink'))}}       
+                                <label>{{trans('common.table.email')}}<span class="star-validation">(*)</span></label>                                
+                                {{Form::email('email','',array('class' => 'form-control','id'=>'email','required'))}}       
                             </div> 
                             
                             <div class="form-group">
                                 <label>{{trans('common.table.lastname')}}</label>                                
-                                {{Form::text('lastname','',array('class' => 'form-control','id'=>'permalink'))}}       
+                                {{Form::text('lastname','',array('class' => 'form-control','id'=>'lastname'))}}       
                             </div> 
                              
                               <div class="form-group">
                                 <label>{{trans('common.table.firstname')}}</label>                                
-                                {{Form::text('firstname','',array('class' => 'form-control','id'=>'permalink'))}}       
+                                {{Form::text('firstname','',array('class' => 'form-control','id'=>'firstname'))}}       
                             </div>  
                                                         
                          </div>
                     </div>
                 </div>
             </div><!--end col 8-->
-    
-            <div class="col-lg-6">
+            
+            <div class="col-lg-4">
                 <div class="panel panel-success">                    
                     
                     <div class="panel-heading">
@@ -90,17 +68,20 @@ tinymce.init({
                                 
                            <div class="form-group">                                 
                                  <label>{{trans('common.table.sex')}}</label>
-                                 {{Form::select('sex', array('male' => 'Male', 'female' => 'Female'), 'male',array('class'=>'form-control'))}}                                 
+                                 {{Form::select('sex', array('male' => 'Male', 'female' => 'Female','both' => 'Both'), 'male',array('class'=>'form-control'))}}                                 
                              </div> 
-                             
+                             <div class="form-group">                                 
+                                 <label>{{trans('common.table.phone')}}</label>
+                                 {{Form::text('phone','',array('class'=>'form-control'))}}                                 
+                             </div> 
                             <div class="form-group">                                 
-                                 <label>{{trans('common.table.language')}}</label>
-                                 {{Form::select('sex', array('male' => 'Language', 'female' => 'Female'), 'male',array('class'=>'form-control'))}}                                 
+                                 <label>{{trans('common.table.address')}}</label>
+                                 {{Form::textarea('address','',array('class'=>'form-control','rows'=>'2'))}}                                 
                              </div> 
                                 
                                 <div class="form-group">                                 
                                  <label>{{trans('common.table.permission')}}</label>
-                                 {{Form::select('sex', array('supper_admin' => 'Supper Admin','male' => 'Admin', 'female' => 'Manager Content'), 'male',array('class'=>'form-control'))}}                                 
+                                 {{Form::select('permission', array( '1' => trans('titlepage.title.role_1'),'2' => trans('titlepage.title.role_2'),'3' => trans('titlepage.title.role_3')), '1',array('class'=>'form-control'))}}                                 
                              </div> 
 
                         

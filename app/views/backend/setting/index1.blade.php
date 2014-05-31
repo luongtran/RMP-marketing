@@ -1,6 +1,3 @@
-
-@section('content')
-<div id="setting">
     <div class="col-lg-12">
             <ol class="breadcrumb">
               <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i> {{trans('common.menu.dashboard')}}</a></li>
@@ -36,8 +33,8 @@
                                             </td>
                                                                               
                                             <td @if($setting->value=="") {{'class="danger"'}}   @endif >
-                                            <div class="form-group">   
-                                                 {{Form::text($setting->name,$setting->value,array('class' => 'form-control','id'=>$setting->name))}}
+                                            <div class="form-group">                                                        
+                                                    {{Form::text($setting->name,$setting->value,array('class' => 'form-control','id'=>$setting->name))}} 
                                             </div>   
                                             </td>
                                             
@@ -56,7 +53,7 @@
             </p>              
           </div>        
          
-
+ 
  <script> 
 $( document ).ready(function() {
     // var urlload= "{{ Request::root() }}/backend/setting/list";
@@ -66,7 +63,8 @@ $( document ).ready(function() {
               
               var output = $("#output");              
               var seturl= "{{ Request::root() }}/backend/setting/update";
-               output.html(' <div id="loadajax" style="top: 300px;position: fixed;left:400px;z-index: 890;"><img src="http://reg.spblegalforum.ru/spilf2014/lf/img/animatedCircle.gif" /></div>');    
+              
+               output.html('<div id="loadajax" style="top: 300px;position: fixed;left:400px;z-index: 890;"><img src="http://reg.spblegalforum.ru/spilf2014/lf/img/animatedCircle.gif" /></div>');    
       
                 var request = $.ajax({
                 url: seturl,
@@ -86,5 +84,3 @@ $( document ).ready(function() {
             
         });
 </script>
- </div>    
-@stop

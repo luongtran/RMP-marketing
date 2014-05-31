@@ -100,22 +100,41 @@ class CommonHelper {
         back(0,'',$array);
     }
 
-    public static function createFormStatus()
+    public static function createFormStatus($selected='publish')
     {
                             $str='<div class="form-group">
                               <label>'.trans('common.table.status').'</label>
                               <div class="radio">
                                 <label>
-                                 '.Form::radio('status', 'publish', true).' 
+                                 '.Form::radio('status', 'publish',$selected=='publish'?true:false).' 
                                  '.trans('common.table.publish').' 
                                 </label>
                               </div>
                              <div class="radio">
                                 <label>
-                                  '.Form::radio('status', 'unpublish', false).'
+                                  '.Form::radio('status', 'unpublish',$selected=='unpublish'?true:false).'
                                   '.trans('common.table.unpublish').' 
                                 </label> </div></div>';
                 return $str;                 
     }
+     public static function createFormAction()
+    {
+                            $str=' <div class="form-group">
+                                      <select class="form-control" name="action">
+                                      <option value="publish">'.trans('common.table.publish').'</option>
+                                      <option value="unpublish">'.trans('common.table.unpublish').'</option>
+                                      <option value="delete">'.trans('common.button.delete').'</option>
+                                    </select></br>                                                                          
+                                    <button type="submit" class="btn btn-danger">'.trans('common.button.action').'</button>
+                                  </div>  ';
+                return $str;                 
+    }
+    
+    
+    public static function getSetting($name=''){
+        $str=Settings::where('name','=',$name)->first()->value;        
+        return $str;
+    }
+            
     
 }

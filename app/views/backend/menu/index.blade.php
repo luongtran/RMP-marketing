@@ -16,7 +16,7 @@
                       {{Session::get('msg_flash')}}
                 </div>
                 <div class="col-lg-4">              
-                    {{Form::open(array('url'=>'backend/menu/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
+                    {{Form::open(array('url'=>'backend/menu/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data','id'=>'frm-setting') )}}               
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{trans('titlepage.title.add_menu')}}</h3>
@@ -107,14 +107,7 @@
                                 
                                     
                                     <div class="row col-lg-3">
-                                        <div class="form-group">
-                                        <select class="form-control " name="action">
-                                          <option value="publish">{{trans('common.table.publish')}}</option>
-                                          <option value="unpublish">{{trans('common.table.unpublish')}}</option>
-                                          <option value="delete">{{trans('common.button.delete')}}</option>
-                                        </select></br>                                         
-                                        <button type="submit" class="btn btn-danger">{{trans('common.button.action')}}</button>                                   
-                                        </div>
+                                          <?php echo CommonHelper::createFormAction();?>
                                     </div>
                                  
                                  
@@ -136,6 +129,5 @@
             </div><!--col 8 -->
        </div><!--col 12 -->        
        </div><!--col 12 -->
-</div><!-- end row 2-->                
-     
+</div><!-- end row 2-->  
 @stop

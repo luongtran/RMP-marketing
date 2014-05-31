@@ -87,13 +87,10 @@
 						<h3 class="lined">Contact Info</h3>
 					</div>
 					<ul class="b-list b-contact">
-						<li class="contact-address"><i class="icon-map-marker"></i><span><strong>Address:</strong> 103088, Ut wisi enim ad minim veniam, 27, of. 304</span></li>
-						<li class="contact-phone"><i class="icon-phone"></i><span><strong>Phone:</strong> +1 (229) 991-22-11</span></li>
-						<li class="contact-mail"><i class="icon-envelope"></i><strong>E-mail:</strong> <a href="#">mail@mail.com</a></li>
-						<li class="contact-address"><i class="icon-time"></i><span><strong>Business Hours:</strong><br> Monday-Friday: 9:<sup>00</sup> &mdash; 18:<sup>00</sup><br>
-						Saturday: 10:<sup>00</sup> &mdash; 17:<sup>00</sup><br>
-						Sunday: closed</span>
-						</li>
+						<li class="contact-address"><i class="icon-map-marker"></i><span><strong>Address:</strong><?php echo CommonHelper::getSetting('address');?></span></li>
+						<li class="contact-phone"><i class="icon-phone"></i><span><strong>Phone:</strong><?php echo CommonHelper::getSetting('phone');?></span></li>
+						<li class="contact-mail"><i class="icon-envelope"></i><strong>E-mail:</strong> <a href="#"><?php echo CommonHelper::getSetting('email_contact');?></a></li>
+                                                <li class="contact-address"><i class="icon-time"></i><span><strong>Business Hours:</strong><?php echo CommonHelper::getSetting('business_hours');?></span></li>
 					</ul>
 
 					<div style="height: 20px;" class="gap"></div>

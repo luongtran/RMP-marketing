@@ -25,19 +25,21 @@ class SettingController extends BaseController {
         $this->layout->content = View::make('backend.setting.index')->with('getSetting',$getSetting);
           
     }
-    
+  
+
     public function postUpdate() 
     {
-           $getInput=Input::all();
-            
+           $getInput=Input::all();            
            foreach($getInput as $k=>$v)
            {
             DB::table('setting')
             ->where('name',$k)
             ->update(array('value' => $v));
            }
-            Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message')));  
-            return Redirect::route('backend_setting');       
+          Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message')));  
+          $getSetting = Settings::all();        
+          $view = View::make('backend.setting.index1')->with('getSetting',$getSetting)->render();
+          return $view;
     }
     
    
@@ -63,7 +65,15 @@ class SettingController extends BaseController {
                 array('name'=>'google','description'=>'Google'),
                 array('name'=>'google_map','description'=>'Google Map'),
             ));
-           return Redirect::route('backend_setting'); 
+          return Redirect::route('backend_setting'); 
+    }
+    
+    public  function getList()
+    {
+//        $this->layout->page = "Setting";  
+        $getSetting = Settings::all();        
+        $view = View::make('backend.setting.index1')->with('getSetting',$getSetting)->render();
+        return $view;
     }
    
 }

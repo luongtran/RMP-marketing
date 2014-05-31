@@ -114,21 +114,7 @@ tinymce.init({
                                    
                             </div>    
 
-                            <div class="form-group">
-                              <label>{{trans('common.table.status')}}</label>
-                              <div class="radio">
-                                <label>
-                                 {{Form::radio('status', 'publish',($article->status=='publish')?true:false )}}
-                                 {{trans('common.table.publish')}}
-                                </label>
-                              </div>
-                             <div class="radio">
-                                <label>
-                                  {{Form::radio('status', 'unpublish',($article->status=='unpublish')?true:false)}}
-                                  {{trans('common.table.unpublish')}}
-                                </label>
-                              </div>                            
-                            </div>
+                              <?php echo CommonHelper::createFormStatus($article->status);?>
 
                             <button type="submit" class="btn btn-primary">{{trans('common.button.update')}}</button>
                          

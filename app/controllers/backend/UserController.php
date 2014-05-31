@@ -27,5 +27,139 @@ class UserController extends BaseController {
         $this->layout->page = "Add a new user";                 
         $this->layout->content = View::make('backend.users.add');
     }
+    
+     public function postAdd()
+    {   /*filter all tag input   same:script...*/
+       // Input::merge(array_map('trim', Input::all()));
+         
+        $rule=array(
+            'username'=>'required|min:5|unique:users',
+            'password'=>'required|min:5|confirmed',            
+            'email'=>'required|email|unique:users',
+            'phone'=>'numeric',
+            );
+        $validation = Validator::make (Input::all(),$rule);        
+        if($validation->passes()){
+           
+            $user=new Users;
+            $user->username = strip_tags(Input::get('username'));
+            $user->password = Hash::make(Input::get('password'));
+            $user->email = Input::get('email');
+            $user->sex = Input::get('sex');
+            $user->address = Input::get('address');
+            $user->phone = Input::get('phone');
+            $user->permission = Input::get('permission');
+            $user->status = Input::get('status');
+            
+            $user->first_name = Input::get('firstname');
+            $user->last_name = Input::get('lastname');
+            $user->save();
+            Session::flash('msg_flash',  CommonHelper::printMsg('succes', trans('messages.create_message')));
+            return Redirect::route('backend_user');
+        }
+        Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
+        return Redirect::back()->withInput();       
+            
+    }
+    
+    
+    public function getUpdate($id){
+        $this->layout->page ="Update user";
+        $getUser = Users::find($id);
+        $this->layout->content = view::make('backend.users.update')->with('getUser',$getUser);
+        
+    }
+    public function postUpdate($id)
+    {           
+        $rule=array(          
+            'password'=>'min:5|confirmed',            
+            'email'=>'email|unique:users',
+            'phone'=>'numeric',
+            );
+        $validation = Validator::make (Input::all(),$rule);        
+        if($validation->passes()){            
+            $user=Users::find($id);
+            if(Input::get('password')){
+            $user->password = Hash::make(Input::get('password'));    
+            }            
+            $user->email = Input::get('email');
+            $user->sex = Input::get('sex');
+            $user->address = Input::get('address');
+            $user->phone = Input::get('phone');
+            $user->permission = Input::get('permission');
+            $user->status = Input::get('status');
+            
+            $user->first_name = Input::get('firstname');
+            $user->last_name = Input::get('lastname');
+            $user->update();
+            Session::flash('msg_flash',  CommonHelper::printMsg('succes', trans('messages.update_message')));
+            return Redirect::route('backend_user');
+        }
+        Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
+        return Redirect::back()->withInput();       
+            
+    }
+      public function getDelete($id)
+    {        
+          $ar=Users::find($id);
+          $ar->delete();        
+          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.delete_message'))); 
+          return Redirect::route('backend_article');
+     }
+    
+     public function action()
+     {
+         $check = Input::get('checkID');
+         if($check)
+         {
+         $getAction = Input::get('action');          
+         switch($getAction)
+         {
+         case'publish':
+             foreach($check as $key=>$value)
+             {               
+               $this->changeStatus($getAction,$value);               
+             }  
+             break;         
+         case'unpublish':
+              foreach($check as $key=>$value)
+             {               
+               $this->changeStatus($getAction,$value);               
+             }  
+             break;           
+         case'delete':             
+             foreach($check as $key=>$value)
+             {               
+               $this->getDelete($value);               
+             }                          
+             break;
+         default:             
+             break;
+         }
+         return Redirect::back();
+         }
+         
+        else {             
+          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.nochoose_message')));   
+         return Redirect::back();   
+        }
+     }
+     
+     public function changeStatus($status,$id)
+     {
+         $ar= Users::find($id);
+         $ar->status = $status;
+         $ar->update();
+         Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.changestatus_message')));   
+     }
+
+ 
+         
+    public function getProfile()
+      {
+            $result = Users::where('username','=',Session::get('username'))->first();
+            return $result;
+      }
+    
 
 }

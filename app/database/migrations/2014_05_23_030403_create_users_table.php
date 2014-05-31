@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration {
             `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
             `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
             `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-            `group_users` int(11) NOT NULL,
+            `permission` int(11) NOT NULL,
             `country` int(11) DEFAULT NULL,
             `postcode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
             `sex` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -28,9 +28,9 @@ class CreateUsersTable extends Migration {
             `created_at` datetime DEFAULT NULL,
             `updated_at` datetime DEFAULT NULL,
             `count_login` int(11) DEFAULT NULL,
-            `status` int(11) DEFAULT NULL,
+            `status` varchar(11) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
             PRIMARY KEY (`id`)
-          ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+          ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
             ");            
 	}
 

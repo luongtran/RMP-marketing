@@ -6,7 +6,7 @@
     <div class="b-copyright">
       <div class="layout">
         <!-- Copyright Text -->
-         <span class="copy"> © 2014 All Right Reserved, <a href="#">CompleteRMP</a>.</span>
+        <span class="copy"><?php echo CommonHelper::getSetting('footer_text');?></span>
         <!-- Social Icons -->
         <ul class="b-social bot">
           <li>Follow Us:</li>

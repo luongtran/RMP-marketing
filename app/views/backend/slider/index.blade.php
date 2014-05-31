@@ -92,14 +92,7 @@
                                 
                                     
                                     <div class="row col-lg-3">
-                                        <div class="form-group">
-                                        <select class="form-control " name="action">
-                                          <option value="publish">{{trans('common.table.publish')}}</option>
-                                          <option value="unpublish">{{trans('common.table.unpublish')}}</option>
-                                          <option value="delete">{{trans('common.button.delete')}}</option>
-                                        </select></br>                                         
-                                        <button type="submit" class="btn btn-danger">{{trans('common.button.action')}}</button>                                   
-                                        </div>
+                                         <?php echo CommonHelper::createFormAction();?>
                                     </div>
                                  
                                  

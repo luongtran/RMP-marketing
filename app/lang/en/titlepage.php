@@ -16,8 +16,14 @@ return array(
         'list_menu'=>'List menu',
         'update_menu'=>'Update menu',
         'update_user'=>'Update user',
+        'add_user'=>'Add user',        
+        'update_user'=>'Update user',
         'add_user'=>'Add user',
+        'list_user'=>'List user',
         
+        'role_1'=>'Manager content',
+        'role_2'=>'Admin',
+        'role_3'=>'Supper admin',
         
         'extends'=>'Extends',
         'basic'=>'Basic',

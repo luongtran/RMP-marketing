@@ -7,7 +7,6 @@
         <div class="btn-menu icon-reorder"></div>
         <!-- Navigation -->
         <ul class="menu">
-
           <?php
          $setMenu = Menus::where('status','=','publish')->where('parent','=',0)->orderBy('order','asc')->get();          
          foreach($setMenu as $prMenu):

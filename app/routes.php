@@ -72,6 +72,7 @@ Route::post('backend/menu/action',array('as' => 'menu_update', 'uses' =>'MenuCon
 
 /*Setting*/
 Route::get('backend/setting',array('as' => 'backend_setting', 'uses' =>'SettingController@index'));
+Route::get('backend/setting/list',array('as' => 'backend_list_setting', 'uses' =>'SettingController@getList'));
 Route::post('backend/setting/update',array('as' => 'setting_update', 'uses' =>'SettingController@postUpdate'));
 Route::get('backend/setting/create-data',array('as' => 'menu_update', 'uses' =>'SettingController@createData'));
 
@@ -84,6 +85,7 @@ Route::post( 'backend/user/add' , array('as' => 'user_add', 'uses' => 'UserContr
 Route::get( 'backend/user/update/{id}' , array('as' => 'user_update', 'uses' => 'UserController@getUpdate'));
 Route::post( 'backend/user/update/{id}' , array('as' => 'user_update', 'uses' => 'UserController@postUpdate'));
 Route::get( 'backend/user/delete/{id}' , array('as' => 'user_delete', 'uses' => 'UserController@getDelete'));
+Route::post( 'backend/user/action' , array('as' => 'user_action', 'uses' => 'UserController@action'));
 //===========================================//
 
 

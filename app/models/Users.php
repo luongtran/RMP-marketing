@@ -9,9 +9,12 @@ class Users extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'users';
+        public static $role_1=1;
+        public static $role_2=2;
+        public static $role_3=3;
 
-    
-    public function checklogin($username,$password)
+
+        public function checklogin($username,$password)
     {
         $array=array('username'=>$username,'password'=>$password);
         $rules=array('username'=>"email");
@@ -21,6 +24,6 @@ class Users extends Eloquent {
         return true;
         else return false;        
     }
-    
+
 
 }

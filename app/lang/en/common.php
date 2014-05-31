@@ -52,6 +52,7 @@ return array(
       'username'=>'Username',
       'profile'=>'Profile',  
       'password'=>'Password',
+      'password_confirm'=>'Confirm Password',
       'email'=>'Email',  
       'contry'=>'Country',
       'sex'=>'Sex',
