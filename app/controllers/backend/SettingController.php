@@ -68,12 +68,7 @@ class SettingController extends BaseController {
           return Redirect::route('backend_setting'); 
     }
     
-    public  function getList()
-    {
-//        $this->layout->page = "Setting";  
-        $getSetting = Settings::all();        
-        $view = View::make('backend.setting.index1')->with('getSetting',$getSetting)->render();
-        return $view;
-    }
+
+    
    
 }

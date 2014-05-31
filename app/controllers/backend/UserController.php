@@ -161,5 +161,32 @@ class UserController extends BaseController {
             return $result;
       }
     
+    public function getLogin()  
+    {
+         return View::make('backend.users.login');
+    }
+      public function postLogin()  
+    {
+         $validation = Validator::make(Input::all(),array('username'=>'required','password'=>'required'));
+         if($validation->passes())
+         {
+         $username=strip_tags(Input::get('username'));
+         $password=strip_tags(Input::get('password'));
+            $user = DB::table('users')->where('username', $username)->first();
+            if (Hash::check($password, $user->password)) { 
+                /*save session*/               
+                Session::put('login_user',$username);
+                return Redirect::route('back_end');
+            }
+            else {
+                Session::flash('msg_flash',  CommonHelper::printMsg('error',trans('messages.user_pass_false')));
+                return Redirect::back()->withInput();      
+            }
+         }
+         Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
+        return Redirect::back()->withInput();       
+            
+    }
+      
 
 }

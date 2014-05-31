@@ -31,7 +31,7 @@ Route::get('page/{id}',array('as' => 'view_page', 'uses' =>'PageController@view'
 
 /*Admin*/
 
-Route::get('/backend' , array('as' => 'backendend', 'uses' => 'AdminController@index') );
+Route::get('/backend' , array('as' => 'back_end', 'uses' => 'AdminController@index') );
 
 /*Article*/ 
 Route::get('backend/article/',array('as' => 'backend_article', 'uses' =>'ArticlesController@index'));
@@ -72,13 +72,12 @@ Route::post('backend/menu/action',array('as' => 'menu_update', 'uses' =>'MenuCon
 
 /*Setting*/
 Route::get('backend/setting',array('as' => 'backend_setting', 'uses' =>'SettingController@index'));
-Route::get('backend/setting/list',array('as' => 'backend_list_setting', 'uses' =>'SettingController@getList'));
 Route::post('backend/setting/update',array('as' => 'setting_update', 'uses' =>'SettingController@postUpdate'));
 Route::get('backend/setting/create-data',array('as' => 'menu_update', 'uses' =>'SettingController@createData'));
 
 /* Users */
-Route::get( 'backend/login/' , array('as' => 'user_login', 'uses' => 'UserController@getLogin'));
-Route::post( 'backend/login/' , array('as' => 'user_login', 'uses' => 'UserController@postLogin'));
+Route::get( 'backend/login' , array('as' => 'user_login', 'uses' => 'UserController@getLogin'));
+Route::post( 'backend/login' , array('as' => 'user_login', 'uses' => 'UserController@postLogin'));
 Route::get( 'backend/user' , array('as' => 'backend_user', 'uses' => 'UserController@index'));
 Route::get( 'backend/user/add' , array('as' => 'user_add', 'uses' => 'UserController@getAdd'));
 Route::post( 'backend/user/add' , array('as' => 'user_add', 'uses' => 'UserController@postAdd'));

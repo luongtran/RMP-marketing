@@ -8,6 +8,7 @@ return array(
         'nochoose_message'=> 'Not record have to choose!',
         'changestatus_message'=>'Have to changed status',
         'relationship_table'=>'Problem ! This record containing in other table',
-        'cf_delete'=>'Have you want delete record?',
+        'cf_delete'=>'Have you want delete record?',    
+        'user_pass_false' => 'Username or Password is false!',
     
 );
