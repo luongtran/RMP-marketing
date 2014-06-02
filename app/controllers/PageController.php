@@ -22,14 +22,24 @@ class PageController extends BaseController {
         $this->layout->page = "Recruitment Management Portal";
         $this->layout->title = "Home";
         $slider = DB::table('slider')               
-            ->join('uploads', 'uploads.id', '=', 'slider.image')            
+            ->leftjoin('uploads', 'uploads.id', '=', 'slider.image')            
             ->where('slider.status','=','publish')
             ->select(DB::raw('title,caption,link,uploads.name'))
             ->get();
-        $this->layout->content = View::make('frontend.page.index')->with('slider',$slider);
+        
+        $reason = DB::table('reasons')               
+            ->leftjoin('uploads', 'uploads.id', '=', 'reasons.image')            
+            ->where('reasons.status','=','publish')
+            ->select(DB::raw('title,caption,uploads.name as image'))
+            ->get();
+        
+        $this->layout->content = View::make('frontend.page.index')->with('slider',$slider)
+            ->with('reason',$reason);
     }
     public function about() {
         $this->layout->page = "About us";
+        $page_title = Pages::where('link','=','about')->first();
+        
         $content = Articles::where('permalink','=','about')->first(); 
         if(!$content)
         {
@@ -39,7 +49,8 @@ class PageController extends BaseController {
        
         $this->layout->content = View::make('frontend.page.about')
              ->with('content',$content)
-             ->with('getImages',$getImages);
+             ->with('getImages',$getImages)
+             ->with('page_title',$page_title);
                 
     }        
       public function features() {
@@ -94,6 +105,22 @@ class PageController extends BaseController {
     {
         $this->layout->page = "Not found!";
         $this->layout->content = View::make('frontend.page.notfound');
+    }
+    
+    
+    public function pageview($page=''){       
+            
+            
+            $mod = DB::table('page_module')
+            ->join('pages', 'page_module.page_id', '=', 'pages.id')
+            ->join('module', 'page_module.module_id', '=', 'module.id')
+            ->where('module.status','=','publish')
+            ->where('pages.link','=',$page)
+            ->select(DB::raw('module.id,module.name as name,module.position,module.mod'))
+            ->get();
+            $pageinfo = Pages::where('link','=',$page)->first();            
+            $this->layout->page = $pageinfo->name;
+            $this->layout->content = View::make('frontend.page.pageview')->with('mod',$mod)->with('pageinfo',$pageinfo);
     }
 
 }

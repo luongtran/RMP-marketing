@@ -1,4 +1,5 @@
 @section('header')
+<!-- module slider -->
 <div class="fullwidthbanner-container top-shadow">
     <div class="fullwidthbanner">
       <ul>
@@ -26,6 +27,9 @@
       
   </div>
  </div>
+<!--end module slider -->
+
+<!--module features -->
 <div class="content gray-content">
     <div style="padding-bottom: 8px;" class="layout">
       <div class="row">
@@ -64,12 +68,13 @@
         </div>
       </div>
     </div>
-  </div>
-
+</div>
+<!--end module features -->
 @stop
 
 @section('content')
 <div class="content">
+    
     <div class="layout">
 
 
@@ -82,119 +87,33 @@
 
 
 
-
+<!-- module reason -->
 <h3 class="lined margin-20">Need more reasons to choose CompleteRMP!</h3>
 <div style="margin-bottom: 20px;">
 
+    @foreach($reason as $listRS)
    <div class="thumb col-1_4 security flip">
     <div class="thumb-wrapper">
-      <img alt="" src="http://completermp.com/marketing/frontend/images/security.jpg">
+      <img alt="" src="{{asset('asset/share/uploads/images/'.$listRS->image)}}">
       <div class="thumb-detail">
        <div class="padding_15">
-          <h3>Security</h3>
-          <p>Employees can access information instantly at any time and from any place that has access to the network.</p>
+          <h3>{{$listRS->title}}</h3>
+          <p>{{$listRS->caption}}</p>
         </div>    
       </div>
     </div>
   </div>
-  
-  
-  <div class="thumb col-1_4 reliability flip">
-    <div class="thumb-wrapper">
-      <img alt="" src="http://completermp.com/marketing/frontend/images/reliability.jpg">
-      <div class="thumb-detail">
-        <div class="padding_15">
-          <h3>Reliability</h3>
-          <p>Employees can access information instantly at any time and from any place that has access to the network.</p>
-        </div>
-      </div>
-    </div>
-  </div>    
-  
-  <div class="thumb col-1_4 accuracy flip">
-    <div class="thumb-wrapper">
-      <img alt="" src="http://completermp.com/marketing/frontend/images/accuracy.jpg">
-      <div class="thumb-detail">
-       <div class="padding_15">
-          <h3>Accuracy</h3>
-          <p>Employees can access information instantly at any time and from any place that has access to the network.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  @endforeach
 
-  <div class="thumb col-1_4 efficiency flip">
-    <div class="thumb-wrapper">
-      <img alt="" src="http://completermp.com/marketing/frontend/images/efficiency.jpg">
-      <div class="thumb-detail">
-       <div class="padding_15">
-          <h3>Efficiency</h3>
-          <p>Employees can access information instantly at any time and from any place that has access to the network.</p>
-        </div>   
-      </div>
-    </div>
-  </div>  
 
   
   
-  <div class="thumb col-1_4 productivity flip">
-    <div class="thumb-wrapper">
-      <img alt="" src="http://completermp.com/marketing/frontend/images/productivity.jpg">
-      <div class="thumb-detail">
-        <div class="padding_15">
-          <h3>Productivity</h3>
-          <p>Employees can access information instantly at any time and from any place that has access to the network.</p>
-        </div> 
-      </div>
-    </div>
-  </div>
   
- 
-
-  <div class="thumb col-1_4 convenience flip">
-    <div class="thumb-wrapper">
-      <img alt="" src="http://completermp.com/marketing/frontend/images/convenience.jpg">
-      <div class="thumb-detail">
-        <div class="padding_15">
-          <h3>Convenience</h3>
-          <p>Employees can access information instantly at any time and from any place that has access to the network.</p>
-        </div>
-      </div>
-    </div>
-  </div>  
-  
-  
-
-  <div class="thumb col-1_4 extendable flip">
-    <div class="thumb-wrapper">
-      <img alt="" src="http://completermp.com/marketing/frontend/images/extendable.jpg">
-      <div class="thumb-detail">
-        <div class="padding_15">
-          <h3>Extendable</h3>
-          <p>Employees can access information instantly at any time and from any place that has access to the network.</p>
-        </div>       
-      </div>
-    </div>
-  </div>
-
-  <div class="thumb col-1_4 simplicity flip">
-    <div class="thumb-wrapper">
-      <img alt="" src="http://completermp.com/marketing/frontend/images/simplicity.jpg">
-      <div class="thumb-detail">
-        <div class="padding_15">
-          <h3>Simplicity</h3>
-          <p>Employees can access information instantly at any time and from any place that has access to the network.</p>
-        </div>      
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  <br clear="all">
+<br clear="all">
 </div>  
-
-      
+<!--end module reason -->
+  
+<!-- module reason Our Happy clients -->      
       <h3 class="lined margin-20">Our Happy Clients</h3>
       <div style="margin-bottom: 10px;" class="b-clients">
         <div class="client tooltips">
@@ -213,4 +132,5 @@
       
     </div>
   </div>
+<!-- module reason Our Happy clients -->  
 @stop

@@ -66,12 +66,16 @@
                    
         <!-- header + menu--> 
         @include('frontend.menu') 
+        <!-- position title bar -->
         @yield('title_bar')
+        <!-- position header -->
         @yield('header')
-          
-        
-        <!-- content -->
-         @yield('content')               
+         <!-- position top -->
+        @yield('top')         
+        <!-- position content -->
+         @yield('content')      
+        <!-- position bottom -->
+         @yield('bottom')               
          
          <!-- footer -->
          @include('frontend.footer')      

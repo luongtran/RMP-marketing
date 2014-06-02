@@ -63,6 +63,11 @@ return array(
       'lastname'=>'Last name',
       'firstname'=>'First name',  
       'language'=>'Language',    
+      'page'=>'Page',
+      'reason'=>'Reason',
+      'module'=>'Module',
+      'position'=>'Position',
+      'mod'=>'Mod',
     ),
      
 );

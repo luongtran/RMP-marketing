@@ -53,7 +53,7 @@ class SettingController extends BaseController {
                 array('name'=>'footer_text','description'=>'Footer'),
                 array('name'=>'email_host' ,'description'=>'Email Host'),
                 array('name'=>'email_port','description'=>'Email Port'),
-                array('name'=>'email_ssl','description'=>'Email SSL'),
+                array('name'=>'email_encryption','description'=>'Email Encryption'),
                 array('name'=>'email_username','description'=>'Email Username'),
                 array('name'=>'email_password','description'=>'Email Password'),
                 array('name'=>'email_contact' ,'description'=>'E-mail'),

@@ -8,16 +8,30 @@
         <!-- Navigation -->
         <ul class="menu">
           <?php
-         $setMenu = Menus::where('status','=','publish')->where('parent','=',0)->orderBy('order','asc')->get();          
+           $setMenu = DB::table('menu')
+            ->join('pages', 'pages.id', '=', 'menu.page_id')  
+            ->where('status','=','publish') 
+            ->where('parent','=',0)
+            ->orderBy('menu.order', 'asc') 
+            ->select(DB::raw('menu.id,menu.title,pages.link as link,menu.icon'))
+            ->get(); 
+          
+         //$setMenu = Menus::where('status','=','publish')->where('parent','=',0)->orderBy('order','asc')->get();          
          foreach($setMenu as $prMenu):
            
-             echo "<li><a href='".Request::root().$prMenu->link."'><i class=".$prMenu->icon."></i>".$prMenu->title."</a>";                
-                $subMenu = Menus::where('status','=','publish')->where('parent','=',$prMenu->id)->get();                 
+             echo "<li><a href='".Request::root().'/'.$prMenu->link."'><i class=".$prMenu->icon."></i>".$prMenu->title."</a>";                
+                 //$subMenu = Menus::where('status','=','publish')->where('parent','=',$prMenu->id)->get();  
+                  $subMenu = DB::table('menu')
+                    ->join('pages', 'pages.id', '=', 'menu.page_id')  
+                    ->where('status','=','publish') 
+                    ->where('parent','=',$prMenu->id)
+                    ->select(DB::raw('menu.id,menu.title,pages.link as link,menu.icon'))
+                    ->get(); 
                 $checkEmpty=false;
                 if($subMenu){
                     $ulSub= "<ul class='submenu'>";
                  foreach($subMenu as $sub):                      
-                    $ulSub.= "<li><a href='".$sub->link."'><i class=".$sub->icon."></i>".$sub->title."</a></li>";
+                    $ulSub.= "<li><a href='".Request::root().'/'.$sub->link."'><i class=".$sub->icon."></i>".$sub->title."</a></li>";
                  $checkEmpty=true;
                  endforeach;   
 		    $ulSub.= "</ul>";

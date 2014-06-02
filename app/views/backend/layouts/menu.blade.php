@@ -24,8 +24,17 @@
                 <li><a href="{{ Request::root() }}/backend/category"> Category </a></li>                
               </ul>
             </li>
-          
-            <li><a href="{{ Request::root() }}/backend/slider"><i class="fa fa-bar-chart-o"></i> Slider</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Module <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ Request::root() }}/backend/module"> Manager</a></li>                
+                <li><a href="{{ Request::root() }}/backend/reason/">Reason </a></li>
+                <li><a href="{{ Request::root() }}/backend/slider">Slider </a></li>                
+              </ul>
+             </li>    
+             <li ><a href="{{Request::root()}}/backend/page"><i class="fa fa-dashboard"></i> Page</a></li>
+           
+             
             <!--  <li><a href="forms.html"><i class="fa fa-edit"></i> Media</a></li>-->
             <li><a href="{{ Request::root() }}/backend/user"><i class="fa fa-font"></i> Users </a></li>
             <li><a href="bootstrap-elements.html"><i class="fa fa-desktop"></i> Group Users</a></li>

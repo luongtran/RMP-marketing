@@ -135,6 +135,12 @@ class CommonHelper {
         $str=Settings::where('name','=',$name)->first()->value;        
         return $str;
     }
-            
+    
+    
+    
+    public  static function renderMod($mod,$position)
+    {
+     
+    }
     
 }

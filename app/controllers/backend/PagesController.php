@@ -1,6 +1,6 @@
 <?php
 
-class MenuController extends BaseController {
+class PagesController extends BaseController {
 
      protected $layout = 'backend.layouts.default';
 
@@ -19,52 +19,28 @@ class MenuController extends BaseController {
 
     public function index() {
         
-        $this->layout->page = "Menu";  
-        
-        $getMenu = Menus::orderBy('order','asc')->paginate(10);        
-        $getP = Menus::all(); 
-         function listDrop($parent_id,$span='')
-        {  
-            $str="";
-            $getParent= Menus::all();
-            foreach($getParent as $list)
-            {
-                if($list->parent == $parent_id)
-                {                    
-                   $str.= "<option value='".$list->id."' class='border-basic'>".$span.$list->title."</option>"; 
-                   $str.=listDrop($list->id,'&nbsp&nbsp');                
-                }
-            }
-            return $str;
-        }      
-        $listPage = Pages::all();
-        
-        $this->layout->content = View::make('backend.menu.index')->with('getMenu',$getMenu)
-             ->with('parent',listDrop(0))
-             ->with('getP',$getP)
-             ->with('listPage',$listPage);
+        $this->layout->page = "Page";          
+        $getPage = Pages::orderBy('id','desc')->paginate(10);  
+       
+        $this->layout->content = View::make('backend.page.index')->with('getPage',$getPage);
+            
     }
      public function postAdd() {       
         $validation = Validator::make(                
                 Input::all(),
                 array(
-                'title'=> 'required',
-                'order'=>'numeric'    
+                'name'=> 'required',                
                 )                
          );
         
         if($validation->passes())
         {
-        $menu = new Menus;
-        $menu->title = Input::get('title');
-        $menu->parent = Input::get('parent');
-        $menu->page_id = Input::get('page_id');        
-        $menu->order = Input::get('order');
-        $menu->icon = Input::get('icon');
-        $menu->status = Input::get('status');
-        $menu->save();        
+        $page = new Pages;
+        $page->name = Input::get('name');        
+        $page->link = Input::get('link');    
+        $page->save();        
         Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.create_message')));  
-        return Redirect::route('backend_menu');
+        return Redirect::route('backend_page');
         }
         Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
         return Redirect::back()->withInput();        
@@ -72,35 +48,19 @@ class MenuController extends BaseController {
         
      public function getUpdate($id) {
         
-        $this->layout->page = "Update menu";  
-        $getMenu = Menus::where('id','=',$id)->first();  
-         $listPage = Pages::all();
-         function listDrop($parent_id,$span=' ',$checked)
-        {  
-            $str="";           
-            $getParent= Menus::all();
-            foreach($getParent as $list)
-            {   
-               
-                
-                
-                if($list->parent == $parent_id)
-                { 
-                   if($checked == $list->id){ 
-                   $str.= "<option value='".$list->id."' class='border-basic' selected>".$span.$list->title."</option>"; 
-                   }
-                   else
-                   {
-                   $str.= "<option value='".$list->id."' class='border-basic'>".$span.$list->title."</option>";     
-                   }
-                   $str.=listDrop($list->id,'&nbsp&nbsp',$checked);                
-                }
-            }
-            return $str;
-        }      
+        $this->layout->page = "Update page";  
+        $getPage = Pages::where('id','=',$id)->first();  
+        $mod = DB::table('page_module')
+            ->join('pages', 'page_module.page_id', '=', 'pages.id')
+            ->join('module', 'page_module.module_id', '=', 'module.id')
+            ->where('module.status','=','publish')
+            ->where('pages.id','=',$id)
+            ->select(DB::raw('module.id,module.name as name'))
+            ->get();
+        $mods = Modules::all();
         
-        $this->layout->content = View::make('backend.menu.update')->with('getMenu',$getMenu)
-             ->with('getParent',  listDrop(0,'',$getMenu->parent))->with('listPage',$listPage);;
+        $this->layout->content = View::make('backend.page.update')->with('getPage',$getPage)
+            ->with('mod',$mod)->with('mods',$mods);
           
     }
     
@@ -109,33 +69,49 @@ class MenuController extends BaseController {
         $validation = Validator::make(                
                 Input::all(),
                 array(
-                'title'=> 'required',
-                'order'=> 'numeric',
+                'name'=> 'required',
                 )                
          );
         
         if($validation->passes())
         {
-            $menu = Menus::find($id);
-            $menu->title = Input::get('title');            
-            $menu->page_id = Input::get('page_id');     
-            $menu->parent = Input::get('parent');
-            $menu->order = Input::get('order');
-            $menu->icon = Input::get('icon');
-            $menu->status = Input::get('status');
-            $menu->update();
+            $pages =Pages::find($id);
+            $pages->name = Input::get('name');
+            $pages->link = Input::get('link');                
+            //$pages->status = Input::get('status');
+            $pages->update();
+          
+          if(Input::get('module'))
+          {
+                $modOld= PageModules::where('page_id','=',$pages->id)->get();            
+                foreach($modOld as $mod_del)
+               {    
+                    PageModules::where('page_id','=',$mod_del->page_id)->delete();
+               }
+               foreach (Input::get('module') as $key=>$value)
+               {
+                    $adMod= new PageModules;   
+                    $adMod->page_id = $pages->id;
+                    $adMod->module_id = $value;                              
+                    $adMod->save();
+               }
+          }
+         
+            
+        
+          
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message')));  
-            return Redirect::route('backend_menu');
+            return Redirect::route('backend_page');
         }
         Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
         return Redirect::back()->withInput();
     }
     
     public function getDelete($id) {         
-            $at= Menus::find($id);
+            $at= Pages::find($id);
             $at->delete();
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.delete_message')));  
-            return Redirect::route('backend_menu'); 
+            return Redirect::route('backend_page'); 
     }
     
      public function action()

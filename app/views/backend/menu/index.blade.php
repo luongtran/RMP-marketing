@@ -29,8 +29,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{trans('common.table.link')}}</label>                                
-                                    {{Form::text('link','',array('class' => 'form-control','id'=>'link'))}}       
+                                    <label>{{trans('common.table.link')}} page</label>                                
+                                    <select class="form-control" name="page_id">
+                                        <option>None</option>
+                                        @foreach($listPage as $page)
+                                        <option value="{{$page->id}}">{{$page->name}}</option>
+                                        @endforeach
+                                    </select>      
                                 </div>
 
                                 <div class="form-group">

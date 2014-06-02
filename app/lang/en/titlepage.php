@@ -20,6 +20,17 @@ return array(
         'update_user'=>'Update user',
         'add_user'=>'Add user',
         'list_user'=>'List user',
+        'list_page'=>'List page',
+        'add_page'=>'Add page',
+        'update_page'=>'Update page',
+        
+        'update_reason'=>'Update reason',
+        'list_reason'=>'List reason',
+        'add_reason'=>'Add reason',
+        
+        'add_module'=>'Add module',
+        'update_module'=>'Update module',
+        'list_module'=>'List module',
         
         'role_1'=>'Manager content',
         'role_2'=>'Admin',

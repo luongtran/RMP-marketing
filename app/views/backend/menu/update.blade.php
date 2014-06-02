@@ -28,7 +28,16 @@
 
                                 <div class="form-group">
                                     <label>{{trans('common.table.link')}}</label>                                
-                                    {{Form::text('link',$getMenu->link,array('class' => 'form-control','id'=>'permalink'))}}       
+                                    <select class="form-control" name="page_id">
+                                        <option>None</option>
+                                        @foreach($listPage as $page)
+                                        @if($page->id == $getMenu->page_id)
+                                        <option value="{{$page->id}}" selected="selected">{{$page->name}}</option>
+                                        @else 
+                                        <option value="{{$page->id}}" >{{$page->name}}</option>
+                                        @endif
+                                        @endforeach
+                                    </select>    
                                 </div>
                                  <div class="form-group">
                                      <label>{{trans('common.table.parent')}}</label>       
