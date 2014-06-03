@@ -32,6 +32,9 @@
                                     <label>{{trans('common.table.link')}}</label>                                
                                     {{Form::text('link','',array('class' => 'form-control','id'=>'permalink'))}}       
                                 </div>
+                                 
+                                <?php echo CommonHelper::createFormStatus();?>
+                                 
                                  <button type="submit" class="btn btn-primary">{{trans('common.button.save')}}</button>
                              </div>
                            </div>
@@ -49,7 +52,7 @@
                     <div class="panel-body"> 
                                
                                 <h2></h2>
-                                 {{Form::open(array('url'=>'backend/slider/action', 'method' => 'post','role'=>'form'))}}               
+                                 {{Form::open(array('url'=>'backend/page/action', 'method' => 'post','role'=>'form'))}}               
                                 <div class="table-responsive">
                                   <table class="table table-bordered table-hover tablesorter">
                                     <thead>
@@ -63,7 +66,7 @@
                                     </thead>
                                     <tbody>
                                       @foreach($getPage  as $pages)                                      
-                                      <tr >
+                                      <tr <?php if($pages->status=='unpublish') echo "class='danger'";?> >
                                           <td><input type="checkbox" value="{{$pages->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
                                         <td>{{$pages->name}}</td>                                        
                                         <td>{{$pages->link}}</td>
@@ -79,7 +82,7 @@
                                 
                                     
                                     <div class="row col-lg-3">
-                                         <?php //echo CommonHelper::createFormAction();?>
+                                         <?php echo CommonHelper::createFormAction();?>
                                     </div>
                                  
                                  

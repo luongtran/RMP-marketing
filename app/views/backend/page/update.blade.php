@@ -30,7 +30,7 @@
                                     <label>{{trans('common.table.link')}}</label>                                
                                     {{Form::text('link',$getPage->link,array('class' => 'form-control'))}}       
                                 </div>
-
+                                <?php echo CommonHelper::createFormStatus();?>    
                                  
                                  <button type="submit" class="btn btn-primary">{{trans('common.button.update')}}</button>
                                  

@@ -7,7 +7,7 @@ return array(
         'delete_message'=> 'Deleted a new record!',
         'nochoose_message'=> 'Not record have to choose!',
         'changestatus_message'=>'Have to changed status',
-        'relationship_table'=>'Problem ! This record containing in other table',
+        'relationship_table'=>'Problem ! This record containing in table :name',
         'cf_delete'=>'Have you want delete record?',    
         'user_pass_false' => 'Username or Password is false!',
     

@@ -6,9 +6,12 @@
 					<div class="title">
 						<h3 class="lined">Contact Us</h3>
 					</div>
-					<p>
-						We would be glad to have feedback from you. Drop us a line, whether it is a comment, a question, a work proposition or just a hello. You can use either the form below or the contact details on the right.
-					</p>
+					 <p>
+                                        <?php  $IntroSupport = Modules::where('mod','=','mod_Contact')->first(); 
+                                             if($IntroSupport)
+                                                 echo $IntroSupport->intro;
+                                        ?>
+                                        </p>
 
 					<div style="height: 15px;" class="gap"></div>
 

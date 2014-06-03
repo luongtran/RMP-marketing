@@ -1,101 +1,42 @@
-
 <div class="content shortcodes">
 		<div class="layout">
 		
-			
-
-			<p>
-				We provide 24/7 support to all of our customers via our Knowledge Base, Online Resources ( video tutorials ) and Support Tickets. 
-			    For three months we provide free limited telephone support in addition to the previously mentioned methods. 
-			    After the 3 months ?? period clients can purchase one of three premium support packages.</p>
-
+                        <p>
+                        <?php  $IntroSupport = Modules::where('mod','=','mod_Support')->first(); 
+                             if($IntroSupport)
+                                 echo $IntroSupport->intro;
+                        ?>
+                        </p>
 
 			<h3 class="lined margin-20">Available Support Packages.</h3>
 			
 			<div class="row m-tariff-row">
+                            <?php  $package = Support::where('status','=','publish')->get(); 
+                            foreach($package as $pk):?>
 				<div class="row-item col-1_3">
 					
 					<div class="b-tariff m-popular">
-						<div class="popular-title m-turquoise">Premium Bronze Support</div>
+						<div class="popular-title m-turquoise"><?php echo $pk->name;?></div>
 						<div class="tariff-head">
-							<div class="tariff-title">Bronze Package</div>
+							<div class="tariff-title"><?php echo $pk->package_type;?> Package</div>
 
 							<div class="tariff-price">
 								<span class="tariff-cy">$</span>
-								<span class="tariff-cost">25</span>
+								<span class="tariff-cost"><?php echo $pk->cost;?></span>
 								<span class="tariff-period">/mo</span>
 							</div>
 
-							<p class="tariff-description">Sed ut perspiciatis unde omnis iste natus.</p>
+							<p class="tariff-description"><?php echo $pk->description;?></p>
 						</div>
 						<ul class="tariff-meta">
-							<li><mark class="green strong">FREE</mark> Setup</li>
-							<li><i style="color: #73ca3f;" class="icon-user"></i> 3 Active Users</li>
-							<li><i style="color: #73ca3f;" class="icon-plus"></i> Additional User is $5/mo</li>
-							<li><i style="color: #73ca3f;" class="icon-lock"></i> Unlimited Questions</li>
-							<li><i style="color: #73ca3f;" class="icon-ok"></i> Full Data Security</li>
+							<?php echo $pk->detail;?>
 						</ul>
 
-						<a href="#" class="btn green tariff-btn">Start Now!</a>
+						<a href="<?php echo Request::root().'support-packages/select/'.$pk->id;?>" class="btn green tariff-btn">Start Now!</a>
 					</div>
 
 				</div>
-				<div class="row-item col-1_3">
-					
-					<div class="b-tariff m-popular">
-						<div class="popular-title m-turquoise">Premium Silver Support</div>
-
-						<div class="tariff-head">
-							<div class="tariff-title">Silver Package</div>
-
-							<div class="tariff-price">
-								<span class="tariff-cy">$</span>
-								<span class="tariff-cost">50</span>
-								<span class="tariff-period">/mo</span>
-							</div>
-
-							<p class="tariff-description">Nemo enim ipsam voluptas.</p>
-						</div>
-						<ul class="tariff-meta">
-							<li><mark class="green strong">FREE</mark> Setup</li>
-							<li><i style="color: #73ca3f;" class="icon-user"></i> 3 Active Users</li>
-							<li><i style="color: #73ca3f;" class="icon-plus"></i> Additional User is $5/mo</li>
-							<li><i style="color: #73ca3f;" class="icon-lock"></i> Unlimited Questions</li>
-							<li><i style="color: #73ca3f;" class="icon-ok"></i> Full Data Security</li>
-						</ul>
-
-						<a href="#" class="btn turquoise tariff-btn">Start Now!</a>
-					</div>
-
-				</div>
-				<div class="row-item col-1_3">
-					
-					<div class="b-tariff m-popular">
-						<div class="popular-title m-turquoise">Premium Gold Support</div>
-
-						<div class="tariff-head">
-							<div class="tariff-title">Gold Package</div>
-
-							<div class="tariff-price">
-								<span class="tariff-cy">$</span>
-								<span class="tariff-cost">75</span>
-								<span class="tariff-period">/mo</span>
-							</div>
-
-							<p class="tariff-description">Neque porro quisquam ipsum.</p>
-						</div>
-						<ul class="tariff-meta">
-							<li><mark class="green strong">FREE</mark> Setup</li>
-							<li><i style="color: #73ca3f;" class="icon-user"></i> 3 Active Users</li>
-							<li><i style="color: #73ca3f;" class="icon-plus"></i> Additional User is $5/mo</li>
-							<li><i style="color: #73ca3f;" class="icon-lock"></i> Unlimited Questions</li>
-							<li><i style="color: #73ca3f;" class="icon-ok"></i> Full Data Security</li>
-						</ul>
-
-						<a href="#" class="btn blue tariff-btn">Start Now!</a>
-					</div>
-
-				</div>
+                            <?php endforeach;?>
 			</div>
 			
 			<div style="height: 30px;" class="gap">

@@ -67,7 +67,14 @@ return array(
       'reason'=>'Reason',
       'module'=>'Module',
       'position'=>'Position',
+      'sumary'=>'Sumary',
+      'cost'=>'Cost',
+      'intro'=>'Intro',
       'mod'=>'Mod',
+      'service'=>'Service',  
+      'support'=>'Support',
+      'detail'=>'Detail',
+      'package_type'=>'Pagkage type',
     ),
      
 );

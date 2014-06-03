@@ -24,5 +24,8 @@ class BaseController extends Controller {
         App::setLocale($currentLocale);
         View::share('current_locale', $currentLocale);
     }
+    
+   
+    
 
 }

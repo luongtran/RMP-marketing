@@ -108,7 +108,7 @@ class PageController extends BaseController {
     }
     
     
-    public function pageview($page=''){       
+    public function pageview($page='home'){       
             
             
             $mod = DB::table('page_module')
@@ -118,9 +118,13 @@ class PageController extends BaseController {
             ->where('pages.link','=',$page)
             ->select(DB::raw('module.id,module.name as name,module.position,module.mod'))
             ->get();
-            $pageinfo = Pages::where('link','=',$page)->first();            
+       
+            $pageinfo = Pages::where('link','=',$page)->first();                
+            
+            if($pageinfo){
             $this->layout->page = $pageinfo->name;
             $this->layout->content = View::make('frontend.page.pageview')->with('mod',$mod)->with('pageinfo',$pageinfo);
+            }
     }
 
 }

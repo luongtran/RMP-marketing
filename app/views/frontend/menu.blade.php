@@ -10,12 +10,11 @@
           <?php
            $setMenu = DB::table('menu')
             ->join('pages', 'pages.id', '=', 'menu.page_id')  
-            ->where('status','=','publish') 
+            ->where('menu.status','=','publish') 
             ->where('parent','=',0)
             ->orderBy('menu.order', 'asc') 
             ->select(DB::raw('menu.id,menu.title,pages.link as link,menu.icon'))
-            ->get(); 
-          
+            ->get();
          //$setMenu = Menus::where('status','=','publish')->where('parent','=',0)->orderBy('order','asc')->get();          
          foreach($setMenu as $prMenu):
            
@@ -23,7 +22,7 @@
                  //$subMenu = Menus::where('status','=','publish')->where('parent','=',$prMenu->id)->get();  
                   $subMenu = DB::table('menu')
                     ->join('pages', 'pages.id', '=', 'menu.page_id')  
-                    ->where('status','=','publish') 
+                    ->where('menu.status','=','publish') 
                     ->where('parent','=',$prMenu->id)
                     ->select(DB::raw('menu.id,menu.title,pages.link as link,menu.icon'))
                     ->get(); 

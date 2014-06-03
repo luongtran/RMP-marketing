@@ -1,13 +1,20 @@
+<?php              
+        $content = Articles::where('permalink','=',$pageinfo->link)->first(); 
+        if($content)
+        {
+           $getImages = Uploads::where('article_id','=',$content->id)->get();
+        ?>
+<div class="layout">
 <div class="row">
 
 				<div class="row-item col-1_2">
-					<h3 class="lined margin-20">Recruitment software with a difference</h3>
+					<h3 class="lined margin-20"><?php echo $content->title;?></h3>
 					
 					<div class="b-carousel">
 						<div class="carousel-content">
-							<img alt="" src="http://completermp.com/marketing/frontend/img/about_rmp/login.jpg" class="carousel-item" style="display: none;">					
-							<img alt="" src="http://completermp.com/marketing/frontend/img/elements/img-42.jpg" class="carousel-item" style="display: none;">
-							<img alt="" src="http://completermp.com/marketing/frontend/img/elements/img-43.jpg" class="carousel-item active" style="display: block;">
+							<?php foreach($getImages as $Im):?>
+                                                        <img alt="" src="<?php echo asset('asset/share/uploads/images/'.$Im->name);?>" class="carousel-item" width="400" height="400">					
+                                                        <?php endforeach;?>
 						</div>
 					<div class="carousel-control"><div class="carousel-prev"></div><div class="carousel-next"></div><ul class="carousel-pagination"><li class=""></li><li class=""></li><li class="active"></li></ul></div></div>
 
@@ -59,3 +66,5 @@
 					</div>
 				</div>
 			</div>
+    </div>
+<?php }  ?>

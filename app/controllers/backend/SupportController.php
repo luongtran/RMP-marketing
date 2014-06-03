@@ -1,6 +1,6 @@
 <?php
 
-class ServiceController extends BaseController {
+class SupportController extends BaseController {
 
     protected $layout = 'backend.layouts.default';
     /*
@@ -17,16 +17,16 @@ class ServiceController extends BaseController {
      */
 
     public function index() {
-        $this->layout->page = "Service";                
-        $getService = Services::orderBy('order','asc')->paginate(10);        
-        $this->layout->content = View::make('backend.service.index')->with('listService',$getService);        
+        $this->layout->page = "Support";                
+        $getSupport = Support::orderBy('order','asc')->paginate(10);        
+        $this->layout->content = View::make('backend.support.index')->with('getSupport',$getSupport);        
     }
     
     public function getAdd()
     {    
-        $this->layout->page = "Add a new service";         
+        $this->layout->page = "Add a new support";         
         $categories = Categories::where('status','=','publish')->get();          
-        $this->layout->content = View::make('backend.service.add')->with('categories',$categories);
+        $this->layout->content = View::make('backend.support.add')->with('categories',$categories);
     }
     
     public function postAdd()
@@ -34,28 +34,29 @@ class ServiceController extends BaseController {
         $validation = Validator::make(
             Input::all(),
             array(
-                'title'=> 'required',              
-                'text'=> 'required',
-                'sumary'=> 'required',
-                'icon'=> 'required',
+                'name'=> 'required',              
+                'detail'=> 'required',
+                'description'=> 'required',
+                'package_type'=> 'required',              
                 'order'=> 'numeric',
             )
         );
         
         if ($validation->passes())
         {        
-            $service = new Services;
-            $service->title = Input::get('title');
-            $service->text = Input::get('text');
-            $service->sumary = Input::get('sumary');
-            $service->icon = Input::get('icon');
-            $service->order = Input::get('order');
-            $service->status = Input::get('status');
-            $service->save();            
+            $support = new Support;
+            $support->name = Input::get('name');
+            $support->description = Input::get('description');
+            $support->detail = Input::get('detail');
+            $support->cost = Input::get('cost');
+            $support->order = Input::get('order');
+            $support->package_type = Input::get('package_type');
+            $support->status = Input::get('status');
+            $support->save();            
             
             $msg_success= CommonHelper::printMsg('success',trans('messages.create_message'));            
             Session::flash('msg_flash',$msg_success);            
-            return Redirect::route('backend_service'); 
+            return Redirect::route('backend_support');
            
         }
         /* Messages validation*/
@@ -65,36 +66,37 @@ class ServiceController extends BaseController {
     
       public function getupdate($id)
     {        
-        $this->layout->page = "Update service";           
-        $getService = Services::where('id','=',$id)->first();        
-        $this->layout->content = View::make('backend.service.update')->with('getService',$getService);
+        $this->layout->page = "Update support";           
+        $getSupport =Support::where('id','=',$id)->first();        
+        $this->layout->content = View::make('backend.support.update')->with('getSupport',$getSupport);
     }
       public function postUpdate($id)
     {       
           $validation = Validator::make(
             Input::all(),
             array(
-                'title'=> 'required',              
-                'text'=> 'required',
-                'sumary'=> 'required',
-                'icon'=> 'required',
-                'order'=> 'numeric',            
+               'name'=> 'required',              
+                'detail'=> 'required',
+                'description'=> 'required',
+                'package_type'=> 'required',              
+                'order'=> 'numeric',        
             )
         );
         
         if ($validation->passes())
         {   
-          $service=Services::find($id);
-          $service->title = Input::get('title');
-          $service->text = Input::get('text');
-          $service->sumary = Input::get('sumary');
-          $service->icon = Input::get('icon');
-          $service->order = Input::get('order');
-          $service->status = Input::get('status');      
-          $service->update(); 
+            $support=Support::find($id);
+            $support->name = Input::get('name');
+            $support->description = Input::get('description');
+            $support->detail = Input::get('detail');
+            $support->cost = Input::get('cost');
+            $support->order = Input::get('order');
+            $support->package_type = Input::get('package_type');
+            $support->status = Input::get('status');    
+            $support->update(); 
          
           Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message'))); 
-          return Redirect::route('backend_service',array('id'=>$id));
+          return Redirect::route('backend_support',array('id'=>$id));
         }
         Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
         return Redirect::back()->withInput();
@@ -102,14 +104,12 @@ class ServiceController extends BaseController {
      
       public function getDelete($id)
     {        
-          $ar=Services::find($id);
+          $ar=Support::find($id);
           $ar->delete();        
           Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.delete_message'))); 
-          return Redirect::route('backend_service');
+          return Redirect::route('backend_support');
      }
-    
-     
-     
+             
      public function action()
      {
          $check = Input::get('checkID');
@@ -150,7 +150,7 @@ class ServiceController extends BaseController {
      
      public function changeStatus($status,$id)
      {
-         $ar= Services::find($id);
+         $ar= Support::find($id);
          $ar->status = $status;
          $ar->update();
          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.changestatus_message')));   

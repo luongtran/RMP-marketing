@@ -20,7 +20,8 @@ class ModuleController extends BaseController {
     public function index() {        
         $this->layout->page = "Module";       
         $module= Modules::orderBy('id','desc')->paginate(10); 
-        $this->layout->content = View::make('backend.module.index')->with('module',$module);           
+        $position = DB::table('position')->get();
+        $this->layout->content = View::make('backend.module.index')->with('module',$module)->with('position',$position);           
     }
     
     public function postAdd() {       
@@ -35,8 +36,9 @@ class ModuleController extends BaseController {
         {
         $mod = new Modules;
         $mod->name = Input::get('name');;
-        $mod->mod = Input::get('mod');
+        $mod->mod = Input::get('mod');        
         $mod->position = Input::get('position');
+        $mod->intro = Input::get('intro');
         $mod->status = Input::get('status');
         $mod->save();
         Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.create_message')));  
@@ -49,8 +51,9 @@ class ModuleController extends BaseController {
     public function getUpdate($id) {
         
         $this->layout->page = "Update module";  
+        $position = DB::table('position')->get();
         $getMod = Modules::where('id','=',$id)->first(); 
-        $this->layout->content = View::make('backend.module.update')->with('getMod',$getMod);
+        $this->layout->content = View::make('backend.module.update')->with('getMod',$getMod)->with('position',$position);      
     }
     
     public function postUpdate($id) {
@@ -69,6 +72,7 @@ class ModuleController extends BaseController {
             $mod->name = Input::get('name');
             $mod->mod = Input::get('mod');
             $mod->position = Input::get('position');
+            $mod->intro = Input::get('intro');
             $mod->status = Input::get('status');
             $mod->update();
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message')));  
@@ -80,22 +84,20 @@ class ModuleController extends BaseController {
     
     public function getDelete($id) {
         
-          $checkArticle = DB::table('categories_articles')
-            ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
-            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')
-            ->where('categories.id','=',$id)
-            ->count();
-          if($checkArticle > 0)
-          {            
-            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table')));  
+          $checkModule = DB::table('page_module')
+            ->join('pages', 'page_module.page_id', '=', 'pages.id')
+            ->join('module', 'page_module.module_id', '=', 'module.id')
+            ->where('module.id','=',$id)
+            ->count();  
+          if($checkModule > 0) {            
+            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table',array('name'=>'Page'))));  
             return Redirect::back();   
           }
-          else
-          {
-            $at= Categories::find($id);
+          else{
+            $at= Modules::find($id);
             $at->delete();
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.delete_message')));  
-            return Redirect::route('backend_category');            
+            return Redirect::route('backend_module');            
           }
         
     }
@@ -140,7 +142,7 @@ class ModuleController extends BaseController {
      
      public function changeStatus($status,$id)
      {
-         $ar= Categories::find($id);
+         $ar= Modules::find($id);
          $ar->status = $status;
          $ar->update();
          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.changestatus_message')));   

@@ -30,6 +30,9 @@
                 <li><a href="{{ Request::root() }}/backend/module"> Manager</a></li>                
                 <li><a href="{{ Request::root() }}/backend/reason/">Reason </a></li>
                 <li><a href="{{ Request::root() }}/backend/slider">Slider </a></li>                
+                <li><a href="{{ Request::root() }}/backend/service">Service </a></li>
+                <li><a href="{{ Request::root() }}/backend/support">Support</a></li>
+                
               </ul>
              </li>    
              <li ><a href="{{Request::root()}}/backend/page"><i class="fa fa-dashboard"></i> Page</a></li>

@@ -1,4 +1,5 @@
 <!-- module reason -->
+<div class="layout">
 <h3 class="lined margin-20">Need more reasons to choose CompleteRMP!</h3>
 <div style="margin-bottom: 20px;">
  <?php $reason = DB::table('reasons')               
@@ -22,4 +23,5 @@
  
 <br clear="all">
 </div>  
+</div>
 <!--end module reason -->

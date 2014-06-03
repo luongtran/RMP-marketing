@@ -24,9 +24,9 @@ tinymce.init({
 <div class="row"
      <div class="col-lg-12">
             <ol class="breadcrumb">
-              <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i>{{trans('common.menu.dashboard')}}</a></li>
-              <li class="active"><a href="{{Request::root()}}/backend/service"><i class="fa fa-desktop"></i> {{trans('common.table.service')}}</a></li>
-              <li class="active"><i class="fa fa-desktop"></i>{{trans('common.button.add')}}</li>
+              <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i> {{trans('common.menu.dashboard')}}</a></li>
+              <li class="active"><a href="{{Request::root()}}/backend/support"><i class="fa fa-desktop"></i> {{trans('common.table.support')}}</a></li>
+              <li class="active"><i class="fa fa-desktop"></i>{{trans('common.button.update')}}</li>
             </ol>
     </div>   
 </div><!-- end row 1--> 
@@ -37,23 +37,24 @@ tinymce.init({
             <div class="messages_validation">                           
                             {{Session::get('msg_flash')}}
             </div>
-            {{Form::open(array('url'=>'backend/service/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
-            <div class="col-lg-8">
+            {{Form::open(array('url'=>'backend/support/update/'.$getSupport->id, 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
+             <div class="col-lg-8">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{trans('titlepage.title.add_service')}}</h3>
+                        <h3 class="panel-title">{{trans('titlepage.title.add_support')}}</h3>
                     </div>
                     <div class="panel-body">                         
                          <div>                            
                             <div class="form-group">                                
-                                <label>{{trans('common.table.title')}}<span class="star-validation">(*)</span></label>
-                                    {{Form::text('title','',array('class' => 'form-control','id'=>'title'))}}       
+                                <label>{{trans('common.table.name')}}<span class="star-validation">(*)</span></label>
+                                    {{Form::text('name',$getSupport->name,array('class' => 'form-control','id'=>'title'))}}       
                             </div>                            
                                                   
-                              <div class="form-group">
-                             <label>{{trans('common.table.text')}}<span class="star-validation">(*)</span></label>
-                                {{Form::textarea('text','',array('class' => 'form-control','id'=>'ckeditor'))}}                                     
+                             <div class="form-group">
+                             <label>{{trans('common.table.detail')}}<span class="star-validation">(*)</span></label>
+                                {{Form::textarea('detail',$getSupport->detail,array('class' => 'form-control','id'=>'ckeditor'))}}                                     
                              </div>
+                         
                          </div>
                     </div>
                 </div>
@@ -67,18 +68,22 @@ tinymce.init({
                     <div class="panel-body">                                              
                                 
                             <div class="form-group">
-                              <label>{{trans('common.table.sumary')}}<span class="star-validation">(*)</span></label>
-                               {{Form::textarea('sumary','',array('class' => 'form-control','id'=>'description','rows'=>'2'))}}                                                
+                              <label>{{trans('common.table.description')}}<span class="star-validation">(*)</span></label>
+                               {{Form::textarea('description',$getSupport->description,array('class' => 'form-control','rows'=>'2'))}}                                                
                             </div>
                         
                              <div class="form-group">                                
-                                <label>{{trans('common.table.icon')}}<span class="star-validation">(*)</span></label>
-                                    {{Form::text('icon','',array('class' => 'form-control'))}}       
+                                <label>{{trans('common.table.cost')}}<span class="star-validation">($)</span></label>
+                                    {{Form::text('cost',$getSupport->cost,array('class' => 'form-control'))}}       
                              </div>
                              <div class="form-group">                                
+                                <label>{{trans('common.table.package_type')}}</label>
+                                    {{Form::text('package_type',$getSupport->package_type,array('class' => 'form-control'))}}       
+                             </div>  
+                              <div class="form-group">                                
                                 <label>{{trans('common.table.order')}}</label>
-                                    {{Form::text('order','',array('class' => 'form-control'))}}       
-                             </div>   
+                                    {{Form::text('order',$getSupport->order,array('class' => 'form-control'))}}       
+                             </div> 
                     
                              <?php echo CommonHelper::createFormStatus();?>
                             

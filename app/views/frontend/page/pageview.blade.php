@@ -1,10 +1,7 @@
 @section('title_bar')
   @foreach($mod as $incMod)
     @if($incMod->position == 'title_bar')
-        @if($incMod->mod=='mod_Slider')
-            @include('frontend.module.mod_Slider')
-        @endif
-        @if($incMod->mod=='mod_TitleBar')
+        @if($incMod->mod == 'mod_TitleBar')
             @include('frontend.module.mod_TitleBar')
         @endif  
      @endif
@@ -32,9 +29,9 @@
   @endforeach           
 @stop
 @section('content')
+
 <div class="content">
-<div class="layout">
-    @foreach($mod as $incMod)
+          @foreach( $mod as $incMod )
             @if($incMod->position == 'content') 
                 @if($incMod->mod=='mod_Reason')
                     @include('frontend.module.mod_Reason')
@@ -52,10 +49,11 @@
                     @include('frontend.module.mod_Contact')
                 @endif
              @endif
-    @endforeach
-</div>         
-</div>         
+          @endforeach       
+</div> 
+
 @stop
+
 @section('bottom')
 <div class="layout">
      @foreach($mod as $incMod)

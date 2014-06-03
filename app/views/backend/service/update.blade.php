@@ -2,7 +2,7 @@
 <script src="{{asset('asset/backend/plusin/tinymce/tinymce.min.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
 tinymce.init({
-     selector: "#content",
+     selector: "#ckeditor",
      plugins: [
          "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
@@ -25,7 +25,7 @@ tinymce.init({
      <div class="col-lg-12">
             <ol class="breadcrumb">
               <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i> {{trans('common.menu.dashboard')}}</a></li>
-              <li class="active"><a href="{{Request::root()}}/backend/article"><i class="fa fa-desktop"></i> {{trans('common.table.article')}}</a></li>
+              <li class="active"><a href="{{Request::root()}}/backend/service"><i class="fa fa-desktop"></i> {{trans('common.table.service')}}</a></li>
               <li class="active"><i class="fa fa-desktop"></i>{{trans('common.button.update')}}</li>
             </ol>
     </div>   
@@ -37,27 +37,23 @@ tinymce.init({
             <div class="messages_validation">                           
                             {{Session::get('msg_flash')}}
             </div>
-            {{Form::open(array('url'=>'backend/article/update/'.$article->id, 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
+            {{Form::open(array('url'=>'backend/service/update/'.$getService->id, 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
             <div class="col-lg-8">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{trans('titlepage.title.update_article')}}</h3>
+                        <h3 class="panel-title">{{trans('titlepage.title.update_service')}}</h3>
                     </div>
                     <div class="panel-body">                         
                          <div>                            
                             <div class="form-group">                                
                                 <label>{{trans('common.table.title')}} <span class="star-validation">(*)</span></label>
-                                    {{Form::text('title',$article->title,array('class' => 'form-control','id'=>'title'))}}       
+                                    {{Form::text('title',$getService->title,array('class' => 'form-control'))}}       
                             </div>
-                            
-                            <div class="form-group">
-                                <label>{{trans('common.table.permalink')}} </label>                                
-                                {{Form::text('permalink',$article->permalink,array('class' => 'form-control','id'=>'permalink'))}}       
-                            </div>
+                                                      
                             
                               <div class="form-group">
-                             <label>{{trans('common.table.content')}}</label>
-                                {{Form::textarea('content',$article->content,array('class' => 'form-control ckeditor','id'=>'content'))}}                                     
+                             <label>{{trans('common.table.content')}}<span class="star-validation">(*)</span></label>
+                                {{Form::textarea('text',$getService->text,array('class' => 'form-control','id'=>'ckeditor'))}}                                     
                              </div>                             
                          </div>
                     </div>
@@ -72,49 +68,20 @@ tinymce.init({
                     <div class="panel-body">                                              
                                 
                             <div class="form-group">
-                              <label>{{trans('common.table.description')}}</label>
-                               {{Form::textarea('description',$article->description,array('class' => 'form-control','id'=>'description','rows'=>'2'))}}                                                
+                              <label>{{trans('common.table.sumary')}}</label>
+                               {{Form::textarea('sumary',$getService->sumary,array('class' => 'form-control','rows'=>'2'))}}                                                
                             </div>
                                 
                             <div class="form-group">
-                                <label>{{trans('common.table.keywords')}}</label>
-                                {{Form::text('keyword',$article->keyword,array('class' => 'form-control','id'=>'keyword'))}}                           
+                                <label>{{trans('common.table.icon')}}</label>
+                                {{Form::text('icon',$getService->icon,array('class' => 'form-control'))}}                           
                             </div>
-
                             <div class="form-group">
-                              <label>{{trans('common.table.images')}}</label>
-                                 {{Form::file('fileimages[]',array('class' => '','id'=>'description','multiple'=>'on'))}}                                   
-                              <div class="clear">
-                                  @foreach($getImages as $lImage)
-                                  <div style='padding:5px;border:1px solid #dedede;float:left;'><img src="{{asset('asset/share/uploads/images/'.$lImage->name)}}" alt="{{$lImage->name}}" title="{{$lImage->name}}" width="60" height="60" /></div>
-                                  @endforeach   
-                              </div><div class='clear'></div>     
-                            </div>  
-                                
-                            <div class="form-group">
-                                <label>{{trans('common.table.category')}} <span class="star-validation">(*)</span></label>
-                                    <div class="overflow-scroll">
-                                     
-                                    @foreach($categories as $ctItem)
-                                        <?php $active=false;?>
-                                        @foreach($category as $ctSub)
-                                        @if($ctSub->id == $ctItem->id)
-                                        <?php $active=true;?>
-                                        @endif                                       
-                                        @endforeach                                      
-                                      <div class="checkbox">
-                                      <label>                                       
-                                       {{Form::checkbox('category[]',$ctItem->id,$active)}}                                      
-                                       {{$ctItem->name}} 
-                                       </label>
-                                      </div>
-                                       
-                                   @endforeach
-                                    </div>
-                                   
+                                <label>{{trans('common.table.order')}}</label>
+                                {{Form::text('order',$getService->order,array('class' => 'form-control'))}}                           
                             </div>    
-
-                              <?php echo CommonHelper::createFormStatus($article->status);?>
+                        
+                            <?php echo CommonHelper::createFormStatus($getService->status);?>
 
                             <button type="submit" class="btn btn-primary">{{trans('common.button.update')}}</button>
                          

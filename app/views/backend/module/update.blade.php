@@ -3,7 +3,7 @@
      <div class="col-lg-12">
             <ol class="breadcrumb">
               <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i>{{trans('common.menu.dashboard')}}</a></li>
-              <li class="active"><a href="{{Request::root()}}/backend/menu"><i class="fa fa-desktop"></i>{{trans('common.table.menu')}}</a></li>            
+              <li class="active"><a href="{{Request::root()}}/backend/module"><i class="fa fa-desktop"></i>{{trans('common.table.module')}}</a></li>            
               <li class="active"><i class="fa fa-desktop"></i>{{trans('common.button.update')}}</li>            
             </ol>
     </div>   
@@ -35,15 +35,16 @@
                                 <div class="form-group">
                                     <label>{{trans('common.table.position')}}</label> 
                                     <select class="form-control" name="position">
-                                        <option value="">None</option>
-                                        <option value="title_bar">Title bar</option>
-                                        <option value="header">Header</option>
-                                        <option value="top">Top</option>
-                                        <option value="content">Content</option>                                  
-                                        <option value="bottom">Bottom</option>                                  
+                                        <option value="">None</option>                                         
+                                        @foreach($position as $otp)
+                                        <option value="{{$otp->name}}" <?php if($getMod->position==$otp->name) echo 'selected';?> >{{$otp->name}}</option>
+                                        @endforeach                         
                                     </select>
                                 </div>   
-                          
+                                <div class="form-group">
+                                    <label>{{trans('common.table.intro')}}</label> 
+                                    {{Form::textarea('intro',$getMod->intro,array('class' => 'form-control','rows'=>'4'))}}       
+                                </div>
                                  
                                 <?php echo CommonHelper::createFormStatus($getMod->status);?>
                                  

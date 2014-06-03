@@ -13,7 +13,7 @@
 /*====== Frontend=====*/
 
 /* Page frontend */
-Route::get( '/' , array('as' => 'frontend', 'uses' => 'PageController@index'));
+/*Route::get( '/' , array('as' => 'frontend', 'uses' => 'PageController@index'));
 Route::get('about/',array('as' => 'page_view', 'uses' =>'PageController@about'));
 Route::get('features/',array('as' => 'feature_page', 'uses' =>'PageController@features'));
 Route::get('service/',array('as' => 'service_page', 'uses' =>'PageController@service'));
@@ -22,9 +22,9 @@ Route::get('support-packages/',array('as' => 'support_page', 'uses' =>'PageContr
 Route::get('contact-us/',array('as' => 'contact_page', 'uses' =>'PageController@contact'));
 Route::get('page/notfound',array('as' => 'notfound_page', 'uses' =>'PageController@notFound'));
 Route::get('page/{id}',array('as' => 'view_page', 'uses' =>'PageController@view'));
+ */
+ 
 //===========================================//
-
-
 /*====== Backend=====*/
 
 /*Admin*/
@@ -57,6 +57,8 @@ Route::get('backend/module/',array('as' => 'backend_module', 'uses' =>'ModuleCon
 Route::post('backend/module/add',array('as' => 'module_add', 'uses' =>'ModuleController@postAdd'));
 Route::get('backend/module/update/{id}',array('as' => 'module_update', 'uses' =>'ModuleController@getUpdate'));
 Route::post('backend/module/update/{id}',array('as' => 'module_update', 'uses' =>'ModuleController@postUpdate'));
+Route::get('backend/module/delete/{id}',array('as' => 'module_delete', 'uses' =>'ModuleController@getDelete'));
+Route::post('backend/module/action',array('as' => 'module_action', 'uses' =>'ModuleController@action'));
 
 
 /*Slider*/
@@ -110,6 +112,16 @@ Route::post('backend/service/update/{id}',array('as' => 'service_update', 'uses'
 Route::get('backend/service/delete/{id}',array('as' => 'service_delete', 'uses' =>'ServiceController@getDelete'));
 Route::post('backend/service/action',array('as' => 'service_action', 'uses' =>'ServiceController@action'));
 
+
+/*Support package*/
+Route::get('backend/support/',array('as' => 'backend_support', 'uses' =>'SupportController@index'));
+Route::get('backend/support/add',array('as' => 'support_add', 'uses' =>'SupportController@getAdd'));
+Route::post('backend/support/add',array('as' => 'support_add', 'uses' =>'SupportController@postAdd'));
+Route::get('backend/support/update/{id}',array('as' => 'support_update', 'uses' =>'SupportController@getUpdate'));
+Route::post('backend/support/update/{id}',array('as' => 'support_update', 'uses' =>'SupportController@postUpdate'));
+Route::get('backend/support/delete/{id}',array('as' => 'support_delete', 'uses' =>'SupportController@getDelete'));
+Route::post('backend/support/action',array('as' => 'service_action', 'uses' =>'SupportController@action'));
+
 /* Page backend */
 Route::get('backend/page',array('as' => 'backend_page', 'uses' =>'PagesController@index'));
 Route::post('backend/page/add',array('as' => 'page_add', 'uses' =>'PagesController@postAdd'));
@@ -124,5 +136,7 @@ Route::get('change-language/{id}',array('as' => 'change_language', 'uses' =>'Sha
 
 Route::get('backend/dump',array('as' => 'backend_dump', 'uses' =>'AdminController@dump'));
 
+
 /*test demo page view*/
-Route::get('{id}/',array('as' => 'view_page', 'uses' =>'PageController@pageview'));
+Route::get('/',array('as' => 'front_end', 'uses' =>'PageController@pageview'));
+Route::get('{id}',array('as' => 'view_page', 'uses' =>'PageController@pageview'));

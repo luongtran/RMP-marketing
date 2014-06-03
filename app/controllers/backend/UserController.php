@@ -15,7 +15,10 @@ class UserController extends BaseController {
       |	Route::get('/', 'HomeController@showWelcome');
       |
      */
-
+     public function __construct() {
+        
+     }
+    
     public function index() {
         $this->layout->page = "Users";
         $user = Users::paginate(10);
@@ -157,15 +160,15 @@ class UserController extends BaseController {
          
     public function getProfile()
       {
-            $result = Users::where('username','=',Session::get('username'))->first();
+            $result = Users::where('username','=',Session::get('login_user'))->first();
             return $result;
       }
     
-    public function getLogin()  
-    {
+    public  function getLogin()  
+    {       
          return View::make('backend.users.login');
     }
-      public function postLogin()  
+      public  function postLogin()  
     {
          $validation = Validator::make(Input::all(),array('username'=>'required','password'=>'required'));
          if($validation->passes())
@@ -173,20 +176,22 @@ class UserController extends BaseController {
          $username=strip_tags(Input::get('username'));
          $password=strip_tags(Input::get('password'));
             $user = DB::table('users')->where('username', $username)->first();
-            if (Hash::check($password, $user->password)) { 
-                /*save session*/               
-                Session::put('login_user',$username);
-                return Redirect::route('back_end');
+            if($user)
+            {
+                if (Hash::check($password, $user->password)) { 
+                    /*save session*/               
+                    Session::put('login_user',$username);
+                    Session::put('isLogin',true);
+                    return Redirect::route('back_end');
+                }              
             }
-            else {
-                Session::flash('msg_flash',  CommonHelper::printMsg('error',trans('messages.user_pass_false')));
-                return Redirect::back()->withInput();      
-            }
+             Session::flash('msg_flash',  CommonHelper::printMsg('error',trans('messages.user_pass_false')));
+                    return Redirect::back()->withInput();     
          }
          Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
         return Redirect::back()->withInput();       
             
     }
-      
+           
 
 }

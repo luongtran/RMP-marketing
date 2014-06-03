@@ -38,14 +38,15 @@
                                     <label>{{trans('common.table.position')}}</label> 
                                     <select class="form-control" name="position">
                                         <option value="">None</option>
-                                        <option value="title_bar">Title bar</option>
-                                        <option value="header">Header</option>
-                                        <option value="top">Top</option>
-                                        <option value="content">Content</option>                                  
-                                        <option value="bottom">Bottom</option>                                  
+                                       @foreach($position as $otp)
+                                       <option value="{{$otp->name}}">{{$otp->name}}</option>
+                                       @endforeach
                                     </select>
                                 </div>   
-                          
+                                <div class="form-group">
+                                    <label>{{trans('common.table.intro')}}</label> 
+                                    {{Form::textarea('intro','',array('class' => 'form-control','rows'=>'4'))}}       
+                                </div>
                                  <?php echo CommonHelper::createFormStatus();?>
                                 
                                  <button type="submit" class="btn btn-primary">{{trans('common.button.save')}}</button>

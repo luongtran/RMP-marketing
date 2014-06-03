@@ -20,8 +20,7 @@ class PagesController extends BaseController {
     public function index() {
         
         $this->layout->page = "Page";          
-        $getPage = Pages::orderBy('id','desc')->paginate(10);  
-       
+        $getPage = Pages::orderBy('id','desc')->paginate(10);         
         $this->layout->content = View::make('backend.page.index')->with('getPage',$getPage);
             
     }
@@ -38,6 +37,7 @@ class PagesController extends BaseController {
         $page = new Pages;
         $page->name = Input::get('name');        
         $page->link = Input::get('link');    
+        $page->status = Input::get('status');
         $page->save();        
         Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.create_message')));  
         return Redirect::route('backend_page');
@@ -55,7 +55,7 @@ class PagesController extends BaseController {
             ->join('module', 'page_module.module_id', '=', 'module.id')
             ->where('module.status','=','publish')
             ->where('pages.id','=',$id)
-            ->select(DB::raw('module.id,module.name as name'))
+            ->select(DB::raw('module.id,module.name as name,pages.status'))
             ->get();
         $mods = Modules::all();
         
@@ -78,7 +78,7 @@ class PagesController extends BaseController {
             $pages =Pages::find($id);
             $pages->name = Input::get('name');
             $pages->link = Input::get('link');                
-            //$pages->status = Input::get('status');
+            $pages->status = Input::get('status');
             $pages->update();
           
           if(Input::get('module'))
@@ -107,11 +107,22 @@ class PagesController extends BaseController {
         return Redirect::back()->withInput();
     }
     
-    public function getDelete($id) {         
+    public function getDelete($id) {
+             $checkModule = DB::table('menu')
+            ->join('pages', 'menu.page_id', '=', 'pages.id')
+            ->where('pages.id','=',$id)
+            ->count();  
+             
+          if($checkModule > 0) {            
+            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table',array('name'=>'Menu'))));  
+            return Redirect::back();   
+          }
+          else{
             $at= Pages::find($id);
             $at->delete();
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.delete_message')));  
-            return Redirect::route('backend_page'); 
+            return Redirect::route('backend_page');            
+          }
     }
     
      public function action()
@@ -154,7 +165,7 @@ class PagesController extends BaseController {
      
      public function changeStatus($status,$id)
      {
-         $ar= Menus::find($id);
+         $ar= Pages::find($id);
          $ar->status = $status;
          $ar->update();
          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.changestatus_message')));   

@@ -3,7 +3,9 @@
 class AdminController extends BaseController {
 
       protected $layout = 'backend.layouts.default';
-
+      public function __construct() {         
+        
+     }
     /*
       |--------------------------------------------------------------------------
       | Default Home Controller
@@ -27,6 +29,7 @@ class AdminController extends BaseController {
         
         var_dump(CommonHelper::test());
     }
+    
     
     
 

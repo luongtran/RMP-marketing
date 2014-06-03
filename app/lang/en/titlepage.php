@@ -32,6 +32,14 @@ return array(
         'update_module'=>'Update module',
         'list_module'=>'List module',
         
+        'add_service'=>'Add service',
+        'update_service'=>'Update service',
+        'list_service'=>'List service',
+        
+        'add_support'=>'Add support',
+        'update_support'=>'Update support',
+        'list_support'=>'List support',
+        
         'role_1'=>'Manager content',
         'role_2'=>'Admin',
         'role_3'=>'Supper admin',
