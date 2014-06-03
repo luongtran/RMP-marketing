@@ -3,6 +3,8 @@
 class UserController extends BaseController {
 
      protected $layout = 'backend.layouts.default';
+
+     
     /*
       |--------------------------------------------------------------------------
       | Default Home Controller
@@ -15,9 +17,24 @@ class UserController extends BaseController {
       |	Route::get('/', 'HomeController@showWelcome');
       |
      */
-     public function __construct() {
-        
-     }
+      public function __construct() {       
+        /*$ROLE = SharedController::ROLE_SUPPER;  
+        if($this->getProfile())
+        {
+            if($this->getProfile()->permission < $ROLE)
+            {
+                //Session::flash('msg_flash',"You can't access this function!");                
+                echo "You can't access permission "; 
+                die();    
+            }
+        }
+        else
+        {
+            echo 'Please login <a href="'.Request::root().'/backend/login">Login</a>';
+            
+            die();
+        }*/
+      } 
     
     public function index() {
         $this->layout->page = "Users";
@@ -164,6 +181,8 @@ class UserController extends BaseController {
             return $result;
       }
     
+    
+        
     public  function getLogin()  
     {       
          return View::make('backend.users.login');
@@ -192,6 +211,14 @@ class UserController extends BaseController {
         return Redirect::back()->withInput();       
             
     }
+    public function getLogout()
+    {
+        Session::forget('isLogin');
+        Session::forget('login_user');
+        return Redirect::route('user_login');
+        //Session::flush();  removing all session
+    }
+  
            
 
 }

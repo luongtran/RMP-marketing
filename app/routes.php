@@ -85,6 +85,7 @@ Route::get('backend/setting/create-data',array('as' => 'menu_update', 'uses' =>'
 /* Users */
 Route::get( 'backend/login' , array('as' => 'user_login', 'uses' => 'UserController@getLogin'));
 Route::post( 'backend/login' , array('as' => 'user_login', 'uses' => 'UserController@postLogin'));
+Route::get( 'backend/logout' , array('as' => 'user_logout', 'uses' => 'UserController@getLogout'));
 Route::get( 'backend/user' , array('as' => 'backend_user', 'uses' => 'UserController@index'));
 Route::get( 'backend/user/add' , array('as' => 'user_add', 'uses' => 'UserController@getAdd'));
 Route::post( 'backend/user/add' , array('as' => 'user_add', 'uses' => 'UserController@postAdd'));

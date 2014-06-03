@@ -12,12 +12,19 @@
  * @author Administrator
  */
 class SharedController extends BaseController{
-    
-      public function getChangeLanguage($lang) {
+         
+     CONST ROLE_MANAGER =1;
+     CONST ROLE_ADMIN =2;
+     CONST ROLE_SUPPER =3;
+     
+     
+     public function getChangeLanguage($lang) {
         Session::put('current_locale', $lang);
         return Redirect::to(Input::get('return_url'));
         
     }
+    
+
     
 }   
     

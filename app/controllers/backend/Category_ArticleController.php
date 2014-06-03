@@ -3,7 +3,7 @@
 class Categories_ArticlesController extends BaseController {
 
       protected $layout = 'backend.layouts.default';
-
+      const ROLE = UserController::ROLE_MANAGER;
     /*
       |--------------------------------------------------------------------------
       | Categories Controller
