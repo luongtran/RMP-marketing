@@ -1,8 +1,6 @@
 <?php 
 $getService= Services::where('status','=','publish')->orderBy('order','asc')->get();
 ?>
-		<div class="layout">
-
 			<div class="row">
                                <?php foreach($getService as $sv):?>
 				<div class="row-item col-1_4">
@@ -49,9 +47,6 @@ $getService= Services::where('status','=','publish')->orderBy('order','asc')->ge
 					<!-- End Vertical Tabs -->
 				</div>
 			
-			</div>			
-			
-					
-		
+			</div>	
 		</div>
-	</div>
+

@@ -116,6 +116,7 @@ class PageController extends BaseController {
             ->join('module', 'page_module.module_id', '=', 'module.id')
             ->where('module.status','=','publish')
             ->where('pages.link','=',$page)
+            ->orderBy('module.order','asc')
             ->select(DB::raw('module.id,module.name as name,module.position,module.mod'))
             ->get();
        

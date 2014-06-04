@@ -23,6 +23,56 @@ class SharedController extends BaseController{
         return Redirect::to(Input::get('return_url'));
         
     }
+
+
+    public function getLogin()
+    {
+    	  return View::make('backend.users.login');
+    }
+
+      public  function postLogin()  
+    {
+         $validation = Validator::make(Input::all(),array('username'=>'required','password'=>'required'));
+         if($validation->passes())
+         {
+         $username=strip_tags(Input::get('username'));
+         $password=strip_tags(Input::get('password'));
+            $user = DB::table('users')->where('username', $username)->first();
+            if($user)
+            {
+                if (Hash::check($password, $user->password)) { 
+                    /*save session*/  
+
+                    Session::put('login_user',$username);
+                    Session::put('isLogin',true);
+                    Session::put('perRole',$user->permission);
+                    return Redirect::route('back_end');
+                }              
+            }
+             Session::flash('msg_flash',  CommonHelper::printMsg('error',trans('messages.user_pass_false')));
+                    return Redirect::back()->withInput();     
+         }
+         Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
+        return Redirect::back()->withInput();       
+            
+    }
+    public function getLogout()
+    {
+        Session::forget('isLogin');
+        Session::forget('login_user');
+        Session::forget('perRole');
+        //Auth::logout();
+
+        return Redirect::route('user_login');
+        //Session::flush();  removing all session
+    }
+
+    
+    public function getProfile()
+      {
+            $result = Users::where('username','=',Session::get('login_user'))->first();
+            return $result;
+      }
     
 
     

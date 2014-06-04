@@ -4,24 +4,6 @@ class ReasonController extends BaseController {
 
     protected $layout = 'backend.layouts.default';
      public function __construct() {
-        
-        $ROLE = SharedController::ROLE_ADMIN;          
-        $classUser =new UserController();        
-        if($classUser->getProfile())
-        {
-            if($classUser->getProfile()->permission < $ROLE)
-            {
-                //Session::flash('msg_flash',"You can't access this function!");                
-                echo "You can't access permission "; 
-                die();    
-            }
-        }
-        else
-        {
-            echo 'Please login <a href="'.Request::root().'/backend/login">Login</a>';
-            
-            die();
-        }
       } 
     /*
       |--------------------------------------------------------------------------

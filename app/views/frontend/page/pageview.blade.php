@@ -30,10 +30,10 @@
 @stop
 @section('content')
           @foreach( $mod as $incMod )          
-            @if($incMod->position == 'content') 
-                @if($incMod->mod == 'mod_TitleBar')
-                    @include('frontend.module.mod_TitleBar')
-                @endif                  
+            @if($incMod->position == 'content')
+                @if($incMod->mod=='mod_RequestDemo')
+                    @include('frontend.module.mod_RequestDemo')
+                @endif 
                 @if($incMod->mod=='mod_Reason')
                     @include('frontend.module.mod_Reason')
                 @endif
@@ -50,7 +50,7 @@
                     @include('frontend.module.mod_Contact')
                 @endif
              @endif
-          @endforeach    
+          @endforeach   
 @stop
 
 @section('bottom')
@@ -58,7 +58,14 @@
             @if($incMod->position == 'bottom')  
                 @if($incMod->mod=='mod_UserInterface')
                     @include('frontend.module.mod_UserInterface')
-                @endif 
+                @endif
+                @if($incMod->mod=='mod_HappyClient')
+                    @include('frontend.module.mod_HappyClient')
+                @endif  
              @endif
     @endforeach
+@stop
+
+@section('bottom-1')
+
 @stop

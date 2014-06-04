@@ -28,8 +28,8 @@ return array(
 	|
 	*/
 
-	'model' => 'User',
-
+	'model' => 'Users',
+    
 	/*
 	|--------------------------------------------------------------------------
 	| Authentication Table
@@ -42,7 +42,8 @@ return array(
 	*/
 
 	'table' => 'users',
-
+    
+	//'username' => 'email',
 	/*
 	|--------------------------------------------------------------------------
 	| Password Reminder Settings

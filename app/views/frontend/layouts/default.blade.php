@@ -71,13 +71,17 @@
         <!-- position header -->
         @yield('header')
          <!-- position top -->
-        @yield('top')         
-        <!-- position content -->
+        @yield('top')                 
         <div class="content">
+          <!-- position content -->
+         <div class="layout"> 
          @yield('content')      
-        <!-- position bottom -->
-         @yield('bottom')               
-       </div>
+         <!-- position bottom -->
+         @yield('bottom') 
+         </div>
+        </div>
+        <!-- position bottom 1-->
+         @yield('bottom-1')   
          
          <!-- footer -->
          @include('frontend.footer')      

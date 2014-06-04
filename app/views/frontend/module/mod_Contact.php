@@ -1,4 +1,3 @@
-
 <div class="content shortcodes">
 		<div class="layout">
 			<div class="row">

@@ -7,6 +7,7 @@ class BaseController extends Controller {
 	 *
 	 * @return void
 	 */
+	
         const DEFAULT_LOCALE = 'en'; 
          public function __construct() {
              $this->setLocale();

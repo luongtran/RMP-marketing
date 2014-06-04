@@ -40,7 +40,7 @@
                              
                             <div class="form-group">
                                 <label>{{trans('common.table.email')}}</label>                                
-                                {{Form::email('email','',array('class' => 'form-control','id'=>'email'))}}       
+                                {{Form::email('email',$getUser->email,array('class' => 'form-control','id'=>'email'))}}       
                             </div> 
                             
                             <div class="form-group">

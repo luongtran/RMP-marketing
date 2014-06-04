@@ -42,7 +42,7 @@
             </li>
             <li class="dropdown user-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
-                 <?php $profile= New UserController();
+                 <?php $profile= New SharedController();
                        if($profile->getProfile())
                        {
                         $userInfo = $profile->getProfile();                       
@@ -55,7 +55,7 @@
                 <li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
                 <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
                 <li class="divider"></li>
-                <li><a href="{{Request::root()}}/backend/logout"><i class="fa fa-power-off"></i> Log Out</a></li>
+                <li><a href="{{Request::root()}}/admin-logout"><i class="fa fa-power-off"></i> Log Out</a></li>
               </ul>
             </li>
           </ul>

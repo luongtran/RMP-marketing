@@ -14,8 +14,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
-            <li class="active"><a href="{{Request::root()}}/backend "><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            
+
+            <li class="active"><a href="{{Request::root()}}/backend "><i class="fa fa-dashboard"></i> Dashboard</a></li>            
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Article <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -24,22 +24,24 @@
                 <li><a href="{{ Request::root() }}/backend/category"> Category </a></li>                
               </ul>
             </li>
+
+            @if((Session::get('perRole') == '2')||(Session::get('perRole') == '3'))
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Module <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Module package<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="{{ Request::root() }}/backend/module"> Manager</a></li>                
                 <li><a href="{{ Request::root() }}/backend/reason/">Reason </a></li>
                 <li><a href="{{ Request::root() }}/backend/slider">Slider </a></li>                
                 <li><a href="{{ Request::root() }}/backend/service">Service </a></li>
-                <li><a href="{{ Request::root() }}/backend/support">Support</a></li>
-                
+                <li><a href="{{ Request::root() }}/backend/support">Support</a></li>                
               </ul>
-             </li>    
-             <li ><a href="{{Request::root()}}/backend/page"><i class="fa fa-dashboard"></i> Page</a></li>
-           
-             
-            <!--  <li><a href="forms.html"><i class="fa fa-edit"></i> Media</a></li>-->
-            <li><a href="{{ Request::root() }}/backend/user"><i class="fa fa-font"></i> Users </a></li>            
-             <li><a href="{{ Request::root() }}/backend/menu"><i class="fa fa-bar-chart-o"></i> Menu</a></li>
-            <li><a href="{{ Request::root()}}/backend/setting"><i class="fa fa-desktop"></i> Setting</a></li>
+            </li>    
+            @endif
+
+            @if(Session::get('perRole') == '3')
+              <li><a href="{{ Request::root() }}/backend/module"> Manager module</a></li>   
+              <li ><a href="{{Request::root()}}/backend/page"><i class="fa fa-dashboard"></i> Page</a></li>            
+              <li><a href="{{ Request::root() }}/backend/user"><i class="fa fa-font"></i> Users </a></li>            
+              <li><a href="{{ Request::root() }}/backend/menu"><i class="fa fa-bar-chart-o"></i> Menu</a></li>
+              <li><a href="{{ Request::root()}}/backend/setting"><i class="fa fa-desktop"></i> Setting</a></li>              
+            @endif
           </ul>

@@ -29,6 +29,7 @@ Route::get('page/{id}',array('as' => 'view_page', 'uses' =>'PageController@view'
 
 /*Admin*/
 
+
 Route::get('/backend' , array('as' => 'back_end', 'uses' => 'AdminController@index') );
 
 /*Article*/ 
@@ -83,9 +84,6 @@ Route::post('backend/setting/update',array('as' => 'setting_update', 'uses' =>'S
 Route::get('backend/setting/create-data',array('as' => 'menu_update', 'uses' =>'SettingController@createData'));
 
 /* Users */
-Route::get( 'backend/login' , array('as' => 'user_login', 'uses' => 'UserController@getLogin'));
-Route::post( 'backend/login' , array('as' => 'user_login', 'uses' => 'UserController@postLogin'));
-Route::get( 'backend/logout' , array('as' => 'user_logout', 'uses' => 'UserController@getLogout'));
 Route::get( 'backend/user' , array('as' => 'backend_user', 'uses' => 'UserController@index'));
 Route::get( 'backend/user/add' , array('as' => 'user_add', 'uses' => 'UserController@getAdd'));
 Route::post( 'backend/user/add' , array('as' => 'user_add', 'uses' => 'UserController@postAdd'));
@@ -138,6 +136,39 @@ Route::get('change-language/{id}',array('as' => 'change_language', 'uses' =>'Sha
 Route::get('backend/dump',array('as' => 'backend_dump', 'uses' =>'AdminController@dump'));
 
 
+Route::get( 'admin-login' , array('as' => 'user_login', 'uses' => 'SharedController@getLogin'));
+Route::post( 'admin-login' , array('as' => 'user_login', 'uses' => 'SharedController@postLogin'));
+Route::get( 'admin-logout' , array('as' => 'user_logout', 'uses' => 'SharedController@getLogout'));
+
 /*test demo page view*/
 Route::get('/',array('as' => 'front_end', 'uses' =>'PageController@pageview'));
 Route::get('{id}',array('as' => 'view_page', 'uses' =>'PageController@pageview'));
+
+
+/*check fillter*/
+
+// Route::when('backend', 'auth');
+ Route::when('backend', 'auth');
+ Route::when('backend/*', 'auth');
+
+ Route::when('backend/article', 'isManager');
+ Route::when('backend/article/*', 'isManager');
+ Route::when('backend/category/*', 'isManager');
+ Route::when('backend/menu', 'isAdmin');
+ Route::when('backend/menu/*', 'isAdmin');
+ Route::when('backend/page', 'isSupper');
+ Route::when('backend/page/*', 'isSupper');
+ Route::when('backend/module', 'isSupper');
+ Route::when('backend/module/*', 'isSupper');
+ Route::when('backend/reason', 'isAdmin');
+ Route::when('backend/reason/*', 'isAdmin');
+ Route::when('backend/service', 'isAdmin');
+ Route::when('backend/service/*', 'isAdmin');
+ Route::when('backend/setting', 'isSupper');
+ Route::when('backend/setting/*', 'isSupper');
+ Route::when('backend/slider', 'isAdmin');
+ Route::when('backend/slider/*', 'isAdmin');
+ Route::when('backend/user', 'isSupper');
+ Route::when('backend/user/*', 'isSupper');
+ //Route::when('backend/user', 'auth');
+

@@ -1,5 +1,4 @@
-<div class="content shortcodes">
-		<div class="layout">
+<div class="shortcodes">
 		
                         <p>
                         <?php  $IntroSupport = Modules::where('mod','=','mod_Support')->first(); 
@@ -42,5 +41,5 @@
 			<div style="height: 30px;" class="gap">
 			</div>
 
-		</div>
+	
 	</div>

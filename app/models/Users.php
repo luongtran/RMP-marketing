@@ -1,7 +1,12 @@
 <?php
 
 
-class Users extends Eloquent {
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableInterface;
+
+/* =========================================== */
+
+class Users extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * The database table used by the model.
@@ -9,21 +14,41 @@ class Users extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'users';
-        public static $role_1=1;
-        public static $role_2=2;
-        public static $role_3=3;
-
+  
 
         public function checklogin($username,$password)
     {
         $array=array('username'=>$username,'password'=>$password);
         $rules=array('username'=>"email");
         if(Validator::make($array,$rules)->fails());
-        $check = User::where('username','=',$username)->count();
+        $check = Users::where('username','=',$username)->count();
         if($check>0)
         return true;
         else return false;        
     }
 
+    public function getAuthIdentifier() {
+        
+    }
+
+    public function getAuthPassword() {
+        
+    }
+
+    public function getRememberToken() {
+        
+    }
+
+    public function getRememberTokenName() {
+        
+    }
+
+    public function getReminderEmail() {
+        
+    }
+
+    public function setRememberToken($value) {
+        
+    }
 
 }

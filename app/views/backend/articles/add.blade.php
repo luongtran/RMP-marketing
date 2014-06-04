@@ -21,7 +21,7 @@ tinymce.init({
 </script>
 
 
-<div class="row"
+<div class="row">
      <div class="col-lg-12">
             <ol class="breadcrumb">
               <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i>{{trans('common.menu.dashboard')}}</a></li>

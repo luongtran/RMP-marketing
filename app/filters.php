@@ -13,7 +13,7 @@
 
 App::before(function($request)
 {
-	//
+	 
 });
 
 
@@ -34,6 +34,45 @@ App::after(function($request, $response)
 |
 */
 
+Route::filter('auth', function() {
+        if (!Session::get('isLogin'))
+            return View::make('backend.users.login');
+    });
+
+Route::filter('isManager',function(){
+         
+            if((Session::get('perRole') == SharedController::ROLE_MANAGER)||(Session::get('perRole') == SharedController::ROLE_SUPPER)||(Session::get('perRole') == SharedController::ROLE_ADMIN))
+            {              
+              
+            }else{
+              return Redirect::guest('backend');
+              Session::flash('msg_flash',"You can't access area here" );
+            }        
+            
+        
+     
+});
+Route::filter('isAdmin',function(){
+          
+        if((Session::get('perRole') == SharedController::ROLE_ADMIN)||(Session::get('perRole') == SharedController::ROLE_SUPPER))
+        {
+        }else{          
+              Session::flash('msg_flash',"You can't access area here" );
+              return Redirect::guest('backend');
+        }
+     
+});
+Route::filter('isSupper',function(){
+          
+        $profile= New SharedController();
+        $userInfo = $profile->getProfile();       
+        if(!($userInfo->permission == SharedController::ROLE_SUPPER))
+        {
+           Session::flash('msg_flash',"You can't access area here" );
+              return Redirect::guest('backend');
+        }
+     
+});
 
 
 /*

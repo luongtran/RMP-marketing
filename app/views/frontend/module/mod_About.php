@@ -1,11 +1,10 @@
+<div class="row">
 <?php              
         $content = Articles::where('permalink','=',$pageinfo->link)->first(); 
         if($content)
         {
            $getImages = Uploads::where('article_id','=',$content->id)->get();
         ?>
-<div class="layout">
-<div class="row">
 
 				<div class="row-item col-1_2">
 					<h3 class="lined margin-20"><?php echo $content->title;?></h3>
@@ -65,6 +64,7 @@
 					<div style="height: 30px;" class="gap">
 					</div>
 				</div>
-			</div>
-    </div>
+			
+    
 <?php }  ?>
+</div>
