@@ -40,7 +40,11 @@
                                         <option value="{{$otp->name}}" <?php if($getMod->position==$otp->name) echo 'selected';?> >{{$otp->name}}</option>
                                         @endforeach                         
                                     </select>
-                                </div>   
+                                </div>  
+                                <div class="form-group">
+                                    <label>{{trans('common.table.order')}}</label> 
+                                    {{Form::text('order',$getMod->order,array('class' => 'form-control'))}}       
+                                </div> 
                                 <div class="form-group">
                                     <label>{{trans('common.table.intro')}}</label> 
                                     {{Form::textarea('intro',$getMod->intro,array('class' => 'form-control','rows'=>'4'))}}       

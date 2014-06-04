@@ -138,9 +138,46 @@ class CommonHelper {
     
     
     
-    public  static function renderMod($mod,$position)
+    public  static function renderMod($position,$modList)
     {
-     
+      
+       // foreach($modList as $list)
+       // {
+          
+       //    if($list->position == '')
+       //    {
+       //         if($list->mod == 'mod_TitleBar'):
+       //            $str[] = 'frontend.module.mod_TitleBar';
+       //         endif;  
+       //         if($list->mod=='mod_Slider'):
+       //            $str[] = "'frontend.module.mod_Slider'";
+       //         endif;  
+       //         if($list->mod=='mod_Feature'):
+       //            $str[] =  'frontend.module.mod_Feature';
+       //          endif; 
+       //          if($list->mod=='mod_Maps'):
+       //              $str[] = 'frontend.module.mod_Maps';
+       //          endif ;
+       //          if($list->mod=='mod_Reason'):
+       //            $str[] = 'frontend.module.mod_Reason';
+       //          endif;
+       //          if($list->mod=='mod_About'):
+       //            $str[] ='frontend.module.mod_About';
+       //          endif;
+       //          if($list->mod=='mod_Service'):
+       //             $str[] ='frontend.module.mod_Service';
+       //          endif;
+       //          if($list->mod=='mod_Support'):
+       //             $str[] = 'frontend.module.mod_Support';
+       //          endif;
+       //           if($list->mod=='mod_Contact'):
+       //             $str[] = 'frontend.module.mod_Contact';
+       //          endif;
+       //          if($list->mod=='mod_UserInterface'):
+       //             $str[] = 'frontend.module.mod_UserInterface';
+       //          endif ;
+       //    }
+       // } return $str;
     }
     
 }

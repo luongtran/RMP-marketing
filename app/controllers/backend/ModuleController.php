@@ -40,7 +40,7 @@ class ModuleController extends BaseController {
 
     public function index() {        
         $this->layout->page = "Module";       
-        $module= Modules::orderBy('id','desc')->paginate(10); 
+        $module= Modules::orderBy('order','asc')->paginate(12); 
         $position = DB::table('position')->get();
         $this->layout->content = View::make('backend.module.index')->with('module',$module)->with('position',$position);           
     }
@@ -51,6 +51,7 @@ class ModuleController extends BaseController {
                 array(
                 'name'=> 'required|unique:module',
                 'mod'=> 'required|unique:module',
+                'order'=>'numeric',
                 )                
          );
         if($validation->passes())
@@ -59,6 +60,7 @@ class ModuleController extends BaseController {
         $mod->name = Input::get('name');;
         $mod->mod = Input::get('mod');        
         $mod->position = Input::get('position');
+        $mod->order = Input::get('order');
         $mod->intro = Input::get('intro');
         $mod->status = Input::get('status');
         $mod->save();
@@ -84,6 +86,7 @@ class ModuleController extends BaseController {
                 array(
                 'name'=> 'required',
                 'premalink'=> 'unique:categories',
+                'order'=>'numeric'
                 )                
          );
         
@@ -93,6 +96,7 @@ class ModuleController extends BaseController {
             $mod->name = Input::get('name');
             $mod->mod = Input::get('mod');
             $mod->position = Input::get('position');
+            $mod->order = Input::get('order');
             $mod->intro = Input::get('intro');
             $mod->status = Input::get('status');
             $mod->update();

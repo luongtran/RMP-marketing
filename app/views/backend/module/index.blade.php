@@ -42,7 +42,13 @@
                                        <option value="{{$otp->name}}">{{$otp->name}}</option>
                                        @endforeach
                                     </select>
-                                </div>   
+                                </div>
+
+                                <div class="form-group">
+                                    <label>{{trans('common.table.order')}}</label> 
+                                    {{Form::text('order','',array('class' => 'form-control'))}}       
+                                </div>
+
                                 <div class="form-group">
                                     <label>{{trans('common.table.intro')}}</label> 
                                     {{Form::textarea('intro','',array('class' => 'form-control','rows'=>'4'))}}       
@@ -75,7 +81,7 @@
                                         <th class="header">{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
                                         <th class="header">{{trans('common.table.mod')}} <i class="fa fa-sort"></i></th>      
                                         <th class="header">{{trans('common.table.position')}} <i class="fa fa-sort"></i></th>      
-                                        <th class="header">{{trans('common.table.status')}} <i class="fa fa-sort"></i></th>      
+                                        <th class="header">{{trans('common.table.order')}} <i class="fa fa-sort"></i></th>      
                                         <th class="header"><i class="fa fa-sort"></i></th>
                                       </tr>
                                     </thead>
@@ -87,7 +93,7 @@
                                         <td>{{$mod->mod}}</td>
                                                        
                                         <td>{{$mod->position}}</td>                      
-                                        <td>{{$mod->status}}</td>          
+                                        <td>{{$mod->order}}</td>          
                                         <td><a  href="{{Request::root()}}/backend/module/update/{{$mod->id}}"><span class="label label-primary">{{trans('common.button.update')}}</span></a>
                                             <a  href="{{Request::root()}}/backend/module/delete/{{$mod->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a>
                                         </td>

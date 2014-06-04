@@ -1,3 +1,4 @@
+<div class="layout">
 <h3 class="lined margin-20">Dedicated User Interfaces</h3>
 			<div class="row">
 				<div class="b-member m-quad row-item col-1_4">
@@ -67,3 +68,4 @@
 					<p>Inventore veritatis et quasi architectos beatae vitae dicta sunt explicabo. Nemo enims sadips ipsums un</p>
 				</div>
 			</div>
+</div>			

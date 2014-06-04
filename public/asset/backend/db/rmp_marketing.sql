@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50616
 File Encoding         : 65001
 
-Date: 2014-06-03 14:21:10
+Date: 2014-06-04 10:00:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,7 +31,7 @@ CREATE TABLE `articles` (
   `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `group_uploads` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of articles
@@ -132,7 +132,7 @@ INSERT INTO `menu` VALUES ('26', 'Services', 'service', 'icon-random', null, '0'
 INSERT INTO `menu` VALUES ('27', 'Support', 'support-packages', 'icon-headphones', null, '0', '4', 'publish', '2014-06-02 15:34:40', '2014-06-02 08:34:40', '11');
 INSERT INTO `menu` VALUES ('28', 'Request Demo', 'request-demo', 'icon-time', null, '0', '5', 'publish', '2014-06-02 15:34:47', '2014-06-02 08:34:47', '12');
 INSERT INTO `menu` VALUES ('29', 'Contact', 'contact-us', 'icon-envelope', null, '0', '7', 'publish', '2014-06-02 15:35:02', '2014-06-02 08:35:02', '4');
-INSERT INTO `menu` VALUES ('30', 'Blog', 'blog', '', null, '0', '6', 'unpublish', '2014-06-02 15:34:53', '2014-06-02 08:34:53', '13');
+INSERT INTO `menu` VALUES ('30', 'Blog', 'blog', '', null, '0', '6', 'unpublish', '2014-06-03 14:47:01', '2014-06-03 07:47:01', '13');
 
 -- ----------------------------
 -- Table structure for `migrations`
@@ -173,22 +173,23 @@ CREATE TABLE `module` (
   `mod` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `order` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of module
 -- ----------------------------
-INSERT INTO `module` VALUES ('1', 'Slider', null, 'publish', 'header', 'mod_Slider', '2014-06-03 11:49:46', '2014-06-03 04:49:46');
-INSERT INTO `module` VALUES ('2', 'Reason', null, 'publish', 'content', 'mod_Reason', null, null);
-INSERT INTO `module` VALUES ('3', 'Feature', null, 'publish', 'top', 'mod_Feature', null, null);
-INSERT INTO `module` VALUES ('4', 'User Interfaces', null, 'publish', 'bottom', 'mod_UserInterface', null, null);
-INSERT INTO `module` VALUES ('5', 'Contact', 'We would be glad to have feedback from you. Drop us a line, whether it is a comment, a question, a work proposition or just a hello. You can use either the form below or the contact details on the right. ', 'publish', 'content', 'mod_Contact', '2014-06-03 13:31:17', '2014-06-03 06:31:17');
-INSERT INTO `module` VALUES ('6', 'Title Bar', null, 'publish', 'title_bar', 'mod_TitleBar', null, null);
-INSERT INTO `module` VALUES ('7', 'Support', 'We provide 24/7 support to all of our customers via our Knowledge Base, Online Resources ( video tutorials ) and Support Tickets. For three months we provide free limited telephone support in addition to the previously mentioned methods. After the 3 months ?? period clients can purchase one of three premium support packages.', 'publish', 'content', 'mod_Support', '2014-06-03 11:52:10', '2014-06-03 04:52:10');
-INSERT INTO `module` VALUES ('8', 'Service', null, 'publish', 'content', 'mod_Service', null, null);
-INSERT INTO `module` VALUES ('9', 'About', null, 'publish', 'content', 'mod_About', null, null);
-INSERT INTO `module` VALUES ('10', 'Google Map', '', 'publish', 'top', 'mod_Maps', '2014-06-03 11:49:21', '2014-06-03 04:49:21');
+INSERT INTO `module` VALUES ('1', 'Slider', null, 'publish', 'header', 'mod_Slider', '2014-06-04 08:44:41', '2014-06-04 08:44:41', '2');
+INSERT INTO `module` VALUES ('2', 'Reason', null, 'publish', 'content', 'mod_Reason', '2014-06-04 08:44:55', '2014-06-04 08:44:55', '4');
+INSERT INTO `module` VALUES ('3', 'Feature', null, 'publish', 'top', 'mod_Feature', '2014-06-04 08:44:53', '2014-06-04 08:44:53', '3');
+INSERT INTO `module` VALUES ('4', 'User Interfaces', null, 'publish', 'bottom', 'mod_UserInterface', '2014-06-04 08:45:07', '2014-06-04 08:45:07', '5');
+INSERT INTO `module` VALUES ('5', 'Contact', 'We would be glad to have feedback from you. Drop us a line, whether it is a comment, a question, a work proposition or just a hello. You can use either the form below or the contact details on the right. ', 'publish', 'content', 'mod_Contact', '2014-06-04 08:45:10', '2014-06-04 08:45:10', '6');
+INSERT INTO `module` VALUES ('6', 'Title Bar', '', 'publish', 'title_bar', 'mod_TitleBar', '2014-06-04 08:46:50', '2014-06-04 01:46:50', '0');
+INSERT INTO `module` VALUES ('7', 'Support', 'We provide 24/7 support to all of our customers via our Knowledge Base, Online Resources ( video tutorials ) and Support Tickets. For three months we provide free limited telephone support in addition to the previously mentioned methods. After the 3 months ?? period clients can purchase one of three premium support packages.', 'publish', 'content', 'mod_Support', '2014-06-04 08:45:14', '2014-06-04 08:45:14', '7');
+INSERT INTO `module` VALUES ('8', 'Service', null, 'publish', 'content', 'mod_Service', '2014-06-04 08:45:18', '2014-06-04 08:45:18', '8');
+INSERT INTO `module` VALUES ('9', 'About', null, 'publish', 'content', 'mod_About', '2014-06-04 08:45:19', '2014-06-04 08:45:19', '9');
+INSERT INTO `module` VALUES ('10', 'Google Map', '', 'publish', 'top', 'mod_Maps', '2014-06-04 08:45:29', '2014-06-04 08:45:29', '2');
 
 -- ----------------------------
 -- Table structure for `page_module`
@@ -209,9 +210,9 @@ CREATE TABLE `page_module` (
 INSERT INTO `page_module` VALUES ('1', '1', null, '2014-06-02 10:40:33', '2014-06-02 10:40:33');
 INSERT INTO `page_module` VALUES ('1', '2', null, '2014-06-02 10:40:33', '2014-06-02 10:40:33');
 INSERT INTO `page_module` VALUES ('1', '3', null, '2014-06-02 10:40:33', '2014-06-02 10:40:33');
-INSERT INTO `page_module` VALUES ('2', '4', null, '2014-06-02 10:40:28', '2014-06-02 10:40:28');
-INSERT INTO `page_module` VALUES ('2', '6', null, '2014-06-02 10:40:28', '2014-06-02 10:40:28');
-INSERT INTO `page_module` VALUES ('2', '9', null, '2014-06-02 10:40:28', '2014-06-02 10:40:28');
+INSERT INTO `page_module` VALUES ('2', '4', null, '2014-06-03 08:17:20', '2014-06-03 08:17:20');
+INSERT INTO `page_module` VALUES ('2', '6', null, '2014-06-03 08:17:20', '2014-06-03 08:17:20');
+INSERT INTO `page_module` VALUES ('2', '9', null, '2014-06-03 08:17:20', '2014-06-03 08:17:20');
 INSERT INTO `page_module` VALUES ('3', '6', null, '2014-06-02 10:40:22', '2014-06-02 10:40:22');
 INSERT INTO `page_module` VALUES ('3', '8', null, '2014-06-02 10:40:22', '2014-06-02 10:40:22');
 INSERT INTO `page_module` VALUES ('4', '5', null, '2014-06-03 03:07:58', '2014-06-03 03:07:58');
@@ -220,8 +221,8 @@ INSERT INTO `page_module` VALUES ('4', '10', null, '2014-06-03 03:07:58', '2014-
 INSERT INTO `page_module` VALUES ('11', '6', null, '2014-06-03 07:20:48', '2014-06-03 07:20:48');
 INSERT INTO `page_module` VALUES ('11', '7', null, '2014-06-03 07:20:48', '2014-06-03 07:20:48');
 INSERT INTO `page_module` VALUES ('12', '6', null, '2014-06-02 10:39:55', '2014-06-02 10:39:55');
-INSERT INTO `page_module` VALUES ('13', '1', null, '2014-06-03 04:31:04', '2014-06-03 04:31:04');
-INSERT INTO `page_module` VALUES ('13', '2', null, '2014-06-03 04:31:04', '2014-06-03 04:31:04');
+INSERT INTO `page_module` VALUES ('13', '1', null, '2014-06-03 07:48:20', '2014-06-03 07:48:20');
+INSERT INTO `page_module` VALUES ('13', '2', null, '2014-06-03 07:48:20', '2014-06-03 07:48:20');
 INSERT INTO `page_module` VALUES ('14', '1', null, '2014-06-03 04:28:14', '2014-06-03 04:28:14');
 INSERT INTO `page_module` VALUES ('15', '6', null, '2014-06-02 11:17:25', '2014-06-02 11:17:25');
 
@@ -235,20 +236,21 @@ CREATE TABLE `pages` (
   `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of pages
 -- ----------------------------
-INSERT INTO `pages` VALUES ('1', 'Home', 'home', '2014-06-02 17:40:33', '2014-06-02 10:40:33');
-INSERT INTO `pages` VALUES ('2', 'About us', 'about', '2014-06-02 17:40:28', '2014-06-02 10:40:28');
-INSERT INTO `pages` VALUES ('3', 'Our Services ', 'service', '2014-06-02 17:40:22', '2014-06-02 10:40:22');
-INSERT INTO `pages` VALUES ('4', 'Contact Us', 'contact-us', '2014-06-03 10:07:58', '2014-06-03 03:07:58');
-INSERT INTO `pages` VALUES ('10', 'RMP Features ', 'features', '2014-06-02 17:40:11', '2014-06-02 10:40:11');
-INSERT INTO `pages` VALUES ('11', 'Support Packages ', 'support-packages', '2014-06-03 14:20:48', '2014-06-03 07:20:48');
-INSERT INTO `pages` VALUES ('12', 'Request Demo', 'request-demo', '2014-06-02 17:39:55', '2014-06-02 10:39:55');
-INSERT INTO `pages` VALUES ('13', 'Blog', 'blog', '2014-06-02 17:39:50', '2014-06-02 10:39:50');
+INSERT INTO `pages` VALUES ('1', 'Home', 'home', '2014-06-03 14:28:25', '2014-06-03 14:28:25', 'publish');
+INSERT INTO `pages` VALUES ('2', 'About us', 'about', '2014-06-03 14:28:27', '2014-06-03 14:28:27', 'publish');
+INSERT INTO `pages` VALUES ('3', 'Our Services ', 'service', '2014-06-03 14:28:27', '2014-06-03 14:28:27', 'publish');
+INSERT INTO `pages` VALUES ('4', 'Contact Us', 'contact-us', '2014-06-03 14:28:31', '2014-06-03 14:28:31', 'publish');
+INSERT INTO `pages` VALUES ('10', 'RMP Features ', 'features', '2014-06-03 14:28:30', '2014-06-03 14:28:30', 'publish');
+INSERT INTO `pages` VALUES ('11', 'Support Packages ', 'support-packages', '2014-06-03 14:28:30', '2014-06-03 14:28:30', 'publish');
+INSERT INTO `pages` VALUES ('12', 'Request Demo', 'request-demo', '2014-06-03 14:28:29', '2014-06-03 14:28:29', 'publish');
+INSERT INTO `pages` VALUES ('13', 'Blog', 'blog', '2014-06-03 14:28:29', '2014-06-03 14:28:29', 'publish');
 
 -- ----------------------------
 -- Table structure for `permission`
@@ -347,7 +349,7 @@ CREATE TABLE `services` (
   `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of services
@@ -444,7 +446,7 @@ CREATE TABLE `support` (
   `package_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of support
@@ -523,10 +525,11 @@ CREATE TABLE `users` (
   `count_login` int(11) DEFAULT NULL,
   `status` varchar(11) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'admin', '$2y$10$2JxqAbVf.y3Jz5mvqAzuk.M8l40MDG9bZeIWiBdFLqx..mQ9MlW7y', 'admin@gmail.com', '0989333', 'vietnam', '1', '12', '344', 'male', 's', 'www', null, '2014-05-31 10:29:28', '1', 'publish');
+INSERT INTO `users` VALUES ('1', 'admin', '$2y$10$2JxqAbVf.y3Jz5mvqAzuk.M8l40MDG9bZeIWiBdFLqx..mQ9MlW7y', '', '0989333', 'vietnam', '3', '12', '344', 'male', 's', 'www', null, '2014-06-03 10:34:31', '1', 'publish');
 INSERT INTO `users` VALUES ('14', 'truyenluong', '$2y$10$zoTsLD.e4BmxLYWxV6ZVKO/j/MUQLrCupTV/ripuAsqlwhcomOZKe', '', '64354354', 'áddddddddd', '1', null, null, 'male', 'luong', 'truyen', '2014-05-31 04:10:54', '2014-05-31 10:48:46', null, 'unpublish');
+INSERT INTO `users` VALUES ('15', 'username  ', '$2y$10$JE.6zQG/PnD89wa4o1TmkO6MxXrJTF2Nj7sT7qwg48TKlYNhRiYwa', 'test@gmail.com', '012365478', 'VIETNAMESE', '1', null, null, 'female', 'TEST', 'MR', '2014-06-03 10:38:27', '2014-06-03 10:38:27', null, 'publish');
