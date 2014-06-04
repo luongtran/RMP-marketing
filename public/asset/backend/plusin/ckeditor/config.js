@@ -23,8 +23,13 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
 		{ name: 'styles' },
 		{ name: 'colors' },
-		{ name: 'about' }
+		{ name: 'about' },
+		{name:'image'},
+
 	];
+
+	config.extraPlugins = 'imagebrowser';
+	config.imageBrowser_listUrl = 'listImage.json';	
 
 	// Remove some buttons, provided by the standard plugins, which we don't
 	// need to have in the Standard(s) toolbar.

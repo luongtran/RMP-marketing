@@ -27,6 +27,8 @@ class Users extends Eloquent implements UserInterface, RemindableInterface {
         else return false;        
     }
 
+   
+
     public function getAuthIdentifier() {
         
     }

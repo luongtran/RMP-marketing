@@ -27,7 +27,7 @@
 
             @if((Session::get('perRole') == '2')||(Session::get('perRole') == '3'))
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Module package<b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Manager Modules<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="{{ Request::root() }}/backend/reason/">Reason </a></li>
                 <li><a href="{{ Request::root() }}/backend/slider">Slider </a></li>                
@@ -38,7 +38,7 @@
             @endif
 
             @if(Session::get('perRole') == '3')
-              <li><a href="{{ Request::root() }}/backend/module"> Manager module</a></li>   
+              <li><a href="{{ Request::root() }}/backend/module">Module</a></li>   
               <li ><a href="{{Request::root()}}/backend/page"><i class="fa fa-dashboard"></i> Page</a></li>            
               <li><a href="{{ Request::root() }}/backend/user"><i class="fa fa-font"></i> Users </a></li>            
               <li><a href="{{ Request::root() }}/backend/menu"><i class="fa fa-bar-chart-o"></i> Menu</a></li>

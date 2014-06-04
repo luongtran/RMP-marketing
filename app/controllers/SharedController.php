@@ -45,6 +45,7 @@ class SharedController extends BaseController{
 
                     Session::put('login_user',$username);
                     Session::put('isLogin',true);
+                    Session::put('userID',$user->id);
                     Session::put('perRole',$user->permission);
                     return Redirect::route('back_end');
                 }              
@@ -61,6 +62,7 @@ class SharedController extends BaseController{
         Session::forget('isLogin');
         Session::forget('login_user');
         Session::forget('perRole');
+        Session::forget('userID');
         //Auth::logout();
 
         return Redirect::route('user_login');

@@ -110,7 +110,7 @@ class CategoryController extends BaseController {
             ->count();
           if($checkArticle > 0)
           {            
-            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table')));  
+            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table',array('name'=>'Article'))));  
             return Redirect::back();   
           }
           else

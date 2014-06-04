@@ -60,7 +60,7 @@ class PagesController extends BaseController {
             ->where('pages.id','=',$id)
             ->select(DB::raw('module.id,module.name as name,pages.status'))
             ->get();
-        $mods = Modules::all();
+        $mods = Modules::orderBy('order','asc')->get();
         
         $this->layout->content = View::make('backend.page.update')->with('getPage',$getPage)
             ->with('mod',$mod)->with('mods',$mods);

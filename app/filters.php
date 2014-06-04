@@ -46,7 +46,7 @@ Route::filter('isManager',function(){
               
             }else{
               return Redirect::guest('backend');
-              Session::flash('msg_flash',"You can't access area here" );
+              Session::flash('msg_flash',CommonHelper::printMsg('error',trans("You can't access area here")));
             }        
             
         
@@ -57,7 +57,7 @@ Route::filter('isAdmin',function(){
         if((Session::get('perRole') == SharedController::ROLE_ADMIN)||(Session::get('perRole') == SharedController::ROLE_SUPPER))
         {
         }else{          
-              Session::flash('msg_flash',"You can't access area here" );
+              Session::flash('msg_flash',CommonHelper::printMsg('error',trans("You can't access area here")));
               return Redirect::guest('backend');
         }
      
@@ -68,7 +68,7 @@ Route::filter('isSupper',function(){
         $userInfo = $profile->getProfile();       
         if(!($userInfo->permission == SharedController::ROLE_SUPPER))
         {
-           Session::flash('msg_flash',"You can't access area here" );
+           Session::flash('msg_flash',CommonHelper::printMsg('error',trans("You can't access area here")));
               return Redirect::guest('backend');
         }
      

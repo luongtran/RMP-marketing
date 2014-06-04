@@ -74,7 +74,7 @@ class ArticlesController extends BaseController {
     public function getAdd()
     {    
         $this->layout->page = "Add a new article";         
-        $categories = Categories::where('status','=','publish')->get();          
+        $categories = Categories::where('status','=','publish')->get();      
         $this->layout->content = View::make('backend.articles.add')->with('categories',$categories);
     }
     
@@ -88,7 +88,6 @@ class ArticlesController extends BaseController {
                 'content'=> 'min:10',
                 'category'=> 'required',
                 'keyword'=> 'max:50',
-                'description'=>'max:100',
                 'group_uploads'=>'image',
             )
         );
@@ -101,7 +100,7 @@ class ArticlesController extends BaseController {
             $article->content = Input::get('content');
             $article->description = Input::get('description');
             $article->keyword = Input::get('keyword');
-            $article->user_id = 1;
+            $article->user_id = Session::get('userID');
             $article->status = Input::get('status');
             $article->save();            
             /*save category*/
@@ -160,7 +159,6 @@ class ArticlesController extends BaseController {
                 'content'=> 'min:10',
                 'category'=> 'required',
                 'keyword'=> 'max:50',
-                'description'=>'max:100',
                 'group_uploads'=>'image',
             )
         );
