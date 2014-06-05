@@ -1,26 +1,4 @@
 @section('content')
-<script src="{{asset('asset/backend/plusin/tinymce/tinymce.min.js')}}" type="text/javascript"></script>
-<script type="text/javascript">
-tinymce.init({
-     selector: "#content",
-     plugins: [
-         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-         "save table contextmenu directionality emoticons template paste textcolor"
-   ],
-   paste_data_images: true,
-   image_advtab: true,
-   image_list: function(success) {
-        success([
-             {title: 'Dog', value: 'mydog.jpg'},
-             {title: 'Cat', value: 'mycat.gif'}
-        ]);
-    }
-
- });
-</script>
-
-
 <div class="row"
      <div class="col-lg-12">
             <ol class="breadcrumb">
@@ -57,7 +35,7 @@ tinymce.init({
                             
                               <div class="form-group">
                              <label>{{trans('common.table.content')}}</label>
-                                {{Form::textarea('content',$article->content,array('class' => 'form-control ckeditor','id'=>'content'))}}                                     
+                                {{Form::textarea('content',$article->content,array('class' => 'form-control ckeditor'))}}                                     
                              </div>                             
                          </div>
                     </div>

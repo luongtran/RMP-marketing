@@ -129,6 +129,20 @@ Route::get('backend/page/update/{id}',array('as' => 'page_update', 'uses' =>'Pag
 Route::post('backend/page/update/{id}',array('as' => 'page_update', 'uses' =>'PagesController@postUpdate'));
 Route::post('backend/page/action',array('as' => 'page_action', 'uses' =>'PagesController@action'));
 
+
+/*Language*/
+Route::get('backend/language/',array('as' => 'backend_language', 'uses' =>'LanguageController@index'));
+Route::post('backend/language/add',array('as' => 'language_add', 'uses' =>'LanguageController@postAdd'));
+Route::get('backend/language/update/{id}',array('as' => 'language_update', 'uses' =>'LanguageController@getUpdate'));
+Route::post('backend/language/update/{id}',array('as' => 'language_update', 'uses' =>'LanguageController@postUpdate'));
+Route::get('backend/language/delete/{id}',array('as' => 'language_delete', 'uses' =>'LanguageController@getDelete'));
+Route::post('backend/language/action',array('as' => 'language_action', 'uses' =>'LanguageController@action'));
+
+/* Upload */
+Route::get('backend/upload',array('as' => 'backend_upload', 'uses' =>'UploadController@index'));
+Route::post('backend/upload/add',array('as' => 'uppload_add', 'uses' =>'UploadController@postUpload'));
+Route::get('backend/upload/list',array('as' => 'uppload_list', 'uses' =>'UploadController@listImg'));
+
 /*Share*/
 Route::get('change-language/{id}',array('as' => 'change_language', 'uses' =>'SharedController@getChangeLanguage'));
 //===========================================//
@@ -140,9 +154,12 @@ Route::get( 'admin-login' , array('as' => 'user_login', 'uses' => 'SharedControl
 Route::post( 'admin-login' , array('as' => 'user_login', 'uses' => 'SharedController@postLogin'));
 Route::get( 'admin-logout' , array('as' => 'user_logout', 'uses' => 'SharedController@getLogout'));
 
-/*test demo page view*/
+/*page view each module*/
 Route::get('/',array('as' => 'front_end', 'uses' =>'PageController@pageview'));
 Route::get('{id}',array('as' => 'view_page', 'uses' =>'PageController@pageview'));
+
+/* load json images in part upload image*/
+Route::get('backend/load-immages-json',array('as' => 'load_image_json', 'uses' =>'SharedController@getImageJson'));
 
 
 /*check fillter*/
@@ -153,22 +170,29 @@ Route::get('{id}',array('as' => 'view_page', 'uses' =>'PageController@pageview')
 
  Route::when('backend/article', 'isManager');
  Route::when('backend/article/*', 'isManager');
+ Route::when('backend/category', 'isManager');
  Route::when('backend/category/*', 'isManager');
+ Route::when('backend/upload', 'isManager');
+ Route::when('backend/upload/*', 'isManager');
+
  Route::when('backend/menu', 'isAdmin');
  Route::when('backend/menu/*', 'isAdmin');
+ Route::when('backend/reason', 'isAdmin');
+ Route::when('backend/reason/*', 'isAdmin');
+ Route::when('backend/service', 'isAdmin');
+ Route::when('backend/service/*', 'isAdmin'); 
+ Route::when('backend/slider', 'isAdmin');
+ Route::when('backend/slider/*', 'isAdmin');
+
  Route::when('backend/page', 'isSupper');
  Route::when('backend/page/*', 'isSupper');
  Route::when('backend/module', 'isSupper');
  Route::when('backend/module/*', 'isSupper');
- Route::when('backend/reason', 'isAdmin');
- Route::when('backend/reason/*', 'isAdmin');
- Route::when('backend/service', 'isAdmin');
- Route::when('backend/service/*', 'isAdmin');
  Route::when('backend/setting', 'isSupper');
  Route::when('backend/setting/*', 'isSupper');
- Route::when('backend/slider', 'isAdmin');
- Route::when('backend/slider/*', 'isAdmin');
  Route::when('backend/user', 'isSupper');
  Route::when('backend/user/*', 'isSupper');
- //Route::when('backend/user', 'auth');
+ Route::when('backend/language', 'isSupper');
+ Route::when('backend/language/*', 'isSupper');
+ 
 

@@ -24,7 +24,12 @@
                 <li><a href="{{ Request::root() }}/backend/category"> Category </a></li>                
               </ul>
             </li>
-
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Media<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ Request::root() }}/backend/upload/">Upload </a></li>             
+              </ul>
+            </li>  
             @if((Session::get('perRole') == '2')||(Session::get('perRole') == '3'))
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Manager Modules<b class="caret"></b></a>
@@ -34,14 +39,15 @@
                 <li><a href="{{ Request::root() }}/backend/service">Service </a></li>
                 <li><a href="{{ Request::root() }}/backend/support">Support</a></li>                
               </ul>
-            </li>    
+            </li>               
+            <li><a href="{{ Request::root() }}/backend/menu"><i class="fa fa-bar-chart-o"></i> Menu</a></li>
             @endif
 
             @if(Session::get('perRole') == '3')
               <li><a href="{{ Request::root() }}/backend/module">Module</a></li>   
               <li ><a href="{{Request::root()}}/backend/page"><i class="fa fa-dashboard"></i> Page</a></li>            
-              <li><a href="{{ Request::root() }}/backend/user"><i class="fa fa-font"></i> Users </a></li>            
-              <li><a href="{{ Request::root() }}/backend/menu"><i class="fa fa-bar-chart-o"></i> Menu</a></li>
+              <li><a href="{{ Request::root() }}/backend/user"><i class="fa fa-font"></i> Users </a></li>                          
+              <li><a href="{{ Request::root() }}/backend/language"><i class="fa fa-font"></i> Language </a></li>
               <li><a href="{{ Request::root()}}/backend/setting"><i class="fa fa-desktop"></i> Setting</a></li>              
             @endif
           </ul>

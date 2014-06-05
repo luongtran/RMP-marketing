@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>CompleteRMP | @if( isset( $page )) {{ $page }}   @endif        
     </title>
-    <meta title="" content="">
+    <meta title="keyword" content="completermp, @if( isset( $page )) {{$page}}   @endif ">
     <link rel="icon" type="image/ico" href="favicon.ico"/>    
     <link href="{{asset('asset/frontend/css/style.css')}}" media="screen" rel="stylesheet" type="text/css" />     
     <!-- in style -->

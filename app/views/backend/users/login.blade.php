@@ -19,6 +19,12 @@
 
     <div class="container">
         <div class="row">
+             <div style="text-align:center;"> 
+                <h3>Administrator CompleteRMP</h3>
+             </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-4 col-md-offset-4">                
                 <div>{{Session::get("msg_flash")}}</div>
                 <div class="login-panel panel panel-default">

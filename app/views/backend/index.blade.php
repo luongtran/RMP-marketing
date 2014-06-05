@@ -1,4 +1,30 @@
 @section('content')
+
+<script type="text/javascript">
+
+// $(document).ready(function(){ 
+
+//         /*$.getJSON("http://localhost:8000/backend/load-immages-json",function(result){
+//             alert('sssss');
+//              // alert(result);
+//             });  
+//         */
+
+//         $.getJSON("http://localhost:8000/backend/load-immages-json",function(data,status){
+          
+//                 var url = "<?php echo asset('asset/share/uploads/iamges');?>";
+//                 url= url+'./';
+//                 var img; 
+
+//            // var obj = $.parseJSON(data);
+//             $.each(data, function (_idx, item) {
+
+//             });
+//            // alert(data);
+//         });
+// });
+</script>
+
 <div class="row">
 	<h2>{{Session::get('msg_flash')}}</h2>
 </div>

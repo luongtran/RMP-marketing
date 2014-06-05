@@ -6,11 +6,9 @@
               <li class="active"><a href="{{Request::root()}}/backend/category"><i class="fa fa-desktop"></i> {{trans('common.table.category')}}</a></li>            
             </ol>
     </div>   
-</div><!-- end row 1--> 
-
+</div><!-- end row 1-->
 <div class="row">
-            
-            <div class="col-lg-12">   
+                  <div class="col-lg-12">   
                   <div class="messages_validation">                           
                       {{Session::get('msg_flash')}}
                   </div>

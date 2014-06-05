@@ -40,9 +40,15 @@ return array(
         'update_support'=>'Update support',
         'list_support'=>'List support',
         
+        'add_language'=>'Add language',
+        'update_language'=>'Update language',
+        'list_language'=>'List language',
+
         'role_1'=>'Manager content',
         'role_2'=>'Admin',
         'role_3'=>'Supper admin',
+
+
         
         'extends'=>'Extends',
         'basic'=>'Basic',

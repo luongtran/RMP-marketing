@@ -1,6 +1,4 @@
 @section('content')
-<script src="{{asset('asset/backend/plusin/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
-
 <div class="row">
      <div class="col-lg-12">
             <ol class="breadcrumb">
@@ -10,7 +8,6 @@
             </ol>
     </div>   
 </div><!-- end row 1--> 
-
 <div class="row">
             <div class="col-lg-12">
             

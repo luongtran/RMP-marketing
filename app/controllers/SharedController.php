@@ -76,7 +76,26 @@ class SharedController extends BaseController{
             return $result;
       }
     
+    
+    public function getImageJson()
+    {
+        $list = Uploads::orderBy('id','desc')->get();
+       //  $url = asset('share/uploads/images');
+        
+       //  $arr = '[';
+       //  foreach($list as $img):                
+               
+       //  $arr.= '{
+       //  "image": "http://assets20.pokemon.com/static2/_ui/img/chrome/external_link_bumper.png",
+       //  "thumb": "http://assets20.pokemon.com/static2/_ui/img/chrome/external_link_bumper.png",
+       //  "folder": "Images"
+       //  },';
 
+       //  endforeach;
+       //  $arr.= ']';
+       // // return $arr;
+        return Response::json($list); 
+    }
     
 }   
     

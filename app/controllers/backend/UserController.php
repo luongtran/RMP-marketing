@@ -109,7 +109,7 @@ class UserController extends BaseController {
           $ar=Users::find($id);
           $ar->delete();        
           Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.delete_message'))); 
-          return Redirect::route('backend_article');
+          return Redirect::route('backend_user');
      }
     
      public function action()

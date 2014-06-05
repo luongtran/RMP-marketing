@@ -12,6 +12,7 @@
             ->join('pages', 'pages.id', '=', 'menu.page_id')  
             ->where('menu.status','=','publish') 
             ->where('parent','=',0)
+            ->where('menu.lang_id','=',Session::get('current_locale'))
             ->orderBy('menu.order', 'asc') 
             ->select(DB::raw('menu.id,menu.title,pages.link as link,menu.icon'))
             ->get();

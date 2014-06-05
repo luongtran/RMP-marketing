@@ -75,6 +75,9 @@ return array(
       'support'=>'Support',
       'detail'=>'Detail',
       'package_type'=>'Pagkage type',
+      'upload'=>'Upload',
+      'language'=>'Language',
+      'code'=>'Code',
     ),
      
 );

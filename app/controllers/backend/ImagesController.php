@@ -2,7 +2,7 @@
 
 class ImagesController extends BaseController {
 
-    protected $layout = 'layouts.default';
+    protected $layout = 'backend.layouts.default';
 
     /*
       |--------------------------------------------------------------------------

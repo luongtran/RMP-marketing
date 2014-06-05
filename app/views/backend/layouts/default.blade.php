@@ -19,8 +19,15 @@
     <style>
         .breadcrumb{margin-bottom: 5px ;}
     </style>
+
+    <script>
+    /*define base url in javascript*/
+       var base_url = "{{Request::root()}}";      
+    </script>
+
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="{{asset('asset/backend/plusin/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
   </head>
 
   <body>
