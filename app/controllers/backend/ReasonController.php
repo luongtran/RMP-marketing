@@ -45,7 +45,8 @@ class ReasonController extends BaseController {
         $entity->save();
         /*upload image*/
         $upload=Input::file('image');         
-        if(!empty(CommonHelper::check_files_empty($upload)))
+        $test = CommonHelper::check_files_empty($upload);     
+        if(!empty($test))
           {            
             $Path = 'public/asset/share/uploads/images/';        
             $Image= new ImagesController();            
@@ -89,7 +90,8 @@ class ReasonController extends BaseController {
             $reason->order = Input::get('order');
             /*check update image*/
             $upload=Input::file('image');         
-            if(!empty(CommonHelper::check_files_empty($upload)))
+            $test = CommonHelper::check_files_empty($upload);     
+            if(!empty($test))
               { 
                 $Path = 'public/asset/share/uploads/images/';
                 $image = new ImagesController();

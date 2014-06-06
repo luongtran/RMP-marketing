@@ -48,8 +48,10 @@ class SliderController extends BaseController {
         $slider->status = Input::get('status');
         $slider->save();
         /*upload image*/
-        $upload=Input::file('image');         
-        if(!empty(CommonHelper::check_files_empty($upload)))
+        $upload=Input::file('image');    
+
+        $test = CommonHelper::check_files_empty($upload);     
+        if(!empty($test))
           {            
             $Path = 'public/asset/share/uploads/images/';        
             $Image= new ImagesController();            
@@ -92,7 +94,8 @@ class SliderController extends BaseController {
             $slider->status = Input::get('status');
             /*check update image*/
             $upload=Input::file('image');         
-            if(!empty(CommonHelper::check_files_empty($upload)))
+            $test = CommonHelper::check_files_empty($upload);     
+            if(!empty($test))
               { 
                 $Path = 'public/asset/share/uploads/images/';
                 $image = new ImagesController();

@@ -19,22 +19,22 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Article <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="{{ Request::root() }}/backend/article/add/"> Add New</a></li>
-                <li><a href="{{ Request::root() }}/backend/article/"> All articles</a></li>
+                <li><a href="{{ Request::root() }}/backend/article/add"> Add New</a></li>
+                <li><a href="{{ Request::root() }}/backend/article"> All articles</a></li>
                 <li><a href="{{ Request::root() }}/backend/category"> Category </a></li>                
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Media<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="{{ Request::root() }}/backend/upload/">Upload </a></li>             
+                <li><a href="{{ Request::root() }}/backend/upload">Upload </a></li>             
               </ul>
             </li>  
             @if((Session::get('perRole') == '2')||(Session::get('perRole') == '3'))
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Manager Modules<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="{{ Request::root() }}/backend/reason/">Reason </a></li>
+                <li><a href="{{ Request::root() }}/backend/reason">Reason </a></li>
                 <li><a href="{{ Request::root() }}/backend/slider">Slider </a></li>                
                 <li><a href="{{ Request::root() }}/backend/service">Service </a></li>
                 <li><a href="{{ Request::root() }}/backend/support">Support</a></li>                
