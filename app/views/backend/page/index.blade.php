@@ -1,19 +1,85 @@
-@section('content')
-<div class="row">            
-            <div class="col-sm-12">
-                <div class="messages_validation col-sm-12">                           
-                      {{Session::get('msg_flash')}}
+@section('title')
+<div class="row">
+                <div id="paper-top">
+                    <div class="col-sm-3">
+                        <h2 class="tittle-content-header">
+                            <i class="icon-media-record"></i> 
+                            <span>
+                              PAGE                       
+                            </span>
+                        </h2>
+
+                    </div>
+
+                    <div class="col-sm-7">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="tittle-middle-header">
+
+                            <div class="alert">
+                               {{Session::get('msg_flash_home')}}
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="btn-group btn-wigdet pull-right visible-lg">
+                            <div class="btn">
+                                Widget</div>
+                            <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li>
+                                    <a href="{{Request::root()}}/backend/page/add">
+                                        <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-heart margin-iconic"></span>Favorite</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-cog margin-iconic"></span>Setting</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
-    
-                <div class="col-sm-4">              
+@stop
+@section('breadcrumb')      
+ <ul id="breadcrumb">
+                <li>
+                    <span class="entypo-home"></span>
+                </li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li><a href="#" title="Sample page 1">Pages</a>
+                </li>
+                <li class="pull-right">
+                    <div class="input-group input-widget">
+
+                        <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
+                    </div>
+                </li>
+            </ul>
+ @stop
+@section('content')
+<div class="row">     
+                <div class="col-sm-4">                        
                     {{Form::open(array('url'=>'backend/page/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
-                    <div id="basicClose" class="nest">
+                    <div id="basicClose" class="nest">     
                             <div class="title-alt">
                                 <h6>Add module</h6>
-                            </div>
-                        <div  id="basic" class="body-nest">                         
-                             <div>                            
+                            </div>                         
+                        <div id="basic" class="body-nest">                  
+                                                    
                                 <div class="form-group">                                
                                     <label>{{trans('common.table.name')}}<span class="star-validation">(*)</span></label>
                                         {{Form::text('name','',array('class' => 'form-control','id'=>'name'))}}       
@@ -27,21 +93,21 @@
                                 <?php echo CommonHelper::createFormStatus();?>
                                  
                                  <button type="submit" class="btn btn-primary">{{trans('common.button.save')}}</button>
-                             </div>
-                           </div>
-                            </div>                    
+                        </div>
+                         
+                     </div>                    
                     {{Form::close()}}
-                                 
                 </div><!--col4-->
                 
-                <div class="col-sm-8">               
-                <div class="nest" id="tableStaticClose">
+                <div class="col-sm-8">             
+                    {{Form::open(array('url'=>'backend/page/action', 'method' => 'post','role'=>'form'))}}            
+                <div id="basicClose" class="nest">      
                     <div class="title-alt">
                        {{trans('titlepage.title.list_page')}}
                     </div>
-                    <div class="body-nest" id="tableStatic">                            
-                                
-                                 {{Form::open(array('url'=>'backend/page/action', 'method' => 'post','role'=>'form'))}}               
+                     {{Session::get('msg_flash')}}
+                    <div id="basic" class="body-nest"> 
+                                           
                                   <section id="flip-scroll">
                                <table class="table table-bordered table-striped cf">
                                      <thead class="cf">
@@ -71,24 +137,16 @@
                                   <div class="col-sm-3">
                                          <?php echo CommonHelper::createFormAction();?>
                                     </div>
-                             {{Form::close()}} 
-                    </div>
-                                
-                                    
-                                   
-                                 
-                </div>                                
-                                                                    
+                           
+                     </div>   
+                  </div>      
+                  {{Form::close()}}                           
+                 </div>                                                        
                                
                      <!-- paging -->                
                          <?php echo $getPage->links(); ?>  
                      <!-- end paging -->  
                 
-                  
-                            
-                
-          
-       </div><!--col 12 -->             
-           
+                     
        </div><!--row -->   
 @stop

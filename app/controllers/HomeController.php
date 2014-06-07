@@ -1,6 +1,6 @@
 <?php
 
-class PageController extends BaseController {
+class HomeController extends BaseController {
 
  
     protected $layout = 'frontend.layouts.default';

@@ -135,8 +135,8 @@ Route::post( 'admin-login' , array('as' => 'user_login', 'uses' => 'SharedContro
 Route::get( 'admin-logout' , array('as' => 'user_logout', 'uses' => 'SharedController@getLogout'));
 
 /*page view each module*/
-Route::get('/',array('as' => 'front_end', 'uses' =>'PageController@pageview'));
-Route::get('{id}',array('as' => 'view_page', 'uses' =>'PageController@pageview'));
+Route::get('/',array('as' => 'front_end', 'uses' =>'HomeController@pageview'));
+Route::get('{id}',array('as' => 'view_page', 'uses' =>'HomeController@pageview'));
 
 /* load json images in part upload image*/
 Route::get('backend/load-immages-json',array('as' => 'load_image_json', 'uses' =>'SharedController@getImageJson'));
