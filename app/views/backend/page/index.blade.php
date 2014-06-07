@@ -71,35 +71,54 @@
             </ul>
  @stop
 @section('content')
-<div class="row">     
-                <div class="col-sm-4">                        
-                    {{Form::open(array('url'=>'backend/page/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
-                    <div id="basicClose" class="nest">     
+<div class="row">  
+<div class="col-lg-12">   
+    <div class="col-lg-4">
+          <div class="row">
+         {{Form::open(array('url'=>'backend/page/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}                                 
+        <div id="basicClose" class="nest">
                             <div class="title-alt">
-                                <h6>Add module</h6>
-                            </div>                         
-                        <div id="basic" class="body-nest">                  
-                                                    
-                                <div class="form-group">                                
-                                    <label>{{trans('common.table.name')}}<span class="star-validation">(*)</span></label>
-                                        {{Form::text('name','',array('class' => 'form-control','id'=>'name'))}}       
+                                <h6>Add page</h6>
+                                <div class="titleClose">
+                                    <a href="#basicClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                                <div class="titleToggle">
+                                    <a href="#basic" class="nav-toggle-alt">
+                                        <span class="entypo-up-open"></span>
+                                    </a>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>{{trans('common.table.link')}}</label>                                
-                                    {{Form::text('link','',array('class' => 'form-control','id'=>'permalink'))}}       
-                                </div>
-                                 
-                                <?php echo CommonHelper::createFormStatus();?>
-                                 
-                                 <button type="submit" class="btn btn-primary">{{trans('common.button.save')}}</button>
-                        </div>
-                         
-                     </div>                    
-                    {{Form::close()}}
-                </div><!--col4-->
-                
-                <div class="col-sm-8">             
+                            </div>
+
+                            <div id="basic" class="body-nest">                              
+                                  <div class="form_center">
+
+                                    <div class="form-group">                                
+                                      <label>{{trans('common.table.name')}}<span class="star-validation">(*)</span></label>
+                                          {{Form::text('name','',array('class' => 'form-control','id'=>'name'))}}       
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label>{{trans('common.table.link')}}</label>                                
+                                      {{Form::text('link','',array('class' => 'form-control','id'=>'permalink'))}}       
+                                  </div>
+                                   
+                                  <?php echo CommonHelper::createFormStatus();?>
+                                   
+                                   <button type="submit" class="btn btn-info">{{trans('common.button.save')}}</button>                                                                          
+                                  </div>
+                              </div>  
+                        
+                     
+      </div>
+     {{Form::close()}}  
+     </div>
+      </div>
+    <!--col 4-->         
+    <div class="col-lg-8">      
+                           
                     {{Form::open(array('url'=>'backend/page/action', 'method' => 'post','role'=>'form'))}}            
                 <div id="basicClose" class="nest">      
                     <div class="title-alt">
@@ -147,6 +166,7 @@
                          <?php echo $getPage->links(); ?>  
                      <!-- end paging -->  
                 
-                     
-       </div><!--row -->   
+          
+</div><!--col 12-->         
+</div><!--row -->   
 @stop

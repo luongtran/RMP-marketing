@@ -22,20 +22,26 @@ class CommonHelper {
     {
        switch($type)
        {
-         case 'success':         
-             $str ='<div class="alert"><button type="button" class="close" data-dismiss="alert">×</button>
-                    <span class="tittle-alert entypo-info-circled ">'.$msg.'</span></div>';
+         case 'success': 
+
+             $str ='<div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <span class="entypo-attention"></span>                                   
+                              '.$msg.'</div>';
              break;
          
          case 'error':
-             $str ='<div class="alert"><button type="button" class="close" data-dismiss="alert">×</button>
-                    <span class="error">'.$msg.'</span></div>';
-             break;
-         
+             $str ='<div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <span class="entypo-attention"></span>                                   
+                              '.$msg.'</div>';
+             break;         
          
          default:
-             $str ='<div class="alert"><button type="button" class="close" data-dismiss="alert">×</button>
-                    <span class="tittle-alert entypo-warning-circled">'.$msg.'</span></div>';
+             $str ='<div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <span class="entypo-attention"></span>                                   
+                              '.$msg.'</div>';
              break;
        }
        return $str;
