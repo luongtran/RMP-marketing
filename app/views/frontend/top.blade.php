@@ -11,7 +11,7 @@
        </span>
          
          <select id="changeLangague" class="btn black">
-            <option value="none">Select Language</option>
+            <option value="en">Select Language</option>
             <?php 
             @$listLang = Language::where('status','=','publish')->get();
             foreach ($listLang as $lang) : ?>

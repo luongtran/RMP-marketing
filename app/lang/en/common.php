@@ -8,6 +8,8 @@ return array(
         'edit'=>'Edit',
         'action'=>'Action',
         'add'=>'Add',
+        'intro'=>'Intro',
+        'content'=>'Content',
         
     ),
     'menu'=>array(
@@ -78,6 +80,7 @@ return array(
       'upload'=>'Upload',
       'language'=>'Language',
       'code'=>'Code',
+        'controller'
     ),
      
 );

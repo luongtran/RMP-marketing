@@ -85,12 +85,9 @@ class PagesController extends BaseController {
             $pages->update();
           
           if(Input::get('module'))
-          {
-                $modOld= PageModules::where('page_id','=',$pages->id)->get();            
-                foreach($modOld as $mod_del)
-               {    
-                    PageModules::where('page_id','=',$mod_del->page_id)->delete();
-               }
+          { 
+                
+               PageModules::where('page_id','=',$id)->delete();              
                foreach (Input::get('module') as $key=>$value)
                {
                     $adMod= new PageModules;   
@@ -99,6 +96,10 @@ class PagesController extends BaseController {
                     $adMod->save();
                }
           }
+          else
+          {   
+                    PageModules::where('page_id','=',$id)->delete();
+           }
          
             
         

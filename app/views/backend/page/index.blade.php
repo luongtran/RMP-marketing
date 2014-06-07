@@ -1,27 +1,18 @@
 @section('content')
-<div class="row"
-     <div class="col-lg-12">
-            <ol class="breadcrumb">
-              <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i> {{trans('common.menu.dashboard')}}</a></li>
-              <li class="active"><a href="{{Request::root()}}/backend/page"><i class="fa fa-desktop"></i> {{trans('common.table.page')}}</a></li>            
-            </ol>
-    </div>   
-</div><!-- end row 1--> 
-
-<div class="row">
-            
-            <div class="col-lg-12"> 
-            <div class="col-lg-12">
-                <div class="messages_validation col-lg-12">                           
+<div class="row">            
+            <div class="col-sm-12">
+                <div class="messages_validation col-sm-12">                           
                       {{Session::get('msg_flash')}}
                 </div>
-                <div class="col-lg-4">              
+            </div>
+    
+                <div class="col-sm-4">              
                     {{Form::open(array('url'=>'backend/page/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{trans('titlepage.title.add_page')}}</h3>
-                        </div>
-                        <div class="panel-body">                         
+                    <div id="basicClose" class="nest">
+                            <div class="title-alt">
+                                <h6>Add module</h6>
+                            </div>
+                        <div  id="basic" class="body-nest">                         
                              <div>                            
                                 <div class="form-group">                                
                                     <label>{{trans('common.table.name')}}<span class="star-validation">(*)</span></label>
@@ -43,19 +34,17 @@
                                  
                 </div><!--col4-->
                 
-                <div class="col-lg-8">
-                <div class="col-lg-12">
-                <div class="panel panel-success">
-                    <div class="panel-heading"> 
+                <div class="col-sm-8">               
+                <div class="nest" id="tableStaticClose">
+                    <div class="title-alt">
                        {{trans('titlepage.title.list_page')}}
                     </div>
-                    <div class="panel-body"> 
-                               
-                                <h2></h2>
+                    <div class="body-nest" id="tableStatic">                            
+                                
                                  {{Form::open(array('url'=>'backend/page/action', 'method' => 'post','role'=>'form'))}}               
-                                <div class="table-responsive">
-                                  <table class="table table-bordered table-hover tablesorter">
-                                    <thead>
+                                  <section id="flip-scroll">
+                               <table class="table table-bordered table-striped cf">
+                                     <thead class="cf">
                                       <tr>
                                         <th><input type="checkbox" id="ckbCheckAll" /></th>  
                                         <th class="header">{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
@@ -78,32 +67,28 @@
                                       @endforeach
                                     </tbody>
                                   </table> 
-                                </div>
-                                
-                                    
-                                    <div class="row col-lg-3">
+                               </section>  
+                                  <div class="col-sm-3">
                                          <?php echo CommonHelper::createFormAction();?>
                                     </div>
-                                 
-                                 
-                          </div>                                
-                                                                    
-                              
-                                 
                              {{Form::close()}} 
+                    </div>
+                                
+                                    
+                                   
+                                 
+                </div>                                
+                                                                    
                                
-                </div><!--panel -->  
                      <!-- paging -->                
                          <?php echo $getPage->links(); ?>  
                      <!-- end paging -->  
-                </div><!-- 12-->   
+                
                   
                             
                 
-                  
-            </div><!--col 8 -->
-       </div><!--col 12 -->        
-       </div><!--col 12 -->
-</div><!-- end row 2-->                
-     
+          
+       </div><!--col 12 -->             
+           
+       </div><!--row -->   
 @stop

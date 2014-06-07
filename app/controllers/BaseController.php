@@ -8,7 +8,7 @@ class BaseController extends Controller {
 	 * @return void
 	 */
 	
-        const DEFAULT_LOCALE = 'en'; 
+         const DEFAULT_LOCALE = 'en'; 
          public function __construct() {
              $this->setLocale();
          }
@@ -21,9 +21,16 @@ class BaseController extends Controller {
 	}
        
         protected function setLocale() {
-        $currentLocale = Session::get('current_locale', self::DEFAULT_LOCALE);
+
+        if(!Session::get('current_locale'))
+        {
+        	Session::put('current_locale', self::DEFAULT_LOCALE);    		
+        }
+
+        $currentLocale = Session::get('current_locale', self::DEFAULT_LOCALE);  
         App::setLocale($currentLocale);
         View::share('current_locale', $currentLocale);
+
     }
     
    

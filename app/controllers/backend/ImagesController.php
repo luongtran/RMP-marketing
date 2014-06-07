@@ -31,7 +31,7 @@ class ImagesController extends BaseController {
                 $upload =  new Uploads;
                 $upload->name = $filename;
                 $upload->type = $file->getClientmimeType();
-                $upload->path = $Path;
+                $upload->path =  ltrim($Path,"public/");
                 $upload->save();
                 return $upload->id;                
     }
@@ -46,9 +46,8 @@ class ImagesController extends BaseController {
             return $this->store($file, $Path);
     }
     
-    function storeMulti($file,$Path,$article_id)
-    {        
-            // use controller article                 
+    function storeMulti($file,$Path,$content_id,$type_content)
+    {                            
               foreach($file as $fileinfo)
                 {                            
                 $date = date('m-d-Y') ;       
@@ -57,8 +56,8 @@ class ImagesController extends BaseController {
                 $upload =  new Uploads;
                 $upload->name = $filename;
                 $upload->type = $fileinfo->getClientmimeType();
-                $upload->path = $Path;
-                $upload->article_id = $article_id;
+                $upload->path =  ltrim($Path,"public/");
+                $upload->$type_content = $content_id;
                 $upload->save();              
                 }
     }

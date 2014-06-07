@@ -76,11 +76,13 @@ CkEditorImageBrowser.loadData = function (url, onLoaded) {
 
 	/*custom by ltt.develop@gmail.com */
 	/*== begin custom ==*/
-    var baseUrl = "http://localhost:8000/";
+        
+   var baseUrl = location.protocol + "//" + location.host;        
+   //var baseUrl = "http://localhost:8000/";
    
     //alert(base_url);
 
-	$.getJSON(baseUrl+"backend/load-immages-json",function(list){
+	$.getJSON(baseUrl+"/backend/load-immages-json",function(list){
            $.each(list, function (_idx, item) {
 				if (typeof(item.folder) === 'undefined') {
 					item.folder = 'Images';
@@ -89,8 +91,8 @@ CkEditorImageBrowser.loadData = function (url, onLoaded) {
 				if (typeof(item.thumb) === 'undefined') {
 					item.thumb = item.image;				
 				}
-				var folder= 'Images';
-				var image= baseUrl+"asset/share/uploads/images/"+item.name;
+				var folder= item.path;
+				var image= baseUrl+"/asset/share/uploads/images/"+item.name;
 				var thumb = image;
 
 				CkEditorImageBrowser.addImage(folder, image, thumb);

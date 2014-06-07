@@ -3,7 +3,8 @@
 class ModuleController extends BaseController {
 
       protected $layout = 'backend.layouts.default';      
-      
+      private $_moduleName = "Module";
+      private $_routeModule ="backend_module";
       public function __construct() {
      }  
     /*
@@ -20,12 +21,18 @@ class ModuleController extends BaseController {
      */
 
     public function index() {        
-        $this->layout->page = "Module";       
-        $module= Modules::orderBy('order','asc')->paginate(12); 
+        $this->layout->page = $this->_moduleName;   
         $position = DB::table('position')->get();
-        $this->layout->content = View::make('backend.module.index')->with('module',$module)->with('position',$position);           
-    }
-    
+        $module= Modules::orderBy('order','asc')->paginate(10);       
+        $this->layout->content = View::make('backend.module.index')->with('module',$module)
+                                    ->with('position',$position);   
+        }
+    public function getAdd() {        
+        $this->layout->page = $this->_moduleName;                
+        $position = DB::table('position')->get();
+        $this->layout->content = View::make('backend.module.add')
+                                 ->with('position',$position);           
+        }    
     public function postAdd() {       
         $validation = Validator::make(                
                 Input::all(),
@@ -38,30 +45,25 @@ class ModuleController extends BaseController {
         if($validation->passes())
         {
         $mod = new Modules;
-        $mod->name = Input::get('name');;
+        $mod->name = Input::get('name');
         $mod->mod = Input::get('mod');        
         $mod->position = Input::get('position');
         $mod->order = Input::get('order');
-        $mod->intro = Input::get('intro');
         $mod->status = Input::get('status');
         $mod->save();
         Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.create_message')));  
-        return Redirect::back();
+        return Redirect::route($this->_routeModule);
         }
         Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
         return Redirect::back()->withInput();        
-    }
-        
-    public function getUpdate($id) {
-        
+    }        
+    public function getUpdate($id) {        
         $this->layout->page = "Update module";  
         $position = DB::table('position')->get();
         $getMod = Modules::where('id','=',$id)->first(); 
         $this->layout->content = View::make('backend.module.update')->with('getMod',$getMod)->with('position',$position);      
-    }
-    
-    public function postUpdate($id) {
-        //$this->layout->page = "Upadte category";
+    }    
+    public function postUpdate($id) {       
         $validation = Validator::make(                
                 Input::all(),
                 array(
@@ -69,8 +71,7 @@ class ModuleController extends BaseController {
                 'premalink'=> 'unique:categories',
                 'order'=>'numeric'
                 )                
-         );
-        
+         );        
         if($validation->passes())
         {
             $mod = Modules::find($id);
@@ -103,7 +104,7 @@ class ModuleController extends BaseController {
             $at= Modules::find($id);
             $at->delete();
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.delete_message')));  
-            return Redirect::route('backend_module');            
+            return Redirect::route($this->_routeModule);         
           }
         
     }
@@ -137,12 +138,12 @@ class ModuleController extends BaseController {
          default:             
              break;
          }
-         return Redirect::back();
+         return Redirect::route($this->_routeModule);
          }
          
         else {             
           Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.nochoose_message')));   
-         return Redirect::back();   
+          return Redirect::route($this->_routeModule);
         }
      }
      

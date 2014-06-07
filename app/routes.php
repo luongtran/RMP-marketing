@@ -52,23 +52,40 @@ Route::post('backend/category/update/{id}',array('as' => 'category_update', 'use
 Route::get('backend/category/delete/{id}',array('as' => 'category_delete', 'uses' =>'CategoryController@getDelete'));
 Route::post('backend/category/action',array('as' => 'article_action', 'uses' =>'CategoryController@action'));
 
+/* Page backend */
+Route::get('backend/page',array('as' => 'backend_page', 'uses' =>'PagesController@index'));
+Route::post('backend/page/add',array('as' => 'page_add', 'uses' =>'PagesController@postAdd'));
+Route::get('backend/page/delete/{id}',array('as' => 'page_delete', 'uses' =>'PagesController@getDelete'));
+Route::get('backend/page/update/{id}',array('as' => 'page_update', 'uses' =>'PagesController@getUpdate'));
+Route::post('backend/page/update/{id}',array('as' => 'page_update', 'uses' =>'PagesController@postUpdate'));
+Route::post('backend/page/action',array('as' => 'page_action', 'uses' =>'PagesController@action'));
 
 /*Module*/
 Route::get('backend/module/',array('as' => 'backend_module', 'uses' =>'ModuleController@index'));
+Route::get('backend/module/add',array('as' => 'module_add', 'uses' =>'ModuleController@getAdd'));
 Route::post('backend/module/add',array('as' => 'module_add', 'uses' =>'ModuleController@postAdd'));
 Route::get('backend/module/update/{id}',array('as' => 'module_update', 'uses' =>'ModuleController@getUpdate'));
 Route::post('backend/module/update/{id}',array('as' => 'module_update', 'uses' =>'ModuleController@postUpdate'));
 Route::get('backend/module/delete/{id}',array('as' => 'module_delete', 'uses' =>'ModuleController@getDelete'));
 Route::post('backend/module/action',array('as' => 'module_action', 'uses' =>'ModuleController@action'));
+/*Module data */
+Route::get('backend/module/{idmod}/content',array('as' => 'module_content', 'uses' =>'ModuleDataController@index'));
+Route::get('backend/module/{idmod}/content/add',array('as' => 'module_content_add', 'uses' =>'ModuleDataController@getAdd'));
+Route::post('backend/module/{idmod}/content/add',array('as' => 'module_content_add', 'uses' =>'ModuleDataController@postAdd'));
+Route::get('backend/module/{idmod}/content/update/{idcontent}',array('as' => 'module_content_update', 'uses' =>'ModuleDataController@getUpdate'));
+Route::post('backend/module/{idmod}/content/update/{idcontent}',array('as' => 'module_content_update', 'uses' =>'ModuleDataController@postUpdate'));
+Route::get('backend/module/{idmod}/content/delete/{idcontent}',array('as' => 'module_content_update', 'uses' =>'ModuleDataController@getDelete'));
+Route::post('backend/module/{idmod}/content/action',array('as' => 'module_content_action', 'uses' =>'ModuleDataController@action'));
 
+/*Module intro */
+Route::get('backend/module/{idmod}/intro',array('as' => 'module_intro', 'uses' =>'ModuleIntroController@index'));
+Route::get('backend/module/{idmod}/intro/add',array('as' => 'module_intro_add', 'uses' =>'ModuleIntroController@getAdd'));
+Route::post('backend/module/{idmod}/intro/add',array('as' => 'module_intro_add', 'uses' =>'ModuleIntroController@postAdd'));
+Route::get('backend/module/{idmod}/intro/update/{idcontent}',array('as' => 'module_intro_update', 'uses' =>'ModuleIntroController@getUpdate'));
+Route::post('backend/module/{idmod}/intro/update/{idcontent}',array('as' => 'module_intro_update', 'uses' =>'ModuleIntroController@postUpdate'));
+Route::get('backend/module/{idmod}/intro/delete/{idcontent}',array('as' => 'module_intro_update', 'uses' =>'ModuleIntroController@getDelete'));
+Route::post('backend/module/{idmod}/intro/action',array('as' => 'module_intro_action', 'uses' =>'ModuleIntroController@action'));
 
-/*Slider*/
-Route::get('backend/slider/',array('as' => 'backend_slider', 'uses' =>'SliderController@index'));
-Route::post('backend/slider/add',array('as' => 'slider_add', 'uses' =>'SliderController@postAdd'));
-Route::get('backend/slider/update/{id}',array('as' => 'slider_update', 'uses' =>'SliderController@getUpdate'));
-Route::post('backend/slider/update/{id}',array('as' => 'slider_update', 'uses' =>'SliderController@postUpdate'));
-Route::get('backend/slider/delete/{id}',array('as' => 'slider_delete', 'uses' =>'SliderController@getDelete'));
-Route::post('backend/slider/action',array('as' => 'slider_action', 'uses' =>'SliderController@action'));
 
 /*Menu*/
 Route::get('backend/menu',array('as' => 'backend_menu', 'uses' =>'MenuController@index'));
@@ -92,43 +109,6 @@ Route::post( 'backend/user/update/{id}' , array('as' => 'user_update', 'uses' =>
 Route::get( 'backend/user/delete/{id}' , array('as' => 'user_delete', 'uses' => 'UserController@getDelete'));
 Route::post( 'backend/user/action' , array('as' => 'user_action', 'uses' => 'UserController@action'));
 //===========================================//
-
-/*Reason*/
-Route::get('backend/reason/',array('as' => 'backend_reason', 'uses' =>'ReasonController@index'));
-Route::post('backend/reason/add',array('as' => 'reason_add', 'uses' =>'ReasonController@postAdd'));
-Route::get('backend/reason/update/{id}',array('as' => 'reason_update', 'uses' =>'ReasonController@getUpdate'));
-Route::post('backend/reason/update/{id}',array('as' => 'reason_update', 'uses' =>'ReasonController@postUpdate'));
-Route::get('backend/reason/delete/{id}',array('as' => 'reason_delete', 'uses' =>'ReasonController@getDelete'));
-Route::post('backend/reason/action',array('as' => 'reason_action', 'uses' =>'ReasonController@action'));
-
-
-/*Service*/
-Route::get('backend/service/',array('as' => 'backend_service', 'uses' =>'ServiceController@index'));
-Route::get('backend/service/add',array('as' => 'service_add', 'uses' =>'ServiceController@getAdd'));
-Route::post('backend/service/add',array('as' => 'service_add', 'uses' =>'ServiceController@postAdd'));
-Route::get('backend/service/update/{id}',array('as' => 'service_update', 'uses' =>'ServiceController@getUpdate'));
-Route::post('backend/service/update/{id}',array('as' => 'service_update', 'uses' =>'ServiceController@postUpdate'));
-Route::get('backend/service/delete/{id}',array('as' => 'service_delete', 'uses' =>'ServiceController@getDelete'));
-Route::post('backend/service/action',array('as' => 'service_action', 'uses' =>'ServiceController@action'));
-
-
-/*Support package*/
-Route::get('backend/support/',array('as' => 'backend_support', 'uses' =>'SupportController@index'));
-Route::get('backend/support/add',array('as' => 'support_add', 'uses' =>'SupportController@getAdd'));
-Route::post('backend/support/add',array('as' => 'support_add', 'uses' =>'SupportController@postAdd'));
-Route::get('backend/support/update/{id}',array('as' => 'support_update', 'uses' =>'SupportController@getUpdate'));
-Route::post('backend/support/update/{id}',array('as' => 'support_update', 'uses' =>'SupportController@postUpdate'));
-Route::get('backend/support/delete/{id}',array('as' => 'support_delete', 'uses' =>'SupportController@getDelete'));
-Route::post('backend/support/action',array('as' => 'service_action', 'uses' =>'SupportController@action'));
-
-/* Page backend */
-Route::get('backend/page',array('as' => 'backend_page', 'uses' =>'PagesController@index'));
-Route::post('backend/page/add',array('as' => 'page_add', 'uses' =>'PagesController@postAdd'));
-Route::get('backend/page/delete/{id}',array('as' => 'page_delete', 'uses' =>'PagesController@getDelete'));
-Route::get('backend/page/update/{id}',array('as' => 'page_update', 'uses' =>'PagesController@getUpdate'));
-Route::post('backend/page/update/{id}',array('as' => 'page_update', 'uses' =>'PagesController@postUpdate'));
-Route::post('backend/page/action',array('as' => 'page_action', 'uses' =>'PagesController@action'));
-
 
 /*Language*/
 Route::get('backend/language/',array('as' => 'backend_language', 'uses' =>'LanguageController@index'));

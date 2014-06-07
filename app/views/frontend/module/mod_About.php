@@ -1,25 +1,32 @@
 <div class="row">
-<?php              
-        $content = Articles::where('permalink','=',$pageinfo->link)->where('status','=','publish')->where('lang_id','=',Session::get('current_locale'))->first(); 
-        if($content)
-        {
-           $getImages = Uploads::where('article_id','=',$content->id)->get();
-        ?>
+            
+       <?php   $about_intro = DB::table('page_module')
+                   ->leftjoin("pages","page_module.page_id","=","pages.id")
+                   ->leftjoin("module","page_module.module_id","=","module.id")
+                   ->leftjoin("module_data","module_data.module_id","=","module.id")                 
+                   ->where("module_data.status","=","publish")                   
+                   ->where("module.mod","=","mod_About")
+                   ->where("module_data.lang_id","=",Session::get('current_locale'))
+                   ->where("page_module.page_id","=",$pageinfo->id) 
+                   ->select(DB::raw("module_data.id,module_data.title,module_data.sumary,module_data.content"))
+                   ->first(); 
+                $listImg = Uploads::where("modData_id","=",$about_intro->id)->get();                 
+     ?>
 
 				<div class="row-item col-1_2">
-					<h3 class="lined margin-20"><?php echo $content->title;?></h3>
+					<h3 class="lined margin-20"><?php echo $about_intro->title;?></h3>
 					
 					<div class="b-carousel">
 						<div class="carousel-content">
-							<?php foreach($getImages as $Im):?>
-                                                        <img alt="" src="<?php echo asset('asset/share/uploads/images/'.$Im->name);?>" class="carousel-item" width="400" height="400">					
+							<?php foreach($listImg as $Im):?>
+                                                        <img alt="" src="<?php echo asset($Im->path.'/'.$Im->name);?>" class="carousel-item" width="400" height="400">					
                                                         <?php endforeach;?>
 						</div>
 					<div class="carousel-control"><div class="carousel-prev"></div><div class="carousel-next"></div><ul class="carousel-pagination"><li class=""></li><li class=""></li><li class="active"></li></ul></div></div>
 
 					
 					<!-- begin cut -->
-					<?php echo $content->content;?>		
+					<?php echo $about_intro->content;?>		
 					<!-- <p>CompleteRMP recruitment software has been developed for the Internet right from the start, in both its delivery and the core features it offers. Embracing new technology and ideas has enabled us to develop the cutting edge web based recruitment solution - CompleteRMP.</p>
 
 					<p>CompleteRMP has been built from the ground up as an online recruitment solution, and is specifically designed for access via a standard web browser so our client's don't have to install third party software to access their recruitment software via the Internet. This leads to a much more efficient, stable and accessible system with significantly reduced cost.</p>
@@ -67,7 +74,4 @@
 				</div> -->
 
 				<!--end cut -->
-			
-    
-<?php }  ?>
 </div>

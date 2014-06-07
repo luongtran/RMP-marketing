@@ -1,45 +1,57 @@
-@section('content')
+ <a href="<?php echo Route('change_language', array('lang' => 'en', 'return_url' => Request::url()) );?>"><span class="<?php if(Session::get('current_locale')=='en'){echo 'label label-default';}?>" > English </span></a>
+ <a href="<?php echo Route('change_language', array('lang' => 'sa', 'return_url' => Request::url()) );?>"><span class="<?php if(Session::get('current_locale')=='sa'){echo 'label label-default';}?>"> عربي </span></a>
+ @section('breadcrumb')      
+ <ul id="breadcrumb">
+                <li>
+                    <span class="entypo-home"></span>
+                </li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li><a href="#" title="Sample page 1">Extra Pages</a>
+                </li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li><a href="#" title="Sample page 1">Blank Page</a>
+                </li>
+                <li class="pull-right">
+                    <div class="input-group input-widget">
 
-<script type="text/javascript">
+                        <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
+                    </div>
+                </li>
+            </ul>
+ @stop
+ 
+ @section('content')
+ <div class="row">
+                    <div class="col-sm-12">
+                        <!-- BLANK PAGE-->
 
-// $(document).ready(function(){ 
+                        <div class="nest" id="Blank_PageClose">
+                            <div class="title-alt">
+                                <h6>
+                                    Blank Page</h6>
+                                <div class="titleClose">
+                                    <a class="gone" href="#Blank_PageClose">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                                <div class="titleToggle">
+                                    <a class="nav-toggle-alt" href="#Blank_Page_Content">
+                                        <span class="entypo-up-open"></span>
+                                    </a>
+                                </div>
 
-//         /*$.getJSON("http://localhost:8000/backend/load-immages-json",function(result){
-//             alert('sssss');
-//              // alert(result);
-//             });  
-//         */
+                            </div>
 
-//         $.getJSON("http://localhost:8000/backend/load-immages-json",function(data,status){
-          
-//                 var url = "<?php echo asset('asset/share/uploads/iamges');?>";
-//                 url= url+'./';
-//                 var img; 
+                            <div class="body-nest" id="Blank_Page_Content">
 
-//            // var obj = $.parseJSON(data);
-//             $.each(data, function (_idx, item) {
-
-//             });
-//            // alert(data);
-//         });
-// });
-</script>
-
-<div class="row">
-	<h2>{{Session::get('msg_flash')}}</h2>
-</div>
-<div class="row">
-<div class="panel panel-info">
-                        <div class="panel-heading">
-                            Info Panel
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            Develop by SFR
+                                Content Goes Here
+                            </div>
                         </div>
                     </div>
-</div>
+                    <!-- END OF BLANK PAGE -->
 
-@stop
+
+                </div>
+ @stop

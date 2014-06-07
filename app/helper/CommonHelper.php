@@ -23,25 +23,19 @@ class CommonHelper {
        switch($type)
        {
          case 'success':         
-             $str ='<div class="alert alert-info  alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <a class="alert-link" >'.$msg.'</a>
-               </div>';
+             $str ='<div class="alert"><button type="button" class="close" data-dismiss="alert">×</button>
+                    <span class="tittle-alert entypo-info-circled ">'.$msg.'</span></div>';
              break;
          
          case 'error':
-             $str ='<div class="alert alert-danger  alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <a class="alert-link" >'.$msg.'</a>
-               </div>';
+             $str ='<div class="alert"><button type="button" class="close" data-dismiss="alert">×</button>
+                    <span class="error">'.$msg.'</span></div>';
              break;
          
          
          default:
-             $str ='<div class="alert alert-primary  alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <a class="alert-link" >'.$msg.'</a>
-               </div>';
+             $str ='<div class="alert"><button type="button" class="close" data-dismiss="alert">×</button>
+                    <span class="tittle-alert entypo-warning-circled">'.$msg.'</span></div>';
              break;
        }
        return $str;
@@ -49,10 +43,10 @@ class CommonHelper {
     
     public static function printErrors($validation)
     {
-        $str='';
+         $str='';
          foreach($validation->all() as $er)
          {
-           $str.= CommonHelper::printMsg('error',$er);                    
+           $str.= CommonHelper::printMsg('error',$er).'</br>';                    
          }
          return $str;
     }
@@ -81,7 +75,9 @@ class CommonHelper {
         $str.="</select>"; 
          return $str;
     }
-    
+   
+
+
     
     public static function listDrop($array)
     {

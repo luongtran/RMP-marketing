@@ -20,8 +20,7 @@ class SharedController extends BaseController{
      
      public function getChangeLanguage($lang) {
         Session::put('current_locale', $lang);
-        return Redirect::to(Input::get('return_url'));
-        
+        return Redirect::to(Input::get('return_url'));        
     }
 
 
