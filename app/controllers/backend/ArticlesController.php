@@ -114,7 +114,8 @@ class ArticlesController extends BaseController {
             }
             /*upload image*/
             $upload = Input::file('fileimages'); 
-            if(!empty(CommonHelper::check_files_empty($upload)))
+            $test = CommonHelper::check_files_empty($upload);     
+            if(!empty($test))
             {
               $Path = 'public/asset/share/uploads/images/';
               $Image= new ImagesController();
@@ -190,8 +191,8 @@ class ArticlesController extends BaseController {
           
             $upload = Input::file('fileimages'); 
           
-            if(!empty(CommonHelper::check_files_empty($upload)))
-            {
+        $test = CommonHelper::check_files_empty($upload);     
+        if(!empty($test))            {
                $upload = Input::file('fileimages'); 
                $Path = 'public/asset/share/uploads/images/';
                $Image= new ImagesController();
