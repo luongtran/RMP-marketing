@@ -1,5 +1,3 @@
- <a href="<?php echo Route('change_language', array('lang' => 'en', 'return_url' => Request::url()) );?>"><span class="<?php if(Session::get('current_locale')=='en'){echo 'label label-default';}?>" > English </span></a>
- <a href="<?php echo Route('change_language', array('lang' => 'sa', 'return_url' => Request::url()) );?>"><span class="<?php if(Session::get('current_locale')=='sa'){echo 'label label-default';}?>"> عربي </span></a>
  @section('breadcrumb')      
  <ul id="breadcrumb">
                 <li>

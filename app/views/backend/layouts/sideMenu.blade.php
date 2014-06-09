@@ -63,21 +63,14 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="tooltip-tip ajax-load" href="social.html" title="Social">
-                                <i class="icon-feed"></i>
-                                <span>Social</span>
-
-                            </a>
-                        </li>
                        <li>
-                            <a class="tooltip-tip" href="#" title="UI Element">
+                            <a class="tooltip-tip" href="#" title="Media">
                                 <i class="icon-monitor"></i>
                                 <span>Media</span>
                             </a>
                             <ul>
                                 <li>
-                                    <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/upload" title="Element"><i class="icon-attachment"></i><span>Upload</span></a>
+                                    <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/upload" title="Upload"><i class="icon-attachment"></i><span>Upload</span></a>
                                 </li>
                                
                             </ul>
@@ -96,8 +89,8 @@
                         </li>
                         
                          <li>
-                            <a class="tooltip-tip" href="#" title="UI Element">
-                                <i class="icon-monitor"></i>
+                            <a class="tooltip-tip" href="#" title="Module package">
+                                <i class="entypo-retweet"></i>
                                 <span>Module package</span>
                             </a>
                             <ul>
@@ -106,7 +99,7 @@
                                 ?>
                                 @foreach($modPackage as $packageList)
                                 <li>
-                                    <a class="tooltip-tip2" href="#" title="UI Element">
+                                    <a class="tooltip-tip2" href="#" title="{{$packageList->name}}">
                                     <i class="{{$packageList->icon}}"></i>
                                      <span>{{$packageList->name}}</span>
                                     </a>
@@ -140,21 +133,28 @@
 
                             </a>
                         </li>
-                       
                         <li>
-                            <a class="tooltip-tip ajax-load" href="{{Request::root()}}/backend/module" title="Mail">
+                           <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/page" title="Pages"><i class="entypo-docs"></i><span>Pages</span></a>
+                              
+                        </li>
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="{{Request::root()}}/backend/module" title="Manager module">
                                 <i class="icon-view-thumb"></i>
                                 <span>Mannager Modules</span>
                                 <div class="noft-blue">8</div>
                             </a>
                         </li>
                         <li>
-                           <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/user" title="Form Elements"><i class="icon-document-edit"></i><span>Users</span></a>
+                           <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/user" title="Users"><i class="icon icon-user"></i><span>Users</span></a>
+                              
+                        </li>
+                          <li>
+                           <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/language" title="Language"><i class="entypo-export"></i><span>Language</span></a>
                               
                         </li>
                         <li>
                             
-                                    <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/setting" title="Table Static"><i class="entypo-layout"></i><span>Setting</span></a>
+                                    <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/setting" title="Setting"><i class="entypo-layout"></i><span>Setting</span></a>
                                 
                         </li>
 

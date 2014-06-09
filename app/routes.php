@@ -130,6 +130,7 @@ Route::get( 'admin-login' , array('as' => 'user_login', 'uses' => 'SharedControl
 Route::post( 'admin-login' , array('as' => 'user_login', 'uses' => 'SharedController@postLogin'));
 Route::get( 'admin-logout' , array('as' => 'user_logout', 'uses' => 'SharedController@getLogout'));
 Route::get( 'backend/view-profile' , array('as' => 'user_profile', 'uses' => 'SharedController@viewProfile'));
+Route::get( 'backend/view-profile-ajax' , array('as' => 'user_profile_ajax', 'uses' => 'SharedController@viewProfile_ajax'));
 Route::post( 'backend/update-profile' , array('as' => 'user_profile_update', 'uses' => 'SharedController@updateProfile'));
 //===========================================//
 

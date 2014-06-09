@@ -1,74 +1,3 @@
-@section('title')
-
-<div class="row">
-                <div id="paper-top">
-                    <div class="col-sm-3">
-                        <h2 class="tittle-content-header">
-                            <i class="icon-media-record"></i> 
-                            <span>
-                              Profile                         
-                            </span>
-                        </h2>
-
-                    </div>
-
-                    <div class="col-sm-7">
-                        <div class="devider-vertical visible-lg"></div>
-                        <div class="tittle-middle-header">
-
-                            <div class="alert">
-                               {{Session::get('msg_flash_home')}}
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="devider-vertical visible-lg"></div>
-                        <div class="btn-group btn-wigdet pull-right visible-lg">
-                            <div class="btn">
-                                Widget</div>
-                            <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul role="menu" class="dropdown-menu">
-                                <li>
-                                    <a href="{{Request::root()}}/backend">
-                                        <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
-                                </li>
-                              
-                            </ul>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-@stop
-@section('breadcrumb')
-<ul id="breadcrumb">
-                <li>
-                    <span class="entypo-home"></span>
-                </li>
-                <li><i class="fa fa-lg fa-angle-right"></i>
-                </li>
-                <li><a title="Sample page 1" href="#">Users</a>
-                </li>
-                <li><i class="fa fa-lg fa-angle-right"></i>
-                </li>
-                <li><a title="Sample page 1" href="#">User Profile</a>
-                </li>
-                <li class="pull-right">
-                    <div class="input-group input-widget">
-
-                        <input type="text" class="form-control" placeholder="Search..." style="border-radius:15px">
-                    </div>
-                </li>
-            </ul>
-@stop
-@section('content')
 <div id="profile">
 <div class="content-wrap">
                 <!-- PROFILE -->
@@ -82,7 +11,7 @@
                                         <li class="list-group-item text-left">
                                             <span class="entypo-user"></span>&nbsp;&nbsp;Profile</li>
                                         <li class="list-group-item text-center">
-                                            <img class="img-circle img-responsive img-profile" alt="" src="http://api.randomuser.me/portraits/men/10.jpg">
+                                            <img class="img-circle img-responsive img-profile" alt="" src="{{ asset($getProfile->path.'/'.$getProfile->imgName) }}">
 
                                         </li>
                                         <li class="list-group-item text-center">
@@ -143,10 +72,10 @@
                                         <dd>{{$getProfile->username}}</dd>
 
                                         <dt>FirstName</dt>
-                                        <dd>{{$getProfile->firstname}}</dd>
+                                        <dd>{{$getProfile->first_name}}</dd>
 
                                         <dt>LastName</dt>
-                                        <dd>{{$getProfile->lastname}}</dd>
+                                        <dd>{{$getProfile->last_name}}</dd>
 
                                         <dt>Email</dt>
                                         <dd>{{$getProfile->email}}</dd>
@@ -264,11 +193,12 @@
 
                                     <div class="row">
                                         <!--begin form -->
-                                           {{Form::open(array('url'=>'backend/update-profile', 'method' => 'post','role'=>'form','class'=>'form-horizontal','id'=>'frm-profile'))}}                                             
+                                           {{Form::open(array('url'=>'backend/update-profile', 'method' => 'post','role'=>'form','class'=>'form-horizontal','id'=>'frm-profile','enctype'=>'multipart/form-data','name'=>'frm-profile'))}}                                             
                                         <!-- left column -->
                                         <div class="col-md-3">
                                             <div class="text-center">
-                                                <img alt="avatar" class="avatar img-circle" src="http://placehold.it/150">
+
+                                                <img alt="avatar" class="avatar img-circle" src="{{ asset($getProfile->path.'/'.$getProfile->imgName) }}" width="200">
                                                 <h6>Upload a different photo...</h6>
 
                                                 <div class="input-group">
@@ -285,25 +215,22 @@
 
                                         <!-- edit form column -->
                                         <div class="col-md-9 personal-info">
-                                            <div class="alert alert-info alert-dismissable">
-                                                <a data-dismiss="alert" class="panel-close close">×</a> 
-                                                <i class="fa fa-coffee"></i>
-                                                This is an
-                                                <strong>.alert</strong>. Use this to show important messages to the user.
-                                            </div>
+                                          
+                                                {{Session::get('msg_flash')}}
+                                           
                                             <h3>Personal info</h3>
                                          
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">First name:</label>
                                                     <div class="col-lg-8">
                                                          {{Form::hidden('id',$getProfile->id)}}     
-                                                         {{Form::text('firstname',$getProfile->firstname,array('class' => 'form-control'))}}     
+                                                         {{Form::text('firstname',$getProfile->first_name,array('class' => 'form-control'))}}     
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Last name:</label>
                                                     <div class="col-lg-8">
-                                                      {{Form::text('lastname',$getProfile->lastname,array('class' => 'form-control'))}}     
+                                                      {{Form::text('lastname',$getProfile->last_name,array('class' => 'form-control'))}}     
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -316,6 +243,12 @@
                                                     <label class="col-lg-3 control-label">Email:</label>
                                                     <div class="col-lg-8">
                                                       {{Form::text('email',$getProfile->email,array('class' => 'form-control'))}}     
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Phone:</label>
+                                                    <div class="col-lg-8">
+                                                      {{Form::text('phone',$getProfile->phone,array('class' => 'form-control'))}}     
                                                     </div>
                                                 </div>
                                                  <div class="form-group">
@@ -345,6 +278,7 @@
                                                         <input type="reset" value="Cancel" class="btn btn-default">
                                                     </div>
                                                 </div>
+                                                  <div id="output"></div>
                                           
                                         </div>
                                     </div>
@@ -364,34 +298,46 @@
 
 
  <script> 
-$( document ).ready(function() {
-    // var urlload= "{{ Request::root() }}/backend/setting/list";
-     //$("#setting").load('setting/list');
-}); 
        $("#frm-profile").submit(function( event ) {
               
+              Data = new FormData(document.forms.namedItem("frm-profile"));
               var output = $("#output");              
-              var seturl= "{{ Request::root() }}/backend/setting/update";
+              var seturl= "{{ Request::root() }}/backend/update-profile";
                output.html(' <div id="loadajax" style="top: 300px;position: fixed;left:400px;z-index: 890;"><img src="http://reg.spblegalforum.ru/spilf2014/lf/img/animatedCircle.gif" /></div>');    
       
-                var request = $.ajax({
-                url: seturl,
-                type: "POST",
-                data: $("#frm-profile").serialize(),
-                dataType: "html"
-                });
-                request.done(function( msg ){ 
-                   $("#profile").html(msg); 
-                   output.html("");
-                });
-                request.fail(function( jqXHR, textStatus ) {
-                alert( "Request failed: " + textStatus );
-                });
-                
+            $.ajax({
+            url: seturl,
+            type: 'POST',
+            data: Data,
+            cache: false,
+            dataType: 'html',
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request           
+            success: function(data, textStatus, jqXHR)
+            {
+            if(typeof data.error === 'undefined')
+            {                       
+              $("#load-view").html(data);
+              output.html("");
+            }
+            else
+            {
+            
+               Output.innerHTML = "Uploaded error 1! "+data.error;
+            
+            }
+            },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+            // Handle errors here
+            Output.innerHTML = "Uploaded error 2! this file have type extend not provide "+textStatus;     
+            }
+            });
+            
             event.preventDefault();
+
             
         });
 </script>                 
 <!--end profile -->
 </div>
-@stop

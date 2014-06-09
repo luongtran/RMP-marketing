@@ -76,13 +76,28 @@ class SharedController extends BaseController{
             return $result;
       }
     
+
     public function viewProfile()
       {
-
-            $result = Users::where('username','=',Session::get('login_user'))->first();
-            $this->layout->content = View::make('backend.users.profile')->with('getProfile',$result);            
+           
+            $this->layout->content = View::make('backend.users.profile.index');        
             
       }
+
+       public function viewProfile_ajax()
+      {
+
+            $userProfile = DB::table('users')
+                   ->leftjoin("uploads","uploads.id","=","users.avatar")             
+                   ->where("users.username","=",Session::get('login_user'))             
+                   ->select(DB::raw("users.id,users.username,users.email,users.first_name,users.last_name,users.phone,users.company,users.address,uploads.path,uploads.name as imgName,users.updated_at"))
+                   ->first(); 
+
+
+            return  View::make('backend.users.profile.view_profile')->with('getProfile',$userProfile)->render();
+            
+      }
+
         public function updateProfile()
       {
 
@@ -90,6 +105,7 @@ class SharedController extends BaseController{
             'password'=>'min:5|confirmed',            
             'email'=>'email|unique:users',
             'phone'=>'numeric',
+            'avatar'=>'image',
             );
         $validation = Validator::make (Input::all(),$rule);        
         if($validation->passes()){            
@@ -97,24 +113,38 @@ class SharedController extends BaseController{
             if(Input::get('password')){
             $user->password = Hash::make(Input::get('password'));    
             }            
-            $user->email = Input::get('email');
-            $user->sex = Input::get('sex');
+          
             $user->address = Input::get('address');
-            $user->phone = Input::get('phone');
-            $user->permission = Input::get('permission');
-            $user->company = Input::get('company');
-            $user->status = Input::get('status');
-            
+            $user->phone = Input::get('phone');           
+            $user->company = Input::get('company');  
             $user->first_name = Input::get('firstname');
             $user->last_name = Input::get('lastname');
             $user->update();
-
-            Session::flash('msg_flash',  CommonHelper::printMsg('succes', trans('messages.update_message')));
-                 return Redirect::to('backend/view-profile');     
+            /*save to image*/
+            $upload = Input::file('avatar');     
+            if($upload)
+            {
+              Uploads::where("id","=",$user->avatar)->delete();
+              $Path = 'public/asset/share/uploads/images';
+              $Image= new ImagesController();
+              $user->avatar =  $Image->store($upload, $Path);  
+              $user->update();          
+            }      
+            Session::flash('msg_flash',  CommonHelper::printMsg('success', trans('messages.update_message')));
+         }
+         else
+         {             
+            Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));            
          }
 
-        Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
-          return Redirect::back()->withInput();//->render();  
+       $userProfile = DB::table('users')
+                   ->leftjoin("uploads","uploads.id","=","users.avatar")             
+                   ->where("users.username","=",Session::get('login_user'))             
+                   ->select(DB::raw("users.id,users.username,users.email,users.first_name,users.last_name,users.phone,users.company,users.address,uploads.path,uploads.name as imgName,users.updated_at"))
+                   ->first(); 
+
+        return  View::make('backend.users.profile.view_profile')->with('getProfile',$userProfile)->render();
+
       }
     
     public function getImageJson()

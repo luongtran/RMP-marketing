@@ -68,41 +68,14 @@
                     </li>
                     <li>
 
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle"></i><div class="noft-green">5</div></a>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="entypo-export"></i><div class="noft-green">2</div></a>
                         <ul style="margin: 12px 0 0 0;" role="menu" class="dropdown-menu dropdown-wrap">
+                            <?php $language =  Language::where('status','=','publish')->get();?>
+                            @foreach($language as $lang)
                             <li>
-                                <a href="#">
-                                    <span style="background:#DF2135" class="noft-icon maki-bus"></span><i>From Station</i>  <b>01B</b>
-                                </a>
+                               <a href="<?php echo Route('change_language', array('lang' =>$lang->code, 'return_url' => Request::url()) );?>"><span class="<?php if(Session::get('current_locale')==$lang->code){echo 'label label-default';}?>" > {{$lang->name}} </span></a>                                                                 
                             </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <span style="background:#AB6DB0" class="noft-icon maki-ferry"></span><i>Departing at</i>  <b>9:00 AM</b>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <span style="background:#FFA200" class="noft-icon maki-aboveground-rail"></span><i>Delay for</i>  <b>09 Min</b>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <span style="background:#86C440" class="noft-icon maki-airport"></span><i>Take of</i>  <b>08:30 AM</b>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <span style="background:#0DB8DF" class="noft-icon maki-bicycle"></span><i>Take of</i>  <b>08:30 AM</b>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <div>See All Notification</div>
-                            </li>
+                            @endforeach
                         </ul>
                     </li>
                     <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" title="Help" style="font-size:20px;" class="icon-help tooltitle"></i></a>

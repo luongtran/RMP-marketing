@@ -72,6 +72,20 @@
 @stop
  
 @section('content')
+<div class="row">
+    <div class="col-sm-6">
+                                    <div class="btn-group pull-left" style="margin-right:10px">
+                                        <button data-toggle="dropdown" class="btn  dropdown-toggle" type="button">Filter language
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul role="menu" class="dropdown-menu">
+                                            <li><a href="#">All</a> </li>                                            
+                                            <li><a href="#">English</a> </li>                                            
+                                        </ul>
+                                    </div>
+
+        </div>
+</div>
 <div class="row">    
 <div class="col-sm-9">
                              {{Session::get('msg_flash')}}

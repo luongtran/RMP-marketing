@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50616
 File Encoding         : 65001
 
-Date: 2014-06-09 15:01:18
+Date: 2014-06-09 18:11:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -115,7 +115,7 @@ CREATE TABLE `language` (
 -- ----------------------------
 INSERT INTO `language` VALUES ('1', 'English', 'en', null, '', 'publish', null, '2014-06-05 17:03:44', '2014-06-05 10:03:44');
 INSERT INTO `language` VALUES ('5', 'العربية', 'sa', null, '', 'publish', null, '2014-06-05 09:57:09', '2014-06-05 09:57:09');
-INSERT INTO `language` VALUES ('6', 'Việt nam', 'vi', null, null, 'publish', null, '2014-06-05 18:00:35', '2014-06-05 18:00:35');
+INSERT INTO `language` VALUES ('6', 'Việt nam', 'vi', null, null, 'unpublish', null, '2014-06-09 15:41:29', '2014-06-09 08:41:29');
 
 -- ----------------------------
 -- Table structure for `menu`
@@ -373,30 +373,6 @@ INSERT INTO `position` VALUES ('4', 'content', null, null, null, null);
 INSERT INTO `position` VALUES ('5', 'bottom', null, null, null, null);
 
 -- ----------------------------
--- Table structure for `profile`
--- ----------------------------
-DROP TABLE IF EXISTS `profile`;
-CREATE TABLE `profile` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `country` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sex` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `facebook` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `gmail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `twitter` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `address` int(11) DEFAULT NULL,
-  `avatar` int(11) DEFAULT NULL,
-  `document` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Records of profile
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `setting`
 -- ----------------------------
 DROP TABLE IF EXISTS `setting`;
@@ -412,7 +388,7 @@ CREATE TABLE `setting` (
 -- ----------------------------
 -- Records of setting
 -- ----------------------------
-INSERT INTO `setting` VALUES ('address', 'Address', '103088, Ut wisi enim ad minim veniam, 27, of. 304', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `setting` VALUES ('address', 'Address', 'vietnam', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 INSERT INTO `setting` VALUES ('business_hours', 'Businness Hours', '<br> Monday-Friday: 9: <sup>00</sup> — 18: <sup>00</sup> <br> Saturday: 10: <sup>00</sup> — 17: <sup>00</sup> <br> Sunday: closed', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 INSERT INTO `setting` VALUES ('email_contact', 'E-mail', 'info@completermp.com', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 INSERT INTO `setting` VALUES ('email_encryption', 'Email Encryption', 'ttl', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
@@ -445,6 +421,28 @@ CREATE TABLE `status` (
 INSERT INTO `status` VALUES ('publish', 'Publish', null);
 
 -- ----------------------------
+-- Table structure for `support`
+-- ----------------------------
+DROP TABLE IF EXISTS `support`;
+CREATE TABLE `support` (
+  `idi` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` text COLLATE utf8_unicode_ci,
+  `content` text COLLATE utf8_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `user_id` int(11) DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `codeSupport` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `attach` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idi`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of support
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `uploads`
 -- ----------------------------
 DROP TABLE IF EXISTS `uploads`;
@@ -462,7 +460,7 @@ CREATE TABLE `uploads` (
   `modIntro_id` int(11) DEFAULT NULL,
   `group_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of uploads
@@ -484,13 +482,15 @@ INSERT INTO `uploads` VALUES ('47', '06-07-2014_Smart-phone1.jpg', 'asset/share/
 INSERT INTO `uploads` VALUES ('48', '06-07-2014_nokia_announced_meego_smart_phone_n9_1.jpg', 'asset/share/uploads/images', 'image/jpeg', null, '2014-06-07 10:55:54', '2014-06-07 10:55:54', null, null, '39', null, null);
 INSERT INTO `uploads` VALUES ('49', '06-07-2014_smart_phone_data_recovery.jpg', 'asset/share/uploads/images', 'image/jpeg', null, '2014-06-07 10:55:55', '2014-06-07 10:55:55', null, null, '39', null, null);
 INSERT INTO `uploads` VALUES ('50', '06-07-2014_Smart-phone1.jpg', 'asset/share/uploads/images', 'image/jpeg', null, '2014-06-07 10:55:55', '2014-06-07 10:55:55', null, null, '39', null, null);
-INSERT INTO `uploads` VALUES ('51', '06-07-2014_manh.jpg', 'public/asset/share/uploads/images', 'image/jpeg', null, '2014-06-07 11:42:12', '2014-06-07 11:42:12', null, null, null, null, null);
 INSERT INTO `uploads` VALUES ('52', '06-09-2014_iceat.png', 'asset/share/uploads/images', 'image/png', null, '2014-06-09 01:39:59', '2014-06-09 01:39:59', null, null, '40', null, null);
 INSERT INTO `uploads` VALUES ('53', '06-09-2014_qehc.png', 'asset/share/uploads/images', 'image/png', null, '2014-06-09 01:43:27', '2014-06-09 01:43:27', null, null, '41', null, null);
 INSERT INTO `uploads` VALUES ('57', '06-09-2014_digital-art.png', 'asset/share/uploads/images', 'image/png', null, '2014-06-09 03:01:47', '2014-06-09 03:01:47', null, null, '47', null, null);
 INSERT INTO `uploads` VALUES ('58', '06-09-2014_industrial-design.png', 'asset/share/uploads/images', 'image/png', null, '2014-06-09 03:01:56', '2014-06-09 03:01:56', null, null, '48', null, null);
 INSERT INTO `uploads` VALUES ('59', '06-09-2014_vector-art.png', 'asset/share/uploads/images', 'image/png', null, '2014-06-09 03:02:07', '2014-06-09 03:02:07', null, null, '46', null, null);
 INSERT INTO `uploads` VALUES ('60', '06-09-2014_programming.png', 'asset/share/uploads/images', 'image/png', null, '2014-06-09 03:02:18', '2014-06-09 03:02:18', null, null, '45', null, null);
+INSERT INTO `uploads` VALUES ('81', '06-09-2014_Portrait_Gandhi.jpg', 'asset/share/uploads/images', 'image/jpeg', null, '2014-06-09 11:05:44', '2014-06-09 11:05:44', null, null, null, null, null);
+INSERT INTO `uploads` VALUES ('83', '06-09-2014_manh.jpg', 'asset/share/uploads/images', 'image/jpeg', null, '2014-06-09 11:06:52', '2014-06-09 11:06:52', null, null, null, null, null);
+INSERT INTO `uploads` VALUES ('84', '06-09-2014_test1.jpg', 'asset/share/uploads/images', 'image/jpeg', null, '2014-06-09 11:07:54', '2014-06-09 11:07:54', null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `users`
@@ -514,13 +514,14 @@ CREATE TABLE `users` (
   `count_login` int(11) DEFAULT NULL,
   `status` varchar(11) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `company` text COLLATE utf8_unicode_ci,
+  `avatar` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'admin', '$2y$10$CklDpY6X3uKKFq5hFSj.NuDWiSojfzg7YeU8wlLCswT59t3o94pP6', '', null, 'vietnam', '0', '12', '344', '', '', '', null, '2014-06-09 07:48:08', '1', null, '');
-INSERT INTO `users` VALUES ('15', 'username  ', '$2y$10$JE.6zQG/PnD89wa4o1TmkO6MxXrJTF2Nj7sT7qwg48TKlYNhRiYwa', 'test@gmail.com', '012365478', 'VIETNAMESE', '1', null, null, 'female', 'TEST', 'MR', '2014-06-03 10:38:27', '2014-06-03 10:38:27', null, 'publish', null);
-INSERT INTO `users` VALUES ('17', 'ltt.develop@gmail.com', '$2y$10$Yvf1fa3vASOskoIH5/afBORzJ4NQCekpwCh.vfxVxeSBiaptjaeYe', 'ltt.develop@gmail.com', '', '', '2', null, null, 'male', '', '', '2014-06-04 09:24:35', '2014-06-04 09:24:35', null, 'publish', null);
-INSERT INTO `users` VALUES ('18', 'luong@email.com', '$2y$10$aD98BXA5k24yqW2xqtLfIOnFMsp76N9/w.XTL3qcG7suSgM9/PCoC', 'luong@email.com', '', '', '3', null, null, 'male', '', '', '2014-06-05 11:27:51', '2014-06-05 11:27:51', null, 'publish', null);
+INSERT INTO `users` VALUES ('1', 'admin', '$2y$10$CklDpY6X3uKKFq5hFSj.NuDWiSojfzg7YeU8wlLCswT59t3o94pP6', '', '5555555555', 'vietnam', '3', '12', '344', '', 'yyyyyyyyyyyyyy', 'dfggggggggggg', null, '2014-06-09 11:05:44', '1', null, 'sssssssssssssssssss', '81');
+INSERT INTO `users` VALUES ('15', 'username  ', '$2y$10$JE.6zQG/PnD89wa4o1TmkO6MxXrJTF2Nj7sT7qwg48TKlYNhRiYwa', 'test@gmail.com', '012365478', 'VIETNAMESE', '1', null, null, 'female', 'TEST', 'MR', '2014-06-03 10:38:27', '2014-06-09 11:06:52', null, 'publish', '', '83');
+INSERT INTO `users` VALUES ('17', 'ltt.develop@gmail.com', '$2y$10$Yvf1fa3vASOskoIH5/afBORzJ4NQCekpwCh.vfxVxeSBiaptjaeYe', 'ltt.develop@gmail.com', '', '', '2', null, null, 'male', '', '', '2014-06-04 09:24:35', '2014-06-09 11:07:54', null, 'publish', '', '84');
+INSERT INTO `users` VALUES ('18', 'luong@email.com', '$2y$10$aD98BXA5k24yqW2xqtLfIOnFMsp76N9/w.XTL3qcG7suSgM9/PCoC', 'luong@email.com', '', '', '3', null, null, 'male', '', '', '2014-06-05 11:27:51', '2014-06-05 11:27:51', null, 'publish', null, null);
