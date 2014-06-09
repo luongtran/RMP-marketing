@@ -1,12 +1,76 @@
+@section('title')
+<div class="row">
+                <div id="paper-top">
+                    <div class="col-sm-3">
+                        <h2 class="tittle-content-header">
+                            <i class="icon-media-record"></i> 
+                            <span>
+                             {{trans('common.table.category')}}                       
+                            </span>
+                        </h2>
+
+                    </div>
+
+                    <div class="col-sm-7">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="tittle-middle-header">   
+                              <div clas="alert">                         
+                               {{Session::get('msg_flash_common')}}
+                             </div>
+                        
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="btn-group btn-wigdet pull-right visible-lg">
+                            <div class="btn">
+                                Action</div>
+                            <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li>
+                                    <a href="{{Request::root()}}/backend/category">
+                                        <span class="entypo-plus-circled margin-iconic"></span>  {{trans('common.button.add')}}  </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-heart margin-iconic"></span>Favorite</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-cog margin-iconic"></span>Setting</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+@stop
+@section('breadcrumb')      
+ <ul id="breadcrumb">
+                <li><a href="{{Request::root()}}/backend">
+                    <span class="entypo-home"></span></a>
+                </li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li><a href="{{Request::root()}}/backend/category" title="Sample page 1">  {{trans('common.table.category')}}   </a>
+                </li>              
+                <li class="pull-right">
+                    <div class="input-group input-widget">
+
+                        <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
+                    </div>
+                </li>
+            </ul>
+ @stop
+
 @section('content')
-<div class="row"
-     <div class="col-lg-12">
-            <ol class="breadcrumb">
-              <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i> {{trans('common.menu.dashboard')}}</a></li>
-              <li class="active"><a href="{{Request::root()}}/backend/category"><i class="fa fa-desktop"></i> {{trans('common.table.category')}}</a></li>            
-            </ol>
-    </div>   
-</div><!-- end row 1-->
+
 <div class="row">
                   <div class="col-lg-12">   
                   <div class="messages_validation">                           
@@ -67,10 +131,10 @@
                                     <thead>
                                       <tr>
                                         <th><input type="checkbox" id="ckbCheckAll" /></th>  
-                                        <th class="header">{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
-                                        <th class="header">{{trans('common.table.status')}} <i class="fa fa-sort"></i></th>                                        
-                                        <th class="header">{{trans('common.table.create_at')}}<i class="fa fa-sort"></i></th>
-                                        <th class="header"><i class="fa fa-sort"></i></th>
+                                        <th class="">{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
+                                        <th class="">{{trans('common.table.status')}} <i class="fa fa-sort"></i></th>                                        
+                                        <th class="">{{trans('common.table.create_at')}}<i class="fa fa-sort"></i></th>
+                                        <th class=""><i class="fa fa-sort"></i></th>
                                       </tr>
                                     </thead>
                                     <tbody>

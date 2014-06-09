@@ -34,7 +34,7 @@
                             </button>
                             <ul role="menu" class="dropdown-menu">
                                 <li>
-                                    <a href="{{Request::root()}}/backend/module/{{$infoMod->id}}/intro/add">
+                                    <a href="{{Request::root()}}/backend/module-package/{{$infoMod->id}}/intro/add">
                                         <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
                                 </li>
                                 <li>
@@ -64,7 +64,7 @@
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="{{Request::root()}}/backend/module/{{$infoMod->id}}/intro" title="Sample page 1">Intro [ Module {{$infoMod->name}} ]</a>
+                <li><a href="{{Request::root()}}/backend/module-package/{{$infoMod->id}}/intro" title="Sample page 1">Intro [ Module {{$infoMod->name}} ]</a>
                 </li>
                 <li class="pull-right">
                     <div class="input-group input-widget">
@@ -79,7 +79,7 @@
 <div class="row">    
 <div class="col-sm-9">
 
-                        {{Form::open(array('url'=>'backend/module/'.$infoMod->id.'/intro/action', 'method' => 'post','role'=>'form'))}}  
+                        {{Form::open(array('url'=>'backend/module-package/'.$infoMod->id.'/intro/action', 'method' => 'post','role'=>'form'))}}  
                         <div id="headerClose" class="nest">
                             <div class="title-alt">
                                 <h6> List content module {{$infoMod->name}} </h6>
@@ -105,10 +105,10 @@
                                                 <td>{{$data->lang_id}}</td> 
                                                 <td>{{$data->user_id}}</td> 
                                                 <td>
-                                                    <a href='{{Request::root()}}/backend/module/{{$infoMod->id}}/intro/update/{{$data->id}}'>
+                                                    <a href='{{Request::root()}}/backend/module-package/{{$infoMod->id}}/intro/update/{{$data->id}}'>
                                                         <span class="label label-primary">Update</span>                                                        
                                                     </a>
-                                                    <a href='{{Request::root()}}/backend/module/{{$infoMod->id}}/intro/delete/{{$data->id}}'  onclick="return confirm('{{trans("messages.cf_delete")}}');">
+                                                    <a href='{{Request::root()}}/backend/module-package/{{$infoMod->id}}/intro/delete/{{$data->id}}'  onclick="return confirm('{{trans("messages.cf_delete")}}');">
                                                     <span class="label label-danger">Delete</span>
                                                     </a> 
                                                 </td>

@@ -16,7 +16,7 @@
                         <div class="tittle-middle-header">
 
                             <div class="alert">
-                               {{Session::get('msg_flash_home')}}
+                               {{Session::get('msg_flash_common')}}
                             </div>
 
 
@@ -70,124 +70,127 @@
                 </li>
             </ul>
  @stop
-@section('content')           
-                <div class="row">
-                     <div class="content-wrap">
-                    <div class='alert'>
-                        {{Session::get('msg_flash')}}
-                    </div>
-                    <!-- begin form -->
-                    <div class="col-sm-3">
-                        <div class="row">
-                        <div id="headerClose" class="nest">                
-                            <div class="title-alt">
-                                <h6>Add module</h6>
+@section('content')       
+<div class="row">
+            
+            <div class="col-lg-12"> 
+            <div class="col-lg-12">
+                <div class="messages_validation col-lg-12">                           
+                      {{Session::get('msg_flash')}}
+                </div>
+                <div class="col-lg-4">              
+                    {{Form::open(array('url'=>'backend/module/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data','id'=>'frm-setting') )}}               
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{trans('titlepage.title.add_module')}}</h3>
+                        </div>
+                        <div class="panel-body">                         
+                             <div>                            
+                                <div class="form-group">                                
+                                    <label>{{trans('common.table.name')}}<span class="star-validation">(*)</span></label>
+                                        {{Form::text('name','',array('class' => 'form-control','id'=>'name'))}}       
+                                </div>
+                                 
 
-                            </div>
-                                <div id="header" class="body-nest">
-                                <div class="form_center">
-                                    {{Form::open(array('url'=>'backend/module/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data','id'=>'frm-setting') )}}                                                                     
-                                        <div class="form-group">
-                                             <label for="exampleInputEmail1">Name</label>
-                                             {{Form::text('name','',array('class' => 'form-control'))}}                                             
-                                        </div> 
-                                        <div class="form-group">
-                                             <label for="exampleInputEmail1">Mod</label>
-                                             {{Form::text('mod','',array('class' => 'form-control'))}}                                             
-                                        </div>
-                                        <div class="form-group">
-                                            <label>{{trans('common.table.position')}}</label> 
-                                            <select class="form-control" name="position">
-                                                <option value="">None</option>
-                                               @foreach($position as $otp)
-                                               <option value="{{$otp->name}}">{{$otp->name}}</option>
-                                               @endforeach
-                                            </select>
-                                        </div>
-                                          <div class="form-group">
-                                             <label for="exampleInputEmail1">Order</label>
-                                             {{Form::text('order','',array('class' => 'form-control'))}}                                             
-                                        </div> 
-                                        <button type="submit" class="btn btn-info">Submit</button>
-                                    </form>
-                                    {{Form::close()}}
+                                <div class="form-group">
+                                    <label>{{trans('common.table.mod')}}</label> 
+                                    {{Form::text('mod','',array('class' => 'form-control'))}}       
                                 </div>
 
+                                <div class="form-group">
+                                    <label>{{trans('common.table.position')}}</label> 
+                                    <select class="form-control" name="position">
+                                        <option value="">None</option>
+                                       @foreach($position as $otp)
+                                       <option value="{{$otp->name}}">{{$otp->name}}</option>
+                                       @endforeach
+                                    </select>
+                                </div>
 
-                            </div>
+                                <div class="form-group">
+                                    <label>{{trans('common.table.order')}}</label> 
+                                    {{Form::text('order','',array('class' => 'form-control'))}}       
+                                </div>
 
-                        </div>
+                                <div class="form-group">
+                                    <label>{{trans('common.table.icon')}}</label> 
+                                    {{Form::textarea('icon','',array('class' => 'form-control','rows'=>'4'))}}       
+                                </div>
+                                 <?php echo CommonHelper::createFormStatus();?>
+                                
+                                 <button type="submit" class="btn btn-primary">{{trans('common.button.save')}}</button>
+                             </div>
+                           </div>
+                            </div>                    
+                    {{Form::close()}}
+                                 
+                </div><!--col4-->
+                
+                <div class="col-lg-8">
+                <div class="col-lg-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading"> 
+                       <h3 class="panel-title"> {{trans('titlepage.title.list_module')}}</h3>
                     </div>
-                     </div>    
-                    <!--end form -->
-
-                    <div class="col-sm-9">
-                        <div class='row'>
-                         <div id="headerClose" class="nest">
-                            <div class="title-alt">
-                                <h6>
-                                    Basic Responsive Tables</h6>                                
-                            </div>
-
-                             <div id="header" class="body-nest">
-                                {{Form::open(array('url'=>'backend/module/action', 'method' => 'post','role'=>'form'))}}     
-                                <section id="flip-scroll">
-                                        
-                                    <table class="table table-bordered table-striped cf">
-                                        <thead class="cf">
-                                            <tr>
-                                                <th><input type="checkbox" id="ckbCheckAll" /></th>
-                                                <th>Name</th>
-                                                <th>Mod</th>
-                                                <th>Position</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($module as $mod)
-                                            <tr <?php if($mod->status == "unpublish"){echo "class='danger'";}?>>
-                                                <td><input type="checkbox" value="{{$mod->id}}" name="checkID[]" id="" class="checkBoxClass"></td>
-                                                <td>{{$mod->name}}</td>
-                                                <td>{{$mod->mod }}</td>
-                                                <td>{{$mod->position }}</td>
-                                                <td>
-                                                    <a href='{{Request::root()}}/backend/module/update/{{$mod->id}}'  onclick="return confirm('Yes or no!');">
-                                                        <span class="label label-primary">Update</span>                                                        
-                                                    </a>
-                                                    <a href='{{Request::root()}}/backend/module/delete/{{$mod->id}}' onclick="return confirm('Yes or no!');">
-                                                    <span class="label label-danger">Delete</span>
-                                                    </a> 
-                                                     <a href='{{Request::root()}}/backend/module/{{$mod->id}}/intro' >
-                                                    <span class="label label-danger">Intro</span>
-                                                    </a> 
-                                                     <a href='{{Request::root()}}/backend/module/{{$mod->id}}/content' >
-                                                    <span class="label label-danger">Content</span>
-                                                    </a> 
-                                                </td>
-                                                
-                                            </tr>                    
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                   <div class="row col-lg-3">
+                    <div class="panel-body"> 
+                               
+                                <h2></h2>
+                                 {{Form::open(array('url'=>'backend/module/action', 'method' => 'post','role'=>'form'))}}               
+                                <div class="table-responsive">
+                                  <table class="table table-bordered table-hover tablesorter">
+                                    <thead>
+                                      <tr>
+                                        <th><input type="checkbox" id="ckbCheckAll" /></th>  
+                                        <th class="">{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
+                                        <th class="">{{trans('common.table.mod')}} <i class="fa fa-sort"></i></th>      
+                                        <th class="">{{trans('common.table.position')}} <i class="fa fa-sort"></i></th>      
+                                        <th class="">{{trans('common.table.order')}} <i class="fa fa-sort"></i></th>      
+                                        <th class=""><i class="fa fa-sort"></i></th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      @foreach($module  as $mod)                                      
+                                      <tr <?php if($mod->status == "unpublish"){echo "class='danger'";}?> >
+                                          <td><input type="checkbox" value="{{$mod->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
+                                        <td>{{$mod->name}}</td>
+                                        <td>{{$mod->mod}}</td>
+                                                       
+                                        <td>{{$mod->position}}</td>                      
+                                        <td>{{$mod->order}}</td>          
+                                        <td><a  href="{{Request::root()}}/backend/module/update/{{$mod->id}}"><span class="label label-primary">{{trans('common.button.update')}}</span></a>
+                                            <a  href="{{Request::root()}}/backend/module/delete/{{$mod->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a>
+                                        </td>
+                                      </tr>                                      
+                                      @endforeach
+                                    </tbody>
+                                  </table> 
+                                </div>
+                                
+                                    
+                                    <div class="row col-lg-3">
                                           <?php echo CommonHelper::createFormAction();?>
-                                   </div>
-                                </section>
-                                 {{Form::close()}}  
-                            </div>
-                          
-                        </div>
-                            
-                        
-                    </div> <!-- end col  -->
-                    </div><!-- end row -->
-                    
-                        <div class='col-lg-3'>
-                            <!-- paging -->                
-                                <?php echo $module->links(); ?>                              
-                            <!-- end paging -->  
-                        </div>    
-                </div>
-            </div>
+                                    </div>
+                                 
+                                 
+                          </div>                                
+                                                                    
+                              
+                                 
+                             {{Form::close()}} 
 
+                               <!-- paging -->                
+                         <?php echo $module->links(); ?>  
+                     <!-- end paging -->  
+                               
+                </div><!--panel -->  
+                   
+                </div><!-- 12-->   
+                  
+                            
+                
+                  
+            </div><!--col 8 -->
+       </div><!--col 12 -->        
+       </div><!--col 12 -->
+</div><!-- end row 2-->  
 @stop

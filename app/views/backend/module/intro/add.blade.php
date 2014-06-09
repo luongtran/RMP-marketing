@@ -34,7 +34,7 @@
                             </button>
                             <ul role="menu" class="dropdown-menu">
                                 <li>
-                                    <a href="{{Request::root()}}/backend/module/intro/{{$infoMod->id}}/add">
+                                    <a href="{{Request::root()}}/backend/module-package/intro/{{$infoMod->id}}/add">
                                         <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
                                 </li>
                                 <li>
@@ -60,11 +60,11 @@
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="{{Request::root()}}/backend/module" title="Sample page 1">Module</a>
+                <li><a href="{{Request::root()}}/backend/module-package" title="Sample page 1">Module</a>
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="{{Request::root()}}/backend/module/{{$infoMod->id}}/intro" title="Sample page 1">Content [ Module {{$infoMod->name}} ]</a>
+                <li><a href="{{Request::root()}}/backend/module-package/{{$infoMod->id}}/intro" title="Sample page 1">Content [ Module {{$infoMod->name}} ]</a>
                 </li>
                  <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
@@ -83,7 +83,7 @@
 <div class="row">
 <div class="content-wrap">
                 <div class="row">                   
-                  {{Form::open(array('url'=>'backend/module/'.$infoMod->id.'/intro/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data','id'=>'frm-setting') )}}                                                                                                            
+                  {{Form::open(array('url'=>'backend/module-package/'.$infoMod->id.'/intro/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data','id'=>'frm-setting') )}}                                                                                                            
                     <div class="col-sm-8"> 
                         <div id="headerClose" class="nest">
                             <div class="title-alt">

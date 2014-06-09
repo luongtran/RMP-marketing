@@ -12,7 +12,8 @@
  * @author Administrator
  */
 class SharedController extends BaseController{
-         
+     
+     protected $layout = 'backend.layouts.default';      
      CONST ROLE_MANAGER =1;
      CONST ROLE_ADMIN =2;
      CONST ROLE_SUPPER =3;
@@ -75,6 +76,46 @@ class SharedController extends BaseController{
             return $result;
       }
     
+    public function viewProfile()
+      {
+
+            $result = Users::where('username','=',Session::get('login_user'))->first();
+            $this->layout->content = View::make('backend.users.profile')->with('getProfile',$result);            
+            
+      }
+        public function updateProfile()
+      {
+
+            $rule=array(          
+            'password'=>'min:5|confirmed',            
+            'email'=>'email|unique:users',
+            'phone'=>'numeric',
+            );
+        $validation = Validator::make (Input::all(),$rule);        
+        if($validation->passes()){            
+            $user=Users::find(Input::get('id'));
+            if(Input::get('password')){
+            $user->password = Hash::make(Input::get('password'));    
+            }            
+            $user->email = Input::get('email');
+            $user->sex = Input::get('sex');
+            $user->address = Input::get('address');
+            $user->phone = Input::get('phone');
+            $user->permission = Input::get('permission');
+            $user->company = Input::get('company');
+            $user->status = Input::get('status');
+            
+            $user->first_name = Input::get('firstname');
+            $user->last_name = Input::get('lastname');
+            $user->update();
+
+            Session::flash('msg_flash',  CommonHelper::printMsg('succes', trans('messages.update_message')));
+                 return Redirect::to('backend/view-profile');     
+         }
+
+        Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
+          return Redirect::back()->withInput();//->render();  
+      }
     
     public function getImageJson()
     {

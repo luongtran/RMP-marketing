@@ -1,11 +1,3 @@
-    <div class="col-lg-12">
-            <ol class="breadcrumb">
-              <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i> {{trans('common.menu.dashboard')}}</a></li>
-              <li class="active"><a href="{{Request::root()}}/backend/setting"><i class="fa fa-desktop"></i> {{trans('common.table.setting')}}</a></li>            
-            </ol>
-    </div>  
-
-                      
                 <div class="messages_validation col-lg-12">                           
                       {{Session::get('msg_flash')}}             
                     {{Form::open(array('url'=>'backend/setting/update', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data','id'=>'frm-setting') )}}               
@@ -19,8 +11,8 @@
                                   <table class="table table-bordered table-hover tablesorter">
                                     <thead>
                                       <tr> 
-                                        <th class="header">{{trans('common.table.name')}} <i class="fa fa-sort"></i></th>
-                                        <th class="header">{{trans('common.table.value')}}<i class="fa fa-sort"></i></th>                                                                          
+                                        <th class="">{{trans('common.table.name')}} <i class="fa fa-sort"></i></th>
+                                        <th class="">{{trans('common.table.value')}}<i class="fa fa-sort"></i></th>                                                                          
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -33,8 +25,8 @@
                                             </td>
                                                                               
                                             <td @if($setting->value=="") {{'class="danger"'}}   @endif >
-                                            <div class="form-group">                                                        
-                                                    {{Form::text($setting->name,$setting->value,array('class' => 'form-control','id'=>$setting->name))}} 
+                                            <div class="form-group">   
+                                                 {{Form::text($setting->name,$setting->value,array('class' => 'form-control','id'=>$setting->name))}}
                                             </div>   
                                             </td>
                                             
@@ -53,7 +45,7 @@
             </p>              
           </div>        
          
- 
+
  <script> 
 $( document ).ready(function() {
     // var urlload= "{{ Request::root() }}/backend/setting/list";
@@ -63,8 +55,7 @@ $( document ).ready(function() {
               
               var output = $("#output");              
               var seturl= "{{ Request::root() }}/backend/setting/update";
-              
-               output.html('<div id="loadajax" style="top: 300px;position: fixed;left:400px;z-index: 890;"><img src="http://reg.spblegalforum.ru/spilf2014/lf/img/animatedCircle.gif" /></div>');    
+               output.html(' <div id="loadajax" style="top: 300px;position: fixed;left:400px;z-index: 890;"><img src="http://reg.spblegalforum.ru/spilf2014/lf/img/animatedCircle.gif" /></div>');    
       
                 var request = $.ajax({
                 url: seturl,
@@ -84,3 +75,4 @@ $( document ).ready(function() {
             
         });
 </script>
+

@@ -13,14 +13,9 @@
 
                     <div class="col-sm-7">
                         <div class="devider-vertical visible-lg"></div>
-                        <div class="tittle-middle-header">
-
-                            <div class="alert">
+                        <div class="tittle-middle-header">                         
                                {{Session::get('msg_flash_home')}}
-                            </div>
-
-
-                        </div>
+                         </div>
 
                     </div>
                     <div class="col-sm-2">
@@ -34,7 +29,7 @@
                             </button>
                             <ul role="menu" class="dropdown-menu">
                                 <li>
-                                    <a href="{{Request::root()}}/backend/module/content/{{$infoMod->id}}/add">
+                                    <a href="{{Request::root()}}/backend/module-package/content/{{$infoMod->id}}/add">
                                         <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
                                 </li>
                                 <li>
@@ -64,7 +59,7 @@
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="{{Request::root()}}/backend/module/{{$infoMod->id}}/content" title="Sample page 1">Content [ Module {{$infoMod->name}} ]</a>
+                <li><a href="{{Request::root()}}/backend/module-package/{{$infoMod->id}}/content" title="Sample page 1">Content [ Module {{$infoMod->name}} ]</a>
                 </li>
                  <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
@@ -82,8 +77,9 @@
 @section('content')
 <div class="row">
 <div class="content-wrap">
-                <div class="row">                   
-                  {{Form::open(array('url'=>'backend/module/'.$infoMod->id.'/content/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data','id'=>'frm-setting') )}}                                                                                                            
+                <div class="row">  
+                       {{Session::get('msg_flash')}}                 
+                  {{Form::open(array('url'=>'backend/module-package/'.$infoMod->id.'/content/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data','id'=>'frm-setting') )}}                                                                                                            
                     <div class="col-sm-8"> 
                         <div id="headerClose" class="nest">
                             <div class="title-alt">
@@ -91,14 +87,9 @@
                                    Basic</h6>                          
 
                             </div>
-                       
-
 
                             <div id="header" class="body-nest">
-                                    <!-- begin form-->    
-                                                <div class='alert'>
-                                                        {{Session::get('msg_flash')}}
-                                                    </div>
+                                    <!-- begin form-->  
                                         <fieldset>
                                             <div class="form-group">
                                              <label for="">Title</label>

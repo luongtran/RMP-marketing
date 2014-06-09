@@ -10,6 +10,7 @@
                    ->where("page_module.page_id","=",$pageinfo->id) 
                    ->select(DB::raw("module_intro.title,module_intro.sumary,module_intro.content"))
                    ->first(); 
+     if($reason_intro)              
      echo $reason_intro->title;
      ?>
 </h3>

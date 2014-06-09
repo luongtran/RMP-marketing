@@ -68,23 +68,24 @@ Route::get('backend/module/update/{id}',array('as' => 'module_update', 'uses' =>
 Route::post('backend/module/update/{id}',array('as' => 'module_update', 'uses' =>'ModuleController@postUpdate'));
 Route::get('backend/module/delete/{id}',array('as' => 'module_delete', 'uses' =>'ModuleController@getDelete'));
 Route::post('backend/module/action',array('as' => 'module_action', 'uses' =>'ModuleController@action'));
+
 /*Module data */
-Route::get('backend/module/{idmod}/content',array('as' => 'module_content', 'uses' =>'ModuleDataController@index'));
-Route::get('backend/module/{idmod}/content/add',array('as' => 'module_content_add', 'uses' =>'ModuleDataController@getAdd'));
-Route::post('backend/module/{idmod}/content/add',array('as' => 'module_content_add', 'uses' =>'ModuleDataController@postAdd'));
-Route::get('backend/module/{idmod}/content/update/{idcontent}',array('as' => 'module_content_update', 'uses' =>'ModuleDataController@getUpdate'));
-Route::post('backend/module/{idmod}/content/update/{idcontent}',array('as' => 'module_content_update', 'uses' =>'ModuleDataController@postUpdate'));
-Route::get('backend/module/{idmod}/content/delete/{idcontent}',array('as' => 'module_content_update', 'uses' =>'ModuleDataController@getDelete'));
-Route::post('backend/module/{idmod}/content/action',array('as' => 'module_content_action', 'uses' =>'ModuleDataController@action'));
+Route::get('backend/module-package/{idmod}/content',array('as' => 'module_content', 'uses' =>'ModuleDataController@index'));
+Route::get('backend/module-package/{idmod}/content/add',array('as' => 'module_content_add', 'uses' =>'ModuleDataController@getAdd'));
+Route::post('backend/module-package/{idmod}/content/add',array('as' => 'module_content_add', 'uses' =>'ModuleDataController@postAdd'));
+Route::get('backend/module-package/{idmod}/content/update/{idcontent}',array('as' => 'module_content_update', 'uses' =>'ModuleDataController@getUpdate'));
+Route::post('backend/module-package/{idmod}/content/update/{idcontent}',array('as' => 'module_content_update', 'uses' =>'ModuleDataController@postUpdate'));
+Route::get('backend/module-package/{idmod}/content/delete/{idcontent}',array('as' => 'module_content_update', 'uses' =>'ModuleDataController@getDelete'));
+Route::post('backend/module-package/{idmod}/content/action',array('as' => 'module_content_action', 'uses' =>'ModuleDataController@action'));
 
 /*Module intro */
-Route::get('backend/module/{idmod}/intro',array('as' => 'module_intro', 'uses' =>'ModuleIntroController@index'));
-Route::get('backend/module/{idmod}/intro/add',array('as' => 'module_intro_add', 'uses' =>'ModuleIntroController@getAdd'));
-Route::post('backend/module/{idmod}/intro/add',array('as' => 'module_intro_add', 'uses' =>'ModuleIntroController@postAdd'));
-Route::get('backend/module/{idmod}/intro/update/{idcontent}',array('as' => 'module_intro_update', 'uses' =>'ModuleIntroController@getUpdate'));
-Route::post('backend/module/{idmod}/intro/update/{idcontent}',array('as' => 'module_intro_update', 'uses' =>'ModuleIntroController@postUpdate'));
-Route::get('backend/module/{idmod}/intro/delete/{idcontent}',array('as' => 'module_intro_update', 'uses' =>'ModuleIntroController@getDelete'));
-Route::post('backend/module/{idmod}/intro/action',array('as' => 'module_intro_action', 'uses' =>'ModuleIntroController@action'));
+Route::get('backend/module-package/{idmod}/intro',array('as' => 'module_intro', 'uses' =>'ModuleIntroController@index'));
+Route::get('backend/module-package/{idmod}/intro/add',array('as' => 'module_intro_add', 'uses' =>'ModuleIntroController@getAdd'));
+Route::post('backend/module-package/{idmod}/intro/add',array('as' => 'module_intro_add', 'uses' =>'ModuleIntroController@postAdd'));
+Route::get('backend/module-package/{idmod}/intro/update/{idcontent}',array('as' => 'module_intro_update', 'uses' =>'ModuleIntroController@getUpdate'));
+Route::post('backend/module-package/{idmod}/intro/update/{idcontent}',array('as' => 'module_intro_update', 'uses' =>'ModuleIntroController@postUpdate'));
+Route::get('backend/module-package/{idmod}/intro/delete/{idcontent}',array('as' => 'module_intro_update', 'uses' =>'ModuleIntroController@getDelete'));
+Route::post('backend/module-package/{idmod}/intro/action',array('as' => 'module_intro_action', 'uses' =>'ModuleIntroController@action'));
 
 
 /*Menu*/
@@ -125,14 +126,15 @@ Route::get('backend/upload/list',array('as' => 'uppload_list', 'uses' =>'UploadC
 
 /*Share*/
 Route::get('change-language/{id}',array('as' => 'change_language', 'uses' =>'SharedController@getChangeLanguage'));
+Route::get( 'admin-login' , array('as' => 'user_login', 'uses' => 'SharedController@getLogin'));
+Route::post( 'admin-login' , array('as' => 'user_login', 'uses' => 'SharedController@postLogin'));
+Route::get( 'admin-logout' , array('as' => 'user_logout', 'uses' => 'SharedController@getLogout'));
+Route::get( 'backend/view-profile' , array('as' => 'user_profile', 'uses' => 'SharedController@viewProfile'));
+Route::post( 'backend/update-profile' , array('as' => 'user_profile_update', 'uses' => 'SharedController@updateProfile'));
 //===========================================//
 
 Route::get('backend/dump',array('as' => 'backend_dump', 'uses' =>'AdminController@dump'));
 
-
-Route::get( 'admin-login' , array('as' => 'user_login', 'uses' => 'SharedController@getLogin'));
-Route::post( 'admin-login' , array('as' => 'user_login', 'uses' => 'SharedController@postLogin'));
-Route::get( 'admin-logout' , array('as' => 'user_logout', 'uses' => 'SharedController@getLogout'));
 
 /*page view each module*/
 Route::get('/',array('as' => 'front_end', 'uses' =>'HomeController@pageview'));
@@ -156,13 +158,9 @@ Route::get('backend/load-immages-json',array('as' => 'load_image_json', 'uses' =
  Route::when('backend/upload/*', 'isManager');
 
  Route::when('backend/menu', 'isAdmin');
- Route::when('backend/menu/*', 'isAdmin');
- Route::when('backend/reason', 'isAdmin');
- Route::when('backend/reason/*', 'isAdmin');
- Route::when('backend/service', 'isAdmin');
- Route::when('backend/service/*', 'isAdmin'); 
- Route::when('backend/slider', 'isAdmin');
- Route::when('backend/slider/*', 'isAdmin');
+ Route::when('backend/menu/*', 'isAdmin'); 
+ Route::when('backend/module-package', 'isAdmin');
+ Route::when('backend/module-package/*', 'isAdmin');
 
  Route::when('backend/page', 'isSupper');
  Route::when('backend/page/*', 'isSupper');

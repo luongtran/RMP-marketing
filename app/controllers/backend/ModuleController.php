@@ -49,6 +49,7 @@ class ModuleController extends BaseController {
         $mod->mod = Input::get('mod');        
         $mod->position = Input::get('position');
         $mod->order = Input::get('order');
+        $mod->icon = Input::get('icon');
         $mod->status = Input::get('status');
         $mod->save();
         Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.create_message')));  
@@ -79,7 +80,7 @@ class ModuleController extends BaseController {
             $mod->mod = Input::get('mod');
             $mod->position = Input::get('position');
             $mod->order = Input::get('order');
-            $mod->intro = Input::get('intro');
+            $mod->icon = Input::get('icon');
             $mod->status = Input::get('status');
             $mod->update();
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message')));  
@@ -154,5 +155,8 @@ class ModuleController extends BaseController {
          $ar->update();
          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.changestatus_message')));   
      }
+
+
+     
 
 }

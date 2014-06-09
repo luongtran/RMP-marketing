@@ -45,8 +45,7 @@
                             </div>
 
                             <div class="body-nest" id="Blank_Page_Content">
-
-                                Content Goes Here
+                                    {{Session::get('msg_flash_common')}}
                             </div>
                         </div>
                     </div>

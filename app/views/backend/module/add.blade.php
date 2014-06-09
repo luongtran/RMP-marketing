@@ -51,7 +51,11 @@
                                 <div class="form-group">
                                     <label>{{trans('common.table.order')}}</label> 
                                     {{Form::text('order','',array('class' => 'form-control'))}}       
-                                </div>                              
+                                </div>
+                                <div class="form-group">
+                                    <label>{{trans('common.table.icon')}}</label> 
+                                    {{Form::text('icon','',array('class' => 'form-control'))}}       
+                                </div>                                
                                  <?php echo CommonHelper::createFormStatus();?>                                
                                  <button type="submit" class="btn btn-primary">{{trans('common.button.save')}}</button>
                              </div>

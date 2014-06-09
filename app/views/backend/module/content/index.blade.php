@@ -13,13 +13,9 @@
 
                     <div class="col-sm-7">
                         <div class="devider-vertical visible-lg"></div>
-                        <div class="tittle-middle-header">
-
-                            <div class="alert">
+                        <div class="tittle-middle-header">                         
                                {{Session::get('msg_flash_home')}}
-                            </div>
-
-
+                          
                         </div>
 
                     </div>
@@ -34,7 +30,7 @@
                             </button>
                             <ul role="menu" class="dropdown-menu">
                                 <li>
-                                    <a href="{{Request::root()}}/backend/module/{{$infoMod->id}}/content/add">
+                                    <a href="{{Request::root()}}/backend/module-package/{{$infoMod->id}}/content/add">
                                         <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
                                 </li>
                                 <li>
@@ -64,7 +60,7 @@
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="{{Request::root()}}/backend/module/{{$infoMod->id}}/content" title="Sample page 1">Content [ Module {{$infoMod->name}} ]</a>
+                <li><a href="{{Request::root()}}/backend/module-package/{{$infoMod->id}}/content" title="Sample page 1">Content [ Module {{$infoMod->name}} ]</a>
                 </li>
                 <li class="pull-right">
                     <div class="input-group input-widget">
@@ -78,17 +74,15 @@
 @section('content')
 <div class="row">    
 <div class="col-sm-9">
-
-                        {{Form::open(array('url'=>'backend/module/'.$infoMod->id.'/content/action', 'method' => 'post','role'=>'form'))}}  
+                             {{Session::get('msg_flash')}}
+                        {{Form::open(array('url'=>'backend/module-package/'.$infoMod->id.'/content/action', 'method' => 'post','role'=>'form'))}}  
                         <div id="headerClose" class="nest">
                             <div class="title-alt">
                                 <h6> List content module {{$infoMod->name}} </h6>
                             </div>                              
                            <div id="header" class="body-nest">
-                                 <section id="flip-scroll">                                        
-                                    <div class='alert'>
-                                        {{Session::get('msg_flash')}}
-                                    </div>
+                                 <section id="flip-scroll">
+                                   
                                     <table class="table table-bordered table-striped cf">
                                         <thead class="cf">
                                             <tr>
@@ -107,10 +101,10 @@
                                                 <td>{{$data->lang_id}}</td> 
                                                 <td>{{$data->user_id}}</td> 
                                                 <td>
-                                                    <a href='{{Request::root()}}/backend/module/{{$infoMod->id}}/content/update/{{$data->id}}'>
+                                                    <a href='{{Request::root()}}/backend/module-package/{{$infoMod->id}}/content/update/{{$data->id}}'>
                                                         <span class="label label-primary">Update</span>                                                        
                                                     </a>
-                                                    <a href='{{Request::root()}}/backend/module/{{$infoMod->id}}/content/delete/{{$data->id}}'  onclick="return confirm('{{trans("messages.cf_delete")}}');">
+                                                    <a href='{{Request::root()}}/backend/module-package/{{$infoMod->id}}/content/delete/{{$data->id}}'  onclick="return confirm('{{trans("messages.cf_delete")}}');">
                                                     <span class="label label-danger">Delete</span>
                                                     </a> 
                                                 </td>
@@ -125,8 +119,8 @@
                           
                         </div>
                                     <div class="row col-lg-3">
-                                          <?php echo CommonHelper::createFormAction();?>
-                                         <?php echo $module_data->links(); ?>       
+                                          <?php echo CommonHelper::createFormAction();?>  
+                                            <?php echo $module_data->links(); ?>                                            
                                    </div>
                            {{Form::close()}}    
                       

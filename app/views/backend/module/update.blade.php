@@ -5,11 +5,11 @@
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="{{Request::root()}}/backend/module" title="Sample page 1">Module</a>
+                <li><a href="{{Request::root()}}/backend/module" title="Sample page 1">{{trans('common.table.module')}}</a>
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="#" title="Sample page 1">Update</a>
+                <li><a href="#" title="Sample page 1">{{trans('common.button.update')}}</a>
                 </li>
                 <li class="pull-right">
                     <div class="input-group input-widget">
@@ -20,70 +20,57 @@
             </ul>
  @stop
 @section('content')
-<div class="content-wrap">
-                <div class="row">
 
-
-                    <div class="col-sm-12">
-                        <div id="basicClose" class="nest">
-                            <div class="title-alt">
-                                <h6>Basic</h6>
-                                <div class="titleClose">
-                                    <a href="#basicClose" class="gone">
-                                        <span class="entypo-cancel"></span>
-                                    </a>
+<div class="row">
+    <div class="col-lg-12">
+            <div class="col-lg-6">
+                             
+                {{Form::open(array('url'=>'backend/module/update/'.$getMod->id, 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}               
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{trans('titlepage.title.update_menu')}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>{{Session::get('msg_flash')}}</p>   
+                             <div>                            
+                                <div class="form-group">                                
+                                    <label>{{trans('common.table.name')}}<span class="star-validation">(*)</span></label>
+                                        {{Form::text('name',$getMod->name,array('class' => 'form-control','id'=>'name'))}}       
                                 </div>
-                                <div class="titleToggle">
-                                    <a href="#basic" class="nav-toggle-alt">
-                                        <span class="entypo-up-open"></span>
-                                    </a>
+                                 
+
+                                <div class="form-group">
+                                    <label>{{trans('common.table.mod')}}</label> 
+                                    {{Form::text('mod',$getMod->mod,array('class' => 'form-control'))}}       
                                 </div>
 
-                            </div>
-
-                            <div id="basic" class="body-nest">
-                                <div class="form_center">
-                                       {{Form::open(array('url'=>'backend/module/update/'.$getMod->id, 'method' => 'post','role'=>'form'))}}               
-                                
-                                <div class="form-group">
-                                             <label for="exampleInputEmail1">Name</label>
-                                             {{Form::text('name',$getMod->name,array('class' => 'form-control'))}}                                             
-                                </div> 
-                                <div class="form-group">
-                                             <label for="exampleInputEmail1">Mod</label>
-                                             {{Form::text('mod',$getMod->mod,array('class' => 'form-control'))}}                                             
-                                </div>       
                                 <div class="form-group">
                                     <label>{{trans('common.table.position')}}</label> 
                                     <select class="form-control" name="position">
-                                        <option value="">None</option>
-                                       @foreach($position as $otp)
-                                        @if($getMod->position == $otp->name)
-                                        <option value="{{$otp->name}}">{{$otp->name}}</option>
-                                        @elseif
-                                        <option value="{{$otp->name}}" selected>{{$otp->name}}</option>
-                                        @endif
-                                       @endforeach
+                                        <option value="">None</option>                                         
+                                        @foreach($position as $otp)
+                                        <option value="{{$otp->name}}" <?php if($getMod->position==$otp->name) echo 'selected';?> >{{$otp->name}}</option>
+                                        @endforeach                         
                                     </select>
-                                </div>
+                                </div>  
                                 <div class="form-group">
                                     <label>{{trans('common.table.order')}}</label> 
                                     {{Form::text('order',$getMod->order,array('class' => 'form-control'))}}       
-                                </div>                              
-                                 <?php echo CommonHelper::createFormStatus($getMod->status);?>        
-                                        <button type="submit" class="btn btn-info">Submit</button>
-                                    </form>
+                                </div> 
+                                <div class="form-group">
+                                    <label>{{trans('common.table.icon')}}</label> 
+                                    {{Form::textarea('icon',$getMod->icon,array('class' => 'form-control','rows'=>'4'))}}       
                                 </div>
-
-
-                            </div>
-
-                        </div>
+                                 
+                                <?php echo CommonHelper::createFormStatus($getMod->status);?>
+                                 
+                                 <button type="submit" class="btn btn-primary">{{trans('common.button.update')}}</button>
+                                 
+                              </div>  
+                        </div>        
                     </div>
-
-                </div>
-            </div>                        
-                          
-                                        
-                    {{Form::close()}}
+                {{Form::close()}}
+             </div><!-- col 8 -->    
+       </div><!-- col 12 -->          
+</div><!-- row 2 -->             
 @stop
