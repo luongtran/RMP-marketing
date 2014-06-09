@@ -4,7 +4,7 @@ class ModuleDataController extends BaseController {
 
       protected $layout = 'backend.layouts.default';      
       private $_moduleName = "Module";
-      private $_routeModule ="backend/module/";
+      private $_routeModule ="backend/module-package/";
       public function __construct() {
      }  
     /*
