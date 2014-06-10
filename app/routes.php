@@ -77,6 +77,7 @@ Route::get('backend/module-package/{idmod}/content/update/{idcontent}',array('as
 Route::post('backend/module-package/{idmod}/content/update/{idcontent}',array('as' => 'module_content_update', 'uses' =>'ModuleDataController@postUpdate'));
 Route::get('backend/module-package/{idmod}/content/delete/{idcontent}',array('as' => 'module_content_update', 'uses' =>'ModuleDataController@getDelete'));
 Route::post('backend/module-package/{idmod}/content/action',array('as' => 'module_content_action', 'uses' =>'ModuleDataController@action'));
+Route::get('backend/module-package/{idmod}/content/view/{idcontent}',array('as' => 'module_content_view', 'uses' =>'ModuleDataController@getView'));
 
 /*Module intro */
 Route::get('backend/module-package/{idmod}/intro',array('as' => 'module_intro', 'uses' =>'ModuleIntroController@index'));
@@ -132,6 +133,7 @@ Route::get( 'admin-logout' , array('as' => 'user_logout', 'uses' => 'SharedContr
 Route::get( 'backend/view-profile' , array('as' => 'user_profile', 'uses' => 'SharedController@viewProfile'));
 Route::get( 'backend/view-profile-ajax' , array('as' => 'user_profile_ajax', 'uses' => 'SharedController@viewProfile_ajax'));
 Route::post( 'backend/update-profile' , array('as' => 'user_profile_update', 'uses' => 'SharedController@updateProfile'));
+Route::post( 'contact-sendmail' , array('as' => 'send_email_contact', 'uses' => 'SharedController@sendEmail'));
 //===========================================//
 
 Route::get('backend/dump',array('as' => 'backend_dump', 'uses' =>'AdminController@dump'));
@@ -140,9 +142,12 @@ Route::get('backend/dump',array('as' => 'backend_dump', 'uses' =>'AdminControlle
 /*page view each module*/
 Route::get('/',array('as' => 'front_end', 'uses' =>'HomeController@pageview'));
 Route::get('{id}',array('as' => 'view_page', 'uses' =>'HomeController@pageview'));
+Route::get('page/not-found',array('as' => 'view_page_notfound', 'uses' =>'HomeController@notFound'));
+Route::get('page/{id}',array('as' => 'view_page', 'uses' =>'HomeController@view'));
 
 /* load json images in part upload image*/
 Route::get('backend/load-immages-json',array('as' => 'load_image_json', 'uses' =>'SharedController@getImageJson'));
+
 
 
 /*check fillter*/

@@ -49,6 +49,12 @@
                  @if($incMod->mod=='mod_Contact')
                     @include('frontend.module.mod_Contact')
                 @endif
+                @if($incMod->mod=='mod_Tutorial')
+                    @include('frontend.module.mod_Tutorial')
+                @endif
+                @if($incMod->mod=='mod_SubmitRequestDemo')
+                    @include('frontend.module.mod_SubmitRequestDemo')
+                @endif
              @endif
           @endforeach   
 @stop

@@ -28,18 +28,10 @@
                                 <span class="caret"></span>
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
-                            <ul role="menu" class="dropdown-menu">
-                                <li>
-                                    <a href="{{Request::root()}}/backend/menu/add">
-                                        <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
-                                </li>
+                            <ul role="menu" class="dropdown-menu">                               
                                 <li>
                                     <a href="#">
-                                        <span class="entypo-heart margin-iconic"></span>Favorite</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="entypo-cog margin-iconic"></span>Setting</a>
+                                        <span class="entypo-heart margin-iconic"></span></a>
                                 </li>
                             </ul>
                         </div>

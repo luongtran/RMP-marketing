@@ -1,14 +1,76 @@
-@section('content')
-<div class="row"
-     <div class="col-lg-12">
-            <ol class="breadcrumb">
-              <li><a href="{{Request::root()}}/backend"><i class="fa fa-dashboard"></i>{{trans('common.menu.dashboard')}}</a></li>
-              <li class="active"><a href="{{Request::root()}}/backend/page"><i class="fa fa-desktop"></i>{{trans('common.table.page')}}</a></li>            
-              <li class="active"><i class="fa fa-desktop"></i>{{trans('common.button.update')}}</li>            
-            </ol>
-    </div>   
-</div><!-- end row 1--> 
+@section('title')
+<div class="row">
+                <div id="paper-top">
+                    <div class="col-sm-3">
+                        <h2 class="tittle-content-header">
+                            <i class="icon-media-record"></i> 
+                            <span>
+                              Article                    
+                            </span>
+                        </h2>
 
+                    </div>
+
+                    <div class="col-sm-7">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="tittle-middle-header">                            
+                               {{Session::get('msg_flash_home')}}
+                        
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="btn-group btn-wigdet pull-right visible-lg">
+                            <div class="btn">
+                                Widget</div>
+                            <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li>
+                                    <a href="{{Request::root()}}/backend/article/add">
+                                        <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-heart margin-iconic"></span>Favorite</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-cog margin-iconic"></span>Setting</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+@stop
+@section('breadcrumb')      
+ <ul id="breadcrumb">
+                <li>
+                    <a href="{{Request::root()}}"><span class="entypo-home"></span></a>
+                </li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li><a href="{{Request::root()}}/backend/page" title="Sample page 1">{{trans('common.table.page')}}</a>
+                </li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li><a href="#" title="Sample page 1">{{trans('common.button.update')}}</a>
+                </li>
+                <li class="pull-right">
+                    <div class="input-group input-widget">
+
+                        <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
+                    </div>
+                </li>
+ </ul>
+ @stop
+@section('content')
 <div class="row">
     <div class="col-lg-12">
             <div class="col-lg-6">

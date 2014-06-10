@@ -15,25 +15,19 @@
   </div>
 @stop
 @section('content')
-<div class="content">
-		<div class="layout">
-			<div class="row">
-                            {{$content->content}}
-                        </div>
-                         <div class="row-item col-1_2">
-                           	<div class="b-carousel">
-						<div class="carousel-content">
-                                                        @foreach($getImages as $Im)
-                                                        <img alt="" src="{{asset('asset/share/uploads/images/'.$Im->name)}}" class="carousel-item" width="400" height="400">					
-                                                        @endforeach
-						</div>
-					<div class="carousel-control">
-                                            <div class="carousel-prev"></div><div class="carousel-next"></div>
-                                            <ul class="carousel-pagination"><li class=""></li><li class="active"></li><li></li></ul>
-                                        </div>
-                                  </div>
-                         </div>
-                            {{$content->created_at}}  
-		</div>
-</div>
+            <p>
+              <b><i>{{$content->sumary}}</i></b>
+            </p>
+            <p>
+            {{$content->content}}
+            </p>       
+                    
+					  <div>
+             @foreach($image as $Im)
+              <img alt="" src="{{asset('asset/share/uploads/images/'.$Im->name)}}" class="carousel-item" width="400" height="400">					
+              @endforeach
+            </div>  				
+					
+      {{$content->created_at}}  
+	
 @stop

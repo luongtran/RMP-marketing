@@ -27,9 +27,10 @@ CKEDITOR.editorConfig = function( config ) {
 		{name:'image'},
 
 	];
-
-	config.extraPlugins = 'imagebrowser';
+	
+	config.extraPlugins = 'youtube,imagebrowser';	
 	config.imageBrowser_listUrl = 'listImage.json';	
+	
 
 	// Remove some buttons, provided by the standard plugins, which we don't
 	// need to have in the Standard(s) toolbar.

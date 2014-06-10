@@ -10,6 +10,7 @@ return array(
         'add'=>'Add',
         'intro'=>'Intro',
         'content'=>'Content',
+        'preview'=>'Preview',
         
     ),
     'menu'=>array(

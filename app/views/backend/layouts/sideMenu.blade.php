@@ -1,8 +1,8 @@
 <div id="skin-select">
         <div id="logo">
-            <h1>RMP
+            <a href="{{Request::root()}}/backend"><h1>RMP
                 <span>v1.0</span>
-            </h1>
+            </h1></a>
         </div>
 
         <a id="toggle">

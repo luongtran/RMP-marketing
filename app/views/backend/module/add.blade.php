@@ -57,7 +57,7 @@
                                     {{Form::text('icon','',array('class' => 'form-control'))}}       
                                 </div>                                
                                  <?php echo CommonHelper::createFormStatus();?>                                
-                                 <button type="submit" class="btn btn-primary">{{trans('common.button.save')}}</button>
+                                 <button type="submit" class="btn btn-primary">{{trans('common.button.save')}}</button>                                 
                              </div>
                              <!-- end col 6 -1-->
                              <div class='col-lg-6'> 

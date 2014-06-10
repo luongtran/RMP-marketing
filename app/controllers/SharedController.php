@@ -72,8 +72,12 @@ class SharedController extends BaseController{
     
     public function getProfile()
       {
-            $result = Users::where('username','=',Session::get('login_user'))->first();
-            return $result;
+            $Profile = DB::table('users')
+                   ->leftjoin("uploads","uploads.id","=","users.avatar")             
+                   ->where("users.username","=",Session::get('login_user'))             
+                   ->select(DB::raw("users.id,users.username,users.email,users.first_name,users.last_name,users.phone,users.company,users.address,uploads.path,uploads.name as imgName,users.updated_at,users.permission"))
+                   ->first();             
+            return $Profile;
       }
     
 
@@ -86,16 +90,8 @@ class SharedController extends BaseController{
 
        public function viewProfile_ajax()
       {
-
-            $userProfile = DB::table('users')
-                   ->leftjoin("uploads","uploads.id","=","users.avatar")             
-                   ->where("users.username","=",Session::get('login_user'))             
-                   ->select(DB::raw("users.id,users.username,users.email,users.first_name,users.last_name,users.phone,users.company,users.address,uploads.path,uploads.name as imgName,users.updated_at"))
-                   ->first(); 
-
-
-            return  View::make('backend.users.profile.view_profile')->with('getProfile',$userProfile)->render();
-            
+            $userProfile = $this->getProfile();
+            return  View::make('backend.users.profile.view_profile')->with('getProfile',$userProfile)->render();            
       }
 
         public function updateProfile()
@@ -124,10 +120,10 @@ class SharedController extends BaseController{
             $upload = Input::file('avatar');     
             if($upload)
             {
-              Uploads::where("id","=",$user->avatar)->delete();
+              Uploads::where("id","=",$user->avatar)->where("type_file","=","image")->delete();
               $Path = 'public/asset/share/uploads/images';
               $Image= new ImagesController();
-              $user->avatar =  $Image->store($upload, $Path);  
+              $user->avatar =  $Image->store($upload, $Path,'image');  
               $user->update();          
             }      
             Session::flash('msg_flash',  CommonHelper::printMsg('success', trans('messages.update_message')));
@@ -137,13 +133,8 @@ class SharedController extends BaseController{
             Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));            
          }
 
-       $userProfile = DB::table('users')
-                   ->leftjoin("uploads","uploads.id","=","users.avatar")             
-                   ->where("users.username","=",Session::get('login_user'))             
-                   ->select(DB::raw("users.id,users.username,users.email,users.first_name,users.last_name,users.phone,users.company,users.address,uploads.path,uploads.name as imgName,users.updated_at"))
-                   ->first(); 
-
-        return  View::make('backend.users.profile.view_profile')->with('getProfile',$userProfile)->render();
+          $userProfile = $this->getProfile();
+          return  View::make('backend.users.profile.view_profile')->with('getProfile',$userProfile)->render();
 
       }
     
@@ -165,6 +156,42 @@ class SharedController extends BaseController{
        //  $arr.= ']';
        // // return $arr;
         return Response::json($list); 
+    }
+
+
+    public function sendEmail()
+    {
+      $this->configEmail();
+        $data = Input::all();
+        Mail::send('frontend.contact.send_email', $data, function($m){
+           $m->from(Input::get('email'), Input::get('name'));
+           $m->to('thanhtruyen1001@gmail.com', 'Develop');
+           $m->subject(Input::get('subject'));
+           //$m->text (Input::get('message'));
+           //$message->from('us@example.com', 'Laravel');
+           //$message->to('foo@example.com')->cc('bar@example.com');
+           //$message->attach($pathToFile);
+        });
+
+        return Redirect::route('front_end');
+
+
+    }
+
+    public function configEmail()
+    {      
+      $email_host = Settings::where('name','=','email_host')->first();
+      $email_username = Settings::where('name','=','email_username')->first();
+      $email_password = Settings::where('name','=','email_password')->first();
+      $email_encryption  = Settings::where('name','=','email_encryption')->first();
+      $email_port = Settings::where('name','=','email_port')->first(); 
+
+      $email_port = (int)$email_port->value;
+      Config::set('mail.host',$email_host->value);
+      Config::set('mail.port',$email_port);
+      Config::set('mail.encryption',$email_encryption->value);
+      Config::set('mail.username',$email_username->value);    
+      Config::set('mail.password',$email_password->value);    
     }
     
 }   

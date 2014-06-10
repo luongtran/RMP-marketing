@@ -25,7 +25,7 @@ class UploadController extends BaseController {
 
     public function listImg() {        
 
-      $list = Uploads::orderBy('id','desc')->paginate(50); 
+      $list = Uploads::where('type_file','=','image')->orderBy('id','desc')->paginate(50); 
       return  View::make('backend.images.list')->with('listImg',$list)->render();
      
     }
@@ -79,6 +79,7 @@ class UploadController extends BaseController {
                 $upload->name = $filename;
                 $upload->type = $file->getClientmimeType();
                 $upload->path = $Path;
+                $upload->type_file = 'image';
                 $upload->save();
 
             $res["img"][$i]=$filename; 

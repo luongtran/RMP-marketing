@@ -125,9 +125,11 @@ $( document ).ready(function() {
 }); 
        $("#frm-setting").submit(function( event ) {
               
-              var output = $("#output");              
+              var output = $("#output");      
+               $(".alert").remove();        
               var seturl= "{{ Request::root() }}/backend/setting/update";
-               output.html(' <div id="loadajax" style="top: 300px;position: fixed;left:400px;z-index: 890;"><img src="http://reg.spblegalforum.ru/spilf2014/lf/img/animatedCircle.gif" /></div>');    
+               output.show("100");
+               output.html(' <div id="loadajax" style="top: 300px;position: fixed;left:400px;z-index: 890;"><img src="{{asset('asset/share/icon/loading_icon.gif')}}" /></div>');    
       
                 var request = $.ajax({
                 url: seturl,
@@ -137,7 +139,7 @@ $( document ).ready(function() {
                 });
                 request.done(function( msg ){ 
                    $("#setting").html(msg); 
-                   output.html("");
+                 output.hide("100");
                 });
                 request.fail(function( jqXHR, textStatus ) {
                 alert( "Request failed: " + textStatus );

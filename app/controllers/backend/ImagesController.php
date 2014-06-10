@@ -23,7 +23,7 @@ class ImagesController extends BaseController {
      
     }
  
-    function store($file,$Path)
+    function store($file,$Path,$type_file)
     {       
                 $date = date('m-d-Y') ;       
                 $filename= $date.'_'.$file->getClientOriginalName();
@@ -32,12 +32,13 @@ class ImagesController extends BaseController {
                 $upload->name = $filename;
                 $upload->type = $file->getClientmimeType();
                 $upload->path =  ltrim($Path,"public/");
+                $upload->type_file = $type_file;
                 $upload->save();
                 return $upload->id;                
     }
-     function storeOld($file,$Path,$id)
+     function storeOld($file,$Path,$id,$type_file)
     {          
-            $checkImage = Uploads::where('id','=',$id)->first();
+            $checkImage = Uploads::where('id','=',$id)->where('type_file','=',$type_file)->first();
             if($checkImage)
             {
             $ar=Uploads::find($checkImage->id);
@@ -45,8 +46,22 @@ class ImagesController extends BaseController {
             }
             return $this->store($file, $Path);
     }
-    
-    function storeMulti($file,$Path,$content_id,$type_content)
+
+    function storeSingle($file,$Path,$content_id,$type_content,$type_file)
+    {       
+                $date = date('m-d-Y') ;       
+                $filename= $date.'_'.$file->getClientOriginalName();
+                $file->move($Path, $filename);
+                $upload =  new Uploads;
+                $upload->name = $filename;
+                $upload->type = $file->getClientmimeType();
+                $upload->path =  ltrim($Path,"public/");
+                $upload->type_file = $type_file;
+                $upload->$type_content = $content_id;
+                $upload->save();
+    }
+               
+    function storeMulti($file,$Path,$content_id,$type_content,$type_file)
     {                            
               foreach($file as $fileinfo)
                 {                            
@@ -57,16 +72,17 @@ class ImagesController extends BaseController {
                 $upload->name = $filename;
                 $upload->type = $fileinfo->getClientmimeType();
                 $upload->path =  ltrim($Path,"public/");
+                $upload->type_file = $type_file;
                 $upload->$type_content = $content_id;
                 $upload->save();              
                 }
     }
     
-    function checkImageOld($file,$Path,$article_id)
+    function checkImageOld($file,$Path,$article_id,$type_file)
     {
         
         
-       $checkImage = Uploads::where('article_id','=',$article_id)->get();
+       $checkImage = Uploads::where('article_id','=',$article_id)->where('type_file','=',$type_file)->get();
        foreach($checkImage as $check)
        {           
           $ar=Uploads::find($check->id);

@@ -13,7 +13,7 @@
                    ->where("module.mod","=","mod_Slider")
                    ->where("page_module.page_id","=",$pageinfo->id) 
                    ->orderBy("module_data.order","asc")
-                   ->select(DB::raw("module_data.title,module_data.sumary,module_data.icon,module_data.link,uploads.name as imageName,uploads.path as path"))
+                   ->select(DB::raw("module_data.id,module_data.title,module_data.sumary,module_data.icon,module_data.link,uploads.name as imageName,uploads.path as path"))
                    ->get();         
             
           foreach($slider as $sl):?>
@@ -30,7 +30,7 @@
 					<span><?php echo $sl->sumary;?></span>
 				</div>
 				<div class="tp-caption lfl" data-x="40" data-y="265" data-speed="400" data-start="1600" data-easing="easeOutExpo">
-					<a href="<?php echo Request::root().'/'.$sl->link;?>" class="btn btn-uppercase colored">Readmore<i class="icon-caret-right" style="margin: 0 0 0 7px;"></i></a>
+					<a href="<?php echo Request::root().'/page/'.$sl->id;?>" class="btn btn-uppercase colored">Readmore<i class="icon-caret-right" style="margin: 0 0 0 7px;"></i></a>
 				</div>
 				<!-- End captions -->
 				</li>

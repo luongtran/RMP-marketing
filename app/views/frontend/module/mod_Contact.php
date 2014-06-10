@@ -18,22 +18,22 @@
 						
 						<div class="form-message"></div>
 						
-						<form style="margin-bottom: 10px;" action="contact.php" class="b-form b-contact-form">
+						<form action="<?php echo Request::root();?>/contact-sendmail" method="post" style="margin-bottom: 10px;" action="contact.php" class="b-form">
 							<div class="input-wrap">
 								<i class="icon-user"></i>
-								<input type="text" placeholder="Name (required)" class="field-name">
+								<input type="text" placeholder="Name (required)"  name="name">
 							</div>
 							<div class="input-wrap">
 								<i class="icon-envelope"></i>
-								<input type="text" placeholder="Email (required)" class="field-email">
+								<input type="text" placeholder="Email (required)" name="email">
 							</div>
 							<div class="input-wrap">
 								<i class="icon-pencil"></i>
-								<input type="text" placeholder="Subject" class="field-subject">
+								<input type="text" placeholder="Subject" name="subject">
 							</div>
 							<div class="textarea-wrap">
 								<i class="icon-pencil"></i>
-								<textarea placeholder="Message" class="field-comments"></textarea>
+								<textarea placeholder="Message" name="message"></textarea>
 							</div>
 							<input type="submit" value="Submit Comment" class="btn-submit btn colored">
 						</form>

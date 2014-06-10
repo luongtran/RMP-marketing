@@ -15,8 +15,7 @@
                         <div class="devider-vertical visible-lg"></div>
                         <div class="tittle-middle-header">                         
                                {{Session::get('msg_flash_home')}}
-                         </div>
-
+                        </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="devider-vertical visible-lg"></div>
@@ -92,22 +91,28 @@
                                     <!-- begin form-->  
                                         <fieldset>
                                             <div class="form-group">
-                                             <label for="">Title</label>
+                                             <label for="">{{trans('common.table.title')}}<span class="star-validation">(*)</label>
                                              {{Form::text('title','',array('class' => 'form-control'))}}                                             
                                             </div>                                         
                                             <div class="form-group">
-                                             <label for="">Content</label>
+                                             <label for="">{{trans('common.table.content')}}</label>
                                              {{Form::textarea('content','',array('class' => 'form-control ckeditor'))}}                                             
                                             </div>
                                             
                                             <div class="form-group">
-                                             <label for="">Sumary</label>
-                                             {{Form::textarea('sumary','',array('class' => 'form-control','style'=>'width: 100%;'))}}                                             
+                                             <label for="">{{trans('common.table.sumary')}}</label>
+                                             {{Form::textarea('sumary','',array('class' => '','style'=>'width:100%;height:80px;'))}}                                             
                                             </div>
                                            <div class="form-group">
-                                             <label for="">Multi Images</label>
+                                             <label for="">Upload Images</label>
                                             {{Form::file('image[]',array('class' => 'image','multiple'=>'on')) }}                                            
+                                            </div>
+
+                                            <div class="form-group">
+                                             <label for="">Upload Document</label>
+                                            {{Form::file('file[]',array('class' => '','multiple'=>'on')) }}                                            
                                             </div> 
+
                                         </fieldset>                                 
                             </div>
 
@@ -126,26 +131,22 @@
 
 
                               <div id="header" class="body-nest"> 
-                                        <fieldset>
-                                            <div class="form-group">
-                                             <label for="">Html code</label>
-                                             {{Form::text('codeHtml','',array('class' => 'form-control','id'=>'date'))}}                                             
-                                            </div> 
+                                        <fieldset>                                          
                                                                                     
                                             <div class="form-group">
-                                            <label for="">Language</label>    
+                                            <label for="">{{trans('common.table.language')}}</label>    
                                             <select name="lang_id" class="form-control">                                              
                                                 @foreach($language as $lang)
                                                 <option value="{{$lang->code}}">{{$lang->name}}</option>
                                                 @endforeach
                                             </select>
                                              <div class="form-group">
-                                             <label for="">Icon</label>
+                                             <label for="">{{trans('common.table.icon')}}</label>
                                              {{Form::text('icon','',array('class' => 'form-control'))}}                                             
                                             </div>
                                             
                                             <div class="form-group">
-                                             <label for="">Order</label>
+                                             <label for="">{{trans('common.table.order')}}</label>
                                              {{Form::text('order','',array('class' => 'form-control'))}}                                             
                                             </div>
                                              <div class="form-group">
@@ -155,10 +156,17 @@
                                              <div class="form-group">
                                             <label for="">Target</label>    
                                             {{Form::select('target', array('_self' => 'Self', '__blank' => 'Blank'),'_self')}}
+                                            </div>
+                                             <div class="form-group">
+                                                <label>{{trans('common.table.category')}}</span></label>
+                                                <div class="overflow-scroll">
+                                                {{$categories}}
+                                                </div>
+                                            </div>    
                                             <?php echo  CommonHelper::createFormStatus();?>
                                             
                                             <button class="btn btn-success" type="submit" >Save</button>
-                                        </fieldset>                              
+                                            </fieldset>                              
                             </div>
 
 
@@ -170,4 +178,9 @@
                 </div>
             </div>
 </div><!-- end row content-->    
+@stop
+
+@section('script')
+<script type="text/javascript">
+
 @stop

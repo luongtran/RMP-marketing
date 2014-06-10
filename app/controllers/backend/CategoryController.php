@@ -37,7 +37,7 @@ class CategoryController extends BaseController {
            return $str;
         }
         //
-        $categories= Categories::orderBy('id','desc')->paginate(10); 
+        $categories= Categories::orderBy('order','asc')->paginate(10); 
         $this->layout->content = View::make('backend.category.index')->with('categories',$categories)
              ->with('listParent',listDrop(0));
     }
@@ -56,6 +56,7 @@ class CategoryController extends BaseController {
         $categories->name = Input::get('name');;
         $categories->permalink = Input::get('permalink');
         $categories->parent = Input::get('parent');
+        $categories->order = Input::get('parent');
         $categories->status = Input::get('status');
         $categories->save();
         Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.create_message')));  
@@ -92,6 +93,7 @@ class CategoryController extends BaseController {
             $category->permalink = Input::get('permalink');
             $category->description = Input::get('description');
             $category->parent = Input::get('parent');
+            $category->order = Input::get('parent');
             $category->status = Input::get('status');
             $category->update();
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message')));  

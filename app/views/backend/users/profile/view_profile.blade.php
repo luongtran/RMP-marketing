@@ -82,23 +82,12 @@
 
                                         <dt>Phone</dt>
                                         <dd>{{$getProfile->phone}}</dd>
+
+                                        <dt>Company</dt>
+                                        <dd>{{$getProfile->company}}</dd>
                                       
                                         <dt>Last Update</dt>
-                                        <dd>{{$getProfile->updated_at}}</dd>
-
-                                        <dt>About</dt>
-                                        <dd>Web Designer / UI</dd>
-
-                                        <dt>Hobbies</dt>
-                                        <dd>Read, out with friends, listen to music, draw and learn new things</dd>
-
-                                        <dt>Skills</dt>
-                                        <dd>
-                                            <span class="tags">html5</span>
-                                            <span class="tags">css3</span>
-                                            <span class="tags">jquery</span>
-                                            <span class="tags">bootstrap3</span>
-                                        </dd>
+                                        <dd>{{$getProfile->updated_at}}</dd>                                     
 
                                     </dl>
 
@@ -302,8 +291,10 @@
               
               Data = new FormData(document.forms.namedItem("frm-profile"));
               var output = $("#output");              
+              $(".alert").remove();
+              output.show("100");
               var seturl= "{{ Request::root() }}/backend/update-profile";
-               output.html(' <div id="loadajax" style="top: 300px;position: fixed;left:400px;z-index: 890;"><img src="http://reg.spblegalforum.ru/spilf2014/lf/img/animatedCircle.gif" /></div>');    
+              output.html(' <div id="loadajax" style="top: 300px;position: fixed;left:400px;z-index: 890;"><img src="{{asset('asset/share/icon/loading_icon.gif')}}" /></div>');    
       
             $.ajax({
             url: seturl,
@@ -318,19 +309,19 @@
             if(typeof data.error === 'undefined')
             {                       
               $("#load-view").html(data);
-              output.html("");
+              output.hide(100);       
             }
             else
             {
             
-               Output.innerHTML = "Uploaded error 1! "+data.error;
+              output.html("Uploaded error 1! "+data.error);
             
             }
             },
             error: function(jqXHR, textStatus, errorThrown)
             {
             // Handle errors here
-            Output.innerHTML = "Uploaded error 2! this file have type extend not provide "+textStatus;     
+            output.html("Uploaded error 2! this file have type extend not provide "+textStatus);     
             }
             });
             

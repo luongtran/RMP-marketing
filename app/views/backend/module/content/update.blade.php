@@ -108,7 +108,7 @@
                                             
                                             <div class="form-group">
                                              <label for="">Sumary</label>
-                                             {{Form::textarea('sumary',$module_data->sumary,array('class' => 'form-control','style'=>'width: 100%;'))}}                                             
+                                             {{Form::textarea('sumary',$module_data->sumary,array('class' => '','style'=>'width:100%;height:80px;'))}}                             
                                             </div>
                                            <div class="form-group">
                                              <label for="">Multi Images</label>
@@ -121,6 +121,17 @@
                                                   @endforeach
                                                 @endif
                                             </div>
+                                             <div class="form-group">
+                                             <label for="">Upload Document</label>
+                                             {{Form::file('file[]',array('class' => '','multiple'=>'on')) }}                                     
+                                            </div> 
+                                            <div>
+                                             @if($listFile)
+                                                  @foreach($listFile as $file)
+                                                  <p><i class="icon icon-attachment"></i><a href="{{asset($file->path.'/'.$file->name)}}" title="download">{{$file->name}}</a></p>
+                                                  @endforeach
+                                              @endif
+                                            </div>   
                                         </fieldset>                                 
                             </div>
 
@@ -139,11 +150,7 @@
 
 
                               <div id="header" class="body-nest"> 
-                                        <fieldset>
-                                            <div class="form-group">
-                                             <label for="">Html code</label>
-                                             {{Form::text('codeHtml','',array('class' => 'form-control','id'=>'date'))}}                                             
-                                            </div> 
+                                        <fieldset>                                          
                                                                                     
                                             <div class="form-group">
                                             <label for="">Language</label>    
@@ -173,8 +180,30 @@
                                              <div class="form-group">
                                             <label for="">Target</label>    
                                              {{Form::select('target',array('_self' => 'Self', '__blank' => 'Blank'),$module_data->target,array('class'=>'form-control'))}}
-                                            <?php echo  CommonHelper::createFormStatus();?>
-                                            
+                                            </div>
+                                             <div class="form-group">
+                                            <label>{{trans('common.table.category')}} <span class="star-validation">(*)</span></label>
+                                                <div class="overflow-scroll">
+                                                 
+                                                @foreach($categories as $ctItem)
+                                                    <?php $active=false;?>
+                                                    @foreach($category as $ctSub)
+                                                    @if($ctSub->id == $ctItem->id)
+                                                    <?php $active=true;?>
+                                                    @endif                                       
+                                                    @endforeach                                      
+                                                  <div class="checkbox">
+                                                  <label>                                       
+                                                   {{Form::checkbox('category_id[]',$ctItem->id,$active)}}                                      
+                                                   {{$ctItem->name}} 
+                                                   </label>
+                                                  </div>
+                                                   
+                                               @endforeach
+                                                </div>
+                                   
+                                                </div>     
+                                            <?php echo  CommonHelper::createFormStatus();?>                                            
                                             <button class="btn btn-success" type="submit" >Update</button>
                                         </fieldset>                              
                             </div>
@@ -188,4 +217,9 @@
                 </div>
             </div>
 </div><!-- end row content-->    
+@stop
+
+
+@section('script')
+</script>
 @stop

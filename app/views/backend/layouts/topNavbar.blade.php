@@ -125,7 +125,8 @@
                 <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
                     <li>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" class="admin-pic img-circle" src="http://api.randomuser.me/portraits/thumb/men/10.jpg">Hi, {{Session::get('login_user')}} <b class="caret"></b>
+                            <?php  $user = new SharedController(); $Profile = $user->getProfile();?>
+                            <img alt="" class="admin-pic img-circle" src="{{asset($Profile->path.'/'.$Profile->imgName)}}">Hi, {{$Profile->username}} <b class="caret"></b>
                         </a>
                         <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
                             <li>

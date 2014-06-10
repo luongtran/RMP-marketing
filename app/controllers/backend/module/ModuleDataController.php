@@ -29,22 +29,65 @@ class ModuleDataController extends BaseController {
                 ->with('module_data',$module_data);
                                     
         }
+    public function getView($idmod,$idcontent){
+        $infoMod = Modules::where('id','=',$idmod)->first();       
+        $this->layout->page = $this->_moduleName.' - '.$infoMod->name; 
+        $language = Language::where('status','=','publish')->orderBy('name','asc')->get();
+        $getModData = ModuleData::where('id','=',$idcontent)->first();
+        /*show list image*/
+        $listImg = null;
+        $listFile = null;
+        if(Uploads::where('modData_id','=',$idcontent)->where('type_file','=','image')->count()>0)
+        {
+        $listImg = Uploads::where('modData_id','=',$idcontent)->where('type_file','=','image')->get();
+        }
+         if(Uploads::where('modData_id','=',$idcontent)->where('type_file','=','file')->count()>0)
+        {
+        $listFile = Uploads::where('modData_id','=',$idcontent)->where('type_file','=','file')->get();
+        }
+        
+        $this->layout->content = View::make('backend.module.content.view')
+                ->with('module_data',$getModData)
+                ->with('infoMod',$infoMod)
+                ->with('language',$language)
+                ->with('listImg',$listImg)
+                ->with('listFile',$listFile);
+    }
+        
     public function getAdd($id) {
         $infoMod = Modules::where('id','=',$id)->first();   
-        $this->layout->page = $this->_moduleName;                
+        $this->layout->page = $this->_moduleName;        
+
+        function listDrop($parent_id,$span=' ')
+        {  
+            $str="";
+            $Category = Categories::all(); 
+            foreach($Category as $list)
+            {
+                if($list->parent == $parent_id)
+                {                    
+                   $str.= "<div class='checkbox'><input type='checkbox' value='".$list->id."' name='category_id[]' >".$span.$list->name.'</div>'; 
+                   $str.=listDrop($list->id,'&nbsp -');                
+                }
+            }
+           return $str;
+        }
+
+        $categories = Categories::where('status','=','publish')->orderBy('parent','asc')->get();             
     
         $language = Language::where('status','=','publish')->orderBy('name','asc')->get();
         
         $this->layout->content = View::make('backend.module.content.add')
                  ->with('infoMod',$infoMod)
-                 ->with('language',$language);
+                 ->with('language',$language)
+                 ->with('categories',listDrop(0));
         }    
-    public function postAdd($id) {   
+    public function postAdd($id) {  
         $validation = Validator::make(                
-                Input::all(),
+                Input::all()
+                ,
                 array(
-                'title'=> 'required',
-                //'image'=> 'image',
+                'title'=> 'required',                
                 'order'=>'numeric',
                 'lang_id'=>'required',
                 )                
@@ -52,29 +95,92 @@ class ModuleDataController extends BaseController {
         
         if($validation->passes())
         {
-        $mod = new ModuleData;
-        $mod->title = Input::get('title');
-        $mod->sumary = Input::get('sumary');        
-        $mod->content = Input::get('content');
-        $mod->lang_id = Input::get('lang_id');
-        $mod->user_id = Session::get('userID');
-        $mod->module_id = $id;
-        $mod->icon = Input::get('icon');
-        $mod->order = Input::get('order');
-        $mod->link = Input::get('link');
-        $mod->target = Input::get('target');
-        $mod->status = Input::get('status');
-        $mod->save();
+
+        $uploadImg = Input::file('image'); 
+         /*validation image*/         
+            foreach($uploadImg as $img) :   
+
+                 $validatorImg = Validator::make(            
+                    array(
+                        'image'=>$img//->getClientOriginalName()
+                    ),
+                    array(
+                       // 'fileImage'=> 'mimes:jpeg,bmp,png'
+                       'image'=>'mimes:png,jpg,jpge,gif,icon',
+                    )
+                     );        
+                    if (!$validatorImg->passes())
+                    {
+                        Session::flash('msg_flash',  CommonHelper::printErrors($validatorImg->messages()));
+                         return Redirect::back()->withInput();    
+                    }   
+
+              endforeach;
+            /*validation file*/   
+         $uploadFile = Input::file('file'); 
+                /*validation file*/
+               foreach($uploadFile as $file) :   
+
+                 $validatorImg = Validator::make(            
+                    array(
+                        'file'=>$file//->getClientOriginalName()
+                    ),
+                    array(
+                       // 'fileImage'=> 'mimes:jpeg,bmp,png'
+                       'file'=>'mimes:pdf,doc,docx,xls,xlsx',
+                    )
+                     );        
+                    if (!$validatorImg->passes())
+                    {
+                        Session::flash('msg_flash',  CommonHelper::printErrors($validatorImg->messages()));
+                         return Redirect::back()->withInput();    
+                    } 
+                 endforeach;  
+                       
+            $mod = new ModuleData;
+            $mod->title = Input::get('title');
+            $mod->sumary = Input::get('sumary');        
+            $mod->content = Input::get('content');
+            $mod->lang_id = Input::get('lang_id');
+            $mod->user_id = Session::get('userID');
+            $mod->module_id = $id;
+            $mod->icon = Input::get('icon');
+            $mod->order = Input::get('order');
+            $mod->link = Input::get('link');
+            $mod->target = Input::get('target');
+            $mod->status = Input::get('status');
+            $mod->save();
+
+            /* save category 1-n */
+            if(!empty(Input::get('category_id'))){
+                foreach(Input::get('category_id') as $category_id=>$value)
+                {
+                    $CA= new CategoriesModuleData;    
+                    $CA->moduleData_id = $mod->id;
+                    $CA->categories_id = $value;                              
+                    $CA->save();
+                }
+            }
+
         /*add to table uploads*/
-        /*upload image*/
-            $upload = Input::file('image'); 
-            if(!empty(CommonHelper::check_files_empty($upload)))
-            {
+        /*upload image*/           
+            if(!empty(CommonHelper::check_files_empty($uploadImg)))
+            {              
               $Path = 'public/asset/share/uploads/images';
               $Image= new ImagesController();
               //type_content   article_id and modData_id
-              $Image->storeMulti(Input::file('image'), $Path,$mod->id,'modData_id');            
-            }        
+              $Image->storeMulti($uploadImg, $Path,$mod->id,'modData_id','image');            
+            } 
+        /*upload file document*/                   
+            $uploadFile = Input::file('file'); 
+            if(!empty(CommonHelper::check_files_empty($uploadFile)))
+            {               
+              $Path = 'public/asset/share/uploads/document';
+              $Image= new ImagesController();
+              //type_content   article_id and modData_id
+              $Image->storeMulti($uploadFile, $Path,$mod->id,'modData_id','file');            
+            } 
+
         Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.create_message')));  
         return Redirect::to($this->_routeModule.$id.'/content');
         }
@@ -86,31 +192,86 @@ class ModuleDataController extends BaseController {
         $this->layout->page = $this->_moduleName.' - '.$infoMod->name; 
         $language = Language::where('status','=','publish')->orderBy('name','asc')->get();
         $getModData = ModuleData::where('id','=',$idcontent)->first();
+
+
+        $category = DB::table('categories_moduleData')
+            ->join('categories', 'categories_moduleData.categories_id', '=', 'categories.id')
+            ->where('categories_moduleData.moduleData_id','=',$getModData->id)    
+            ->select(DB::raw('categories.id,categories.name'))->get(); 
+        $categories = Categories::where('status','=','publish')->get();  
+
         /*show list image*/
         $listImg = null;
-        if(Uploads::where('modData_id','=',$idcontent)->count()>0)
+        $listFile = null;
+        if(Uploads::where('modData_id','=',$idcontent)->where('type_file','=','image')->count()>0)
         {
-        $listImg = Uploads::where('modData_id','=',$idcontent)->get();
+        $listImg = Uploads::where('modData_id','=',$idcontent)->where('type_file','=','image')->get();
+        }
+         if(Uploads::where('modData_id','=',$idcontent)->where('type_file','=','file')->count()>0)
+        {
+        $listFile = Uploads::where('modData_id','=',$idcontent)->where('type_file','=','file')->get();
         }
         
         $this->layout->content = View::make('backend.module.content.update')
                 ->with('module_data',$getModData)
                 ->with('infoMod',$infoMod)
                 ->with('language',$language)
-                ->with('listImg',$listImg);
+                ->with('listImg',$listImg)
+                ->with('listFile',$listFile)
+                ->with('category',$category)
+                ->with('categories',$categories);
     }    
     public function postUpdate($idmod,$idcontent) {       
         $validation = Validator::make(                
                 Input::all(),
                 array(
                 'title'=> 'required',
-                //'image'=> 'image',
                 'order'=>'numeric',
                 'lang_id'=>'required',
                 )                
          );        
         if($validation->passes())
         {
+            $uploadImg = Input::file('image'); 
+         /*validation image*/         
+            foreach($uploadImg as $img) :   
+
+                 $validatorImg = Validator::make(            
+                    array(
+                        'image'=>$img//->getClientOriginalName()
+                    ),
+                    array(
+                       // 'fileImage'=> 'mimes:jpeg,bmp,png'
+                       'image'=>'mimes:png,jpg,jpge,gif,icon',
+                    )
+                     );        
+                    if (!$validatorImg->passes())
+                    {
+                        Session::flash('msg_flash',  CommonHelper::printErrors($validatorImg->messages()));
+                         return Redirect::back()->withInput();    
+                    }   
+
+              endforeach;
+            /*validation file*/   
+            $uploadFile = Input::file('file'); 
+                /*validation file*/
+               foreach($uploadFile as $file) :   
+
+                 $validatorImg = Validator::make(            
+                    array(
+                        'file'=>$file//->getClientOriginalName()
+                    ),
+                    array(
+                       // 'fileImage'=> 'mimes:jpeg,bmp,png'
+                       'file'=>'mimes:pdf,doc,docx,xls,xlsx',
+                    )
+                     );        
+                    if (!$validatorImg->passes())
+                    {
+                        Session::flash('msg_flash',  CommonHelper::printErrors($validatorImg->messages()));
+                         return Redirect::back()->withInput();    
+                    } 
+            endforeach;  
             $mod = ModuleData::find($idcontent);
             $mod->title = Input::get('title');
             $mod->sumary = Input::get('sumary');        
@@ -124,16 +285,45 @@ class ModuleDataController extends BaseController {
             $mod->target = Input::get('target');
             $mod->status = Input::get('status');
             $mod->update();
+            /*update category*/
+            /* save category 1-n */
+            if(!empty(Input::get('category_id'))){
+
+                CategoriesModuleData::where('moduleData_id','=',$mod->id)->delete();
+
+                foreach(Input::get('category_id') as $category_id=>$value)
+                {                    
+                    $CA= new CategoriesModuleData;    
+                    $CA->moduleData_id = $mod->id;
+                    $CA->categories_id = $value;                              
+                    $CA->save();
+                }
+            }else{
+                CategoriesModuleData::where('moduleData_id','=',$mod->id)->delete();
+            }
+
+
             /*upload img*/
-            $upload = Input::file('image'); 
-            if(!empty(CommonHelper::check_files_empty($upload)))
+            $uploadImg = Input::file('image'); 
+            if(!empty(CommonHelper::check_files_empty($uploadImg)))
             {
-              Uploads::where('modData_id','=',$idcontent)->delete();    
+              Uploads::where('modData_id','=',$idcontent)->where("type_file","=","image")->delete();    
               $Path = 'public/asset/share/uploads/images';
               $Image= new ImagesController();
-              //type_content   article_id and modData_id
-              $Image->storeMulti(Input::file('image'), $Path,$mod->id,'modData_id');            
+              //type_content   article_id and modData_id   type_file is image,file
+               $Image->storeMulti($uploadImg, $Path,$mod->id,'modData_id','image');         
             }
+             /*update file document*/                   
+            $uploadFile = Input::file('file'); 
+            if(!empty(CommonHelper::check_files_empty($uploadFile)))
+            {
+              Uploads::where('modData_id','=',$idcontent)->where("type_file","=","file")->delete();      
+              $Path = 'public/asset/share/uploads/document';
+              $Image= new ImagesController();
+              //type_content   article_id and modData_id
+              $Image->storeMulti($uploadFile, $Path,$mod->id,'modData_id','file');            
+            } 
+
             
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message')));  
             return Redirect::to($this->_routeModule.$idmod.'/content');
