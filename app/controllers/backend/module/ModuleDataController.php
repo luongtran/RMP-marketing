@@ -154,7 +154,7 @@ class ModuleDataController extends BaseController {
             $mod->save();
 
             /* save category 1-n */
-            if(!empty(Input::get('category_id'))){
+            if(Input::get('category_id') !=''){
                 foreach(Input::get('category_id') as $category_id=>$value)
                 {
                     $CA= new CategoriesModuleData;    
@@ -293,7 +293,7 @@ class ModuleDataController extends BaseController {
             $mod->update();
             /*update category*/
             /* save category 1-n */
-            if(!empty(Input::get('category_id'))){
+            if(Input::get('category_id') !=''){
 
                 CategoriesModuleData::where('moduleData_id','=',$mod->id)->delete();
 
@@ -310,8 +310,9 @@ class ModuleDataController extends BaseController {
 
 
             /*upload img*/
-            $uploadImg = Input::file('image'); 
-            if(!empty(CommonHelper::check_files_empty($uploadImg)))
+            $uploadImg = Input::file('image');
+            $test =  CommonHelper::check_files_empty($uploadImg);
+            if(!empty($test))
             {
               Uploads::where('modData_id','=',$idcontent)->where("type_file","=","image")->delete();    
               $Path = 'public/asset/share/uploads/images';
@@ -321,7 +322,8 @@ class ModuleDataController extends BaseController {
             }
              /*update file document*/                   
             $uploadFile = Input::file('file'); 
-            if(!empty(CommonHelper::check_files_empty($uploadFile)))
+            $test1 = CommonHelper::check_files_empty($uploadFile);
+            if(!empty($test1))
             {
               Uploads::where('modData_id','=',$idcontent)->where("type_file","=","file")->delete();      
               $Path = 'public/asset/share/uploads/document';
