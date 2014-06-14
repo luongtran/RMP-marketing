@@ -102,7 +102,7 @@ class ModuleDataController extends BaseController {
 
                  $validatorImg = Validator::make(            
                     array(
-                        'image'=>$img//->getClientOriginalName()
+                        'image'=>$img, //->getClientOriginalName()
                     ),
                     array(
                        // 'fileImage'=> 'mimes:jpeg,bmp,png'

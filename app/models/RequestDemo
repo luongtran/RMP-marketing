@@ -1,0 +1,16 @@
+<?php
+
+class RequestDemo extends Eloquent {
+
+	/**
+	 * The database table used by the model.
+	 *
+	 * @var string
+	 */
+	protected $table = 'requestdemo';
+        public $timestamps = true;
+        
+        
+   
+     
+}
