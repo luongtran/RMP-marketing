@@ -110,11 +110,11 @@
                                         <tbody>
                                             @foreach($module_data as $data)
                                             <tr <?php if($data->status == "unpublish"){echo "class='danger'";}?>>
-                                                <td><input type="checkbox" value="{{$data->id}}" name="checkID[]" id="" class="checkBoxClass"></td>
-                                                <td><a href="{{Request::root()}}/backend/module-package/{{$infoMod->id}}/content/view/{{$data->id}}">{{$data->title}}</a></td>                                                                                               
-                                                <td>{{$data->lang_id}}</td> 
-                                                <td>{{$data->user_id}}</td> 
-                                                <td>
+                                                <td class='custom-color'><input type="checkbox" value="{{$data->id}}" name="checkID[]" id="" class="checkBoxClass"></td>
+                                                <td class='custom-color'><a href="{{Request::root()}}/backend/module-package/{{$infoMod->id}}/content/view/{{$data->id}}">{{$data->title}}</a></td>                                                                                               
+                                                <td class='custom-color'>{{$data->lang_id}}</td> 
+                                                <td class='custom-color'>{{$data->user_id}}</td> 
+                                                <td class='custom-color'>
                                                     <a href='{{Request::root()}}/backend/module-package/{{$infoMod->id}}/content/update/{{$data->id}}'>
                                                         <span class="label label-primary">Update</span>                                                        
                                                     </a>

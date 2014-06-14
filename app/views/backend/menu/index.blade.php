@@ -133,27 +133,27 @@
                                     <thead>
                                       <tr>
                                         <th><input type="checkbox" id="ckbCheckAll" /></th>  
-                                        <th >{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
-                                        <th>{{trans('common.table.parent')}} <i class="fa fa-sort"></i></th>      
-                                        <th >{{trans('common.table.order')}} <i class="fa fa-sort"></i></th>      
-                                        <th>{{trans('common.table.icon')}} <i class="fa fa-sort"></i></th>      
-                                        <th><i class="fa fa-sort"></i></th>
+                                        <th class='custom-color'>{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
+                                        <th class='custom-color'>{{trans('common.table.parent')}} <i class="fa fa-sort"></i></th>      
+                                        <th class='custom-color' >{{trans('common.table.order')}} <i class="fa fa-sort"></i></th>      
+                                        <th class='custom-color'>{{trans('common.table.icon')}} <i class="fa fa-sort"></i></th>      
+                                        <th ><i class="fa fa-sort"></i></th>
                                       </tr>
                                     </thead>
                                     <tbody>
                                       @foreach($getMenu  as $menu)                                      
                                       <tr <?php if($menu->status == "unpublish"){echo "class='danger'";}?> >
                                           <td><input type="checkbox" value="{{$menu->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
-                                        <td>{{$menu->title}}</td>
-                                        <td>
+                                        <td class='custom-color'>{{$menu->title}}</td>
+                                        <td class='custom-color'>
                                             @foreach($getP as $parent)
                                               @if($parent->id == $menu->parent)
                                               {{$parent->title}}
                                               @endif
                                             @endforeach               
-                                        <td>{{$menu->order}}</td>                      
-                                        <td>{{$menu->icon}}</td>          
-                                        <td><a  href="{{Request::root()}}/backend/menu/update/{{$menu->id}}"><span class="label label-primary">{{trans('common.button.update')}}</span></a>
+                                        <td class='custom-color'>{{$menu->order}}</td>                      
+                                        <td class='custom-color'>{{$menu->icon}}</td>          
+                                        <td class='custom-color'><a  href="{{Request::root()}}/backend/menu/update/{{$menu->id}}"><span class="label label-primary">{{trans('common.button.update')}}</span></a>
                                             <a  href="{{Request::root()}}/backend/menu/delete/{{$menu->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a>
                                         </td>
                                       </tr>                                      

@@ -2,3 +2,7 @@
 .error{
     color:red;
 }
+
+.custom-color{
+	color:#444 !important;
+}

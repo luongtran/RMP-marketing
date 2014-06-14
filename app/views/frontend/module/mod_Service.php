@@ -10,14 +10,14 @@
                    ->where("module_data.lang_id","=",Session::get('current_locale'))
                    ->where("page_module.page_id","=",$pageinfo->id) 
                    ->orderBy("module_data.order","asc")
-                   ->select(DB::raw("module_data.title,module_data.content,module_data.sumary,module_data.icon,module_data.link,uploads.name as imageName,uploads.path as path"))
+                   ->select(DB::raw("module_data.id,module_data.title,module_data.content,module_data.sumary,module_data.icon,module_data.link,uploads.name as imageName,uploads.path as path"))
                    ->get(); 
     		foreach($Service_content as $listRS):?>
 				<div class="row-item col-1_4">
 					<!-- Icon Box -->
                                         
 					<div class="b-service">
-						<a href="#"><i class="<?php echo $listRS->icon;?> m-colored m-square"></i></a>
+						<a href="#" onclick="change_active(this.id)" id="<?php echo $listRS->id;?>"><i class="<?php echo $listRS->icon;?> m-colored m-square"></i></a>
 						<h3 class="centered"><a class="dark-link" href="#"><?php echo $listRS->title;?></a></h3>
 						<p class="centered">
 							 <?php echo $listRS->sumary;?>
@@ -36,10 +36,10 @@
 					<!-- Vertical Tabs -->
 					<div class="b-tabs m-nav-left margin-40">
 						<!-- Tabs Navigation -->
-						<ul class="tabs-nav">
-                                                    <?php $i = 1; foreach($Service_content as $linkSv):?>
-							<li class="<?php if($i==1) echo 'active';?>"><span><i class="<?php echo $linkSv->icon;?>"></i><?php echo $linkSv->title;?></span></li>
-                                                    <?php  $i++; endforeach;?>    
+						<ul class="tabs-nav" id="ul-change-active">
+                              <?php $i = 1; foreach($Service_content as $linkSv):?>
+							<li class="<?php if($i==1) echo 'sl'.$linkSv->id.' active'; else echo 'sl'.$linkSv->id; ?>"><span><i class="<?php echo $linkSv->icon;?>"></i><?php echo $linkSv->title;?></span></li>
+                              <?php  $i++; endforeach;?>    
 						</ul>
 						<!-- End Tabs Navigation -->
 						<!-- Tabs Content -->
@@ -60,3 +60,11 @@
 			</div>	
 		</div>
 
+<script>
+/*change active li*/
+function change_active(id){	 	
+    $("#ul-change-active li").removeClass( "active" );
+	var classActive = '#ul-change-active li.sl'+id+'';
+	$(classActive).addClass("active");
+};
+</script>

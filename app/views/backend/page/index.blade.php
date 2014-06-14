@@ -125,9 +125,9 @@
                                       @foreach($getPage  as $pages)                                      
                                       <tr <?php if($pages->status=='unpublish') echo "class='danger'";?> >
                                          <td><input type="checkbox" value="{{$pages->id}}" name="checkID[]" id="" class="checkBoxClass"></td>
-                                        <td>{{$pages->name}}</td>                                        
-                                        <td>{{$pages->link}}</td>
-                                        <td>{{$pages->created_at}}</td>
+                                        <td class='custom-color'>{{$pages->name}}</td>                                        
+                                        <td class='custom-color'>{{$pages->link}}</td>
+                                        <td class='custom-color'>{{$pages->created_at}}</td>
                                         <td>
                                           <a href="{{Request::root()}}/backend/page/update/{{$pages->id}}" ><span class="label label-primary">{{trans('common.button.update')}}</span></a>
                                           <a href="{{Request::root()}}/backend/page/delete/{{$pages->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a>

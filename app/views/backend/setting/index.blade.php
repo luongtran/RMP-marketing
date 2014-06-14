@@ -89,8 +89,8 @@
                                     </thead>
                                     <tbody>
                                          @foreach($getSetting  as $setting)                                      
-                                        <tr>
-                                            <td>
+                                        <tr class='custom-color'>
+                                            <td >
                                             <div class="form-group"> 
                                                    {{$setting->description}}
                                             </div>   

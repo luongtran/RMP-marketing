@@ -7,11 +7,12 @@
     <title>CompleteRMP | @if( isset( $page )) {{ $page }}   @endif        
     </title>
     <meta title="keyword" content="completermp, @if( isset( $page )) {{$page}}   @endif ">
-    <link rel="icon" type="image/ico" href="favicon.ico"/>    
+    <link rel="icon" type="image/ico" href="favicon.ico"/>        
     <link href="{{asset('asset/frontend/css/style.css')}}" media="screen" rel="stylesheet" type="text/css" />     
     <!-- in style -->
     @section('style') 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="{{asset('asset/frontend/css/main.css')}}">
+
     
     <script src="{{ asset('asset/frontend/js/jquery-1.9.1.min.js')}}"></script>
     <script src="{{ asset('asset/frontend/js/main.js')}}"></script>   

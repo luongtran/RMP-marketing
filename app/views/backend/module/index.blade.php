@@ -141,11 +141,11 @@
                                     <thead>
                                       <tr>
                                         <th><input type="checkbox" id="ckbCheckAll" /></th>  
-                                        <th class="">{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
-                                        <th class="">{{trans('common.table.mod')}} <i class="fa fa-sort"></i></th>      
-                                        <th class="">{{trans('common.table.position')}} <i class="fa fa-sort"></i></th>      
-                                        <th class="">{{trans('common.table.order')}} <i class="fa fa-sort"></i></th>      
-                                        <th class=""><i class="fa fa-sort"></i></th>
+                                        <th class='custom-color'>{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
+                                        <th class='custom-color'>{{trans('common.table.mod')}} <i class="fa fa-sort"></i></th>      
+                                        <th class='custom-color'>{{trans('common.table.position')}} <i class="fa fa-sort"></i></th>      
+                                        <th class='custom-color'>{{trans('common.table.order')}} <i class="fa fa-sort"></i></th>      
+                                        <th class='custom-color'><i class="fa fa-sort"></i></th>
                                       </tr>
                                     </thead>
                                     <tbody>
