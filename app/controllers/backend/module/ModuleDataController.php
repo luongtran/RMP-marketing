@@ -96,32 +96,34 @@ class ModuleDataController extends BaseController {
         if($validation->passes())
         {
 
-        $uploadImg = Input::file('image'); 
-         /*validation image*/         
-            foreach($uploadImg as $img) :   
+          /*validation image*/   
+         $uploadImage = Input::file('image'); 
+                /*validation file*/
+               foreach($uploadImage as $img) :   
 
-                 $validatorImg = Validator::make(            
+                 $validatorImage = Validator::make(            
                     array(
-                        'image'=>$img, //->getClientOriginalName()
+                        'image'=>$img
                     ),
                     array(
-                       // 'fileImage'=> 'mimes:jpeg,bmp,png'
-                       'image'=>'mimes:png,jpg,jpge,gif,icon',
+                        'image'=> 'mimes:jpeg,bmp,png,gif',
+                      // 'image'=>'mimes:png,gif,jpg,jpge,bmp',
                     )
                      );        
-                    if (!$validatorImg->passes())
+                    if ($validatorImage->fails())
                     {
-                        Session::flash('msg_flash',  CommonHelper::printErrors($validatorImg->messages()));
+                        Session::flash('msg_flash',  CommonHelper::printErrors($validatorImage->messages()));
                          return Redirect::back()->withInput();    
-                    }   
+                    } 
+                 endforeach;  
 
-              endforeach;
+            
             /*validation file*/   
          $uploadFile = Input::file('file'); 
                 /*validation file*/
                foreach($uploadFile as $file) :   
 
-                 $validatorImg = Validator::make(            
+                 $validatorFile = Validator::make(            
                     array(
                         'file'=>$file//->getClientOriginalName()
                     ),
@@ -130,9 +132,9 @@ class ModuleDataController extends BaseController {
                        'file'=>'mimes:pdf,doc,docx,xls,xlsx',
                     )
                      );        
-                    if (!$validatorImg->passes())
+                    if ($validatorFile->fails())
                     {
-                        Session::flash('msg_flash',  CommonHelper::printErrors($validatorImg->messages()));
+                        Session::flash('msg_flash',  CommonHelper::printErrors($validatorFile->messages()));
                          return Redirect::back()->withInput();    
                     } 
                  endforeach;  
@@ -164,16 +166,16 @@ class ModuleDataController extends BaseController {
 
         /*add to table uploads*/
         /*upload image*/           
-            if(!empty(CommonHelper::check_files_empty($uploadImg)))
+            if(CommonHelper::check_files_empty($uploadImage))
             {              
               $Path = 'public/asset/share/uploads/images';
               $Image= new ImagesController();
               //type_content   article_id and modData_id
-              $Image->storeMulti($uploadImg, $Path,$mod->id,'modData_id','image');            
+              $Image->storeMulti($uploadImage, $Path,$mod->id,'modData_id','image');            
             } 
         /*upload file document*/                   
             $uploadFile = Input::file('file'); 
-            if(!empty(CommonHelper::check_files_empty($uploadFile)))
+            if(CommonHelper::check_files_empty($uploadFile))
             {               
               $Path = 'public/asset/share/uploads/document';
               $Image= new ImagesController();
@@ -232,32 +234,34 @@ class ModuleDataController extends BaseController {
          );        
         if($validation->passes())
         {
-            $uploadImg = Input::file('image'); 
-         /*validation image*/         
-            foreach($uploadImg as $img) :   
+           /*validation image*/   
+            $uploadImage = Input::file('image'); 
+                /*validation file*/
+               foreach($uploadImage as $img) :   
 
-                 $validatorImg = Validator::make(            
+                 $validatorImage = Validator::make(            
                     array(
-                        'image'=>$img//->getClientOriginalName()
+                        'image'=>$img
                     ),
                     array(
-                       // 'fileImage'=> 'mimes:jpeg,bmp,png'
-                       'image'=>'mimes:png,jpg,jpge,gif,icon',
+                        'image'=> 'mimes:jpeg,bmp,png,gif',
+                      // 'image'=>'mimes:png,gif,jpg,jpge,bmp',
                     )
                      );        
-                    if (!$validatorImg->passes())
+                    if ($validatorImage->fails())
                     {
-                        Session::flash('msg_flash',  CommonHelper::printErrors($validatorImg->messages()));
+                        Session::flash('msg_flash',  CommonHelper::printErrors($validatorImage->messages()));
                          return Redirect::back()->withInput();    
-                    }   
-
-              endforeach;
+                    } 
+                 endforeach;  
+            /* end validation image*/     
+            
             /*validation file*/   
-            $uploadFile = Input::file('file'); 
+             $uploadFile = Input::file('file'); 
                 /*validation file*/
                foreach($uploadFile as $file) :   
 
-                 $validatorImg = Validator::make(            
+                 $validatorFile = Validator::make(            
                     array(
                         'file'=>$file//->getClientOriginalName()
                     ),
@@ -266,12 +270,14 @@ class ModuleDataController extends BaseController {
                        'file'=>'mimes:pdf,doc,docx,xls,xlsx',
                     )
                      );        
-                    if (!$validatorImg->passes())
+                    if ($validatorFile->fails())
                     {
-                        Session::flash('msg_flash',  CommonHelper::printErrors($validatorImg->messages()));
+                        Session::flash('msg_flash',  CommonHelper::printErrors($validatorFile->messages()));
                          return Redirect::back()->withInput();    
                     } 
-            endforeach;  
+                 endforeach; 
+             /* end validation file*/       
+
             $mod = ModuleData::find($idcontent);
             $mod->title = Input::get('title');
             $mod->sumary = Input::get('sumary');        

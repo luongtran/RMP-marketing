@@ -105,7 +105,7 @@
                                             </div>
                                            <div class="form-group">
                                              <label for="">Upload Images</label>
-                                            {{Form::file('image[]',array('class' => 'image','multiple'=>'on')) }}                                            
+                                            {{Form::file('image[]',array('class' => '','multiple'=>'on')) }}                                            
                                             </div>
 
                                             <div class="form-group">

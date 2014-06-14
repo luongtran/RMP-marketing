@@ -60,16 +60,7 @@ class ModuleIntroController extends BaseController {
         $mod->module_id = $id;
         $mod->status = Input::get('status');
         $mod->save();
-        /*add to table uploads*/
-        /*upload image*/
-            $upload = Input::file('image'); 
-            if(!empty(CommonHelper::check_files_empty($upload)))
-            {
-              $Path = 'public/asset/share/uploads/images';
-              $Image= new ImagesController();
-              //type_content   article_id and modData_id
-              $Image->storeMulti(Input::file('image'), $Path,$mod->id,'modIntro_id');            
-            }        
+
         Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.create_message')));  
         return Redirect::to($this->_routeModule.$id.'/intro');
         }
@@ -80,20 +71,14 @@ class ModuleIntroController extends BaseController {
         $infoMod = Modules::where('id','=',$idmod)->first();       
         $this->layout->page = $this->_moduleName.' - '.$infoMod->name; 
         $language = Language::where('status','=','publish')->orderBy('name','asc')->get();
-        $getModData = ModuleIntro::where('id','=',$idcontent)->first();
-        /*show list image*/
-        $listImg = null;
-        if(Uploads::where('modIntro_id','=',$idcontent)->count()>0)
-        {
-        $listImg = Uploads::where('modData_id','=',$idcontent)->get();
-        }
+        $getModData = ModuleIntro::where('id','=',$idcontent)->first();      
         
         $this->layout->content = View::make('backend.module.intro.update')
                 ->with('module_data',$getModData)
                 ->with('infoMod',$infoMod)
-                ->with('language',$language)
-                ->with('listImg',$listImg);
-    }    
+                ->with('language',$language);
+    }
+
     public function postUpdate($idmod,$idcontent) {       
         $validation = Validator::make(                
                 Input::all(),
@@ -112,18 +97,7 @@ class ModuleIntroController extends BaseController {
             $mod->user_id = Session::get('userID');
             $mod->module_id = $idmod;
             $mod->status = Input::get('status');
-            $mod->update();
-            /*upload img*/
-            $upload = Input::file('image'); 
-            if(!empty(CommonHelper::check_files_empty($upload)))
-            {
-              Uploads::where('modIntro_id','=',$idcontent)->delete();    
-              $Path = 'public/asset/share/uploads/images';
-              $Image= new ImagesController();
-              //type_content   article_id and modData_id
-              $Image->storeMulti(Input::file('image'), $Path,$mod->id,'modIntro_id');            
-            }
-            
+            $mod->update();          
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message')));  
             return Redirect::to($this->_routeModule.$idmod.'/intro');
         }

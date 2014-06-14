@@ -106,11 +106,7 @@
                                             <div class="form-group">
                                              <label for="">Sumary</label>
                                              {{Form::textarea('sumary','',array('class' => 'form-control','style'=>'width: 100%;'))}}                                             
-                                            </div>
-                                           <div class="form-group">
-                                             <label for="">Multi Images</label>
-                                            {{Form::file('image[]',array('class' => 'image','multiple'=>'on')) }}                                            
-                                            </div> 
+                                            </div>                                       
                                             <div class="form-group">
                                             <label for="">Language</label>    
                                             <select name="lang_id" class="form-control">                                              
