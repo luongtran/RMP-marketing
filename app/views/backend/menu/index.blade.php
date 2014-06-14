@@ -107,6 +107,15 @@
                                     <label>{{trans('common.table.icon')}}(Ex: icon-home)</label>                                
                                     {{Form::text('icon','',array('class' => 'form-control','id'=>'icon'))}}       
                                 </div>
+
+                                 <div class="form-group">
+                                            <label for="">{{trans('common.table.language')}}</label>    
+                                            <select name="lang_id" class="form-control">                                              
+                                                @foreach($language as $lang)
+                                                <option value="{{$lang->code}}">{{$lang->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            </div>
                           
                                  <?php echo CommonHelper::createFormStatus();?>
                                 

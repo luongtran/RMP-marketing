@@ -165,7 +165,7 @@ class SharedController extends BaseController{
         $data['message']=Input::get('message');
         Mail::send('frontend.contact.send_email', $data, function($m){
            $m->from(Input::get('email'), Input::get('name'));
-           $m->to('ltt.develop@gmail.com', 'Develop');
+           $m->to('thanhtruyen1001@gmail.com', 'Develop SFR');
            $m->subject(Input::get('subject'));
            //$m->text (Input::get('message'));
            //$message->from('us@example.com', 'Laravel');

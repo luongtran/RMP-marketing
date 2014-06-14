@@ -81,12 +81,76 @@
                     <div class="col-sm-10">
 
                         <div class="mail_header">
-                            <div class="row">
+                              {{Session::get('msg_flash')}}
+                            <div class="row">                               
+                                <div class="col-sm-6">
+
+
+                                </div>
+
+
+                                <div class="col-sm-6">
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div id="content-mail">
+                            <div class="table-responsive">
+                                <!-- THE MESSAGES -->
+                                <table class="table table-mailbox">
+                                    <tr class="">
+                                        <th class="small-col">                                           
+                                        </th>
+                                        <th class="small-col">
+                                        </th>
+                                        <th>Name
+                                        </td>
+                                        <th>Company</th>
+                                        <th class="subject"> Subject  
+                                        </th>
+                                        <th class="time text-right">Created at</th>
+                                    </tr>
+
+                                    @foreach($result as $show)
+
+                                    <tr class="<?php if($show->status == 'unpublish') echo 'custom-color';?>">
+                                        <td class="small-col">
+                                           <input type="checkbox" value="{{$show->id}}" name="checkID[]" id="" class="checkBoxClass">
+                                        </td>
+                                        <td class="small-col"><i class="fa fa-star <?php if($show->status =='unpublish') echo 'star-yellow';?>"></i>
+                                        </td>
+                                        <td><a href='{{Request::root()}}/backend/request-demo/read/{{$show->id}}'>{{$show->name}}</a></td>
+                                        <td class="subject">
+                                            <p class="email-summary"><strong>{{$show->company}} </strong></p>
+                                        </td>
+                                        <td>        
+                                            <p class="email-text"> {{$show->subject}}...</p>
+                                        </td>
+                                        <td class="time text-right">{{$show->created_at}}</td>
+                                    </tr>
+
+                                    @endforeach
+                                    <!-- END OF THREE -->
+
+
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+
+
+                        </div>
+
+                        <div class="">
+                             <div class="row">
                                 <div class="col-sm-6">
 
                                     <div style="margin-right:10px" class="btn-group pull-left">
                                         <div class="btn">
-                                            <input type="checkbox" style="margin:0 5px;padding:0;position:relative;top:2px;">All</div>
+                                          <input type="checkbox" id="ckbCheckAll"  style="margin:0 5px;padding:0;position:relative;top:2px;">All</div>
                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                                             <span class="caret"></span>
                                             <span class="sr-only">Toggle Dropdown</span>
@@ -100,7 +164,6 @@
                                             </li>
                                         </ul>
                                     </div>
-
 
 
                                     <div style="margin-right:10px" class="btn-group pull-left">
@@ -122,71 +185,16 @@
                                         <span class="entypo-arrows-ccw"></span>&nbsp;&nbsp;Refresh</button>
 
 
+
                                 </div>
 
 
                                 <div class="col-sm-6">
 
-                                </div>
 
-
-                            </div>
-
-                        </div>
-
-                        <div id="content-mail">
-                            <div class="table-responsive">
-                                <!-- THE MESSAGES -->
-                                <table class="table table-mailbox">
-                                    <tr class="unread">
-                                        <td class="small-col">
-                                            <input type="checkbox" />
-                                        </td>
-                                        <td class="small-col"><i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="name"><a class="star" href=""><i class="fa fa-twitter"></i></a>
-                                        </td>
-                                        <td>Twitter</td>
-                                        <td class="subject">
-                                            <p class="email-summary">
-                                                <strong>Do You Know</strong>Iko Uwais, Justin Beiber on twitter? ...</p>
-                                        </td>
-                                        <td class="time text-right">Jan 8 at 07:10am</td>
-                                    </tr>
-
-                                    <tr class="unread">
-                                        <td class="small-col">
-                                            <input type="checkbox" />
-                                        </td>
-                                        <td class="small-col"><i class="fa fa-star"></i>
-                                        </td>
-                                        <td class="name"> <a class="star" href=""><i class="fa fa-facebook"></i></a>
-                                        </td>
-                                        <td>Facebook</td>
-                                        <td class="subject">
-                                            <p class="email-summary">
-                                                <strong>Meeting Reminder</strong>Ut enim ad minim veniam, quis nostrud exercitation...</p>
-                                        </td>
-                                        <td class="time text-right">Yesterday at 1:30am</td>
-                                    </tr>
-
-                                    <!-- END OF THREE -->
-
-
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-
-
-                        </div>
-
-                        <div class="">
-                             <div class="row">
-                                <div class="col-sm-6">
-
-                                    <div class="btn-group pull-left">
+                                    <div class="btn-group pull-right">
                                         <button type="button" class="btn">
-                                            <span class="entypo-left-open"></span>
+                                            <span class="entypo-right-open"></span>
                                         </button>
                                         <button type="button" class="btn">
                                             <span class="entypo-right-open"></span>
@@ -194,16 +202,11 @@
 
                                     </div>
 
-                                    <div class="btn-group pull-left" style="margin-right:10px;">
+                                    <div class="btn-group pull-right" style="margin-right:10px;">
                                         <button type="button" class="btn">1-50 of 124</button>
 
 
                                     </div>
-
-                                </div>
-
-
-                                <div class="col-sm-6">
 
                                 </div>
 

@@ -119,7 +119,7 @@ class ArticlesController extends BaseController {
             {
               $Path = 'public/asset/share/uploads/images/';
               $Image= new ImagesController();
-              $Image->storeMulti(Input::file('fileimages'), $Path,$article->id);            
+              $Image->storeMulti(Input::file('fileimages'), $Path,$article->id,'article_id','image');            
             }
             
             $msg_success= CommonHelper::printMsg('success',trans('messages.create_message'));            

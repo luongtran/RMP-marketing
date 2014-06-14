@@ -28,11 +28,20 @@ class RequestDemoController extends BaseController {
                                     ->with('result',$result);
                                    
         }
-    public function getAdd() {        
+    public function read($id) {        
         $this->layout->page = $this->_moduleName;                
-        $position = DB::table('position')->get();
-        $this->layout->content = View::make('backend.module.add')
-                                 ->with('position',$position);           
+        $read = RequestDemo::where('id','=',$id)->first();
+        if(!$read){
+        Session::flash('msg_flash',  CommonHelper::printMsg('error',"You can't read this request demo"));   
+        return Redirect::to('backend/request-demo');    
+        }
+        /*update status have read*/            
+            $record = RequestDemo::find($id);
+            $record->status = 'publish';
+            $record->update();
+
+        $this->layout->content = View::make('backend.requestdemo.read')
+                                 ->with('read',$read);           
         }    
     public function postAdd() {       
         $validation = Validator::make(                

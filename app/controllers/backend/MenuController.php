@@ -40,10 +40,13 @@ class MenuController extends BaseController {
         }      
         $listPage = Pages::all();
         
+        $language = Language::where('status','=','publish')->orderBy('name','asc')->get();
+      
         $this->layout->content = View::make('backend.menu.index')->with('getMenu',$getMenu)
              ->with('parent',listDrop(0))
              ->with('getP',$getP)
-             ->with('listPage',$listPage);
+             ->with('listPage',$listPage)
+             ->with('language',$language);
     }
      public function postAdd() {       
         $validation = Validator::make(                
@@ -63,6 +66,7 @@ class MenuController extends BaseController {
         $menu->order = Input::get('order');
         $menu->icon = Input::get('icon');
         $menu->status = Input::get('status');
+        $menu->lang_id = Input::get('lang_id');
         $menu->save();        
         Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.create_message')));  
         return Redirect::route('backend_menu');
@@ -99,9 +103,12 @@ class MenuController extends BaseController {
             }
             return $str;
         }      
-        
+        $language = Language::where('status','=','publish')->orderBy('name','asc')->get();
+
         $this->layout->content = View::make('backend.menu.update')->with('getMenu',$getMenu)
-             ->with('getParent',  listDrop(0,'',$getMenu->parent))->with('listPage',$listPage);;
+             ->with('getParent',  listDrop(0,'',$getMenu->parent))
+             ->with('listPage',$listPage)
+             ->with('language',$language);
           
     }
     

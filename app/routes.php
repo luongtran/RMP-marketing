@@ -62,6 +62,7 @@ Route::post('backend/page/action',array('as' => 'page_action', 'uses' =>'PagesCo
 
 /*request demo */
 Route::get('backend/request-demo',array('as' => 'backend_requestdeno', 'uses' =>'RequestDemoController@index'));
+Route::get('backend/request-demo/read/{id}',array('as' => 'backend_requestdeno', 'uses' =>'RequestDemoController@read'));
 
 /*Module*/
 Route::get('backend/module/',array('as' => 'backend_module', 'uses' =>'ModuleController@index'));

@@ -140,6 +140,7 @@
                                                 <option value="{{$lang->code}}">{{$lang->name}}</option>
                                                 @endforeach
                                             </select>
+                                            </div>
                                              <div class="form-group">
                                              <label for="">{{trans('common.table.icon')}}</label>
                                              {{Form::text('icon','',array('class' => 'form-control'))}}                                             

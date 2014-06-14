@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50616
 File Encoding         : 65001
 
-Date: 2014-06-14 13:33:24
+Date: 2014-06-14 16:53:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `articles` (
   `group_uploads` int(11) DEFAULT NULL,
   `lang_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of articles
@@ -40,6 +40,11 @@ CREATE TABLE `articles` (
 INSERT INTO `articles` VALUES ('1', 'Recruitment software with a difference', 'about', '<p>CompleteRMP recruitment software has been developed for the Internet right from the start, in both its delivery and the core features it offers. Embracing new technology and ideas has enabled us to develop the cutting edge web based recruitment solution - CompleteRMP.</p>\r\n\r\n<p>CompleteRMP has been built from the ground up as an online recruitment solution, and is specifically designed for access via a standard web browser so our client&#39;s don&#39;t have to install third party software to access their recruitment software via the Internet. This leads to a much more efficient, stable and accessible system with significantly reduced cost.</p>\r\n\r\n<div class=\"gap\" style=\"height: 30px;\">&nbsp;</div></div>\r\n\r\n<div class=\"row-item col-1_2\">\r\n<p>Each new client has brought fresh challenges and different methods of working so we have continued to develop a recruitment system that can easily be tailored to suit all. Developing a customisable system has been our key focus with even our support staff able to do the majority of system setup using in house tools. This removes the need for bespoke programming or development, resulting in a much lower setup cost and typical turnaround times of 2 - 3 weeks with an integrated website or 24 hours without. We also provide highly specific customisations and bespoke tools without incurring large costs.</p>\r\n\r\n<p>Our online recruitment software has always been provided as a service and is charged on a usage basis so we understand the importance of achieving the highest levels of customer satisfaction.</p>\r\n\r\n<p>We see ourselves more as your technology partner than the traditional role of recruitment software vendor and as such form closer working relationships with all of our clients.</p>\r\n\r\n<h3 class=\"lined margin-20\">Some ROI benefits</h3>\r\n\r\n<div class=\"element-wrap\">\r\n<div class=\"b-progress-bar\" data-capacity=\"100\" data-value=\"90\">\r\n<div class=\"progress-label\">Increase Data Accuracy to upto 90%</div>\r\n\r\n<div class=\"progress-scale\">\r\n<div class=\"progress-line\" style=\"width: 90%;\">&nbsp;</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"b-progress-bar\" data-capacity=\"100\" data-value=\"65\">\r\n<div class=\"progress-label\">WordPress 65%</div>\r\n\r\n<div class=\"progress-scale\">\r\n<div class=\"progress-line m-4\" style=\"width: 65%;\">&nbsp;</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"b-progress-bar\" data-capacity=\"100\" data-value=\"78\">\r\n<div class=\"progress-label\">Graphic Design 78%</div>\r\n\r\n<div class=\"progress-scale\">\r\n<div class=\"progress-line m-3\" style=\"width: 78%;\">&nbsp;</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"b-progress-bar\" data-capacity=\"100\" data-value=\"86\">\r\n<div class=\"progress-label\">HTML/CSS 86%</div>\r\n\r\n<div class=\"progress-scale\">\r\n<div class=\"progress-line m-2\" style=\"width: 86%;\">&nbsp;</div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"gap\" style=\"height: 30px;\">&nbsp;</div>\r\n</div>\r\n', '2014-05-27 08:21:51', '2014-06-05 11:19:19', '1', '<p>CompleteRMP recruitment software has been developed for the Internet right from the start, in both its delivery and the core features it offers. Embracing new technology and ideas has enabled us to develop the cutting edge web based recruitment solution - CompleteRMP.</p>\r\n\r\n					<p>CompleteRMP has been built from the ground up as an online recruitment solution, and is specifically designed for access via a standard web browser so our client\'s don\'t have to install third party software to access their recruitment software via the Internet. This leads to a much more efficient, stable and accessible system with significantly reduced cost.</p>\r\n\r\n\r\n					<div style=\"height: 30px;\" class=\"gap\">\r\n					</div>\r\n				</div>\r\n\r\n				<div class=\"row-item col-1_2\">\r\n					<p>Each new client has brought fresh challenges and different methods of working so we have continued to develop a recruitment system that can easily be tailored to suit all. Developing a customisable system has been our key focus with even our support staff able to do the majority of system setup using in house tools. This removes the need for bespoke programming or development, resulting in a much lower setup cost and typical turnaround times of 2 - 3 weeks with an integrated website or 24 hours without. We also provide highly specific customisations and bespoke tools without incurring large costs.</p>\r\n					<p>Our online recruitment software has always been provided as a service and is charged on a usage basis so we understand the importance of achieving the highest levels of customer satisfaction.</p>\r\n					<p>We see ourselves more as your technology partner than the traditional role of recruitment software vendor and as such form closer working relationships with all of our clients.</p>\r\n					<h3 class=\"lined margin-20\">Some ROI benefits</h3>\r\n					<div class=\"element-wrap\">					\r\n						<div data-value=\"90\" data-capacity=\"100\" class=\"b-progress-bar\">\r\n							<div class=\"progress-label\">Increase Data Accuracy to upto 90%</div>\r\n							<div class=\"progress-scale\">\r\n								<div class=\"progress-line\" style=\"width: 90%;\"></div>\r\n							</div>\r\n						</div>\r\n						<div data-value=\"65\" data-capacity=\"100\" class=\"b-progress-bar\">\r\n							<div class=\"progress-label\">WordPress 65%</div>\r\n							<div class=\"progress-scale\">\r\n								<div class=\"progress-line m-4\" style=\"width: 65%;\"></div>\r\n							</div>\r\n						</div>\r\n						<div data-value=\"78\" data-capacity=\"100\" class=\"b-progress-bar\">\r\n							<div class=\"progress-label\">Graphic Design 78%</div>\r\n							<div class=\"progress-scale\">\r\n								<div class=\"progress-line m-3\" style=\"width: 78%;\"></div>\r\n							</div>\r\n						</div>\r\n						<div data-value=\"86\" data-capacity=\"100\" class=\"b-progress-bar\">\r\n							<div class=\"progress-label\">HTML/CSS 86%</div>\r\n							<div class=\"progress-scale\">\r\n								<div class=\"progress-line m-2\" style=\"width: 86%;\"></div>\r\n							</div>\r\n						</div>\r\n						\r\n						\r\n					</div>\r\n					<div style=\"height: 30px;\" class=\"gap\">\r\n					</div>\r\n				</div>', '', 'publish', null, 'en');
 INSERT INTO `articles` VALUES ('3', 'برامج التوظيف مع الفارق', 'about', '<p>CompleteRMP recruitment software has been developed for the Internet right from the start, in both its delivery and the core features it offers. Embracing new technology and ideas has enabled us to develop the cutting edge web based recruitment solution - CompleteRMP.</p>\r\n\r\n					<p>CompleteRMP has been built from the ground up as an online recruitment solution, and is specifically designed for access via a standard web browser so our client\'s don\'t have to install third party software to access their recruitment software via the Internet. This leads to a much more efficient, stable and accessible system with significantly reduced cost.</p>\r\n\r\n\r\n					<div style=\"height: 30px;\" class=\"gap\">\r\n					</div>\r\n				</div>\r\n\r\n				<div class=\"row-item col-1_2\">\r\n					<p>Each new client has brought fresh challenges and different methods of working so we have continued to develop a recruitment system that can easily be tailored to suit all. Developing a customisable system has been our key focus with even our support staff able to do the majority of system setup using in house tools. This removes the need for bespoke programming or development, resulting in a much lower setup cost and typical turnaround times of 2 - 3 weeks with an integrated website or 24 hours without. We also provide highly specific customisations and bespoke tools without incurring large costs.</p>\r\n					<p>Our online recruitment software has always been provided as a service and is charged on a usage basis so we understand the importance of achieving the highest levels of customer satisfaction.</p>\r\n					<p>We see ourselves more as your technology partner than the traditional role of recruitment software vendor and as such form closer working relationships with all of our clients.</p>\r\n					<h3 class=\"lined margin-20\">Some ROI benefits</h3>\r\n					<div class=\"element-wrap\">					\r\n						<div data-value=\"90\" data-capacity=\"100\" class=\"b-progress-bar\">\r\n							<div class=\"progress-label\">Increase Data Accuracy to upto 90%</div>\r\n							<div class=\"progress-scale\">\r\n								<div class=\"progress-line\" style=\"width: 90%;\"></div>\r\n							</div>\r\n						</div>\r\n						<div data-value=\"65\" data-capacity=\"100\" class=\"b-progress-bar\">\r\n							<div class=\"progress-label\">WordPress 65%</div>\r\n							<div class=\"progress-scale\">\r\n								<div class=\"progress-line m-4\" style=\"width: 65%;\"></div>\r\n							</div>\r\n						</div>\r\n						<div data-value=\"78\" data-capacity=\"100\" class=\"b-progress-bar\">\r\n							<div class=\"progress-label\">Graphic Design 78%</div>\r\n							<div class=\"progress-scale\">\r\n								<div class=\"progress-line m-3\" style=\"width: 78%;\"></div>\r\n							</div>\r\n						</div>\r\n						<div data-value=\"86\" data-capacity=\"100\" class=\"b-progress-bar\">\r\n							<div class=\"progress-label\">HTML/CSS 86%</div>\r\n							<div class=\"progress-scale\">\r\n								<div class=\"progress-line m-2\" style=\"width: 86%;\"></div>\r\n							</div>\r\n						</div>\r\n						\r\n						\r\n					</div>\r\n					<div style=\"height: 30px;\" class=\"gap\">\r\n					</div>\r\n				</div>', '2014-06-04 10:32:47', '2014-06-05 11:13:23', '1', '<p>CompleteRMP recruitment software has been developed for the Internet right from the start, in both its delivery and the core features it offers. Embracing new technology and ideas has enabled us to develop the cutting edge web based recruitment solution - CompleteRMP.</p>', '', 'publish', null, 'sa');
 INSERT INTO `articles` VALUES ('4', 'uuuuuuuuuuuuuuuuuuuu', '', '', '2014-06-10 11:03:10', '2014-06-14 02:22:17', '1', '', '', 'unpublish', null, null);
+INSERT INTO `articles` VALUES ('10', 'uuuuuuuuuuuuuuuuuuuuuuuuuuu', 'uuuuuuuuuuuuu', '<p>uuuuuuuuuuuuuuu</p>\r\n', '2014-06-14 07:34:42', '2014-06-14 07:34:42', '1', '', '', 'publish', null, null);
+INSERT INTO `articles` VALUES ('11', 'Ullam Corporis Suscipit Laboriosamuuuuuuuuuu', 'uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu', '', '2014-06-14 07:34:57', '2014-06-14 07:34:57', '1', '', 'uuuuuuuuuuuuu', 'publish', null, null);
+INSERT INTO `articles` VALUES ('12', 'Ullam Corporis Suscipit Laboriosamuuuuuuuuuu', '', '<p>jjjjjjjjjjjjjjjjjjjjjjjjj</p>\r\n', '2014-06-14 07:38:37', '2014-06-14 07:38:37', '1', '', 'uuuuuuuuuuuuu', 'publish', null, null);
+INSERT INTO `articles` VALUES ('13', 'Ullam Corporis Suscipit Laboriosamuuuuuuuuuu', '', '<p>jjjjjjjjjjjjjjjjjjjjjjjjj</p>\r\n', '2014-06-14 07:39:50', '2014-06-14 07:39:50', '1', '', 'uuuuuuuuuuuuu', 'publish', null, null);
+INSERT INTO `articles` VALUES ('15', 'LG G3 bất ngờ xuất hiện tại Việt Namlllllllllll', 'llllllllllllllllll', '<p>llllllllllll</p>\r\n', '2014-06-14 07:41:38', '2014-06-14 07:41:38', '1', '', '', 'publish', null, null);
 
 -- ----------------------------
 -- Table structure for `categories`
@@ -56,7 +61,7 @@ CREATE TABLE `categories` (
   `parent` int(11) DEFAULT NULL,
   `permalink` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of categories
@@ -66,7 +71,7 @@ INSERT INTO `categories` VALUES ('9', 'PAGE', '', null, 'publish', null, '2014-0
 INSERT INTO `categories` VALUES ('11', 'Features', '', null, 'publish', null, '2014-05-29 03:51:46', '0', 'features');
 INSERT INTO `categories` VALUES ('20', 'Tutorial', null, null, 'publish', '2014-06-10 09:54:33', '2014-06-10 09:54:33', '0', '');
 INSERT INTO `categories` VALUES ('21', 'Video', '', '20', 'publish', '2014-06-10 09:54:49', '2014-06-10 10:05:34', '20', '');
-INSERT INTO `categories` VALUES ('22', 'PDF', '', '20', 'publish', '2014-06-10 09:54:58', '2014-06-10 10:05:22', '20', '');
+INSERT INTO `categories` VALUES ('23', 'PDF', null, '20', 'publish', '2014-06-14 07:49:11', '2014-06-14 07:49:11', '20', '');
 
 -- ----------------------------
 -- Table structure for `categories_articles`
@@ -81,21 +86,22 @@ CREATE TABLE `categories_articles` (
 -- ----------------------------
 -- Records of categories_articles
 -- ----------------------------
-INSERT INTO `categories_articles` VALUES ('2', '13');
-INSERT INTO `categories_articles` VALUES ('2', '111');
-INSERT INTO `categories_articles` VALUES ('2', '112');
-INSERT INTO `categories_articles` VALUES ('9', '1');
-INSERT INTO `categories_articles` VALUES ('9', '2');
-INSERT INTO `categories_articles` VALUES ('9', '3');
-INSERT INTO `categories_articles` VALUES ('9', '4');
-INSERT INTO `categories_articles` VALUES ('9', '5');
-INSERT INTO `categories_articles` VALUES ('9', '12');
-INSERT INTO `categories_articles` VALUES ('9', '13');
-INSERT INTO `categories_articles` VALUES ('9', '110');
-INSERT INTO `categories_articles` VALUES ('9', '112');
-INSERT INTO `categories_articles` VALUES ('11', '2');
-INSERT INTO `categories_articles` VALUES ('11', '113');
-INSERT INTO `categories_articles` VALUES ('22', '4');
+INSERT INTO `categories_articles` VALUES ('2', '15');
+INSERT INTO `categories_articles` VALUES ('2', '16');
+INSERT INTO `categories_articles` VALUES ('9', '15');
+INSERT INTO `categories_articles` VALUES ('9', '16');
+INSERT INTO `categories_articles` VALUES ('9', '17');
+INSERT INTO `categories_articles` VALUES ('11', '15');
+INSERT INTO `categories_articles` VALUES ('11', '16');
+INSERT INTO `categories_articles` VALUES ('20', '15');
+INSERT INTO `categories_articles` VALUES ('20', '16');
+INSERT INTO `categories_articles` VALUES ('20', '17');
+INSERT INTO `categories_articles` VALUES ('21', '15');
+INSERT INTO `categories_articles` VALUES ('21', '16');
+INSERT INTO `categories_articles` VALUES ('21', '17');
+INSERT INTO `categories_articles` VALUES ('22', '14');
+INSERT INTO `categories_articles` VALUES ('22', '16');
+INSERT INTO `categories_articles` VALUES ('22', '17');
 
 -- ----------------------------
 -- Table structure for `categories_moduledata`
@@ -110,11 +116,14 @@ CREATE TABLE `categories_moduledata` (
 -- ----------------------------
 -- Records of categories_moduledata
 -- ----------------------------
+INSERT INTO `categories_moduledata` VALUES ('9', '102');
 INSERT INTO `categories_moduledata` VALUES ('20', '83');
+INSERT INTO `categories_moduledata` VALUES ('20', '100');
 INSERT INTO `categories_moduledata` VALUES ('21', '56');
 INSERT INTO `categories_moduledata` VALUES ('21', '74');
 INSERT INTO `categories_moduledata` VALUES ('21', '75');
 INSERT INTO `categories_moduledata` VALUES ('21', '76');
+INSERT INTO `categories_moduledata` VALUES ('22', '84');
 
 -- ----------------------------
 -- Table structure for `language`
@@ -158,14 +167,13 @@ CREATE TABLE `menu` (
   `page_id` int(11) DEFAULT NULL,
   `lang_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
 INSERT INTO `menu` VALUES ('10', 'Nokia', '', '', null, '30', '12', 'unpublish', '2014-06-05 17:31:06', '2014-06-05 17:31:06', null, 'en');
 INSERT INTO `menu` VALUES ('12', 'About', 'about', 'icon-folder-open', null, '0', '1', 'publish', '2014-06-05 17:31:08', '2014-06-05 17:31:08', '2', 'en');
-INSERT INTO `menu` VALUES ('20', 'Home', 'home', 'icon-home active', null, '0', '0', 'publish', '2014-06-05 17:31:08', '2014-06-05 17:31:08', '1', 'en');
 INSERT INTO `menu` VALUES ('25', 'Features', 'features', 'icon-file-text-alt', null, '0', '2', 'publish', '2014-06-05 17:31:08', '2014-06-05 17:31:08', '10', 'en');
 INSERT INTO `menu` VALUES ('26', 'Services', 'service', 'icon-random', null, '0', '3', 'publish', '2014-06-05 17:31:09', '2014-06-05 17:31:09', '3', 'en');
 INSERT INTO `menu` VALUES ('27', 'Support', 'support-packages', 'icon-headphones', null, '0', '4', 'publish', '2014-06-05 17:31:09', '2014-06-05 17:31:09', '11', 'en');
@@ -174,6 +182,7 @@ INSERT INTO `menu` VALUES ('29', 'Contact', 'contact-us', 'icon-envelope', null,
 INSERT INTO `menu` VALUES ('30', 'Blog', 'blog', '', null, '0', '6', 'publish', '2014-06-05 18:21:02', '2014-06-05 11:21:02', '13', 'en');
 INSERT INTO `menu` VALUES ('31', 'منزل', 'home', 'icon-home active', null, '0', '0', 'publish', '2014-06-05 17:34:58', '2014-06-05 17:34:58', '1', 'sa');
 INSERT INTO `menu` VALUES ('32', 'حول', 'about', 'icon-folder-open', null, '0', '1', 'publish', '2014-06-05 17:34:43', '2014-06-05 17:34:43', '2', 'sa');
+INSERT INTO `menu` VALUES ('33', 'Home', null, 'icon-home', null, '0', '0', 'publish', '2014-06-14 14:52:56', '2014-06-14 14:52:56', '1', 'en');
 
 -- ----------------------------
 -- Table structure for `module`
@@ -234,7 +243,7 @@ CREATE TABLE `module_data` (
   `link` text COLLATE utf8_unicode_ci,
   `target` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of module_data
@@ -273,8 +282,7 @@ INSERT INTO `module_data` VALUES ('74', 'Laravel Tutorial Part 1 - Installation 
 INSERT INTO `module_data` VALUES ('75', 'Learn HTML in 12 Minutes ', '<p><iframe allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"//www.youtube.com/embed/bWPMSSsVdPk\" width=\"420\"></iframe></p>\r\n', '', '', null, null, '1', 'en', '13', '2014-06-10 16:23:48', '2014-06-10 09:23:48', '0', 'publish', null, '', '_self');
 INSERT INTO `module_data` VALUES ('76', 'Top Google SEO Tips, Secrets, and Tricks', '<p><iframe allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"//www.youtube.com/embed/j-kpz_DKVw8\" width=\"420\"></iframe></p>\r\n', '', '', null, null, '1', 'en', '13', '2014-06-10 09:22:39', '2014-06-10 09:22:39', '0', 'publish', null, '', '_self');
 INSERT INTO `module_data` VALUES ('82', 'INTEL', '', '', '', null, null, '1', 'en', '11', '2014-06-10 11:34:51', '2014-06-10 11:34:51', '0', 'publish', null, '', '_self');
-INSERT INTO `module_data` VALUES ('83', 'oooooooooooooooooooooo', '<p>ooooooooooooooooooooo</p>\r\n', '', '', null, null, '1', 'en', '1', '2014-06-14 06:29:56', '2014-06-14 06:29:56', '0', 'publish', null, '', '_self');
-INSERT INTO `module_data` VALUES ('84', 'ffffffffffffff', '<p>fffffffffffffffffffffffffff</p>\r\n', '', '', null, null, '1', 'en', '1', '2014-06-14 06:31:08', '2014-06-14 06:31:08', '0', 'publish', null, '', '_self');
+INSERT INTO `module_data` VALUES ('101', 'eeeeeeeeeeeeee', '<div class=\"row-item col-1_3\">\r\n<div class=\"b-tariff m-popular\">\r\n<div class=\"popular-title m-turquoise\">Premium Gold Support</div>\r\n\r\n<div class=\"tariff-head\">\r\n<div class=\"tariff-title\">Gold Package</div>\r\n\r\n<div class=\"tariff-price\"><span class=\"tariff-cy\">$</span> <span class=\"tariff-cost\">75</span> <span class=\"tariff-period\">/mo</span></div>\r\n\r\n<p class=\"tariff-description\">Neque porro quisquam ipsum.</p>\r\n</div>\r\n\r\n<ul class=\"tariff-meta\">\r\n	<li><mark class=\"green strong\">FREE</mark> Setup</li>\r\n	<li>3 Active Users</li>\r\n	<li>Additional User is $5/mo</li>\r\n	<li>Unlimited Questions</li>\r\n	<li>Full Data Security</li>\r\n</ul>\r\n<a class=\"btn blue tariff-btn\" href=\"#\">Start Now!</a></div>\r\n</div>\r\n', 'bbbbbbbbbbbb', '', null, null, '1', 'en', '7', '2014-06-14 14:30:42', '2014-06-14 07:30:42', '0', 'unpublish', null, '', '_self');
 
 -- ----------------------------
 -- Table structure for `module_intro`
@@ -292,7 +300,7 @@ CREATE TABLE `module_intro` (
   `module_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of module_intro
@@ -425,12 +433,15 @@ CREATE TABLE `request_demo` (
   `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of request_demo
 -- ----------------------------
-INSERT INTO `request_demo` VALUES ('1', 'luongtran', 'SFR', 'can 1 ban demo', 'fljfj', '0000-00-00 00:00:00', null, 'publish', null);
+INSERT INTO `request_demo` VALUES ('1', 'luongtran', 'SFR', 'can 1 ban demo', 'fljfj', '2014-02-02 00:00:00', '2014-06-14 15:41:28', 'publish', null);
+INSERT INTO `request_demo` VALUES ('2', 'ss', 's', 's', 's', '2014-06-14 16:19:51', '2014-06-14 09:19:51', 'publish', null);
+INSERT INTO `request_demo` VALUES ('3', 'thanhtruyen', 'sony', 'you can send give me ', 'ttttttttt', '2014-06-14 16:26:06', '2014-06-14 16:26:06', 'unpublish', null);
+INSERT INTO `request_demo` VALUES ('4', 's', 'd', 'ss', 's', '2014-06-14 16:29:37', '2014-06-14 09:29:37', 'publish', null);
 
 -- ----------------------------
 -- Table structure for `setting`
@@ -523,7 +534,7 @@ CREATE TABLE `uploads` (
   `group_id` int(11) DEFAULT NULL,
   `type_file` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of uploads
@@ -558,7 +569,7 @@ INSERT INTO `uploads` VALUES ('125', '06-10-2014_test1.jpg', 'public/asset/share
 INSERT INTO `uploads` VALUES ('126', '06-10-2014_microsoft-linux.jpg', 'public/asset/share/uploads/images', 'image/jpeg', null, '2014-06-10 07:11:12', '2014-06-10 07:11:12', null, null, null, null, null, null);
 INSERT INTO `uploads` VALUES ('127', '06-10-2014_microsoft-linux.jpg', 'public/asset/share/uploads/images', 'image/jpeg', null, '2014-06-10 07:12:07', '2014-06-10 07:12:07', null, null, null, null, null, 'image');
 INSERT INTO `uploads` VALUES ('128', '06-10-2014_cal.gif', 'asset/share/uploads/images', 'image/gif', null, '2014-06-10 11:34:51', '2014-06-10 11:34:51', null, null, '82', null, null, 'image');
-INSERT INTO `uploads` VALUES ('129', '06-14-2014_Bug_16_04_2014_in_the _afternoon.xlsx', 'asset/share/uploads/document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', null, '2014-06-14 06:31:46', '2014-06-14 06:31:46', null, null, '84', null, null, 'file');
+INSERT INTO `uploads` VALUES ('141', '06-14-2014_Portrait_Gandhi.jpg', 'asset/share/uploads/images', 'image/jpeg', null, '2014-06-14 07:29:13', '2014-06-14 07:29:13', null, null, '101', null, null, 'image');
 
 -- ----------------------------
 -- Table structure for `users`

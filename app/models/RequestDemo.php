@@ -7,7 +7,7 @@ class RequestDemo extends Eloquent {
 	 *
 	 * @var string
 	 */
-	protected $table = 'requestdemo';
+	protected $table = 'request_demo';
         public $timestamps = true;
         
         
