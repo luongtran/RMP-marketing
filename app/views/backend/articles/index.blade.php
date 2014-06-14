@@ -111,20 +111,20 @@
                                     <thead>
                                       <tr>
                                           <th><input type="checkbox" id="ckbCheckAll" /></th>  
-                                        <th class="">{{trans('common.table.title')}} <i class="fa fa-sort"></i></th>
-                                        <th class="">{{trans('common.table.permalink')}} <i class="fa fa-sort"></i></th>
-                                        <th class="">{{trans('common.table.create_by')}}<i class="fa fa-sort"></i></th>
-                                        <th class=""><i class="fa fa-sort"></i></th>                                        
+                                        <th >{{trans('common.table.title')}} <i class="fa fa-sort"></i></th>
+                                        <th >{{trans('common.table.permalink')}} <i class="fa fa-sort"></i></th>
+                                        <th >{{trans('common.table.create_by')}}<i class="fa fa-sort"></i></th>
+                                        <th ><i class="fa fa-sort"></i></th>                                        
                                       </tr>
                                     </thead>
                                     <tbody>
                                       @foreach($listArticles  as $article)                                      
                                       <tr <?php if($article->status == "unpublish"){echo "class='danger'";}?> >
                                           <td><input type="checkbox" value="{{$article->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
-                                        <td><a href="{{Request::root()}}/backend/article/view/{{$article->id}}">{{$article->title}}</a></td>
-                                        <td>{{$article->permalink}}</td>
-                                        <td>{{$article->create_by}}</td>
-                                        <td><a href="{{Request::root()}}/backend/article/update/{{$article->id}}" ><span class="label label-primary">{{trans('common.button.update')}}</span></a>
+                                        <td class='custom-color'><a href="{{Request::root()}}/backend/article/view/{{$article->id}}">{{$article->title}}</a></td>
+                                        <td class='custom-color'>{{$article->permalink}}</td>
+                                        <td class='custom-color'>{{$article->create_by}}</td>
+                                        <td class='custom-color'><a href="{{Request::root()}}/backend/article/update/{{$article->id}}" ><span class="label label-primary">{{trans('common.button.update')}}</span></a>
                                             <a href="{{Request::root()}}/backend/article/delete/{{$article->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a></td>
                                       </tr>                                      
                                       @endforeach

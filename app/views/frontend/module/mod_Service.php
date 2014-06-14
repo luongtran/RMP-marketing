@@ -45,7 +45,7 @@
 						<!-- Tabs Content -->
 						<div class="tabs-content">
                                                      <?php $i = 1; foreach($Service_content as $linkSv):?>
-							<div class="tab <?php if($i==1)echo 'active';?>">
+							<div class="<?php if($i==1)echo 'tab sl'.$linkSv->id.' active'; else echo 'tab sl'.$linkSv->id;?>">
                                                             <?php echo $linkSv->content;?>
 							</div>
                                                     <?php  $i++; endforeach;?>    
@@ -64,7 +64,13 @@
 /*change active li*/
 function change_active(id){	 	
     $("#ul-change-active li").removeClass( "active" );
+    $(".tabs-content div.tab").removeClass( "active" );
+    $(".tabs-content div.tab div.tab").removeClass( "active" );
 	var classActive = '#ul-change-active li.sl'+id+'';
+	var classTabActive = '.tabs-content div.sl'+id+'';
+	var classTabActive1 = '.tabs-content div.tab div.tab';
 	$(classActive).addClass("active");
+	$(classTabActive).addClass("active");
+	$(classTabActive1).addClass("active");
 };
 </script>
