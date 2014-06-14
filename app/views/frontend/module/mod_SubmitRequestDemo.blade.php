@@ -22,7 +22,7 @@
 							</div>
 							<div class="textarea-wrap">
 								<i class="icon-pencil"></i>
-								<textarea placeholder="Message" name="message"></textarea>
+								<textarea placeholder="Message" name="text"></textarea>
 							</div>
 							<input type="submit" value="Submit" class="btn-submit btn colored">
 						</form>

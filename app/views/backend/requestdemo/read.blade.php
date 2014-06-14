@@ -111,6 +111,10 @@
                                  <td class='custom-color'><p> {{$read->company}}</p></td>
                                  </tr>
                                  <tr> 
+                                 <td><label>Email: </label> </td>
+                                 <td class='custom-color'><p> {{$read->email}}</p></td>
+                                 </tr>
+                                 <tr> 
                                  <td><label>Subject: </label> </td>
                                  <td class='custom-color'><p> {{$read->subject}}</p></td>
                                  </tr>

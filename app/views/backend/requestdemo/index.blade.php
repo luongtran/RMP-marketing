@@ -97,7 +97,7 @@
                             </div>
 
                         </div>
-
+                        {{Form::open(array('url'=>'backend/request-demo/action', 'method' => 'post','role'=>'form'))}}   
                         <div id="content-mail">
                             <div class="table-responsive">
                                 <!-- THE MESSAGES -->

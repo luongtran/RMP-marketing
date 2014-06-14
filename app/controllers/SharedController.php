@@ -159,6 +159,36 @@ class SharedController extends BaseController{
     }
 
 
+    
+    public function requestDemo()
+    {
+        $this->configEmail();
+
+        $data = Input::all();
+        $data['text'] = Input::get('text');
+        
+        Mail::send('frontend.contact.requestDemo', $data, function($m){
+           $m->from(Input::get('email'), Input::get('name'));
+           $m->to('thanhtruyen1001@gmail.com', 'Develop SFR');
+           $m->subject(Input::get('subject'));
+
+            $create = new requestDemo();
+            $create->name = Input::get('name');
+            $create->company = Input::get('company');
+            $create->email = Input::get('email');
+            $create->subject = Input::get('subject');
+            $create->text = Input::get('text');
+            $codeRand = rand('111111','999999');
+            $create->code = $codeRand;
+            $create->status = 'unpublish';
+            $create->save();
+           
+           //$message->attach($pathToFile);
+        });
+
+        return Redirect::route('front_end');
+    }
+
     public function sendEmail()
     {
         $this->configEmail();
