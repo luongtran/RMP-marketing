@@ -55,6 +55,7 @@
                 @if($incMod->mod=='mod_SubmitRequestDemo')
                     @include('frontend.module.mod_SubmitRequestDemo')
                 @endif
+              
              @endif
           @endforeach   
 @stop

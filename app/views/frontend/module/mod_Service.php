@@ -17,7 +17,7 @@
 					<!-- Icon Box -->
                                         
 					<div class="b-service">
-						<a href="#" onclick="change_active(this.id)" id="<?php echo $listRS->id;?>"><i class="<?php echo $listRS->icon;?> m-colored m-square"></i></a>
+						<div class='hover-cursor' onclick="change_active(this.id)" id="<?php echo $listRS->id;?>"><i class="<?php echo $listRS->icon;?> m-colored m-square"></i></div>
 						<h3 class="centered"><a class="dark-link" href="#"><?php echo $listRS->title;?></a></h3>
 						<p class="centered">
 							 <?php echo $listRS->sumary;?>

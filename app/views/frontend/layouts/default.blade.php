@@ -9,9 +9,11 @@
     <meta title="keyword" content="completermp, @if( isset( $page )) {{$page}}   @endif ">
     <link rel="icon" type="image/ico" href="favicon.ico"/>        
     <link href="{{asset('asset/frontend/css/style.css')}}" media="screen" rel="stylesheet" type="text/css" />     
+    <link rel="stylesheet" href="{{asset('asset/frontend/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('asset/frontend/css/custom.css')}}">
     <!-- in style -->
     @section('style') 
-    <link rel="stylesheet" href="{{asset('asset/frontend/css/main.css')}}">
+    @show   
 
     
     <script src="{{ asset('asset/frontend/js/jquery-1.9.1.min.js')}}"></script>

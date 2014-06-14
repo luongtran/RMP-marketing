@@ -141,23 +141,23 @@
                                     <thead>
                                       <tr>
                                         <th><input type="checkbox" id="ckbCheckAll" /></th>  
-                                        <th class='custom-color'>{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
-                                        <th class='custom-color'>{{trans('common.table.mod')}} <i class="fa fa-sort"></i></th>      
-                                        <th class='custom-color'>{{trans('common.table.position')}} <i class="fa fa-sort"></i></th>      
-                                        <th class='custom-color'>{{trans('common.table.order')}} <i class="fa fa-sort"></i></th>      
-                                        <th class='custom-color'><i class="fa fa-sort"></i></th>
+                                        <th >{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
+                                        <th >{{trans('common.table.mod')}} <i class="fa fa-sort"></i></th>      
+                                        <th >{{trans('common.table.position')}} <i class="fa fa-sort"></i></th>      
+                                        <th >{{trans('common.table.order')}} <i class="fa fa-sort"></i></th>      
+                                        <th ><i class="fa fa-sort"></i></th>
                                       </tr>
                                     </thead>
                                     <tbody>
                                       @foreach($module  as $mod)                                      
                                       <tr <?php if($mod->status == "unpublish"){echo "class='danger'";}?> >
                                           <td><input type="checkbox" value="{{$mod->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
-                                        <td>{{$mod->name}}</td>
-                                        <td>{{$mod->mod}}</td>
+                                        <td class='custom-color'>{{$mod->name}}</td>
+                                        <td class='custom-color'>{{$mod->mod}}</td>
                                                        
-                                        <td>{{$mod->position}}</td>                      
-                                        <td>{{$mod->order}}</td>          
-                                        <td><a  href="{{Request::root()}}/backend/module/update/{{$mod->id}}"><span class="label label-primary">{{trans('common.button.update')}}</span></a>
+                                        <td class='custom-color'>{{$mod->position}}</td>                      
+                                        <td class='custom-color'>{{$mod->order}}</td>          
+                                        <td class='custom-color'><a  href="{{Request::root()}}/backend/module/update/{{$mod->id}}"><span class="label label-primary">{{trans('common.button.update')}}</span></a>
                                             <a  href="{{Request::root()}}/backend/module/delete/{{$mod->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a>
                                         </td>
                                       </tr>                                      

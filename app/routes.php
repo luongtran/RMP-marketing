@@ -60,6 +60,9 @@ Route::get('backend/page/update/{id}',array('as' => 'page_update', 'uses' =>'Pag
 Route::post('backend/page/update/{id}',array('as' => 'page_update', 'uses' =>'PagesController@postUpdate'));
 Route::post('backend/page/action',array('as' => 'page_action', 'uses' =>'PagesController@action'));
 
+/*request demo */
+Route::get('backend/request-demo',array('as' => 'backend_requestdeno', 'uses' =>'RequestDemoController@index'));
+
 /*Module*/
 Route::get('backend/module/',array('as' => 'backend_module', 'uses' =>'ModuleController@index'));
 Route::get('backend/module/add',array('as' => 'module_add', 'uses' =>'ModuleController@getAdd'));
@@ -87,7 +90,6 @@ Route::get('backend/module-package/{idmod}/intro/update/{idcontent}',array('as' 
 Route::post('backend/module-package/{idmod}/intro/update/{idcontent}',array('as' => 'module_intro_update', 'uses' =>'ModuleIntroController@postUpdate'));
 Route::get('backend/module-package/{idmod}/intro/delete/{idcontent}',array('as' => 'module_intro_update', 'uses' =>'ModuleIntroController@getDelete'));
 Route::post('backend/module-package/{idmod}/intro/action',array('as' => 'module_intro_action', 'uses' =>'ModuleIntroController@action'));
-
 
 /*Menu*/
 Route::get('backend/menu',array('as' => 'backend_menu', 'uses' =>'MenuController@index'));
