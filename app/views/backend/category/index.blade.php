@@ -72,12 +72,13 @@
 @section('content')
 
 <div class="row">
-                  <div class="col-lg-12">   
-                  <div class="messages_validation">                           
-                      {{Session::get('msg_flash')}}
-                  </div>
-            <div class="col-lg-12"> 
-                <div class="col-lg-4">              
+      <div class="col-lg-12">   
+      <div class="col-lg-12"> 
+            <div class="messages_validation">                           
+             {{Session::get('msg_flash')}}
+            </div>
+
+            <div class="col-lg-4">              
                     {{Form::open(array('url'=>'backend/category/add', 'method' => 'post','role'=>'form') )}}               
                     <div class="panel panel-success">
                         <div class="panel-heading">
@@ -155,7 +156,8 @@
                                      <div class="row col-lg-3">
                                          <?php echo CommonHelper::createFormAction();?>
                                     </div>   
-                                   
+
+
                                 </div>                               
                                   
                               {{Form::close()}} 
@@ -163,10 +165,8 @@
                              
                           </div> 
                       
-                       
-                              <div class="row col-lg-3">
-                                  <?php echo $categories->links(); ?>      
-                              </div> 
+                         <?php echo $categories->links(); ?>     
+                            
                 </div><!--panel -->   
                 </div><!-- 12-->   
                   

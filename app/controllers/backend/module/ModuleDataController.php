@@ -354,8 +354,8 @@ class ModuleDataController extends BaseController {
             return Redirect::back();   
           }
           else{*/
-            $at= ModuleData::find($idcontent);
-            $at->delete();            
+            CategoriesModuleData::where('moduleData_id','=',$idcontent)->delete();  
+            ModuleData::where('id','=',$idcontent)->delete();            
             Uploads::where('modData_id','=',$idcontent)->delete();  
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.delete_message')));  
             return Redirect::to($this->_routeModule.$idmod.'/content');         

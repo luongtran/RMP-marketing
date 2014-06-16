@@ -104,14 +104,16 @@ class ArticlesController extends BaseController {
             $article->status = Input::get('status');
             $article->save();            
             /*save category*/
-            $select = Input::get('category');                                 
+            $select = Input::get('category');
+            if($select){                                 
             foreach($select as $key=>$value)
-            {
+              {
                $CA= new CategoriesArticles;    
                $CA->articles_id = $article->id;
                $CA->categories_id = $value;                              
                $CA->save();
-            }
+              }
+             }
             /*upload image*/
             $upload = Input::file('fileimages'); 
             $test = CommonHelper::check_files_empty($upload);     
@@ -207,9 +209,11 @@ class ArticlesController extends BaseController {
      }
      
       public function getDelete($id)
-    {        
-          $ar=Articles::find($id);
-          $ar->delete();        
+    {      
+          /*delete category in article*/
+          $deCt =  CategoriesArticles::where('articles_id','=',$id)->delete();
+          /* delete article */
+          $ar=Articles::where('id','=',$id)->delete();          
           Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.delete_message'))); 
           return Redirect::route('backend_article');
      }

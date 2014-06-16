@@ -120,8 +120,8 @@ class ModuleIntroController extends BaseController {
             return Redirect::back();   
           }
           else{*/
-            $at= ModuleIntro::find($idcontent);
-            $at->delete();            
+            //CategoriesModuleData::where('moduleData_id','=',$idcontent)->delete();
+            $at= ModuleIntro::where('id','=',$idcontent)->delete();            
             Uploads::where('modIntro_id','=',$idcontent)->delete();  
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.delete_message')));  
             return Redirect::to($this->_routeModule.$idmod.'/intro');         
