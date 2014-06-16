@@ -10,5 +10,6 @@ return array(
         'relationship_table'=>'Problem ! This record containing in table :name',
         'cf_delete'=>'Have you want delete record?',    
         'user_pass_false' => 'Username or Password is false!',
+        'request_demo_success' => "Thank you ! We will respond requests ",
     
 );

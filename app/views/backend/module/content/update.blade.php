@@ -203,7 +203,7 @@
                                                 </div>
                                    
                                                 </div>     
-                                            <?php echo  CommonHelper::createFormStatus();?>                                            
+                                            <?php echo  CommonHelper::createFormStatus($module_data->status);?>                                            
                                             <button class="btn btn-success" type="submit" >Update</button>
                                         </fieldset>                              
                             </div>

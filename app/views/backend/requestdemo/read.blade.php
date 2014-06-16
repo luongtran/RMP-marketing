@@ -104,24 +104,28 @@
                                 <table class="">
                                  <tr>   
                                  <td><label>Name: </label> </td>
-                                 <td class='custom-color'><p> {{$read->name}}</p></td>
+                                 <td class='custom-color'> {{$read->name}}</td>
                                  </tr>
                                  <tr> 
                                  <td><label>Company: </label> </td>
-                                 <td class='custom-color'><p> {{$read->company}}</p></td>
+                                 <td class='custom-color'> {{$read->company}}</td>
                                  </tr>
                                  <tr> 
                                  <td><label>Email: </label> </td>
-                                 <td class='custom-color'><p> {{$read->email}}</p></td>
+                                 <td class='custom-color'> {{$read->email}}</td>
                                  </tr>
                                  <tr> 
                                  <td><label>Subject: </label> </td>
-                                 <td class='custom-color'><p> {{$read->subject}}</p></td>
-                                 </tr>
+                                 <td class='custom-color'> {{$read->subject}} [ {{$read->code}} ]</td>
+                                 </tr>                                
+                                 <tr> 
+                                 <td><label>Created at: </label> </td>
+                                 <td class='custom-color'> {{$read->created_at}}</td>
+                                 </tr>                                  
                                  <tr> 
                                  <td><label>Text: </label> </td>
-                                 <td class='custom-color'><p> {{$read->text}}</p></td>
-                                 </tr> 
+                                 <td class='custom-color'> {{$read->text}}</td>
+                                 </tr>  
                                 </table>        
                                 </div>
 

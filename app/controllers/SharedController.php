@@ -164,29 +164,36 @@ class SharedController extends BaseController{
     {
         $this->configEmail();
 
-        $data = Input::all();
-        $data['text'] = Input::get('text');
-        
-        Mail::send('frontend.contact.requestDemo', $data, function($m){
-           $m->from(Input::get('email'), Input::get('name'));
-           $m->to('thanhtruyen1001@gmail.com', 'Develop SFR');
-           $m->subject(Input::get('subject'));
+        $input = Input::all(); 
+        $rule = array('name'=>'required',
+                      'company'=>'required',
+                      'email'=>'required|email',
+                      'subject'=>'required',
+                      'text'=>'required',
+                );       
 
+        $validation = Validator::make($input,$rule);
+        if($validation->passes()){
+
+          Mail::send('frontend.contact.requestDemo', $input, function($m){            
+            $m->from('ltt.develop@gmail.com', Input::get('name'));
+            $m->to('thanhtruyen1001@gmail.com', 'Develop SFR');
+            $m->subject(Input::get('subject'));
+            /*save to db*/
             $create = new requestDemo();
-            $create->name = Input::get('name');
-            $create->company = Input::get('company');
-            $create->email = Input::get('email');
-            $create->subject = Input::get('subject');
-            $create->text = Input::get('text');
-            $codeRand = rand('111111','999999');
-            $create->code = $codeRand;
+            $create->fill(Input::all());           
+            $create->code = rand('111111','999999');
             $create->status = 'unpublish';
-            $create->save();
-           
-           //$message->attach($pathToFile);
-        });
+            $create->save();           
+            //$message->attach($pathToFile);
+            Session::flash('msg_flash', trans('messages.request_demo_success'));         
+          });
+        }
+        else{
+            Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));         
+        }
 
-        return Redirect::route('front_end');
+        return Redirect::route('view_page_msg');
     }
 
     public function sendEmail()

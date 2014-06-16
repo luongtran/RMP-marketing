@@ -96,10 +96,17 @@ class HomeController extends BaseController {
              ->with('document',$document);
                 
     }
+
     public function notFound()
     {
         $this->layout->page = "Not found!";
         $this->layout->content = View::make('frontend.page.notfound');
+    }
+
+     public function msg()
+    {
+        $this->layout->page = "Message";
+        $this->layout->content = View::make('frontend.page.msg');
     }
     
     

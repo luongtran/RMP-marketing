@@ -60,7 +60,7 @@
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="{{Request::root()}}/backend/module" title="Sample page 1">Request demo</a>
+                <li><a href="{{Request::root()}}/backend/request-demo" title="Sample page 1">Request demo</a>
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
@@ -103,7 +103,8 @@
                                 <!-- THE MESSAGES -->
                                 <table class="table table-mailbox">
                                     <tr class="">
-                                        <th class="small-col">                                           
+                                        <th class="small-col">  
+                                         <input type="checkbox" id="ckbCheckAll" >
                                         </th>
                                         <th class="small-col">
                                         </th>
@@ -148,64 +149,23 @@
                              <div class="row">
                                 <div class="col-sm-6">
 
-                                    <div style="margin-right:10px" class="btn-group pull-left">
-                                        <div class="btn">
-                                          <input type="checkbox" id="ckbCheckAll"  style="margin:0 5px;padding:0;position:relative;top:2px;">All</div>
-                                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                                            <span class="caret"></span>
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">None</a>
-                                            </li>
-                                            <li><a href="#">read</a>
-                                            </li>
-                                            <li><a href="#">Unread</a>
-                                            </li>
-                                        </ul>
+                                    <div style="margin-right:10px" class="btn-group pull-left">                                        
+                                         
                                     </div>
 
 
                                     <div style="margin-right:10px" class="btn-group pull-left">
-                                        <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown">More
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a>
-                                            </li>
-                                            <li><a href="#"><i class="fa fa-ban"></i> Spam</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a>
-                                            </li>
-                                        </ul>
+                                        <?php echo CommonHelper::createFormAction();?>  
+                                           
                                     </div>
-
-                                    <button style="margin-right:10px" type="button" data-color="#39B3D7" data-opacity="0.95" class="btn button test pull-left">
-                                        <span class="entypo-arrows-ccw"></span>&nbsp;&nbsp;Refresh</button>
-
-
 
                                 </div>
 
 
                                 <div class="col-sm-6">
 
-
-                                    <div class="btn-group pull-right">
-                                        <button type="button" class="btn">
-                                            <span class="entypo-right-open"></span>
-                                        </button>
-                                        <button type="button" class="btn">
-                                            <span class="entypo-right-open"></span>
-                                        </button>
-
-                                    </div>
-
                                     <div class="btn-group pull-right" style="margin-right:10px;">
-                                        <button type="button" class="btn">1-50 of 124</button>
-
-
+                                        <?php //echo $module_data->links(); ?>   
                                     </div>
 
                                 </div>

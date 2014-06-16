@@ -8,9 +8,9 @@ class RequestDemo extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'request_demo';
-        public $timestamps = true;
-        
-        
-   
+
+    public $timestamps = true;
+
+    protected $fillable = array('name','company','email','subject','text');
      
 }

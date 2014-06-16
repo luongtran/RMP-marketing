@@ -62,7 +62,8 @@ Route::post('backend/page/action',array('as' => 'page_action', 'uses' =>'PagesCo
 
 /*request demo */
 Route::get('backend/request-demo',array('as' => 'backend_requestdeno', 'uses' =>'RequestDemoController@index'));
-Route::get('backend/request-demo/read/{id}',array('as' => 'backend_requestdeno', 'uses' =>'RequestDemoController@read'));
+Route::get('backend/request-demo/read/{id}',array('as' => 'backend_requestdeno_read', 'uses' =>'RequestDemoController@read'));
+Route::post('backend/request-demo/action',array('as' => 'backend_requestdeno_action', 'uses' =>'RequestDemoController@action'));
 
 /*Module*/
 Route::get('backend/module/',array('as' => 'backend_module', 'uses' =>'ModuleController@index'));
@@ -147,6 +148,7 @@ Route::get('backend/dump',array('as' => 'backend_dump', 'uses' =>'AdminControlle
 Route::get('/',array('as' => 'front_end', 'uses' =>'HomeController@pageview'));
 Route::get('{id}',array('as' => 'view_page', 'uses' =>'HomeController@pageview'));
 Route::get('page/not-found',array('as' => 'view_page_notfound', 'uses' =>'HomeController@notFound'));
+Route::get('page/message',array('as' => 'view_page_msg', 'uses' =>'HomeController@msg'));
 Route::get('page/{id}',array('as' => 'view_page', 'uses' =>'HomeController@view'));
 
 /* load json images in part upload image*/

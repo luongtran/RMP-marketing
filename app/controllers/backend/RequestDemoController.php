@@ -4,7 +4,7 @@ class RequestDemoController extends BaseController {
 
       protected $layout = 'backend.layouts.default';      
       private $_moduleName = "Request Demo";
-      private $_routeModule ="backend_module";
+      private $_routeModule ="backend_requestdeno";
       public function __construct() {
      }  
     /*
@@ -33,7 +33,7 @@ class RequestDemoController extends BaseController {
         $read = RequestDemo::where('id','=',$id)->first();
         if(!$read){
         Session::flash('msg_flash',  CommonHelper::printMsg('error',"You can't read this request demo"));   
-        return Redirect::to('backend/request-demo');    
+        Redirect::route($this->_routeModule); 
         }
         /*update status have read*/            
             $record = RequestDemo::find($id);
@@ -43,81 +43,12 @@ class RequestDemoController extends BaseController {
         $this->layout->content = View::make('backend.requestdemo.read')
                                  ->with('read',$read);           
         }    
-    public function postAdd() {       
-        $validation = Validator::make(                
-                Input::all(),
-                array(
-                'name'=> 'required|unique:module',
-                'mod'=> 'required|unique:module',
-                'order'=>'numeric',
-                )                
-         );
-        if($validation->passes())
-        {
-        $mod = new Modules;
-        $mod->name = Input::get('name');
-        $mod->mod = Input::get('mod');        
-        $mod->position = Input::get('position');
-        $mod->order = Input::get('order');
-        $mod->icon = Input::get('icon');
-        $mod->status = Input::get('status');
-        $mod->save();
-        Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.create_message')));  
-        return Redirect::route($this->_routeModule);
-        }
-        Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
-        return Redirect::back()->withInput();        
-    }        
-    public function getUpdate($id) {        
-        $this->layout->page = "Update module";  
-        $position = DB::table('position')->get();
-        $getMod = Modules::where('id','=',$id)->first(); 
-        $this->layout->content = View::make('backend.module.update')->with('getMod',$getMod)->with('position',$position);      
-    }    
-    public function postUpdate($id) {       
-        $validation = Validator::make(                
-                Input::all(),
-                array(
-                'name'=> 'required',
-                'premalink'=> 'unique:categories',
-                'order'=>'numeric'
-                )                
-         );        
-        if($validation->passes())
-        {
-            $mod = Modules::find($id);
-            $mod->name = Input::get('name');
-            $mod->mod = Input::get('mod');
-            $mod->position = Input::get('position');
-            $mod->order = Input::get('order');
-            $mod->icon = Input::get('icon');
-            $mod->status = Input::get('status');
-            $mod->update();
-            Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message')));  
-            return Redirect::route('backend_module');
-        }
-        Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
-        return Redirect::back()->withInput();
-    }
-    
     public function getDelete($id) {
         
-          $checkModule = DB::table('page_module')
-            ->join('pages', 'page_module.page_id', '=', 'pages.id')
-            ->join('module', 'page_module.module_id', '=', 'module.id')
-            ->where('module.id','=',$id)
-            ->count();  
-          if($checkModule > 0) {            
-            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table',array('name'=>'Page'))));  
-            return Redirect::back();   
-          }
-          else{
-            $at= Modules::find($id);
+            $at= RequestDemo::find($id);
             $at->delete();
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.delete_message')));  
-            return Redirect::route($this->_routeModule);         
-          }
-        
+            return Redirect::route($this->_routeModule); 
     }
     
      public function action()
@@ -160,7 +91,7 @@ class RequestDemoController extends BaseController {
      
      public function changeStatus($status,$id)
      {
-         $ar= Modules::find($id);
+         $ar= RequestDemo::find($id);
          $ar->status = $status;
          $ar->update();
          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.changestatus_message')));   

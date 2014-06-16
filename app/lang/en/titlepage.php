@@ -48,7 +48,7 @@ return array(
         'role_2'=>'Admin',
         'role_3'=>'Supper admin',
 
-
+        'msg' =>'Messages',
         
         'extends'=>'Extends',
         'basic'=>'Basic',
