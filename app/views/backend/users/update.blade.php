@@ -128,6 +128,11 @@
                                  <label>{{trans('common.table.address')}}</label>
                                  {{Form::textarea('address',$getUser->address,array('class'=>'form-control','rows'=>'2'))}}                                 
                              </div> 
+
+                             <div class="form-group">                                 
+                                 <label>{{trans('common.table.company')}}</label>
+                                 {{Form::text('company',$getUser->company,array('class'=>'form-control'))}}                                 
+                             </div>                                
                                 
                                 <div class="form-group">                                 
                                  <label>{{trans('common.table.permission')}}</label>

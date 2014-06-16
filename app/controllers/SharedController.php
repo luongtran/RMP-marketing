@@ -98,8 +98,7 @@ class SharedController extends BaseController{
       {
 
             $rule=array(          
-            'password'=>'min:5|confirmed',            
-            'email'=>'email|unique:users',
+            'password'=>'min:5|confirmed', 
             'phone'=>'numeric',
             'avatar'=>'image',
             );
@@ -180,7 +179,7 @@ class SharedController extends BaseController{
             $m->to('thanhtruyen1001@gmail.com', 'Develop SFR');
             $m->subject(Input::get('subject'));
             /*save to db*/
-            $create = new requestDemo();
+            $create = new RequestDemo();
             $create->fill(Input::all());           
             $create->code = rand('111111','999999');
             $create->status = 'unpublish';

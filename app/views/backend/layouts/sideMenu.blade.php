@@ -117,7 +117,7 @@
                          </li>    
                      
                         <li>
-                             <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/request-demo" title="Element"><i class="entypo-layout"></i><span>Request Demo</span></a>                               
+                             <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/request-demo" title="Request Demo"><i class="entypo-reply-all"></i><span>Request Demo</span></a>                               
                         </li> 
                         <li>
                              <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/menu" title="Element"><i class="entypo-layout"></i><span>Menu</span></a>                               
@@ -144,7 +144,7 @@
                             <a class="tooltip-tip ajax-load" href="{{Request::root()}}/backend/module" title="Manager module">
                                 <i class="icon-view-thumb"></i>
                                 <span>Mannager Modules</span>
-                                <div class="noft-blue">8</div>
+                                <div class="noft-blue"></div>
                             </a>
                         </li>
                         <li>
@@ -161,13 +161,7 @@
                                 
                         </li>
 
-                        <li>
-                            <a class="tooltip-tip ajax-load" href="map.html" title="Map">
-                                <i class="icon-location"></i>
-                                <span>Map</span>
-
-                            </a>
-                        </li>
+                      
                     </ul>
                     @endif
 

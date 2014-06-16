@@ -133,9 +133,13 @@ class CommonHelper {
     }
     
     
-    public static function getSetting($name=''){
-        $str=Settings::where('name','=',$name)->first()->value;        
-        return $str;
+    public static function getSetting($name=''){     
+
+        $str = Settings::where('name','=',$name)->first();
+        if($str){
+           return $str->value;
+        }
+        return null;
     }
     
    

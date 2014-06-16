@@ -77,8 +77,8 @@ class UserController extends BaseController {
     public function postUpdate($id)
     {           
         $rule=array(          
-            'password'=>'min:5|confirmed',            
-            'email'=>'email|unique:users',
+            'password'=>'min:5|confirmed',                        
+            'email'=>'email', //'email'=>'email|unique:users',
             'phone'=>'numeric',
             );
         $validation = Validator::make (Input::all(),$rule);        

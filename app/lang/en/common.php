@@ -81,7 +81,7 @@ return array(
       'upload'=>'Upload',
       'language'=>'Language',
       'code'=>'Code',
-        'controller'
+      'company'=>'Company',
     ),
      
 );
