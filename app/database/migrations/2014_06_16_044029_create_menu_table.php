@@ -22,8 +22,8 @@ class CreateMenuTable extends Migration {
 					  `parent` int(11) DEFAULT NULL,
 					  `order` int(11) DEFAULT NULL,
 					  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-					  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-					  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+					  `created_at` timestamp NULL DEFAULT NULL,
+					  `updated_at` timestamp NULL DEFAULT NULL,
 					  `page_id` int(11) DEFAULT NULL,
 					  `lang_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  PRIMARY KEY (`id`)

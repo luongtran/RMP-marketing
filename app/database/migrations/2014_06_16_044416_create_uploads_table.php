@@ -20,7 +20,7 @@ class CreateUploadsTable extends Migration {
 					  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  `size` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  `created_at` timestamp NULL DEFAULT NULL,
-					  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+					  `updated_at` timestamp NULL DEFAULT NULL,
 					  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  `article_id` int(11) DEFAULT NULL,
 					  `modData_id` int(11) DEFAULT NULL,

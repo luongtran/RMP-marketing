@@ -117,6 +117,9 @@
                          </li>    
                      
                         <li>
+                             <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/request-demo" title="Element"><i class="entypo-layout"></i><span>Request Demo</span></a>                               
+                        </li> 
+                        <li>
                              <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/menu" title="Element"><i class="entypo-layout"></i><span>Menu</span></a>                               
                         </li> 
 

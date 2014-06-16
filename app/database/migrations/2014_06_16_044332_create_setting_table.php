@@ -17,8 +17,8 @@ class CreateSettingTable extends Migration {
 					  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 					  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 					  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-					  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-					  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+					  `created_at` timestamp NULL DEFAULT NULL,
+					  `updated_at` timestamp NULL DEFAULT NULL,
 					  PRIMARY KEY (`name`)
 					) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 				");

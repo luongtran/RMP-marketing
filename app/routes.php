@@ -173,6 +173,8 @@ Route::get('backend/load-immages-json',array('as' => 'load_image_json', 'uses' =
  Route::when('backend/menu/*', 'isAdmin'); 
  Route::when('backend/module-package', 'isAdmin');
  Route::when('backend/module-package/*', 'isAdmin');
+ Route::when('backend/request-demo', 'isAdmin');
+ Route::when('backend/request-demo/*', 'isAdmin');
 
  Route::when('backend/page', 'isSupper');
  Route::when('backend/page/*', 'isSupper');

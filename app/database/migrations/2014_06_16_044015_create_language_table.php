@@ -21,8 +21,8 @@ class CreateLanguageTable extends Migration {
 				  `icon` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 				  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 				  `description` text COLLATE utf8_unicode_ci,
-				  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-				  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+				  `created_at` timestamp NULL DEFAULT NULL,
+				  `updated_at` timestamp NULL DEFAULT NULL,
 				  PRIMARY KEY (`id`)
 				) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 				");

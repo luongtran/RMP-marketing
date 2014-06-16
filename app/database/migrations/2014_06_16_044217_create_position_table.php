@@ -18,8 +18,8 @@ class CreatePositionTable extends Migration {
 					  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  `description` text COLLATE utf8_unicode_ci,
 					  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-					  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-					  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+					  `created_at` timestamp NULL DEFAULT NULL,
+					  `updated_at` timestamp NULL DEFAULT NULL,
 					  PRIMARY KEY (`id`)
 					) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 				");

@@ -124,8 +124,6 @@
                        {{trans('titlepage.title.list_category')}}
                     </div>
                     <div class="panel-body"> 
-                               
-                                <h2></h2>
                                  {{Form::open(array('url'=>'backend/category/action', 'method' => 'post','role'=>'form'))}}               
                                 <div class="table-responsive">
                                   <table class="table table-bordered table-hover tablesorter">
@@ -152,25 +150,23 @@
                                       @endforeach
                                     </tbody>
                                   </table> 
-                                     
-                                     <div class="row col-lg-3">
+                                   </div>   
+
+                                    <div class="row col-lg-3">
                                          <?php echo CommonHelper::createFormAction();?>
                                     </div>   
 
 
-                                </div>                               
+                                                             
                                   
                               {{Form::close()}} 
                              
                              
                           </div> 
-                      
-                         <?php echo $categories->links(); ?>     
                             
                 </div><!--panel -->   
+                 <?php echo $categories->links(); ?>     
                 </div><!-- 12-->   
-                  
-                            
                 
                   
             </div><!--col 8 -->

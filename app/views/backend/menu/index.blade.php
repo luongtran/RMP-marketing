@@ -134,8 +134,6 @@
                        {{trans('titlepage.title.list_menu')}}
                     </div>
                     <div class="panel-body"> 
-                               
-                                <h2></h2>
                                  {{Form::open(array('url'=>'backend/menu/action', 'method' => 'post','role'=>'form'))}}               
                                 <div class="table-responsive">
                                   <table class="table table-bordered table-hover tablesorter">
@@ -169,19 +167,16 @@
                                       @endforeach
                                     </tbody>
                                   </table> 
+
                                 </div>
                                 
                                     
                                     <div class="row col-lg-3">
-                                          <?php echo CommonHelper::createFormAction();?>
-                                    </div>
-                                 
-                                 
+                                       <?php echo CommonHelper::createFormAction();?>
+                                    </div>                                 
+                                    {{Form::close()}}  
                           </div>                                
-                                                                    
-                              
-                                 
-                             {{Form::close()}} 
+                                  
                                
                 </div><!--panel -->  
                      <!-- paging -->                

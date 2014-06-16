@@ -101,7 +101,7 @@
       </div>
     <!--col 4-->         
     <div class="col-sm-8">  
-                         
+    <div class="col-sm-12">                       
                 <div id="headerClose" class="nest">        
                   <div class="title-alt">
                       <h6>
@@ -110,7 +110,7 @@
                   </div>                    
                     <div id="header" class="body-nest">
                     {{Form::open(array('url'=>'backend/page/action', 'method' => 'post','role'=>'form'))}}                          
-                                  <section id="flip-scroll">
+                               <section id="flip-scroll">
                                <table class="table table-bordered table-striped cf">
                                      <thead class="cf">
                                       <tr>
@@ -136,20 +136,24 @@
                                       @endforeach
                                     </tbody>
                                   </table> 
-                               </section>  
-                           <div class="col-sm-3">
-                                          <?php echo CommonHelper::createFormAction();?>                                   
-                                         
-                                        </div>         
-                        {{Form::close()}}              
-                     </div>   
+                               </section> 
+
+                                 <div class="row col-lg-3">
+                                    <?php echo CommonHelper::createFormAction();?> 
+                                </div>
+                                <div class='clear'></div>  
+                                     
+                                {{Form::close()}} 
+
+                           </div>    
+                      
                   </div>      
                       <!-- paging -->                
-                                                <?php echo $getPage->links(); ?>                              
-                                            <!-- end paging -->                 
+                            <?php echo $getPage->links(); ?>                              
+                     <!-- end paging -->                 
                  </div>                                                        
                               
-                
+              </div>     
           
 </div><!--col 12--> 
 @stop
