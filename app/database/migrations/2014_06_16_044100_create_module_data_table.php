@@ -12,8 +12,7 @@ class CreateModuleDataTable extends Migration {
 	 */
 	public function up()
 	{
-		DB:statement("
-					CREATE TABLE `module_data` (
+		DB::statement("CREATE TABLE `module_data` (
 					  `id` int(11) NOT NULL AUTO_INCREMENT,
 					  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  `content` longtext COLLATE utf8_unicode_ci,
@@ -32,7 +31,7 @@ class CreateModuleDataTable extends Migration {
 					  `link` text COLLATE utf8_unicode_ci,
 					  `target` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  PRIMARY KEY (`id`)
-					) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+					) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 				");
 	}
 

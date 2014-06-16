@@ -12,8 +12,7 @@ class CreateStatusTable extends Migration {
 	 */
 	public function up()
 	{
-		DB:statement("
-					CREATE TABLE `status` (
+		DB::statement("CREATE TABLE `status` (
 					  `id` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
 					  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  `description` text COLLATE utf8_unicode_ci,

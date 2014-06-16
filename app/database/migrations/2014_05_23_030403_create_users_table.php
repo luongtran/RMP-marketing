@@ -11,9 +11,8 @@ class CreateUsersTable extends Migration {
 	 * @return void
 	 */
 	public function up()
-	{
-	    DB::statement("
-            CREATE TABLE `users` (
+	{  
+	    DB::statement("CREATE TABLE `users` (
                     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
                     `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
                     `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -33,7 +32,7 @@ class CreateUsersTable extends Migration {
                     `company` text COLLATE utf8_unicode_ci,
                     `avatar` int(11) DEFAULT NULL,
                     PRIMARY KEY (`id`)
-                  ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+                  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
             ");            
 	}
 

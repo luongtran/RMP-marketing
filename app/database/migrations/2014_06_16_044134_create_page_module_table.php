@@ -12,8 +12,7 @@ class CreatePageModuleTable extends Migration {
 	 */
 	public function up()
 	{
-		DB:statement("
-					CREATE TABLE `page_module` (
+		DB::statement("CREATE TABLE `page_module` (
 					  `page_id` int(11) NOT NULL DEFAULT '0',
 					  `module_id` int(11) NOT NULL DEFAULT '0',
 					  `position` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,

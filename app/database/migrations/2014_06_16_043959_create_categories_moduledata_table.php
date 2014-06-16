@@ -12,8 +12,7 @@ class CreateCategoriesModuledataTable extends Migration {
 	 */
 	public function up()
 	{
-		DB:statement("
-			CREATE TABLE `categories_moduledata` (
+		DB::statement("CREATE TABLE `categories_moduledata` (
 				  `categories_id` int(11) NOT NULL,
 				  `moduleData_id` int(11) NOT NULL,
 				  PRIMARY KEY (`categories_id`,`moduleData_id`)

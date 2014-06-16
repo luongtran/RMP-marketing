@@ -12,8 +12,7 @@ class CreateRequestDemoTable extends Migration {
 	 */
 	public function up()
 	{
-		DB:statement("
-				  CREATE TABLE `request_demo` (
+		DB::statement("CREATE TABLE `request_demo` (
 					  `id` int(11) NOT NULL AUTO_INCREMENT,
 					  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  `company` text COLLATE utf8_unicode_ci,
@@ -25,7 +24,7 @@ class CreateRequestDemoTable extends Migration {
 					  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  PRIMARY KEY (`id`)
-					) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+					) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 				");
 	}
 

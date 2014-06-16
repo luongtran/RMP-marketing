@@ -12,8 +12,7 @@ class CreateArticlesTable extends Migration {
 	 */
 	public function up()
 	{
-		DB::statement("
-			CREATE TABLE `articles` (
+		DB::statement("CREATE TABLE `articles` (
 			  `id` int(11) NOT NULL AUTO_INCREMENT,
 			  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 			  `permalink` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -27,7 +26,7 @@ class CreateArticlesTable extends Migration {
 			  `group_uploads` int(11) DEFAULT NULL,
 			  `lang_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 			  PRIMARY KEY (`id`)
-			) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 			");
 	}
 

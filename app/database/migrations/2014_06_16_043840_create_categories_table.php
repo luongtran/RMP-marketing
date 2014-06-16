@@ -12,8 +12,7 @@ class CreateCategoriesTable extends Migration {
 	 */
 	public function up()
 	{
-		DB::statement("
-			CREATE TABLE `categories` (
+		DB::statement("CREATE TABLE `categories` (
 			  `id` int(11) NOT NULL AUTO_INCREMENT,
 			  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 			  `description` text COLLATE utf8_unicode_ci,
@@ -24,7 +23,7 @@ class CreateCategoriesTable extends Migration {
 			  `parent` int(11) DEFAULT NULL,
 			  `permalink` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 			  PRIMARY KEY (`id`)
-			) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 			");
 	}
 

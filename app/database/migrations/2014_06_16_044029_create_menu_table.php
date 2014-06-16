@@ -12,8 +12,7 @@ class CreateMenuTable extends Migration {
 	 */
 	public function up()
 	{
-		DB:statement("
-				CREATE TABLE `menu` (
+		DB::statement("CREATE TABLE `menu` (
 					  `id` int(11) NOT NULL AUTO_INCREMENT,
 					  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  `link` text COLLATE utf8_unicode_ci,
@@ -27,7 +26,7 @@ class CreateMenuTable extends Migration {
 					  `page_id` int(11) DEFAULT NULL,
 					  `lang_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 					  PRIMARY KEY (`id`)
-					) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+					) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 				");
 	}
 

@@ -12,8 +12,7 @@ class CreateLanguageTable extends Migration {
 	 */
 	public function up()
 	{
-			DB:statement("
-				CREATE TABLE `language` (
+			DB::statement("CREATE TABLE `language` (
 				  `id` int(11) NOT NULL AUTO_INCREMENT,
 				  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 				  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -24,7 +23,7 @@ class CreateLanguageTable extends Migration {
 				  `created_at` timestamp NULL DEFAULT NULL,
 				  `updated_at` timestamp NULL DEFAULT NULL,
 				  PRIMARY KEY (`id`)
-				) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 				");
 	}
 

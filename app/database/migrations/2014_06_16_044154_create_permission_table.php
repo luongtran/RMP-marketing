@@ -12,12 +12,11 @@ class CreatePermissionTable extends Migration {
 	 */
 	public function up()
 	{
-		DB:statement("
-					CREATE TABLE `permission` (
-					  `id` int(11) NOT NULL DEFAULT '0',
+		DB::statement("CREATE TABLE `permission` (
+					  `id` int(11) NOT NULL AUTO_INCREMENT,
 					  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-					  `created_at` timestamp NULL DEFAULT,
-					  `updated_at` timestamp NULL DEFAULT,
+					  `created_at` timestamp NULL DEFAULT NULL,
+					  `updated_at` timestamp NULL DEFAULT NULL,
 					  PRIMARY KEY (`id`)
 					) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 				");

@@ -12,8 +12,7 @@ class CreateSettingTable extends Migration {
 	 */
 	public function up()
 	{
-		DB:statement("
-					CREATE TABLE `request_demo` (
+		DB::statement("CREATE TABLE `setting` (
 					  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 					  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 					  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
