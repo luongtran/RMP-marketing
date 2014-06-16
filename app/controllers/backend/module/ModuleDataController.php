@@ -154,7 +154,7 @@ class ModuleDataController extends BaseController {
             $mod->save();
 
             /* save category 1-n */
-            if(Input::get('category_id') !=''){
+            if(Input::get('category_id')){
                 foreach(Input::get('category_id') as $category_id=>$value)
                 {
                     $CA= new CategoriesModuleData;    
@@ -293,7 +293,7 @@ class ModuleDataController extends BaseController {
             $mod->update();
             /*update category*/
             /* save category 1-n */
-            if(Input::get('category_id') !=''){
+            if(Input::get('category_id')){
 
                 CategoriesModuleData::where('moduleData_id','=',$mod->id)->delete();
 
@@ -304,15 +304,15 @@ class ModuleDataController extends BaseController {
                     $CA->categories_id = $value;                              
                     $CA->save();
                 }
-            }else{
+            }
+            else{
                 CategoriesModuleData::where('moduleData_id','=',$mod->id)->delete();
             }
 
 
             /*upload img*/
-            $uploadImg = Input::file('image');
-            $test =  CommonHelper::check_files_empty($uploadImg);
-            if(!empty($test))
+            $uploadImg = Input::file('image');            
+            if(CommonHelper::check_files_empty($uploadImg))
             {
               Uploads::where('modData_id','=',$idcontent)->where("type_file","=","image")->delete();    
               $Path = 'public/asset/share/uploads/images';
@@ -321,9 +321,8 @@ class ModuleDataController extends BaseController {
                $Image->storeMulti($uploadImg, $Path,$mod->id,'modData_id','image');         
             }
              /*update file document*/                   
-            $uploadFile = Input::file('file'); 
-            $test1 = CommonHelper::check_files_empty($uploadFile);
-            if(!empty($test1))
+            $uploadFile = Input::file('file');             
+            if(CommonHelper::check_files_empty($uploadFile))
             {
               Uploads::where('modData_id','=',$idcontent)->where("type_file","=","file")->delete();      
               $Path = 'public/asset/share/uploads/document';
