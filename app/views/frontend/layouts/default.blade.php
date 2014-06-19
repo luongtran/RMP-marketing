@@ -10,7 +10,11 @@
     <link rel="icon" type="image/ico" href="favicon.ico"/>        
     <link href="{{asset('asset/frontend/css/style.css')}}" media="screen" rel="stylesheet" type="text/css" />     
     <link rel="stylesheet" href="{{asset('asset/frontend/css/main.css')}}">
-    <link rel="stylesheet" href="{{asset('asset/frontend/css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('asset/frontend/css/custom.css')}}">  
+    <link rel="stylesheet" href="{{asset('asset/frontend/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('asset/frontend/css/prettyPhoto.css')}}">
+    <link rel="stylesheet" href="{{asset('asset/frontend/css/settings.css')}}" />
+    <link rel="stylesheet" href="{{asset('asset/frontend/css/turquoise.css')}}">
     <!-- in style -->
     @section('style') 
     @show   
@@ -70,21 +74,26 @@
         <!-- header + menu--> 
         @include('frontend.menu') 
         <!-- position title bar -->
-        @yield('title_bar')
+        @section('title_bar')
+        @show
         <!-- position header -->
-        @yield('header')
+        @section('header')
+        @show
          <!-- position top -->
-        @yield('top')                 
+        @section('top')   
+        @show              
         <div class="content">
           <!-- position content -->
          <div class="layout"> 
          @yield('content')      
          <!-- position bottom -->
-         @yield('bottom') 
+         @section('bottom') 
+         @show
          </div>
         </div>
         <!-- position bottom 1-->
-         @yield('bottom-1')   
+         @section('bottom-1')  
+         @show 
          
          <!-- footer -->
          @include('frontend.footer')      
@@ -92,6 +101,7 @@
     </div>   
     <div class="btn-up"></div>  
          <!-- in javascript -->
-         @section('js')    
+         @section('js')  
+         @show  
   </body>
 </html>
