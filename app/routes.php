@@ -146,6 +146,8 @@ Route::get('backend/dump',array('as' => 'backend_dump', 'uses' =>'AdminControlle
 
 /*page view each module*/
 Route::get('/',array('as' => 'front_end', 'uses' =>'HomeController@pageview'));
+//test feature
+Route::get('feature',array('as' => 'view_page_feature', 'uses' =>'HomeController@feature'));
 Route::get('{id}',array('as' => 'view_page', 'uses' =>'HomeController@pageview'));
 Route::get('page/not-found',array('as' => 'view_page_notfound', 'uses' =>'HomeController@notFound'));
 Route::get('page/message',array('as' => 'view_page_msg', 'uses' =>'HomeController@msg'));

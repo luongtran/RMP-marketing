@@ -130,4 +130,12 @@ class HomeController extends BaseController {
             }
     }
 
+
+    /*test*/
+
+       public function feature() {
+        $this->layout->page = "Features";
+        $this->layout->content = View::make('frontend.page._features');
+    }
+
 }

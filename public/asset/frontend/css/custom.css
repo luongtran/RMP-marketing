@@ -1,3 +1,12 @@
 .hover-cursor{
 	cursor:pointer;
 }
+
+.box-show-feature{
+   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.45);   
+}
+
+
+.text-center{
+	text-align: center;
+}

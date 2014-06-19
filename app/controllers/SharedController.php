@@ -174,6 +174,7 @@ class SharedController extends BaseController{
         $validation = Validator::make($input,$rule);
         if($validation->passes()){
 
+          try{
           Mail::send('frontend.contact.requestDemo', $input, function($m){            
             $m->from('ltt.develop@gmail.com', Input::get('name'));
             $m->to('thanhtruyen1001@gmail.com', 'Develop SFR');
@@ -187,6 +188,13 @@ class SharedController extends BaseController{
             //$message->attach($pathToFile);
             Session::flash('msg_flash', trans('messages.request_demo_success'));         
           });
+           }
+           catch(Exception $e)
+           {
+
+             Session::flash('msg_flash','Have error with config email, please  try again !</br><p>'.$e.'</p>');
+             return Redirect::route('view_page_msg');
+           }
         }
         else{
             Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));         
