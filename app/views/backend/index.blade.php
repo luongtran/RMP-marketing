@@ -1,3 +1,41 @@
+ @section('title')
+<div class="row">
+                <div id="paper-top">
+                    <div class="col-sm-3">
+                        <h2 class="tittle-content-header">
+                            <i class="icon-media-record"></i> 
+                            <span>
+                                                  
+                            </span>
+                        </h2>
+
+                    </div>
+
+                    <div class="col-sm-7">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="tittle-middle-header">  
+                          
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="btn-group btn-wigdet pull-right visible-lg">
+                            <div class="btn">
+                                Widget</div>
+                            <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">                              
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+@stop
  @section('breadcrumb')      
  <ul id="breadcrumb">
                 <li>
@@ -5,50 +43,25 @@
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="#" title="Sample page 1">Extra Pages</a>
-                </li>
-                <li><i class="fa fa-lg fa-angle-right"></i>
-                </li>
-                <li><a href="#" title="Sample page 1">Blank Page</a>
+                <li><a href="#" title="Sample page 1">Home</a>
                 </li>
                 <li class="pull-right">
-                    <div class="input-group input-widget">
-
-                        <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
-                    </div>
                 </li>
             </ul>
  @stop
  
  @section('content')
+
  <div class="row">
-                    <div class="col-sm-12">
-                        <!-- BLANK PAGE-->
-
-                        <div class="nest" id="Blank_PageClose">
-                            <div class="title-alt">
-                                <h6>
-                                    Blank Page</h6>
-                                <div class="titleClose">
-                                    <a class="gone" href="#Blank_PageClose">
-                                        <span class="entypo-cancel"></span>
-                                    </a>
-                                </div>
-                                <div class="titleToggle">
-                                    <a class="nav-toggle-alt" href="#Blank_Page_Content">
-                                        <span class="entypo-up-open"></span>
-                                    </a>
-                                </div>
-
-                            </div>
-
-                            <div class="body-nest" id="Blank_Page_Content">
+ <div class="col-lg-12">
                                     {{Session::get('msg_flash_common')}}
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END OF BLANK PAGE -->
-
-
-                </div>
+                                   
+                                    <h2 class="page-header">
+                                        <i class="fa fa-globe"></i> RMP MARKETING
+                                        <small class="pull-right"></small>
+                                    </h2>
+                                     </div>
+                         
+ </div>
+</div>                
  @stop

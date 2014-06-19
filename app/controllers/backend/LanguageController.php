@@ -31,8 +31,8 @@ class LanguageController extends BaseController {
         $validation = Validator::make(                
                 Input::all(),
                 array(
-                'name'=> 'required',
-                'code'=>'required'    
+                'name'=> 'required|unique:language',
+                'code'=>'required|unique:language'    
                 )                
          );
         

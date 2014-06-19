@@ -141,7 +141,7 @@
                                 
                               <?php echo CommonHelper::createFormStatus($getUser->status);?>
 
-                            <button type="submit" class="btn btn-primary">{{trans('common.button.save')}}</button>
+                            <button type="submit" class="btn btn-primary">{{trans('common.button.update')}}</button>
                          
                     </div>
                 </div>

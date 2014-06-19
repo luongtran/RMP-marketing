@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Apricot V 1.3</title>
+    <title>Login - RMP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -56,12 +56,12 @@
 						{{Session::get('msg_flash')}}
                         <form role="form" action="{{Request::root()}}/admin-login" method="POST">
                             <div class="form-group">
-                                <a href="#" class="pull-right label-forgot">Forgot email?</a>
-                                <label for="inputUsernameEmail">Username or email</label>
+                               
+                                <label for="inputUsernameEmail">Username</label>
                                  {{Form::text('username','',array('class' => 'form-control','id'=>'inputUsernameEmail'))}}  
                             </div>
                             <div class="form-group">
-                                <a href="#" class="pull-right label-forgot">Forgot password?</a>
+                                
                                 <label for="inputPassword">Password</label>
 								 {{Form::password('password',array('class' => 'form-control','id'=>'inputPassword'))}}                                  
                             </div>

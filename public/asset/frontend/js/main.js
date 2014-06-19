@@ -296,14 +296,14 @@
 				if (direction == undefined) {
 					if (current.index() == ui.itemsLen - 1) {
 						ui.carousel.find('.carousel-item:first').addClass('current').slideDown( "slow" , function() {
-							current.removeClass('active').hide();
+							current.removeClass('active').slideUp();
 							$(this).addClass('active').removeClass('current');
 						});
 					}
 					else {
 							
 						current.next().addClass('current').slideDown( "slow" , function() {
-							current.removeClass('active').hide();
+							current.removeClass('active').slideUp();
 							$(this).addClass('active').removeClass('current');
 						});
 					}

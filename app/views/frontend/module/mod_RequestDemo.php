@@ -11,7 +11,7 @@
     if($Features_intro):               
 ?>
 <div class="b-promo margin-40">
-  <a class="btn big colored" href="#">Request a demo today!</a>
+  <a class="btn big colored" href="<?php echo Request::root().'/request-demo';?>">Request a demo today!</a>
   <h3><?php echo $Features_intro->title; ?></h3>
  	<?php echo $Features_intro->sumary; ?>
 </div>

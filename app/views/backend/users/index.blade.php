@@ -83,16 +83,6 @@
                     <div class="panel-body">                        
                             <div class="col-lg-12">
                                 
-                                 <ul class="nav nav-pills">
-                                    <li class="active"><a href="{{Request::root()}}/backend/user/add">{{trans('common.button.add')}}</a></li>                                   
-                                    <li >
-                                         {{Form::open(array('url'=>'backend/user/search', 'method' => 'get','role'=>'form') )}}                                                     
-                                                {{Form::text('keyfind','',array('class' => 'form-control','id'=>'keyfind','placeholder'=>'Search...'))}}   
-                                         {{Form::close()}}                                                    
-                                    </li>
-                                  </ul>
-                               
-                                <h2></h2>
                                 {{Form::open(array('url'=>'backend/user/action', 'method' => 'post','role'=>'form'))}}               
                                 <div class="table-responsive">
                                   <table class="table table-bordered table-hover tablesorter">

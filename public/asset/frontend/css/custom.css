@@ -2,8 +2,11 @@
 	cursor:pointer;
 }
 
-.box-show-feature{
-   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.45);   
+.box-show-feature{  
+box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.45);
+height: 500px;
+border: 2px solid #dedede;
+border-radius: 10px;
 }
 
 

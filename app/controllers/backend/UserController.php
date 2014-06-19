@@ -23,7 +23,12 @@ class UserController extends BaseController {
     
     public function index() {
         $this->layout->page = "Users";
-        $user = Users::paginate(10);
+        $user = DB::table('users')
+            ->join('permission', 'permission.id', '=', 'users.permission')
+            ->orderBy('id','desc')
+            ->select(DB::raw('users.id,users.username,users.created_at,users.status,permission.name as permission'))
+            ->paginate(10);
+        //$user = Users::paginate(10);
         $this->layout->content = View::make('backend.users.index')->with('getUser',$user);
     }
     
@@ -55,7 +60,8 @@ class UserController extends BaseController {
             $user->phone = Input::get('phone');
             $user->permission = Input::get('permission');
             $user->status = Input::get('status');
-            
+
+            $user->company = Input::get('company');            
             $user->first_name = Input::get('firstname');
             $user->last_name = Input::get('lastname');
             $user->save();
@@ -93,7 +99,8 @@ class UserController extends BaseController {
             $user->phone = Input::get('phone');
             $user->permission = Input::get('permission');
             $user->status = Input::get('status');
-            
+
+            $user->company = Input::get('company');             
             $user->first_name = Input::get('firstname');
             $user->last_name = Input::get('lastname');
             $user->update();

@@ -40,6 +40,7 @@ class AdminController extends BaseController {
 
     public function index() {        
       
+        $this->layout->page = "Home";
         $this->layout->content = View::make('backend.index');
      
     }

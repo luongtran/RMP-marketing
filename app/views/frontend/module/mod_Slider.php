@@ -9,6 +9,7 @@
                    ->join("module_data","module_data.module_id","=","module.id")
                    ->join("uploads","uploads.modData_id","=","module_data.id")
                    ->where("module_data.status","=","publish")  
+                   ->where("module_data.lang_id","=",Session::get('current_locale'))
                    ->where("module.mod","=","mod_Slider")
                    ->where("page_module.page_id","=",$pageinfo->id) 
                    ->orderBy("module_data.order","asc")
@@ -28,7 +29,7 @@
           <span><?php echo $sl->sumary;?></span>
         </div>
         <div class="tp-caption fade" data-x="40" data-y="245" data-speed="1000" data-start="1600" data-easing="easeOutQuint">
-          <a href="#" class="btn colored btn-uppercase">Read more<i class="icon-caret-right" style="margin: 0 0 0 7px;"></i></a>
+          <a href="<?php echo Request::root().'/page/'.$sl->id;?>" class="btn colored btn-uppercase">Read more<i class="icon-caret-right" style="margin: 0 0 0 7px;"></i></a>
         </div>
         </li>
         <!-- End captions -->
