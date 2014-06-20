@@ -165,7 +165,7 @@
                                 <div class="col-sm-6">
 
                                     <div class="btn-group pull-right" style="margin-right:10px;">
-                                        <?php //echo $module_data->links(); ?>   
+                                        <?php echo $result->links(); ?>   
                                     </div>
 
                                 </div>

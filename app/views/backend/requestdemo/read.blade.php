@@ -116,7 +116,7 @@
                                  </tr>
                                  <tr> 
                                  <td><label>Subject: </label> </td>
-                                 <td class='custom-color'> {{$read->subject}} [ {{$read->code}} ]</td>
+                                 <td class='custom-color'> {{$read->subject}}</td>
                                  </tr>                                
                                  <tr> 
                                  <td><label>Created at: </label> </td>

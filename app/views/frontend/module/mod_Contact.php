@@ -21,19 +21,19 @@
 						<form action="<?php echo Request::root();?>/contact-sendmail" method="post" style="margin-bottom: 10px;" action="contact.php" class="b-form">
 							<div class="input-wrap">
 								<i class="icon-user"></i>
-								<input type="text" placeholder="Name (required)"  name="name">
+								<input type="text" placeholder="Name (required)"  name="name" required>
 							</div>
 							<div class="input-wrap">
 								<i class="icon-envelope"></i>
-								<input type="text" placeholder="Email (required)" name="email">
+								<input type="email" placeholder="Email (required)" name="email" required>
 							</div>
 							<div class="input-wrap">
 								<i class="icon-pencil"></i>
-								<input type="text" placeholder="Subject" name="subject">
+								<input type="text" placeholder="Subject" name="subject" required>
 							</div>
 							<div class="textarea-wrap">
 								<i class="icon-pencil"></i>
-								<textarea placeholder="Message" name="message"></textarea>
+								<textarea placeholder="Text" name="text"></textarea>
 							</div>
 							<input type="submit" value="Submit Comment" class="btn-submit btn colored">
 						</form>

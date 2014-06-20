@@ -48,7 +48,7 @@
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="#" title="Sample page 1">{{trans('common.table.menu')}}</a>
+                <li><a href="{{Request::root()}}/menu" title="Sample page 1">{{trans('common.table.menu')}}</a>
                 </li>
                 <li class="pull-right">
                     <div class="input-group input-widget">

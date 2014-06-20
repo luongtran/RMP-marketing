@@ -161,8 +161,7 @@ class SharedController extends BaseController{
     
     public function requestDemo()
     {
-        $this->configEmail();
-
+        $this->configEmail();       
         $input = Input::all(); 
         $rule = array('name'=>'required',
                       'company'=>'required',
@@ -173,52 +172,73 @@ class SharedController extends BaseController{
 
         $validation = Validator::make($input,$rule);
         if($validation->passes()){
-
           try{
           Mail::send('frontend.contact.requestDemo', $input, function($m){            
-            $m->from('ltt.develop@gmail.com', Input::get('name'));
-            $m->to('thanhtruyen1001@gmail.com', 'Develop SFR');
+            $m->from('test@completermp.com', Input::get('name'));
+            $m->to('thanhtruyen1001@gmail.com', 'Request Demo');
             $m->subject(Input::get('subject'));
             /*save to db*/
             $create = new RequestDemo();
             $create->fill(Input::all());           
-            $create->code = rand('111111','999999');
+            //$create->code = rand('111111','999999');
             $create->status = 'unpublish';
             $create->save();           
             //$message->attach($pathToFile);
             Session::flash('msg_flash', trans('messages.request_demo_success'));         
-          });
+             });
            }
            catch(Exception $e)
            {
-
-             Session::flash('msg_flash','Have error with config email, please  try again !</br><p>'.$e.'</p>');
+             Session::flash('msg_flash','Have error with config email, please  try again !</br></br><p>'.$e.'</p>');
              return Redirect::route('view_page_msg');
            }
         }
         else{
+
             Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));         
+            return Redirect::back()->withInput();
         }
 
         return Redirect::route('view_page_msg');
+
     }
 
-    public function sendEmail()
+    public function sendContact()
     {
         $this->configEmail();
-        $data['message']=Input::get('message');
-        Mail::send('frontend.contact.send_email', $data, function($m){
-           $m->from(Input::get('email'), Input::get('name'));
-           $m->to('thanhtruyen1001@gmail.com', 'Develop SFR');
-           $m->subject(Input::get('subject'));
-           //$m->text (Input::get('message'));
-           //$message->from('us@example.com', 'Laravel');
-           //$message->to('foo@example.com')->cc('bar@example.com');
-           //$message->attach($pathToFile);
-        });
+        $input = Input::all(); 
+        $rule = array('name'=>'required',
+                      'email'=>'required|email',
+                      'subject'=>'required',
+                      'text'=>'required',
+                );       
 
-        return Redirect::route('front_end');
+        $validation = Validator::make($input,$rule);
+        if($validation->passes()){
 
+          try{
+
+          Mail::send('frontend.contact.send_email', $input, function($m){            
+            $m->from('test@completermp.com', Input::get('name'));
+            $m->to('thanhtruyen1001@gmail.com', 'Contact');
+            $m->subject(Input::get('subject'));          
+            //$message->attach($pathToFile);
+            Session::flash('msg_flash', trans('messages.send_contact_success'));         
+          });
+           }
+           catch(Exception $e)
+           {
+             Session::flash('msg_flash','Have error with config email, please  try again !</br></br><p>'.$e.'</p>');
+             return Redirect::route('view_page_msg');
+           }
+        }
+        else{
+
+            Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));         
+            return Redirect::back()->withInput();
+        }
+
+        return Redirect::route('view_page_msg');
 
     }
 

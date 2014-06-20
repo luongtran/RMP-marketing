@@ -137,8 +137,8 @@ Route::get( 'admin-logout' , array('as' => 'user_logout', 'uses' => 'SharedContr
 Route::get( 'backend/view-profile' , array('as' => 'user_profile', 'uses' => 'SharedController@viewProfile'));
 Route::get( 'backend/view-profile-ajax' , array('as' => 'user_profile_ajax', 'uses' => 'SharedController@viewProfile_ajax'));
 Route::post( 'backend/update-profile' , array('as' => 'user_profile_update', 'uses' => 'SharedController@updateProfile'));
-Route::post( 'contact-sendmail' , array('as' => 'send_email_contact', 'uses' => 'SharedController@sendEmail'));
-Route::post( 'request-demo' , array('as' => 'send_email_contact', 'uses' => 'SharedController@requestDemo'));
+Route::post( 'contact-sendmail' , array('as' => 'send_email_contact', 'uses' => 'SharedController@sendContact'));
+Route::post( 'request-demo' , array('as' => 'send_request_demo','uses' => 'SharedController@requestDemo'));
 //===========================================//
 
 Route::get('backend/dump',array('as' => 'backend_dump', 'uses' =>'AdminController@dump'));

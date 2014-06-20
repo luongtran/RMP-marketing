@@ -11,5 +11,6 @@ return array(
         'cf_delete'=>'Have you want delete record?',    
         'user_pass_false' => 'Username or Password is false!',
         'request_demo_success' => "Thank you ! We will respond requests ",
+        'send_contact_success' => "Thank you ! Please wait minutes, web will respond to you",
     
 );

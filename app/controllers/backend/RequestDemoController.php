@@ -22,7 +22,7 @@ class RequestDemoController extends BaseController {
 
     public function index() {        
         $this->layout->page = $this->_moduleName;   
-        $result = RequestDemo::orderBy('id','desc')->get();
+        $result = RequestDemo::orderBy('id','desc')->paginate(15);
         //$module= Modules::orderBy('order','asc')->paginate(10);       
         $this->layout->content = View::make('backend.requestdemo.index')
                                     ->with('result',$result);
