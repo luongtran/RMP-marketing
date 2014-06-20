@@ -46,15 +46,7 @@
                                         <li class="list-group-item text-right">
                                             <span class="pull-left">
                                                 <strong>Joined</strong>
-                                            </span>2.13.2014</li>
-                                        <li class="list-group-item text-right">
-                                            <span class="pull-left">
-                                                <strong>Last seen</strong>
-                                            </span>Yesterday</li>
-                                        <li class="list-group-item text-right">
-                                            <span class="pull-left">
-                                                <strong>Nickname</strong>
-                                            </span>themesmile</li>
+                                            </span>{{$getProfile->created_at}}</li>
 
                                     </ul>
 
@@ -98,7 +90,7 @@
                                         <span class="entypo-arrows-ccw"></span>&nbsp;&nbsp;Recent Activities</h5>
 
                                     <div class="table-responsive">
-                                        <table class="table table-hover table-striped table-condensed">
+                                       <!--  <table class="table table-hover table-striped table-condensed">
 
                                             <tbody>
                                                 <tr>
@@ -108,7 +100,7 @@
                                                     <td><i class="pull-right fa fa-edit"></i> Today, 12:23 - Mark Friendo liked and shared your post.</td>
                                                 </tr>                                           
                                             </tbody>
-                                        </table>
+                                        </table> -->
                                     </div>
 
                                 </div>

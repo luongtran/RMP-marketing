@@ -46,7 +46,7 @@
 						<h3 class="lined">Contact Info</h3>
 					</div>
 					<ul class="b-list b-contact">
-						<li class="contact-address"><i class="icon-map-marker"></i><span><strong>Address:</strong><?php echo CommonHelper::getSetting('address');?></span></li>
+						<li class="contact-address"><i class="icon-map-marker"></i><span><strong>{{trans('frontend')}}:</strong><?php echo CommonHelper::getSetting('address');?></span></li>
 						<li class="contact-phone"><i class="icon-phone"></i><span><strong>Phone:</strong><?php echo CommonHelper::getSetting('phone');?></span></li>
 						<li class="contact-mail"><i class="icon-envelope"></i><strong>E-mail:</strong> <a href="#"><?php echo CommonHelper::getSetting('email_contact');?></a></li>
                                                 <li class="contact-address"><i class="icon-time"></i><span><strong>Business Hours:</strong><?php echo CommonHelper::getSetting('business_hours');?></span></li>

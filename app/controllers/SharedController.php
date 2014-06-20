@@ -75,7 +75,7 @@ class SharedController extends BaseController{
             $Profile = DB::table('users')
                    ->leftjoin("uploads","uploads.id","=","users.avatar")             
                    ->where("users.username","=",Session::get('login_user'))             
-                   ->select(DB::raw("users.id,users.username,users.email,users.first_name,users.last_name,users.phone,users.company,users.address,uploads.path,uploads.name as imgName,users.updated_at,users.permission"))
+                   ->select(DB::raw("users.id,users.username,users.email,users.first_name,users.last_name,users.phone,users.company,users.address,uploads.path,uploads.name as imgName,users.updated_at,users.permission,users.created_at"))
                    ->first();             
             return $Profile;
       }

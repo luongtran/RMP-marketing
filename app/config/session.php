@@ -29,7 +29,7 @@ return array(
 	|
 	*/
 
-	'lifetime' => 120,
+	'lifetime' => 10, // 10 minutes   detroy sesion
 
 	'expire_on_close' => false,
 

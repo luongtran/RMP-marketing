@@ -78,7 +78,8 @@
                 <div class="messages_validation col-lg-12">                           
                       {{Session::get('msg_flash')}}
                 </div>
-                <div class="col-lg-4">              
+                <div class="col-lg-4">
+                <div class="row">              
                     {{Form::open(array('url'=>'backend/module/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data','id'=>'frm-setting') )}}               
                     <div class="panel panel-success">
                         <div class="panel-heading">
@@ -123,10 +124,11 @@
                            </div>
                             </div>                    
                     {{Form::close()}}
-                                 
+                 </div>                
                 </div><!--col4-->
                 
                 <div class="col-lg-8">
+                <div class="row">
                 <div class="col-lg-12">
                 <div class="panel panel-success">
                     <div class="panel-heading"> 
@@ -185,7 +187,7 @@
                 </div><!--panel -->  
                    
                 </div><!-- 12-->   
-                  
+                </div> 
                             
                 
                   

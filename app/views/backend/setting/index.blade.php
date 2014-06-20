@@ -96,13 +96,9 @@
                                             </div>   
                                             </td>
                                                                               
-                                            <td @if($setting->value=="") {{'class="danger"'}}   @endif >
-                                            <div class="form-group">
-                                                  @if($setting->name == 'email_password')   
-                                                   {{Form::password($setting->name,array('class' => 'form-control','id'=>$setting->name))}}       
-                                                  @else                          
-                                                   {{Form::text($setting->name,$setting->value,array('class' => 'form-control','id'=>$setting->name))}}
-                                                  @endif
+                                           <td @if($setting->value=="") {{'class="danger"'}}   @endif >
+                                            <div class="form-group">   
+                                                 {{Form::text($setting->name,$setting->value,array('class' => 'form-control','id'=>$setting->name))}}
                                             </div>   
                                             </td>
                                             

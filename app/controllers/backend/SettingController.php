@@ -30,7 +30,7 @@ class SettingController extends BaseController {
 
     public function postUpdate() 
     {
-           $getInput=Input::all();            
+           $getInput=Input::all(); 
            foreach($getInput as $k=>$v)
            {
             DB::table('setting')

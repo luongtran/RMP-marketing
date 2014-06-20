@@ -99,7 +99,7 @@
                                       @foreach($getUser  as $list)                                      
                                       <tr <?php if($list->status == "unpublish"){echo "class='danger'";}?> >
                                           <td><input type="checkbox" value="{{$list->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
-                                        <td><a href="{{Request::root()}}/backend/user/view/{{$list->id}}">{{$list->username}}</a></td>
+                                        <td><a href="#">{{$list->username}}</a></td>
                                         <td>{{$list->permission}}</td>
                                         <td>{{$list->created_at}}</td>
                                         <td><a href="{{Request::root()}}/backend/user/update/{{$list->id}}" ><span class="label label-primary">{{trans('common.button.update')}}</span></a>

@@ -100,6 +100,7 @@
                             </div> 
                              
                               <div class="form-group">
+                                   <label>{{trans('common.table.firstname')}}</label>      
                                 {{Form::text('firstname',$getUser->first_name,array('class' => 'form-control','id'=>'firstname'))}}       
                             </div>  
                                                         
