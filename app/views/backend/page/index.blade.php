@@ -69,14 +69,15 @@
 @section('content')
 <div class="col-sm-12">   
    {{Session::get('msg_flash')}}
-    <div class="col-sm-4">           
+    <div class="col-sm-4"> 
+    <div class='row'>          
          {{Form::open(array('url'=>'backend/page/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data') )}}                                 
-            <div id="headerClose" class="nest">    
-                            <div class="title-alt">
-                                <h6>Add page</h6>
+            <div class="panel panel-success">    
+                            <div class="panel-heading">
+                               Add page
                             </div>
 
-                           <div id="header" class="body-nest">                          
+                           <div class="panel-body">                          
                                  
 
                                     <div class="form-group">                                
@@ -99,16 +100,16 @@
      {{Form::close()}}  
     
       </div>
+      </div>
     <!--col 4-->         
-    <div class="col-sm-8">  
+    <div class="col-sm-8">      
+    <div class='row'>      
     <div class="col-sm-12">                       
-                <div id="headerClose" class="nest">        
-                  <div class="title-alt">
-                      <h6>
-                       {{trans('titlepage.title.list_page')}}
-                     </h6>
+                <div  class="panel panel-success">        
+                  <div class="panel-heading">                     
+                       {{trans('titlepage.title.list_page')}}                   
                   </div>                    
-                    <div id="header" class="body-nest">
+                    <div class="panel-body">
                     {{Form::open(array('url'=>'backend/page/action', 'method' => 'post','role'=>'form'))}}                          
                                <section id="flip-scroll">
                                <table class="table table-bordered table-striped cf">
@@ -152,6 +153,7 @@
                             <?php echo $getPage->links(); ?>                              
                      <!-- end paging -->                 
                  </div>                                                        
+                 </div>   
                               
               </div>     
           

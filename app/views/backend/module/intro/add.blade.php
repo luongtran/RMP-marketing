@@ -85,12 +85,11 @@
                 <div class="row">                   
                   {{Form::open(array('url'=>'backend/module-package/'.$infoMod->id.'/intro/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data','id'=>'frm-setting') )}}                                                                                                            
                     <div class="col-sm-8"> 
-                        <div id="headerClose" class="nest">
-                            <div class="title-alt">
-                                <h6>
-                                   Basic</h6> 
+                        <div  class="panel panel-success">
+                            <div class="panel-heading">                                
+                                   Basic
                             </div>
-                            <div id="header" class="body-nest">
+                            <div class="panel-body">
                                     <!-- begin form-->  
                                            {{Session::get('msg_flash')}}                                                  
                                         <fieldset>
@@ -105,7 +104,7 @@
                                             
                                             <div class="form-group">
                                              <label for="">Sumary</label>
-                                             {{Form::textarea('sumary','',array('class' => 'form-control','style'=>'width: 100%;'))}}                                             
+                                             {{Form::textarea('sumary','',array('class' => '','style'=>'width:100%;height:80px;'))}}                                             
                                             </div>                                       
                                             <div class="form-group">
                                             <label for="">Language</label>    

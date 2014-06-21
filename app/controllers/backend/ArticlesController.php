@@ -96,7 +96,11 @@ class ArticlesController extends BaseController {
         {        
             $article = new Articles;
             $article->title = Input::get('title');
-            $article->permalink = Input::get('permalink');
+            if(Input::get('permalink') == ""){
+            $article->permalink = CommonHelper::transPermalink(Input::get('title'));
+            }else{
+            $article->permalink = CommonHelper::transPermalink(Input::get('permalink'));  
+            }
             $article->content = Input::get('content');
             $article->description = Input::get('description');
             $article->keyword = Input::get('keyword');

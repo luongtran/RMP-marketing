@@ -56,7 +56,7 @@
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="#" title="Sample page 1">Article</a>
+                <li><a href="{{Request::root()}}/backend/article" title="article">Article</a>
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>

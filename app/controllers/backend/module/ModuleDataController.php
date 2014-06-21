@@ -23,7 +23,15 @@ class ModuleDataController extends BaseController {
     public function index($id) {        
         $infoMod = Modules::where('id','=',$id)->first();       
         $this->layout->page = $this->_moduleName.' - '.$infoMod->name;           
-        $module_data= ModuleData::where('module_id','=',$id)->orderBy('id','desc')->paginate(10); 
+        //$module_data= ModuleData::where('module_id','=',$id)->orderBy('id','desc')->paginate(10); 
+        $module_data = DB::table('module_data')
+            ->join('users', 'users.id', '=', 'module_data.user_id')
+            ->where('module_data.module_id','=',$id)    
+            ->orderBy('module_data.id','desc')
+            ->select(DB::raw('module_data.id,module_data.title,module_data.lang_id,module_data.status,module_data.created_at,users.username'))->paginate(10); 
+     
+
+
         $this->layout->content = View::make('backend.module.content.index')
                 ->with('infoMod',$infoMod)
                 ->with('module_data',$module_data);

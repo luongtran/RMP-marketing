@@ -61,9 +61,10 @@
                 <li><a href="{{Request::root()}}/backend/article" title="Sample page 1">  {{trans('common.table.article')}}   </a>
                 </li>              
                 <li class="pull-right">
-                    <div class="input-group input-widget">
-
-                        <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
+                    <div class="input-group input-widget">                           
+                        {{Form::open(array('url'=>'backend/article/search', 'method' => 'get','role'=>'form') )}}                                                     
+                              {{Form::text('keyfind','',array('class' => 'form-control','id'=>'keyfind','placeholder'=>'Search...','style'=>'border-radius:15px'))}}   
+                        {{Form::close()}}                                      
                     </div>
                 </li>
             </ul>
@@ -84,27 +85,6 @@
                     </div>
                     <div class="panel-body">                        
                             <div class="col-lg-12">
-                                
-                                 <ul class="nav nav-pills">
-                                    <li class="active"><a href="{{Request::root()}}/backend/article/add">{{trans('common.button.add')}}</a></li>
-                                    <li class="dropdown active">
-                                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        {{trans('common.table.category')}} <span class="caret"></span>
-                                      </a>
-                                      <ul class="dropdown-menu">
-                                        @foreach($filterCategory as $ct)
-                                        <li><a href="{{Request::root()}}/backend/article/filter/{{$ct->id}}">{{$ct->name}}</a></li>
-                                        @endforeach                                        
-                                      </ul>
-                                    </li>
-                                    <li >
-                                         {{Form::open(array('url'=>'backend/article/search', 'method' => 'get','role'=>'form') )}}                                                     
-                                                {{Form::text('keyfind','',array('class' => 'form-control','id'=>'keyfind','placeholder'=>'Search...'))}}   
-                                         {{Form::close()}}                                                    
-                                    </li>
-                                  </ul>
-                               
-                                <h2></h2>
                                 {{Form::open(array('url'=>'backend/article/action', 'method' => 'post','role'=>'form'))}}               
                                 <div class="table-responsive">
                                   <table class="table table-bordered table-hover tablesorter">

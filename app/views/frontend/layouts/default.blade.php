@@ -7,7 +7,7 @@
     <title>CompleteRMP | @if( isset( $page )) {{ $page }}   @endif        
     </title>
     <meta title="keyword" content="completermp, @if( isset( $page )) {{$page}}   @endif ">
-    <link rel="icon" type="image/ico" href="favicon.ico"/>        
+    <link rel="Shortcut Icon" type="image/ico" href="{{asset('favicon.ico')}}"/>        
     <link href="{{asset('asset/frontend/css/style.css')}}" media="screen" rel="stylesheet" type="text/css" />     
     <link rel="stylesheet" href="{{asset('asset/frontend/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('asset/frontend/css/custom.css')}}">  

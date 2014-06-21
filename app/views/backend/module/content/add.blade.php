@@ -80,14 +80,11 @@
                        {{Session::get('msg_flash')}}                 
                   {{Form::open(array('url'=>'backend/module-package/'.$infoMod->id.'/content/add', 'method' => 'post','role'=>'form','enctype'=>'multipart/form-data','id'=>'frm-setting') )}}                                                                                                            
                     <div class="col-sm-8"> 
-                        <div id="headerClose" class="nest">
-                            <div class="title-alt">
-                                <h6>
-                                   Basic</h6>                          
-
+                        <div class="panel panel-success">
+                            <div class="panel-heading">                                
+                                   Basic
                             </div>
-
-                            <div id="header" class="body-nest">
+                            <div class="panle-body">
                                     <!-- begin form-->  
                                         <fieldset>
                                             <div class="form-group">
@@ -122,17 +119,12 @@
                     </div>    
                     <!-- end basic -->                         
                        <div class="col-sm-4">
-                        <div id="headerClose" class="nest">
-                            <div class="title-alt">
-                                <h6>
-                                   Extends</h6>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">                                
+                                   Extends
                             </div>
-
-
-
-                              <div id="header" class="body-nest"> 
-                                        <fieldset>                                          
-                                                                                    
+                            <div class="panel-body"> 
+                                        <fieldset>                                  
                                             <div class="form-group">
                                             <label for="">{{trans('common.table.language')}}</label>    
                                             <select name="lang_id" class="form-control">                                              

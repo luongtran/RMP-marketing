@@ -23,7 +23,14 @@ class ModuleIntroController extends BaseController {
     public function index($id) {        
         $infoMod = Modules::where('id','=',$id)->first();       
         $this->layout->page = $this->_moduleName.' - '.$infoMod->name;           
-        $module_data= ModuleIntro::where('module_id','=',$id)->orderBy('id','desc')->paginate(10); 
+        //$module_data= ModuleIntro::where('module_id','=',$id)->orderBy('id','desc')->paginate(10); 
+        $module_data = DB::table('module_intro')
+            ->join('users', 'users.id', '=', 'module_intro.user_id')
+            ->where('module_intro.module_id','=',$id)    
+            ->orderBy('module_intro.id','desc')
+            ->select(DB::raw('module_intro.id,module_intro.title,module_intro.lang_id,module_intro.status,module_intro.created_at,users.username'))->paginate(10); 
+     
+
         $this->layout->content = View::make('backend.module.intro.index')
                 ->with('infoMod',$infoMod)
                 ->with('module_data',$module_data);

@@ -77,14 +77,14 @@
  
 @section('content')
 <div class="row">    
-<div class="col-sm-9">
+<div class="col-sm-12">
 
                         {{Form::open(array('url'=>'backend/module-package/'.$infoMod->id.'/intro/action', 'method' => 'post','role'=>'form'))}}  
-                        <div id="headerClose" class="nest">
-                            <div class="title-alt">
-                                <h6> List content module {{$infoMod->name}} </h6>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                               List content module {{$infoMod->name}}
                             </div>                              
-                           <div id="header" class="body-nest">
+                           <div class="panel-body">
                                  <section id="flip-scroll">                                                                            
                                         {{Session::get('msg_flash')}}                                    
                                     <table class="table table-bordered table-striped cf">
@@ -94,6 +94,7 @@
                                                 <th>Title</th>
                                                 <th>Lang</th>
                                                 <th>Author</th>
+                                                <th>Created</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -103,7 +104,8 @@
                                                 <td class='custom-color'><input type="checkbox" value="{{$data->id}}" name="checkID[]" id="" class="checkBoxClass"></td>
                                                 <td class='custom-color'>{{$data->title}}</td>                                                                                               
                                                 <td class='custom-color'>{{$data->lang_id}}</td> 
-                                                <td class='custom-color'>{{$data->user_id}}</td> 
+                                                <td class='custom-color'>{{$data->username}}</td>
+                                                <td class='custom-color'>{{$data->created_at}}</td> 
                                                 <td>
                                                     <a href='{{Request::root()}}/backend/module-package/{{$infoMod->id}}/intro/update/{{$data->id}}'>
                                                         <span class="label label-primary">Update</span>                                                        

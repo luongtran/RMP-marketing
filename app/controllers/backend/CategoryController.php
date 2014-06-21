@@ -110,9 +110,20 @@ class CategoryController extends BaseController {
             ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')
             ->where('categories.id','=',$id)
             ->count();
+
+          $checkModuleData = DB::table('categories_moduleData')
+            ->join('categories', 'categories.id', '=', 'categories_moduleData.categories_id')
+            ->join('module_data', 'module_data.id', '=', 'categories_moduleData.moduleData_id')
+            ->where('categories.id','=',$id)
+            ->count();  
           if($checkArticle > 0)
           {            
             Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table',array('name'=>'Article'))));  
+            return Redirect::back();   
+          }
+          else if($checkModuleData > 0)
+          {            
+            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table',array('name'=>'Module Data'))));  
             return Redirect::back();   
           }
           else

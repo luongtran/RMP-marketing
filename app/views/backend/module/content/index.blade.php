@@ -73,7 +73,7 @@
  
 @section('content')
 <div class="row">
-    <div class="col-sm-6">
+    <!-- <div class="col-sm-6">
                                     <div class="btn-group pull-left" style="margin-right:10px">
                                         <button data-toggle="dropdown" class="btn  dropdown-toggle" type="button">Filter language
                                             <span class="caret"></span>
@@ -84,19 +84,18 @@
                                         </ul>
                                     </div>
 
-        </div>
+        </div> -->
 </div>
 <div class="row">    
-<div class="col-sm-9">
-                             {{Session::get('msg_flash')}}
+<div class="col-sm-12">
+                        {{Session::get('msg_flash')}}
                         {{Form::open(array('url'=>'backend/module-package/'.$infoMod->id.'/content/action', 'method' => 'post','role'=>'form'))}}  
-                        <div id="headerClose" class="nest">
-                            <div class="title-alt">
-                                <h6> List content module {{$infoMod->name}} </h6>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                List content module {{$infoMod->name}}
                             </div>                              
-                           <div id="header" class="body-nest">
-                                 <section id="flip-scroll">
-                                   
+                           <div class="panel-body">
+                                 <section id="flip-scroll">                                   
                                     <table class="table table-bordered table-striped cf">
                                         <thead class="cf">
                                             <tr>
@@ -104,6 +103,7 @@
                                                 <th>Title</th>
                                                 <th>Lang</th>
                                                 <th>Author</th>
+                                                <th>Created</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -113,7 +113,8 @@
                                                 <td class='custom-color'><input type="checkbox" value="{{$data->id}}" name="checkID[]" id="" class="checkBoxClass"></td>
                                                 <td class='custom-color'><a href="{{Request::root()}}/backend/module-package/{{$infoMod->id}}/content/view/{{$data->id}}">{{$data->title}}</a></td>                                                                                               
                                                 <td class='custom-color'>{{$data->lang_id}}</td> 
-                                                <td class='custom-color'>{{$data->user_id}}</td> 
+                                                <td class='custom-color'>{{$data->username}}</td> 
+                                                <td class='custom-color'>{{$data->created_at}}</td> 
                                                 <td class='custom-color'>
                                                     <a href='{{Request::root()}}/backend/module-package/{{$infoMod->id}}/content/update/{{$data->id}}'>
                                                         <span class="label label-primary">Update</span>                                                        
