@@ -1,10 +1,10 @@
 <?php 
 
 return array(        
-	'create_message'=> 'Created new record',
-        'error_message'=> 'Created new record is error!',
+	'create_message'=> 'Created a new record record',
+        'error_message'=> 'Created is error!',
         'update_message'=> 'Updated success!',
-        'delete_message'=> 'Deleted new record!',
+        'delete_message'=> 'Deleted record!',
         'nochoose_message'=> 'Not record have to choose!',
         'changestatus_message'=>'Have to changed status',
         'relationship_table'=>'Problem ! This record containing in table :name',
