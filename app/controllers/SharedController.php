@@ -139,7 +139,7 @@ class SharedController extends BaseController{
     
     public function getImageJson()
     {
-        $list = Uploads::orderBy('id','desc')->get();
+        $list = Uploads::where('type_file','=','image')->orderBy('id','desc')->get();
        //  $url = asset('share/uploads/images');
         
        //  $arr = '[';

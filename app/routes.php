@@ -141,6 +141,34 @@ Route::post( 'contact-sendmail' , array('as' => 'send_email_contact', 'uses' => 
 Route::post( 'request-demo' , array('as' => 'send_request_demo','uses' => 'SharedController@requestDemo'));
 //===========================================//
 
+
+/*======================*/
+/*package blog*/
+Route::get('blog',array('as' => 'blog', 'uses' =>'BlogController@index'));
+Route::get('blog/detail/{id}',array('as' => 'blog_detail', 'uses' =>'BlogController@detail'));
+Route::get('blog/category/{id}',array('as' => 'blog_view_category', 'uses' =>'BlogController@category'));
+
+Route::get('blog/admin',array('as' => 'blog_admin', 'uses' =>'BlogPostsController@index'));
+Route::get('blog/admin/post',array('as' => 'blog_post', 'uses' =>'BlogPostsController@index'));
+Route::get('blog/admin/post/view/{id}',array('as' => 'blog_post_view', 'uses' =>'BlogPostsController@view'));
+Route::get('blog/admin/post/add',array('as' => 'blog_admin_add', 'uses' =>'BlogPostsController@getAdd'));
+Route::post('blog/admin/post/add',array('as' => 'blog_admin_add', 'uses' =>'BlogPostsController@postAdd'));
+Route::get('blog/admin/post/update/{id}',array('as' => 'blog_admin_update', 'uses' =>'BlogPostsController@getUpdate'));
+Route::post('blog/admin/post/update/{id}',array('as' => 'blog_admin_update', 'uses' =>'BlogPostsController@postUpdate'));
+Route::get('blog/admin/post/delete/{id}',array('as' => 'blog_admin_delete', 'uses' =>'BlogPostsController@getDelete'));
+Route::post('blog/admin/post/action',array('as' => 'blog_admin_action', 'uses' =>'BlogPostsController@action'));
+
+Route::get('blog/admin/category',array('as' => 'blog_category', 'uses' =>'BlogCategoriesController@index'));
+Route::post('blog/admin/category/add',array('as' => 'blog_category_add', 'uses' =>'BlogCategoriesController@add'));
+Route::get('blog/admin/category/update',array('as' => 'blog_category_update', 'uses' =>'BlogCategoriesController@update'));
+Route::post('blog/admin/category/update',array('as' => 'blog_category_update', 'uses' =>'BlogCategoriesController@update'));
+
+Route::get('blog/admin/comments',array('as' => 'blog_admin', 'uses' =>'BlogController@index'));
+Route::get('blog/admin/comments/view/{id}',array('as' => 'blog_admin', 'uses' =>'BlogController@index'));
+Route::post('blog/admin/comments/action',array('as' => 'blog_admin', 'uses' =>'BlogController@index'));
+/*======================*/
+
+
 Route::get('backend/dump',array('as' => 'backend_dump', 'uses' =>'AdminController@dump'));
 
 
@@ -155,7 +183,6 @@ Route::get('page/{id}',array('as' => 'view_page', 'uses' =>'HomeController@view'
 
 /* load json images in part upload image*/
 Route::get('backend/load-immages-json',array('as' => 'load_image_json', 'uses' =>'SharedController@getImageJson'));
-
 
 
 /*check fillter*/

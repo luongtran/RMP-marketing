@@ -92,7 +92,7 @@ CkEditorImageBrowser.loadData = function (url, onLoaded) {
 					item.thumb = item.image;				
 				}
 				var folder= item.path;
-				var image= baseUrl+"/asset/share/uploads/images/"+item.name;
+				var image= baseUrl+"/"+item.path+"/"+item.name;
 				var thumb = image;
 
 				CkEditorImageBrowser.addImage(folder, image, thumb);
