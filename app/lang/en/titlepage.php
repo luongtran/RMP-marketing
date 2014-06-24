@@ -44,6 +44,9 @@ return array(
         'update_language'=>'Update language',
         'list_language'=>'List language',
 
+        'view_comment'=>'View comment',
+        'list_comment'=>'List comment',
+
         'role_1'=>'Manager content',
         'role_2'=>'Admin',
         'role_3'=>'Supper admin',

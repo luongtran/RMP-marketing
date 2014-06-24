@@ -123,6 +123,24 @@
                              <a class="tooltip-tip2 ajax-load" href="{{Request::root()}}/backend/menu" title="Element"><i class="entypo-layout"></i><span>Menu</span></a>                               
                         </li> 
 
+                        <li>
+                             <a class="tooltip-tip2" href="#" title="Blog">
+                                    <i class="entypo-share"></i>
+                                     <span>Blog</span>  
+                             </a>        
+                             <ul>
+                                        <li>
+                                            <a class="tooltip-tip3 ajax-load" href="{{Request::root()}}/blog/admin/post" title="Post"><i class="entypo-feather"></i><span>Post</span></a>
+                                        </li>
+                                         <li>
+                                            <a class="tooltip-tip3 ajax-load" href="{{Request::root()}}/blog/admin/category" title="Category"><i class="entypo-archive"></i><span>Category</span></a>
+                                        </li> 
+                                        <li>
+                                            <a class="tooltip-tip3 ajax-load" href="{{Request::root()}}/blog/admin/comment" title="Comment"><i class="entypo-mixi"></i><span>Comment</span></a>
+                                        </li> 
+                             </ul>                                       
+                        </li> 
+
                     </ul>
                     @endif
 

@@ -261,92 +261,24 @@ class BlogPostsController extends BaseController {
          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.changestatus_message')));   
      }
 
-
-//     
-//    
-//     
-//     public function getUpload()
-//     {
-//         $this->layout->content = View::make('backend.articles.upload');
-//     }
-//     public function postUpload()
-//     {     
-////            $file = Input::file('file');
-////            $file->fit(300, 200);
-////            $destinationPath = 'uploads';
-////            $filename = $_FILES["file"]["name"];
-////            //$filename = $file->getClientOriginalName();
-////            //$extension =$file->getClientOriginalExtension();
-////            $upload_success = Input::file('file')->move($destinationPath, $filename);
-////            if( $upload_success ) {
-////               $msg=" success upload";
-////            } else {
-////               $msg="have error  while upload";
-////            } 
-//          
-//          $destinationPath = 'public/uploads/share';
-//          $upload_success = Input::file('file');  
-//          $i=1;
-//          $msg='';
-//          foreach($upload_success as $file)
-//          {
-//            $date = new DateTime();            
-//            $filename= $date->getTimestamp().'_';
-//            $filename.= $file->getClientOriginalName(); 
-//           // $filename.  = $file->getClientOriginalName(); // Original file name that the end user used for it.
-//            $mime_type  = $file->getMimeType(); // Gets this example image/png
-//            $extension  = $file->getClientOriginalExtension(); // The original extension that the user used example .jpg or .png.
-//            //$filename=rand(100,900);            
-//           
-//           //echo "</br>"   ;
-//           //var_dump($file); 
-//            
-//            $validator = Validator::make(
-//            array(
-//                'file'=>$file//->getClientOriginalName()
-//            ),
-//            array(
-//                'file'=> 'image'
-//            )
-//             );        
-//            if ($validator->passes())
-//            {     
-//            $check = $file->move($destinationPath, $filename);   
-//            $msg.="<img src='".Request::root()."/uploads/share/".$filename."' width='100' height='100'>";
-//            }
-//            else
-//            {
-//                $msg=$validator->messages();
-//                
-//                $msg.= '</br><p style="color:red;">File name '.$i.' was be error:'.$file->getClientOriginalName().'</p>';
-//            }
-//            $i++;
-//                                
-//            
-//          }
-//         
-//         return $msg;
-//   
-//     }
-//     
-//     
      
-     
- public function search() {
-        $this->layout->page = "Result article";        
-        $getList = DB::table('categories_articles')
-            ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
-            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')   
-            ->join('users', 'articles.user_id', '=', 'users.id')
-            ->orderBy('articles.id', 'desc') 
-            ->where('title', 'like','%'.Input::get('keyfind').'%') 
-            ->select(DB::raw(' DISTINCT articles_id as id,title,articles.permalink,users.username as create_by,articles.status as status'))
-            ->paginate(10);
-        $filterCategories  =  Categories::all();        
-        $this->layout->content = View::make('backend.articles.index')->with('listArticles',$getList)
-             ->with('filterCategory',$filterCategories);
+ // public function search() {
+ //        $this->layout->page = "Result article";        
+ //        $getList = DB::table('categories_articles')
+ //            ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
+ //            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')   
+ //            ->join('users', 'articles.user_id', '=', 'users.id')
+ //            ->orderBy('articles.id', 'desc') 
+ //            ->where('title', 'like','%'.Input::get('keyfind').'%') 
+ //            ->select(DB::raw(' DISTINCT articles_id as id,title,articles.permalink,users.username as create_by,articles.status as status'))
+ //            ->paginate(10);
+ //        $filterCategories  =  Categories::all();        
+ //        $this->layout->content = View::make('backend.articles.index')->with('listArticles',$getList)
+ //             ->with('filterCategory',$filterCategories);
        
-    }     
-   
+ //    }  
 
+
+
+//end class
 }

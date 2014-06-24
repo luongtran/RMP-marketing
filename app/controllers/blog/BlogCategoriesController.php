@@ -2,7 +2,7 @@
 
 class BlogCategoriesController extends BaseController {
 
-      protected $layout = 'blog.layouts.default';
+      protected $layout = 'backend.layouts.default';
       public function __construct() {
        
       }  
@@ -20,43 +20,23 @@ class BlogCategoriesController extends BaseController {
      */
 
     public function index() {        
-        $this->layout->page = "Category";
-        //       
-        function listDrop($parent_id,$span=' ')
-        {  
-            $str="";
-            $Category = Categories::all(); 
-            foreach($Category as $list)
-            {
-                if($list->parent == $parent_id)
-                {                    
-                   $str.= "<option value='".$list->id."' class='border-basic'>".$span.$list->name."</option>"; 
-                   $str.=listDrop($list->id,'&nbsp&nbsp');                
-                }
-            }
-           return $str;
-        }
-        //
-        $categories= Categories::orderBy('order','asc')->paginate(10); 
-        $this->layout->content = View::make('backend.category.index')->with('categories',$categories)
-             ->with('listParent',listDrop(0));
+        $this->layout->page = "Blog | Category";       
+        $categories= BlogCategories::orderBy('id','desc')->paginate(10); 
+        $this->layout->content = View::make('blog.categories.index')->with('categories',$categories);             
     }
     
     public function postAdd() {       
         $validation = Validator::make(                
                 Input::all(),
                 array(
-                'name'=> 'required|unique:categories',
-                'premalink'=> 'unique:categories',
+                'name'=> 'required|unique:blog_categories',
                 )                
          );
         if($validation->passes())
         {
-        $categories = new Categories;
+        $categories = new BlogCategories;
         $categories->name = Input::get('name');;
-        $categories->permalink = Input::get('permalink');
-        $categories->parent = Input::get('parent');
-        $categories->order = Input::get('parent');
+        $categories->description = Input::get('description');
         $categories->status = Input::get('status');
         $categories->save();
         Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.create_message')));  
@@ -68,11 +48,9 @@ class BlogCategoriesController extends BaseController {
         
     public function getUpdate($id) {
         
-        $this->layout->page = "Upadte category";  
-        $getCategory = Categories::where('id','=',$id)->first();  
-        $categories = Categories::all(); 
-        $this->layout->content = View::make('backend.category.update')->with('getCategory',$getCategory)
-             ->with('categories',$categories);
+        $this->layout->page = "Update category";  
+        $getCategory = BlogCategories::where('id','=',$id)->first(); 
+        $this->layout->content = View::make('blog.categories.update')->with('getCategory',$getCategory);
              
     }
     
@@ -81,23 +59,19 @@ class BlogCategoriesController extends BaseController {
         $validation = Validator::make(                
                 Input::all(),
                 array(
-                'name'=> 'required',
-                'premalink'=> 'unique:categories',
+                'name'=> 'required'
                 )                
          );
         
         if($validation->passes())
         {
-            $category = Categories::find($id);
+            $category = BlogCategories::find($id);
             $category->name = Input::get('name');
-            $category->permalink = Input::get('permalink');
             $category->description = Input::get('description');
-            $category->parent = Input::get('parent');
-            $category->order = Input::get('parent');
             $category->status = Input::get('status');
             $category->update();
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message')));  
-            return Redirect::route('backend_category');
+            return Redirect::route('blog_category');
         }
         Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
         return Redirect::back()->withInput();
@@ -105,33 +79,22 @@ class BlogCategoriesController extends BaseController {
     
     public function getDelete($id) {
         
-          $checkArticle = DB::table('categories_articles')
-            ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
-            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')
-            ->where('categories.id','=',$id)
-            ->count();
-
-          $checkModuleData = DB::table('categories_moduleData')
-            ->join('categories', 'categories.id', '=', 'categories_moduleData.categories_id')
-            ->join('module_data', 'module_data.id', '=', 'categories_moduleData.moduleData_id')
-            ->where('categories.id','=',$id)
-            ->count();  
-          if($checkArticle > 0)
+          $checkPost = DB::table('blog_post_category')
+            ->join('blog_categories', 'blog_post_category.category_id', '=', 'blog_categories.id')
+            ->join('blog_posts', 'blog_post_category.post_id', '=', 'blog_posts.id')
+            ->where('blog_categories.id','=',$id)
+            ->count(); 
+          if($checkPost > 0)
           {            
-            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table',array('name'=>'Article'))));  
+            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table',array('name'=>'Post'))));  
             return Redirect::back();   
-          }
-          else if($checkModuleData > 0)
-          {            
-            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table',array('name'=>'Module Data'))));  
-            return Redirect::back();   
-          }
+          }        
           else
           {
-            $at= Categories::find($id);
+            $at= BlogCategories::find($id);
             $at->delete();
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.delete_message')));  
-            return Redirect::route('backend_category');            
+            return Redirect::route('blog_category');            
           }
         
     }
@@ -176,7 +139,7 @@ class BlogCategoriesController extends BaseController {
      
      public function changeStatus($status,$id)
      {
-         $ar= Categories::find($id);
+         $ar= BlogCategories::find($id);
          $ar->status = $status;
          $ar->update();
          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.changestatus_message')));   

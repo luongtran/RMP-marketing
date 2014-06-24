@@ -82,6 +82,10 @@ return array(
       'language'=>'Language',
       'code'=>'Code',
       'company'=>'Company',
+      'website'=>'Website',
+      'ip'=>'Ip',
+      'post_id'=>'Post ID',
+      'id'=>'ID',
     ),
      
 );

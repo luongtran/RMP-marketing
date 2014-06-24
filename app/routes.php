@@ -148,6 +148,7 @@ Route::get('blog',array('as' => 'blog', 'uses' =>'BlogController@index'));
 Route::get('blog/detail/{id}',array('as' => 'blog_detail', 'uses' =>'BlogController@detail'));
 Route::get('blog/category/{id}',array('as' => 'blog_view_category', 'uses' =>'BlogController@category'));
 Route::get('blog/search',array('as' => 'blog_search', 'uses' =>'BlogController@search'));
+Route::post('blog/post-comment',array('as' => 'blog_search', 'uses' =>'BlogController@postComment'));
 
 Route::get('blog/admin',array('as' => 'blog_admin', 'uses' =>'BlogPostsController@index'));
 Route::get('blog/admin/post',array('as' => 'blog_post', 'uses' =>'BlogPostsController@index'));
@@ -160,13 +161,16 @@ Route::get('blog/admin/post/delete/{id}',array('as' => 'blog_admin_delete', 'use
 Route::post('blog/admin/post/action',array('as' => 'blog_admin_action', 'uses' =>'BlogPostsController@action'));
 
 Route::get('blog/admin/category',array('as' => 'blog_category', 'uses' =>'BlogCategoriesController@index'));
-Route::post('blog/admin/category/add',array('as' => 'blog_category_add', 'uses' =>'BlogCategoriesController@add'));
-Route::get('blog/admin/category/update',array('as' => 'blog_category_update', 'uses' =>'BlogCategoriesController@update'));
-Route::post('blog/admin/category/update',array('as' => 'blog_category_update', 'uses' =>'BlogCategoriesController@update'));
+Route::post('blog/admin/category/add',array('as' => 'blog_category_add', 'uses' =>'BlogCategoriesController@postAdd'));
+Route::get('blog/admin/category/update/{id}',array('as' => 'blog_category_update', 'uses' =>'BlogCategoriesController@getUpdate'));
+Route::post('blog/admin/category/update/{id}',array('as' => 'blog_category_update', 'uses' =>'BlogCategoriesController@postUpdate'));
+Route::get('blog/admin/category/delete/{id}',array('as' => 'blog_category_delete', 'uses' =>'BlogCategoriesController@getDelete'));
+Route::post('blog/admin/category/action',array('as' => 'blog_category_action', 'uses' =>'BlogCategoriesController@action'));
 
-Route::get('blog/admin/comments',array('as' => 'blog_admin', 'uses' =>'BlogController@index'));
-Route::get('blog/admin/comments/view/{id}',array('as' => 'blog_admin', 'uses' =>'BlogController@index'));
-Route::post('blog/admin/comments/action',array('as' => 'blog_admin', 'uses' =>'BlogController@index'));
+Route::get('blog/admin/comment',array('as' => 'blog_comment', 'uses' =>'BlogCommentsController@index'));
+Route::get('blog/admin/comment/view/{id}',array('as' => 'blog_comment_view', 'uses' =>'BlogCommentsController@view'));
+Route::get('blog/admin/comment/delete/{id}',array('as' => 'blog_comment_delete', 'uses' =>'BlogCommentsController@getDelete'));
+Route::post('blog/admin/comment/action',array('as' => 'blog_comment_action', 'uses' =>'BlogCommentsController@action'));
 /*======================*/
 
 
@@ -205,6 +209,9 @@ Route::get('backend/load-immages-json',array('as' => 'load_image_json', 'uses' =
  Route::when('backend/module-package/*', 'isAdmin');
  Route::when('backend/request-demo', 'isAdmin');
  Route::when('backend/request-demo/*', 'isAdmin');
+ /*blog*/
+ Route::when('blog/admin', 'isAdmin');
+ Route::when('blog/admin/*', 'isAdmin'); 
 
  Route::when('backend/page', 'isSupper');
  Route::when('backend/page/*', 'isSupper');

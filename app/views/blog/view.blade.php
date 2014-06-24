@@ -73,32 +73,34 @@
 						</div>-->
 						<!-- End About the Author -->
 						<!-- Related Posts -->
-						
+
 					
 						<!-- Comment Form -->
 						<div class="b-comment-form">
 							<div class="title">
 								<h3 class="lined">Leave a reply</h3>
+								{{Session::get('msg_flash')}}
 							</div>
-							<form class="b-form comment-form" action="/">
+							<form class="b-form comment-form" action="{{Request::root()}}/blog/post-comment" method="post">
 								<div class="input-wrap">
-									<i class="icon-user"></i>
-									<input type="text" placeholder="Name (required)">
+									<i class="icon-user"></i>									
+									<input type="text" name="name" placeholder="Name (required)">
+									<input type="hidden" name="post_id" value="{{$viewPost->id}}">
 								</div>
 
 								<div class="input-wrap">
 									<i class="icon-envelope"></i>
-									<input type="text" placeholder="E-mail (required)">
+									<input type="email" name="email" placeholder="E-mail (required)">
 								</div>
 
 								<div class="input-wrap">
 									<i class="icon-link"></i>
-									<input type="text" placeholder="Web-Site">
+									<input type="url" name="website" placeholder="Web-Site">
 								</div>
 
 								<div class="textarea-wrap">
 									<i class="icon-pencil"></i>
-									<textarea name="" placeholder="Comment"></textarea>
+									<textarea name="content" placeholder="Comment (required)"></textarea>
 								</div>
 
 								<input class="btn-submit btn colored" type="submit" value="Submit Comment">
@@ -106,6 +108,34 @@
 							</form>
 						</div>
 						<!-- End Comment Form -->
+
+						<!--list comment -->
+							<div class="comment">
+								<!-- Comment 1 Avatar -->
+								<!-- <div class="comment-ava">
+									<img src="img/team/team-5.jpg" alt="">
+								</div> -->
+								<!-- End Comment 1 Avatar -->
+								@foreach($listComment as $comment)
+								<div class="comment-content">
+									<!-- Comment 1 Meta -->
+									<div class="comment-meta">
+										<div>
+											<a href="#" class="comment-name">{{$comment->name}}</a>
+										</div>
+										<span class="comment-date">{{$comment->created_at}}</span>										
+									</div>
+									<!-- End Comment 1 Meta -->
+									<!-- Comment 1 Content -->
+									<p>
+											{{$comment->content}}
+									</p>
+									<!-- End Comment 1 Content -->
+								</div>
+								@endforeach
+						</div>
+						<!--end list comment -->	
+
 					</div>
 				
 @stop

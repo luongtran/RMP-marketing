@@ -9,5 +9,6 @@ class BlogComments extends Eloquent {
 	 */
 	protected $table = 'blog_comments';
         public $timestamps = true;
+        protected $fillable = array('name','website','email','content','post_id');
      
 }

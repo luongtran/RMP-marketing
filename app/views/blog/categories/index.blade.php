@@ -5,7 +5,7 @@
                         <h2 class="tittle-content-header">
                             <i class="icon-media-record"></i> 
                             <span>
-                             {{trans('common.table.category')}}                       
+                             Blog - {{trans('common.table.category')}}                       
                             </span>
                         </h2>
 
@@ -32,7 +32,7 @@
                             </button>
                             <ul role="menu" class="dropdown-menu">
                                 <li>
-                                    <a href="{{Request::root()}}/backend/category">
+                                    <a href="{{Request::root()}}/blog/admin/category/add">
                                         <span class="entypo-plus-circled margin-iconic"></span>  {{trans('common.button.add')}}  </a>
                                 </li>
                                 <li>
@@ -58,7 +58,11 @@
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="{{Request::root()}}/backend/category" title="Sample page 1">  {{trans('common.table.category')}}   </a>
+                <li><a href="{{Request::root()}}/blog/admin" title="Sample page 1">  {{trans('common.table.blog')}}   </a>
+                </li> 
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li><a href="{{Request::root()}}/blog/admin/categories" title="Sample page 1">  {{trans('common.table.category')}}   </a>
                 </li>              
                 <li class="pull-right">
                     <div class="input-group input-widget">
@@ -80,7 +84,7 @@
 
             <div class="col-lg-4">
             <div class="row">              
-                    {{Form::open(array('url'=>'backend/category/add', 'method' => 'post','role'=>'form') )}}               
+                    {{Form::open(array('url'=>'blog/admin/category/add', 'method' => 'post','role'=>'form') )}}               
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{trans('titlepage.title.add_category')}}</h3>
@@ -91,24 +95,12 @@
                                     <label>{{trans('common.table.name')}}<span class="star-validation">(*)</span></label>
                                         {{Form::text('name','',array('class' => 'form-control','id'=>'name'))}}       
                                 </div>
-
-                                <div class="form-group">
-                                    <label>{{trans('common.table.permalink')}}</label>                                
-                                    {{Form::text('permalink','',array('class' => 'form-control','id'=>'permalink'))}}       
-                                </div>
-
-                                  <div class="form-group">
+                            
+                                 <div class="form-group">
                                  <label>{{trans('common.table.description')}}</label>
                                     {{Form::textarea('description','',array('class' => 'form-control','id'=>'description','rows'=>'2'))}}                                     
                                  </div>
-                                 
-                                  <div class="form-group">                                      
-                                    <label>{{trans('common.table.parent')}}</label>
-                                    <select class="form-control" name="parent">                                        
-                                        <option value="0">None</option>
-                                        {{$listParent}}                                                                  
-                                    </select>
-                                  </div>
+                              
                                   <?php echo CommonHelper::createFormStatus();?>
                                  <button type="submit" class="btn btn-primary">{{trans('common.button.save')}}</button>
                              </div>
@@ -126,7 +118,7 @@
                        {{trans('titlepage.title.list_category')}}
                     </div>
                     <div class="panel-body"> 
-                                 {{Form::open(array('url'=>'backend/category/action', 'method' => 'post','role'=>'form'))}}               
+                                 {{Form::open(array('url'=>'blog/admin/category/action', 'method' => 'post','role'=>'form'))}}               
                                 <div class="table-responsive">
                                   <table class="table table-bordered table-hover tablesorter">
                                     <thead>
@@ -145,8 +137,8 @@
                                         <td class='custom-color'>{{$category->name}}</td>                                        
                                         <td class='custom-color'>{{$category->status}}</td>
                                         <td class='custom-color'>{{$category->created_at}}</td>
-                                        <td class='custom-color'><a  href="{{Request::root()}}/backend/category/update/{{$category->id}}"><span class="label label-primary">{{trans('common.button.update')}}</span></a>
-                                            <a  href="{{Request::root()}}/backend/category/delete/{{$category->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a>
+                                        <td class='custom-color'><a  href="{{Request::root()}}/blog/admin/category/update/{{$category->id}}"><span class="label label-primary">{{trans('common.button.update')}}</span></a>
+                                            <a  href="{{Request::root()}}/blog/admin/category/delete/{{$category->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a>
                                         </td>
                                       </tr>                                      
                                       @endforeach

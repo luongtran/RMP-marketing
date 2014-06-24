@@ -5,7 +5,7 @@
                         <h2 class="tittle-content-header">
                             <i class="icon-media-record"></i> 
                             <span>
-                              Category               
+                             Blog - Category               
                             </span>
                         </h2>
 
@@ -43,9 +43,13 @@
                 <li>
                     <a href="{{Request::root()}}"><span class="entypo-home"></span></a>
                 </li>
+                 <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li><a href="{{Request::root()}}/blog/admin" title="Sample page 1">{{trans('common.table.blog')}}</a>
+                </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
-                <li><a href="{{Request::root()}}/backend/page" title="Sample page 1">{{trans('common.table.category')}}</a>
+                <li><a href="{{Request::root()}}/blog/admin/category" title="Sample page 1">{{trans('common.table.category')}}</a>
                 </li>
                 <li><i class="fa fa-lg fa-angle-right"></i>
                 </li>
@@ -64,7 +68,7 @@
     <div class="col-lg-12">
             <div class="col-lg-6">
                              
-                {{Form::open(array('url'=>'backend/category/update/'.$getCategory->id, 'method' => 'post','role'=>'form') )}}               
+                {{Form::open(array('url'=>'blog/admin/category/update/'.$getCategory->id, 'method' => 'post','role'=>'form') )}}               
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{trans('titlepage.title.update_category')}}</h3>
@@ -77,28 +81,12 @@
                                         {{Form::text('name',$getCategory->name,array('class' => 'form-control','id'=>'name'))}}       
                                 </div>
 
-                                <div class="form-group">
-                                    <label>{{trans('common.table.permalink')}}</label>                                
-                                    {{Form::text('permalink',$getCategory->permalink,array('class' => 'form-control','id'=>'permalink'))}}       
-                                </div>
+                               
 
                                  <div class="form-group">
                                  <label>{{trans('common.table.description')}}</label>
                                     {{Form::textarea('description',$getCategory->description,array('class' => 'form-control','id'=>'description','rows'=>'2'))}}                                     
-                                  </div>                               
-                                  <div class="form-group">
-                                    <label>{{trans('common.table.category')}}<span class="star-validation">(*)</span></label>                                                                 
-                                    <select class="form-control" name="parent">
-                                     <option value="0" <?php if($getCategory->parent==0){echo "selected='selected'";}?> >None</option>      
-                                     @foreach($categories as $ctItem)
-                                        @if($getCategory->parent == $ctItem->id)  
-                                        <option value="{{$ctItem->id}}" selected="selected">{{$ctItem->name}}</option>   
-                                        @elseif
-                                        <option value="{{$ctItem->id}}">{{$ctItem->name}}</option>   
-                                        @endif
-                                     @endforeach                                  
-                                    </select>  
-                                  </div>    
+                                  </div>       
                                 
                                 <?php echo CommonHelper::createFormStatus($getCategory->status);?>
                                  

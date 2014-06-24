@@ -8,6 +8,6 @@ class BlogCategories extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'blog_categories';
-    public $timestamps = false;
+    public $timestamps = true;
      
 }

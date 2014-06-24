@@ -57,12 +57,15 @@ class BlogController extends BaseController {
             ->leftjoin('uploads', 'uploads.id', '=', 'blog_posts.image') 
             ->where('blog_posts.id', '=',$id) 
             ->select(DB::raw('blog_posts.id,blog_posts.title,blog_posts.content,blog_posts.sumary,blog_posts.created_at,blog_posts.status,users.username,uploads.name as nameImage,uploads.path as pathImage'))
-            ->first();          
+            ->first();        
+        $listComment = BlogComments::where("post_id","=",$id)->where("status","=","publish")->get();
+
         if($viewPost)
         {    
         $this->layout->page = $viewPost->title;       
         $this->layout->content = View::make('blog.view')->with('categories',$categories)
-                                                        ->with('viewPost',$viewPost);
+                                                        ->with('viewPost',$viewPost)
+                                                        ->with('listComment',$listComment);
         }else
         {
             return Redirect::route('view_page_notfound');
@@ -78,11 +81,35 @@ class BlogController extends BaseController {
         $this->layout->content = View::make('blog.search')->with("listFind",$listFind);
     }
 
-     public function msg()
-    {
-        $this->layout->page = "Message";
-        $this->layout->content = View::make('frontend.page.msg');
-    }
+     
+   public function postComment()
+   {
+       $validation = Validator::make(
+            Input::all(),
+            array(
+                'name'=> 'required|min:4',   
+                'email'=> 'required|email',      
+                'content'=> 'required|max:300',      
+                'post_id'=> 'required',
+            )
+        );
+        
+        if ($validation->passes())
+        {   
+          $ar = new BlogComments;
+          $ar->fill(Input::all());        
+          $ar->ip = Request::getClientIp();
+          //$ar->ip = CommonHelper::get_client_ip();
+          $ar->status='unpublish';          
+          $ar->save();                   
+          Session::flash('msg_flash',trans('messages.comment_success'));            
+          return Redirect::back();        
+        }
+        /* Messages validation*/
+          Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
+          return Redirect::back()->withInput();
+   }    
+   
     
 
 }

@@ -13,3 +13,23 @@ border-radius: 10px;
 .text-center{
 	text-align: center;
 }
+
+.pagination li{
+	float:left;
+	padding: 3px;
+}
+.pagination li.active span{	
+	background:#26a4b1;
+    border: 1px solid #e2e2e2;
+    border-radius: 2px;
+    color: #424346;
+    display: inline-block;
+    font-family: 'OpenSansSemiboldRegular';
+    font-size: 12px;
+    height: 25px;
+    margin-right: 3px;
+    padding: 0 9px;
+    text-align: center;
+    text-shadow: 0 1px 0 white;
+    transition: all 0.2s ease 0s;
+}
