@@ -1,7 +1,7 @@
 <?php 
 
 return array(        
-	'create_message'=> 'Created a new record record',
+	'create_message'=> 'Created a new record',
         'error_message'=> 'Created is error!',
         'update_message'=> 'Updated success!',
         'delete_message'=> 'Deleted record!',

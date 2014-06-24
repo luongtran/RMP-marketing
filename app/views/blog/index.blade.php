@@ -31,7 +31,7 @@
 						<!-- End Post Title & Meta -->
 						<!-- Post Image -->
 						<div class="post-image-wrap">
-							<a href="{{Request::root()}}\blog\detail\{{$list->id}}" class="post-image">
+							<a href="{{Request::root()}}/blog/detail/{{$list->id}}" class="post-image">
 								<img src="{{asset($list->pathImage.'/'.$list->nameImage)}}" alt="" with="100" height="150">
 								<div class="link-overlay icon-search"></div>
 							</a>
@@ -41,7 +41,7 @@
 							<p>
 								 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit...
 							</p>
-							<a class="btn colored" href="{{Request::root()}}\blog\detail\{{$list->id}}">More<i class="icon-chevron-sign-right" style="margin: 0 0 0 7px;"></i></a>
+							<a class="btn colored" href="{{Request::root()}}/blog/detail/{{$list->id}}">More<i class="icon-chevron-sign-right" style="margin: 0 0 0 7px;"></i></a>
 						</div>
 					</div>
 					<!-- End Post 1 -->

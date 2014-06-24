@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>CompleteRMP | @if( isset( $page )) {{ $page }}   @endif        
+    <title>Blog | @if( isset( $page )) {{ $page }}   @endif        
     </title>
     <meta title="keyword" content="completermp, @if( isset( $page )) {{$page}}   @endif ">
     <link rel="Shortcut Icon" type="image/ico" href="{{asset('favicon.ico')}}"/>        

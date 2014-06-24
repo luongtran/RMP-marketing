@@ -1,10 +1,10 @@
 <div class="row-item col-1_4 sidebar">
 					<!-- Search Widget -->
 					<div class="b-blog-search">
-						<form class="b-form" action="/">
+						<form class="b-form" action="{{Request::root()}}/blog/search">
 							<div class="input-wrap">
 								<i class="icon-search"></i>
-								<input type="text" placeholder="Search..">
+								<input type="text" name="keyfind" placeholder="Search..">
 							</div>
 						</form>
 					</div>
@@ -12,17 +12,26 @@
 					<!-- Categories List -->
 					<h3>Categories</h3>
 					<ul class="b-list b-categories">
-						<li><a href="#">Voluptas <b class="count">(28)</b></a></li>
-						<li><a href="#">Recusandae <b class="count">(16)</b></a></li>
-						<li><a href="#">Maiores <b class="count">(12)</b></a></li>
+						<?php 
+							$Categories = DB::table("blog_post_category")
+							->join('blog_categories','blog_categories.id','=','blog_post_category.category_id')
+							->join('blog_posts','blog_posts.id','=','blog_post_category.post_id')
+							->groupBy('blog_categories.id')
+							->select(DB::raw('blog_categories.id,count(blog_categories.id)as count,blog_categories.name'))
+							->get();							
+						?>
+						@foreach($Categories as $category)
+						<li><a href="{{Request::root()}}/blog/category/{{$category->id}}">{{$category->name}}<b class="count">({{$category->count}})</b></a></li>
+						@endforeach
 					</ul>
 					<!-- End Categories List -->
 					<!-- Recent Posts -->
 					<h3>Recent Posts</h3>
 					<ul class="b-list recent-post">
-						<li><a href="#">At vero eos et accusamus</a></li>
-						<li><a href="#">Et harum quidem rerum</a></li>
-						<li><a href="#">Necessitatibus saepe eveniet</a></li>
+						<?php $recent = BlogPosts::where("status","=","publish")->orderBy("id","desc")->get();?>
+						@foreach($recent as $rc)
+						<li><a href="{{Request::root()}}/blog/detail/{{$rc->id}}">{{$rc->title}}</a></li>
+						@endforeach
 					</ul>
 					<!-- End Recent Posts -->
 					<!-- Latest Projects -->

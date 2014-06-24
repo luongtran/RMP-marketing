@@ -147,6 +147,7 @@ Route::post( 'request-demo' , array('as' => 'send_request_demo','uses' => 'Share
 Route::get('blog',array('as' => 'blog', 'uses' =>'BlogController@index'));
 Route::get('blog/detail/{id}',array('as' => 'blog_detail', 'uses' =>'BlogController@detail'));
 Route::get('blog/category/{id}',array('as' => 'blog_view_category', 'uses' =>'BlogController@category'));
+Route::get('blog/search',array('as' => 'blog_search', 'uses' =>'BlogController@search'));
 
 Route::get('blog/admin',array('as' => 'blog_admin', 'uses' =>'BlogPostsController@index'));
 Route::get('blog/admin/post',array('as' => 'blog_post', 'uses' =>'BlogPostsController@index'));
