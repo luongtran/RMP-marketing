@@ -100,6 +100,7 @@ class BlogController extends BaseController {
         {   
           $ar = new BlogComments;
           $ar->fill(Input::all());        
+          $ar->content = strip_tags(Input::get('content'));
           $ar->ip = Request::getClientIp();
           //$ar->ip = CommonHelper::get_client_ip();
           $ar->status='unpublish';          

@@ -34,9 +34,8 @@
 						<!-- Image -->
 						<div class="post-image-wrap">
 							 @if($viewPost->nameImage)
-							<a href="" rel="prettyPhoto" class="post-image">
-								<img src="{{asset($viewPost->pathImage.'/'.$viewPost->nameImage)}}" width="100%" height="100%" alt="">
-								<div class="link-overlay icon-search"></div>
+							<a >
+								<img src="{{asset($viewPost->pathImage.'/'.$viewPost->nameImage)}}" width="96%" height="96%" alt="">								
 							</a>                              
                             @endif
 						</div>

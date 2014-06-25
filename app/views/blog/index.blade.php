@@ -29,17 +29,19 @@
 							<span class="meta-comment"><a href="#"></a></span>
 						</div>
 						<!-- End Post Title & Meta -->
-						<!-- Post Image -->
+						<!-- Post Image -->						
 						<div class="post-image-wrap">
-							<a href="{{Request::root()}}/blog/detail/{{$list->permalink}}" class="post-image">
+							@if($list->nameImage)
+							<a class="post-image" rel="prettyPhoto" href="{{asset($list->pathImage.'/'.$list->nameImage)}}" >
 								<img src="{{asset($list->pathImage.'/'.$list->nameImage)}}" alt="" with="100" height="150">
 								<div class="link-overlay icon-search"></div>
 							</a>
+							@endif
 						</div>					
 						<!-- End Post Image -->
 						<div>
 							<p>
-								{{$list->sumary}}
+								{{Str::words($list->sumary,100)}}
 							</p>
 							<a class="btn colored" href="{{Request::root()}}/blog/detail/{{$list->permalink}}">More<i class="icon-chevron-sign-right" style="margin: 0 0 0 7px;"></i></a>
 						</div>

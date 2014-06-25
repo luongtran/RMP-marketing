@@ -24,6 +24,7 @@ class CreateBlogPostsTable extends Migration {
 		  `view` int(11) DEFAULT NULL,
 		  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 		  `lang_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+		  `permalink` text COLLATE utf8_unicode_ci,
 		  PRIMARY KEY (`id`)
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci");
 	}

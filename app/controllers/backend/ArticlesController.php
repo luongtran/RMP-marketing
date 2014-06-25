@@ -97,6 +97,9 @@ class ArticlesController extends BaseController {
             $article = new Articles;
             $article->title = Input::get('title');
             if(Input::get('permalink') == ""){
+                              /* use hellper string ->  Str::slug('My First Blog Post!')   
+                               * >result-my-first-blog-post
+                               */ 
             $article->permalink = CommonHelper::transPermalink(Input::get('title'));
             }else{
             $article->permalink = CommonHelper::transPermalink(Input::get('permalink'));  

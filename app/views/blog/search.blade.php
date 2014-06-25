@@ -21,7 +21,7 @@
 					<div class="post">
 						<!-- Post Title & Meta -->
 						@foreach($listFind as $post)
-						<h3><a href="{{Request::root()}}/blog/detail/{{$post->id}}">{{$post->title}}</a></h3>
+						<h3><a href="{{Request::root()}}/blog/detail/{{$post->permalink}}">{{$post->title}}</a></h3>
 						<p>{{$post->sumary}}</p>
 						<hr class="dashed">
 						@endforeach

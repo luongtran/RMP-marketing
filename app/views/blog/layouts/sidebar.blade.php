@@ -35,51 +35,47 @@
 					</ul>
 					<!-- End Recent Posts -->
 					<!-- Latest Projects -->
-					<h3 style="margin-bottom: 20px;">Latest Projects</h3>
-					<div class="latest-project">
-						<div class="latest-project-item">
-							<a href="#"><img src="img/port/rp-1.jpg" alt=""></a>
-						</div>
-						<div class="latest-project-item">
-							<a href="#"><img src="img/port/rp-2.jpg" alt=""></a>
-						</div>
-						<div class="latest-project-item">
-							<a href="#"><img src="img/port/rp-3.jpg" alt=""></a>
-						</div>
-						<div class="latest-project-item">
-							<a href="#"><img src="img/port/rp-4.jpg" alt=""></a>
-						</div>
-						<div class="latest-project-item">
-							<a href="#"><img src="img/port/rp-5.jpg" alt=""></a>
-						</div>
-						<div class="latest-project-item">
-							<a href="#"><img src="img/port/rp-6.jpg" alt=""></a>
-						</div>
-					</div>
+					<!-- <h3 style="margin-bottom: 20px;">Latest Projects</h3>
+						<div class="latest-project">
+							<div class="latest-project-item">
+								<a href="#"><img src="img/port/rp-1.jpg" alt=""></a>
+							</div>
+							<div class="latest-project-item">
+								<a href="#"><img src="img/port/rp-2.jpg" alt=""></a>
+							</div>
+							<div class="latest-project-item">
+								<a href="#"><img src="img/port/rp-3.jpg" alt=""></a>
+							</div>
+							<div class="latest-project-item">
+								<a href="#"><img src="img/port/rp-4.jpg" alt=""></a>
+							</div>
+							<div class="latest-project-item">
+								<a href="#"><img src="img/port/rp-5.jpg" alt=""></a>
+							</div>
+							<div class="latest-project-item">
+								<a href="#"><img src="img/port/rp-6.jpg" alt=""></a>
+							</div>
+						</div> -->
 					<!-- End Latest Project -->
 					<!-- Twitter Widget -->
-					<h3>Twitter Widget</h3>
-					<div class="b-twitter">
-						<ul>
-							<li>
-								<span>Et harum quidem rerum facilis est et expedita distinctio <a href="#" class="link">http://twitter.com</a></span>
-								<span class="twit-date">Jan 7, 2013</span>
-							</li>
-							<li>
-								<span>Nam libero tempore, cum soluta nobis est eligendi :) <a href="#" class="link">http://twitter.com</a></span>
-								<span class="twit-date">Jan 7, 2013</span>
-							</li>
-						</ul>
-					</div>
+						<!-- <h3>Twitter Widget</h3>
+						<div class="b-twitter">
+							<ul>
+								<li>
+									<span>Et harum quidem rerum facilis est et expedita distinctio <a href="#" class="link">http://twitter.com</a></span>
+									<span class="twit-date">Jan 7, 2013</span>
+								</li>
+								<li>
+									<span>Nam libero tempore, cum soluta nobis est eligendi :) <a href="#" class="link">http://twitter.com</a></span>
+									<span class="twit-date">Jan 7, 2013</span>
+								</li>
+							</ul>
+						</div> -->
 					<!-- End Twitter Widget -->
 					<!-- Tag Cloud -->
-					<h3 style="margin-bottom: 20px;">Tag Cloud</h3>
-					<div class="b-tag-cloud">
-						<a href="#">beach</a>
-						<a href="#">bar</a>
-						<a href="#">blog</a>
-						<a href="#">business</a>
-						<a href="#">coctail</a>
-					</div>
+							<!-- <h3 style="margin-bottom: 20px;">Tag Cloud</h3>
+							<div class="b-tag-cloud">
+								<a href="#">beach</a>
+							</div> -->
 					<!-- End Tag Cloud -->
 				</div>
