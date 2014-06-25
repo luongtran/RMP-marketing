@@ -143,24 +143,9 @@ class CommonHelper {
     }
 
     public static function transPermalink($str)
-    {
-      // $strNew=null;        
-      // $count = strlen($str);
-      // if($count>1){        
-      //    for($i=0;$i<$count;$i++){            
-      //       if(($str[$i]==' ')||($str[$i]=='_')||($str[$i]=='')||($str[$i]=='+')){
-      //           $strNew[$i] = '-';
-      //       }
-      //       else{
-      //           $strNew[$i] = $str[$i];
-      //       }  
-
-      //       $i++;
-      //    }
-      // }
-      // return $strNew;
-          $word_replace = array("_"," ","+");          
-          $resule = str_replace($word_replace, "-",$str);
+    {     
+          $word_replace = array('_',' ','+','.','@','!','#','&','*');          
+          $resule = str_replace($word_replace,'-',$str);
           $resule = strtolower($resule);
           return $resule;
     }

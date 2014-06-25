@@ -30,7 +30,7 @@
 					<ul class="b-list recent-post">
 						<?php $recent = BlogPosts::where("status","=","publish")->orderBy("id","desc")->get();?>
 						@foreach($recent as $rc)
-						<li><a href="{{Request::root()}}/blog/detail/{{$rc->id}}">{{$rc->title}}</a></li>
+						<li><a href="{{Request::root()}}/blog/detail/{{$rc->permalink}}">{{$rc->title}}</a></li>
 						@endforeach
 					</ul>
 					<!-- End Recent Posts -->

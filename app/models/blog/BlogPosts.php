@@ -8,6 +8,7 @@ class BlogPosts extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'blog_posts';
-        public $timestamps = true;
+    public $timestamps = true;
+    protected $fillable = array('title','content','sumary','status');
      
 }

@@ -18,7 +18,8 @@ class BlogController extends BaseController {
                 ->leftjoin("uploads","uploads.id","=","blog_posts.image")
                 ->where("blog_posts.status","=","publish")
                 ->orderBy("blog_posts.id","desc")
-                ->select(DB::raw('DISTINCT blog_posts.id,blog_posts.title,blog_posts.sumary,blog_posts.created_at,blog_posts.status,users.username,uploads.name as nameImage,uploads.path as pathImage'))
+                ->distinct()
+                ->select(DB::raw('blog_posts.id,blog_posts.title,blog_posts.permalink,blog_posts.sumary,blog_posts.created_at,blog_posts.status,users.username,uploads.name as nameImage,uploads.path as pathImage'))
                 ->paginate(4);      
          $this->layout->content = View::make('blog.index')->with('listPosts',$posts);
 
@@ -35,19 +36,20 @@ class BlogController extends BaseController {
                 ->where("blog_posts.status","=","publish")
                 ->where("blog_post_category.category_id","=",$id)
                 ->orderBy("blog_posts.id","desc")
-                ->select(DB::raw('DISTINCT blog_posts.id,blog_posts.title,blog_posts.sumary,blog_posts.created_at,blog_posts.status,users.username,uploads.name as nameImage,uploads.path as pathImage'))
+                ->distinct()
+                ->select(DB::raw('blog_posts.id,blog_posts.title,blog_posts.permalink,blog_posts.sumary,blog_posts.created_at,blog_posts.status,users.username,uploads.name as nameImage,uploads.path as pathImage'))
                 ->paginate(10);      
          $this->layout->content = View::make('blog.index')->with('listPosts',$posts);
 
     }
         
           
-    public function detail($id) {
+    public function detail($permalink) {
               
         $categories = DB::table('blog_post_category')
             ->join('blog_categories', 'blog_post_category.category_id', '=', 'blog_categories.id')
             ->join('blog_posts', 'blog_post_category.post_id', '=', 'blog_posts.id')             
-            ->where('blog_posts.id', '=',$id) 
+            ->where('blog_posts.permalink', '=',$permalink) 
             ->select(DB::raw('blog_categories.id,blog_categories.name'))
             ->get();   
         $viewPost = DB::table('blog_post_category')
@@ -55,10 +57,10 @@ class BlogController extends BaseController {
             ->join('blog_posts', 'blog_post_category.post_id', '=', 'blog_posts.id') 
             ->join('users', 'users.id', '=', 'blog_posts.user_id') 
             ->leftjoin('uploads', 'uploads.id', '=', 'blog_posts.image') 
-            ->where('blog_posts.id', '=',$id) 
+            ->where('blog_posts.permalink', '=',$permalink) 
             ->select(DB::raw('blog_posts.id,blog_posts.title,blog_posts.content,blog_posts.sumary,blog_posts.created_at,blog_posts.status,users.username,uploads.name as nameImage,uploads.path as pathImage'))
             ->first();        
-        $listComment = BlogComments::where("post_id","=",$id)->where("status","=","publish")->get();
+        $listComment = BlogComments::where("post_id","=",$viewPost->id)->where("status","=","publish")->get();
 
         if($viewPost)
         {    

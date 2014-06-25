@@ -91,7 +91,7 @@
                                         <th><input type="checkbox" id="ckbCheckAll" /></th>  
                                         <th class="">{{trans('common.table.name')}}<i class="fa fa-sort"></i></th>
                                         <th class="">{{trans('common.table.email')}}<i class="fa fa-sort"></i></th>
-                                        <th class="">{{trans('common.table.website')}}<i class="fa fa-sort"></i></th>                                       
+                                        <th class="">{{trans('common.table.content')}}<i class="fa fa-sort"></i></th>                                       
                                         <th class="">{{trans('common.table.create_at')}}<i class="fa fa-sort"></i></th>
                                         <th class=""><i class="fa fa-sort"></i></th>
                                       </tr>
@@ -101,8 +101,8 @@
                                       <tr <?php if($comment->status == "unpublish"){echo "class='danger'";}?> >
                                           <td><input type="checkbox" value="{{$comment->id}}" name="checkID[]" id="" class="checkBoxClass"></td>  
                                         <td class='custom-color'><a href="{{Request::root()}}/blog/admin/comment/view/{{$comment->id}}">{{$comment->name}}</a></td>                                        
-                                        <td class='custom-color'>{{$comment->email}}</td>   
-                                        <td class='custom-color'>{{$comment->website}}</td>
+                                        <td class='custom-color'>{{$comment->email}}</td>                                           
+                                        <td class='custom-color'> {{Str::words($comment->content,15)}}</td>
                                         <td class='custom-color'>{{$comment->created_at}}</td>
                                         <td class='custom-color'>
                                             <a  href="{{Request::root()}}/blog/admin/comment/delete/{{$comment->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><span class="label label-danger">{{trans('common.button.delete')}}</span></a>

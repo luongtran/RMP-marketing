@@ -5,15 +5,7 @@ class BlogPostsController extends BaseController {
     protected $layout = 'backend.layouts.default';
     /*
       |--------------------------------------------------------------------------
-      | Default Home Controller
-      |--------------------------------------------------------------------------
-      |
-      | You may wish to use controllers instead of, or in addition to, Closure
-      | based routes. That's great! Here is an example controller method to
-      | get you started. To route to this controller, just add the route:
-      |
-      |	Route::get('/', 'HomeController@showWelcome');
-      |
+      |      
      */
       public function __construct() {
         
@@ -28,7 +20,8 @@ class BlogPostsController extends BaseController {
             ->join('blog_posts', 'blog_post_category.post_id', '=', 'blog_posts.id')   
             ->join('users', 'users.id', '=', 'blog_posts.user_id')
             ->orderBy('blog_posts.id', 'desc') 
-            ->select(DB::raw('DISTINCT blog_posts.id,blog_posts.title,blog_posts.content,blog_posts.created_at,users.username,blog_posts.status'))
+            ->distinct()
+            ->select(DB::raw('blog_posts.id,blog_posts.title,blog_posts.content,blog_posts.created_at,users.username,blog_posts.status'))
             ->paginate(10);      
 
         $this->layout->content = View::make('blog.posts.index')->with('listPost',$getList);
@@ -77,13 +70,13 @@ class BlogPostsController extends BaseController {
         
         if ($validation->passes())
         {        
-            $posts = new BlogPosts;
-            $posts->title = Input::get('title');           
-            $posts->content = Input::get('content');
-            $posts->sumary = Input::get('sumary');            
+            $posts = new BlogPosts;     
+            $posts->fill(Input::all());
             $posts->user_id = Session::get('userID');
-            $posts->status = Input::get('status');
-            $posts->save();            
+            $posts->save();                    
+            $permalink = CommonHelper::transPermalink(Input::get('title')).'-'.$posts->id;
+            $posts->permalink = $permalink;    
+            $posts->save();       
             /*save category*/
             $select = Input::get('category');
             if($select){                                 
@@ -103,7 +96,6 @@ class BlogPostsController extends BaseController {
               $posts->image = $Image->store(Input::file('image'), $Path,'image');            
               $posts->save();            
             }
-
             $msg_success= CommonHelper::printMsg('success',trans('messages.create_message'));            
             Session::flash('msg_flash',$msg_success);            
             return Redirect::route('blog_post'); 
