@@ -10,7 +10,7 @@ return array(
         'message'=>'Message',
         'subject'=>'Subject',
         'phone'=>'Phone',
-        'bussiness_hours'='Bussiness Hours',        
+        'bussiness_hours'=>'Bussiness Hours',        
     ),
 
     'module'=>array(
