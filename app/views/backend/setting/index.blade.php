@@ -129,7 +129,8 @@ $( document ).ready(function() {
                $(".alert").remove();        
               var seturl= "{{ Request::root() }}/backend/setting/update";
                output.show("100");
-               output.html(' <div id="loadajax" style="top: 300px;position: fixed;left:400px;z-index: 890;"><img src="{{asset('asset/share/icon/loading_icon.gif')}}" /></div>');    
+               output.html(' <div id="loadajax" ><img src="{{asset('asset/share/icon/loading_icon.gif')}}" /></div>');   
+               $("#loadajax").css({"bottom":"100px","position":"fixed","left":"50%","z-index": "100"}); 
       
                 var request = $.ajax({
                 url: seturl,

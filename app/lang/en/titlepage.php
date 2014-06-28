@@ -44,6 +44,8 @@ return array(
         'update_language'=>'Update language',
         'list_language'=>'List language',
 
+        'list_post'=>'List post',
+
         'view_comment'=>'View comment',
         'list_comment'=>'List comment',
 
