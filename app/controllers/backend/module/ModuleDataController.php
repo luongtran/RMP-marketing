@@ -176,7 +176,7 @@ class ModuleDataController extends BaseController {
         /*upload image*/           
             if(CommonHelper::check_files_empty($uploadImage))
             {              
-              $Path = 'public/asset/share/uploads/images';
+              $Path = 'asset/share/uploads/images';
               $Image= new ImagesController();
               //type_content   article_id and modData_id
               $Image->storeMulti($uploadImage, $Path,$mod->id,'modData_id','image');            
@@ -185,7 +185,7 @@ class ModuleDataController extends BaseController {
             $uploadFile = Input::file('file'); 
             if(CommonHelper::check_files_empty($uploadFile))
             {               
-              $Path = 'public/asset/share/uploads/document';
+              $Path = 'asset/share/uploads/document';
               $Image= new ImagesController();
               //type_content   article_id and modData_id
               $Image->storeMulti($uploadFile, $Path,$mod->id,'modData_id','file');            
@@ -321,9 +321,15 @@ class ModuleDataController extends BaseController {
             /*upload img*/
             $uploadImg = Input::file('image');            
             if(CommonHelper::check_files_empty($uploadImg))
-            {
-              Uploads::where('modData_id','=',$idcontent)->where("type_file","=","image")->delete();    
-              $Path = 'public/asset/share/uploads/images';
+            {              
+              //delete old image
+              $check_list_upload = Uploads::where('modData_id','=',$idcontent)->where('type_file','=','image')->get();
+              $ctrImage = new ImagesController();         
+              foreach ($check_list_upload as $upload) {             
+                 $ctrImage->getDelete($upload->id); 
+              }  
+              //upload new image
+              $Path = 'asset/share/uploads/images';
               $Image= new ImagesController();
               //type_content   article_id and modData_id   type_file is image,file
                $Image->storeMulti($uploadImg, $Path,$mod->id,'modData_id','image');         
@@ -332,8 +338,14 @@ class ModuleDataController extends BaseController {
             $uploadFile = Input::file('file');             
             if(CommonHelper::check_files_empty($uploadFile))
             {
-              Uploads::where('modData_id','=',$idcontent)->where("type_file","=","file")->delete();      
-              $Path = 'public/asset/share/uploads/document';
+               //delete old document
+              $check_list_upload = Uploads::where('modData_id','=',$idcontent)->where('type_file','=','file')->get();
+              $ctrImage = new ImagesController();         
+              foreach ($check_list_upload as $upload) {             
+                 $ctrImage->getDelete($upload->id); 
+              }  
+              //upload new document
+              $Path = 'asset/share/uploads/document';
               $Image= new ImagesController();
               //type_content   article_id and modData_id
               $Image->storeMulti($uploadFile, $Path,$mod->id,'modData_id','file');            
@@ -348,23 +360,17 @@ class ModuleDataController extends BaseController {
     }
     
     public function getDelete($idmod,$idcontent) {
-        
-         /* $checkModule = DB::table('page_module')
-            ->join('pages', 'page_module.page_id', '=', 'pages.id')
-            ->join('module', 'page_module.module_id', '=', 'module.id')
-            ->join('module_data', 'module.id', '=', 'module_data.module_id')
-            ->where('module.id','=',$idmod)
-            ->where('module_data.id','=',$idcontent)
-            ->count();           
-        
-          if($checkModule > 0) {            
-            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table',array('name'=>'Page'))));  
-            return Redirect::back();   
-          }
-          else{*/
+          //delete category   
             CategoriesModuleData::where('moduleData_id','=',$idcontent)->delete();  
+          //delte module data
             ModuleData::where('id','=',$idcontent)->delete();            
-            Uploads::where('modData_id','=',$idcontent)->delete();  
+          //delete image of the article
+            $check_list_upload = Uploads::where('modData_id','=',$idcontent)->get();
+            $ctrImage = new ImagesController();         
+            foreach ($check_list_upload as $upload) {             
+               $ctrImage->getDelete($upload->id); 
+            }  
+          // 
             Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.delete_message')));  
             return Redirect::to($this->_routeModule.$idmod.'/content');         
          // }

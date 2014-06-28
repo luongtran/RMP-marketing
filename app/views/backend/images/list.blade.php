@@ -16,7 +16,7 @@ function getInfoImg(src){
 
 <ul style="list-style:none;">
 	@foreach($listImg as $list)
-	<li style="float:left;"><img src="{{asset('asset/share/uploads/images/'.$list->name)}}" width="100" height="100" id="{{$list->name}}" onclick="getInfoImg(this.src)"></li>
+	<li style="float:left;"><img src="{{asset($list->path.'/'.$list->name)}}" width="100" height="100" id="{{$list->name}}" onclick="getInfoImg(this.src)"></li>
 	@endforeach
 </ul>
  <!-- paging -->                

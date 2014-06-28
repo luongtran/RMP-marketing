@@ -27,11 +27,12 @@ class ImagesController extends BaseController {
     {       
                 $date = date('m-d-Y') ;       
                 $filename= $date.'_'.$file->getClientOriginalName();
-                $file->move($Path, $filename);
+                $destination = public_path($Path);
+                $file->move($destination, $filename);
                 $upload =  new Uploads;
                 $upload->name = $filename;
                 $upload->type = $file->getClientmimeType();
-                $upload->path =  ltrim($Path,"public/");
+                $upload->path =  $Path;
                 $upload->type_file = $type_file;
                 $upload->save();
                 return $upload->id;                
@@ -51,11 +52,12 @@ class ImagesController extends BaseController {
     {       
                 $date = date('m-d-Y') ;       
                 $filename= $date.'_'.$file->getClientOriginalName();
-                $file->move($Path, $filename);
+                $destination = public_path($Path);
+                $file->move($destination, $filename);
                 $upload =  new Uploads;
                 $upload->name = $filename;
                 $upload->type = $file->getClientmimeType();
-                $upload->path =  ltrim($Path,"public/");
+                $upload->path =  $Path;
                 $upload->type_file = $type_file;
                 $upload->$type_content = $content_id;
                 $upload->save();
@@ -67,11 +69,12 @@ class ImagesController extends BaseController {
                 {                            
                 $date = date('m-d-Y') ;       
                 $filename= $date.'_'.$fileinfo->getClientOriginalName();
-                $fileinfo->move($Path, $filename);
+                $destination = public_path($Path);
+                $fileinfo->move($destination, $filename);
                 $upload =  new Uploads;
                 $upload->name = $filename;
                 $upload->type = $fileinfo->getClientmimeType();
-                $upload->path =  ltrim($Path,"public/");
+                $upload->path = $Path;// ltrim($Path,"public/");
                 $upload->type_file = $type_file;
                 $upload->$type_content = $content_id;
                 $upload->save();              
@@ -95,10 +98,25 @@ class ImagesController extends BaseController {
     
       public function getDelete($id)
     {        
-          $ar=Uploads::find($id);
-          $ar->delete();        
-          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.delete_message'))); 
-          return Redirect::route('backend_article');
+
+          echo $id;
+
+          $ar=Uploads::find($id);  
+          try
+          {
+
+            $pathDel = public_path($ar->path.$ar->name);                      
+            $public_path = public_path($ar->path.'/'.$ar->name);  
+            File::delete($public_path);//unlink($public_path);  
+            $ar->delete();        
+            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.delete_message'))); 
+            return Redirect::route('backend_article');
+          }
+          catch(Exception $e)
+          {
+             Session::flash('msg_flash',CommonHelper::printMsg('error','Not delete this file !')); 
+             return Redirect::back(); 
+          }       
      }
     
     

@@ -122,7 +122,12 @@
                                     {{$viewPost->status}}
                                 </p>                        
                         </div>
-                    </div>
+                          <div class="form-group">
+                                <a href="{{Request::root()}}/blog/admin/post/update/{{$viewPost->id}}" ><button class="btn">{{trans('common.button.update')}}</button></a>
+                                <a href="{{Request::root()}}/blog/admin/post/delete/{{$viewPost->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><button class="btn">{{trans('common.button.delete')}}</button></a>
+                                        
+                        </div>
+                         </div>
                 </div> 
                     
             </div>

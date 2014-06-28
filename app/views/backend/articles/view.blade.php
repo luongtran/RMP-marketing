@@ -105,7 +105,7 @@
                         <div class="form-group">
                                 <p><label>{{trans('common.table.images')}}: </label>
                                     @foreach($getImages as $lImage)
-                                    <img src="{{asset('asset/share/uploads/images/'.$lImage->name)}}" alt="{{$lImage->name}}" width="50" height="50" />
+                                    <img src="{{asset($lImage->path.'/'.$lImage->name)}}" alt="{{$lImage->name}}" width="50" height="50" />
                                     @endforeach    
                                 </p>                        
                         </div>
@@ -139,6 +139,10 @@
                                 <p><label>{{trans('common.table.status')}}: </label>
                                     {{$article->status}}
                                 </p>                        
+                        </div>
+                        <div class="form-group">
+                            <a href="{{Request::root()}}/backend/article/update/{{$article->id}}"><button class="btn">{{trans('common.button.update')}}</button></a>
+                            <a href="{{Request::root()}}/backend/article/delete/{{$article->id}}" onclick="return confirm('{{trans("messages.cf_delete")}}');"><button class="btn">{{trans('common.button.delete')}}</button></a></td>
                         </div>
                     </div>
                 </div> 

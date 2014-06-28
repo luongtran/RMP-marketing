@@ -13,6 +13,7 @@ class BlogPostsController extends BaseController {
       } 
 
     public function index() {
+
         $this->layout->page = "Post";
 
         $getList = DB::table('blog_post_category')
@@ -91,7 +92,7 @@ class BlogPostsController extends BaseController {
             /*upload image*/          
             if(Input::file('image'))
             {
-              $Path  = 'public/asset/share/uploads/images/blog/';
+              $Path  = 'asset/share/uploads/images/blog';
               $Image = new ImagesController();
               $posts->image = $Image->store(Input::file('image'), $Path,'image');            
               $posts->save();            
@@ -166,9 +167,12 @@ class BlogPostsController extends BaseController {
           /* Update image */             
       
         if(Input::file('image'))
-            { 
-               Uploads::where('id','=',$ar->image)->delete();             
-               $Path = 'public/asset/share/uploads/images/blog';
+            {                
+                /*delete image of blog*/                    
+                  $ctrImage = new ImagesController();                     
+                  $ctrImage->getDelete($ar->image);             
+                //           
+               $Path = 'asset/share/uploads/images/blog';
                $Image= new ImagesController();
                $ar->image = $Image->store(Input::file('image'), $Path,'image'); 
                $ar->save();
@@ -185,8 +189,13 @@ class BlogPostsController extends BaseController {
     {      
           /*delete category in article*/
           $deCt = BlogPostCategory::where('post_id','=',$id)->delete();
-          /* delete article */
-          $ar=BlogPosts::where('id','=',$id)->delete();          
+          /* delete article */          
+          $ar=BlogPosts::find($id);
+          /*delete image of blog*/                    
+            $ctrImage = new ImagesController();                     
+            $ctrImage->getDelete($ar->image);             
+          //  
+          $ar->delete();
           Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.delete_message'))); 
           return Redirect::route('blog_post');
      }

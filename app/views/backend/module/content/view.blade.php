@@ -112,6 +112,15 @@
                                                   @endforeach
                                               @endif 
                                 </div>
+
+                                <div class="form-group">
+                                     <a href='{{Request::root()}}/backend/module-package/{{$module_data->module_id}}/content/update/{{$module_data->id}}'>
+                                                        <button class="btn">Update</button>                                                        
+                                                    </a>
+                                                    <a href='{{Request::root()}}/backend/module-package/{{$module_data->module_id}}/content/delete/{{$module_data->id}}'  onclick="return confirm('{{trans("messages.cf_delete")}}');">
+                                                        <button class="btn">Delete</button>  
+                                     </a>
+                                </div>
                             </div>
 
 

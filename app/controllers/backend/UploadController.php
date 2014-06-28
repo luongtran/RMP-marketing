@@ -37,7 +37,7 @@ class UploadController extends BaseController {
     
         public function postUpload()
     {          
-          $Path = 'public/asset/share/uploads/images';
+          $Path = 'asset/share/uploads/images';
           $upload_success = Input::file('fileImage');  
           $result=$this->save($upload_success,$Path);
           return Response::json($result);          
@@ -74,7 +74,8 @@ class UploadController extends BaseController {
                 
                 $date = date('m-d-Y') ;       
                 $filename= $date.'_'.$file->getClientOriginalName();
-                $file->move($Path, $filename);
+                $destination = public_path($Path);
+                $file->move($destination, $filename);
                 $upload =  new Uploads;
                 $upload->name = $filename;
                 $upload->type = $file->getClientmimeType();

@@ -129,7 +129,7 @@
                                  {{Form::file('fileimages[]',array('class' => '','id'=>'description','multiple'=>'on'))}}                                   
                               <div class="clear">
                                   @foreach($getImages as $lImage)
-                                  <div style='padding:5px;border:1px solid #dedede;float:left;'><img src="{{asset('asset/share/uploads/images/'.$lImage->name)}}" alt="{{$lImage->name}}" title="{{$lImage->name}}" width="60" height="60" /></div>
+                                  <div style='padding:5px;border:1px solid #dedede;float:left;'><img src="{{asset($lImage->path.'/'.$lImage->name)}}" alt="{{$lImage->name}}" title="{{$lImage->name}}" width="60" height="60" /></div>
                                   @endforeach   
                               </div><div class='clear'></div>     
                             </div>  

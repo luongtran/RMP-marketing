@@ -122,11 +122,10 @@ class ArticlesController extends BaseController {
               }
              }
             /*upload image*/
-            $upload = Input::file('fileimages'); 
-            $test = CommonHelper::check_files_empty($upload);     
-            if(!empty($test))
+            $upload = Input::file('fileimages');              
+            if( CommonHelper::check_files_empty($upload))
             {
-              $Path = 'public/asset/share/uploads/images/';
+              $Path = "asset/share/uploads/images/article";      
               $Image= new ImagesController();
               $Image->storeMulti(Input::file('fileimages'), $Path,$article->id,'article_id','image');            
             }
@@ -197,15 +196,19 @@ class ArticlesController extends BaseController {
                $CA->save();
           }
           /* Update image */          
-          
-            $upload = Input::file('fileimages'); 
-          
-        $test = CommonHelper::check_files_empty($upload);     
-        if(!empty($test))            {
-               $upload = Input::file('fileimages'); 
-               $Path = 'public/asset/share/uploads/images/';
-               $Image= new ImagesController();
-               $Image->checkImageOld(Input::file('fileimages'), $Path,$id); 
+          $upload = Input::file('fileimages');              
+            if( CommonHelper::check_files_empty($upload))
+            {
+              //delete old image
+              $check_list_upload = Uploads::where('article_id','=',$id)->get();
+              $ctrImage = new ImagesController();         
+              foreach ($check_list_upload as $upload) {             
+                 $ctrImage->getDelete($upload->id); 
+              }  
+              // upload new image
+              $Path = "asset/share/uploads/images/article";
+              $Image= new ImagesController();
+              $Image->storeMulti(Input::file('fileimages'), $Path,$id,'article_id','image');            
             }
                       
           Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message'))); 
@@ -221,6 +224,13 @@ class ArticlesController extends BaseController {
           $deCt =  CategoriesArticles::where('articles_id','=',$id)->delete();
           /* delete article */
           $ar=Articles::where('id','=',$id)->delete();          
+          //delete image of the article
+          $check_list_upload = Uploads::where('article_id','=',$id)->get();
+          $ctrImage = new ImagesController();         
+          foreach ($check_list_upload as $upload) {             
+             $ctrImage->getDelete($upload->id); 
+          }       
+          //
           Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.delete_message'))); 
           return Redirect::route('backend_article');
      }

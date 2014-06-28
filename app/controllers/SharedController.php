@@ -119,8 +119,11 @@ class SharedController extends BaseController{
             $upload = Input::file('avatar');     
             if($upload)
             {
-              Uploads::where("id","=",$user->avatar)->where("type_file","=","image")->delete();
-              $Path = 'public/asset/share/uploads/images';
+              //delete was old  avatar              
+              $ctrImage = new ImagesController();  
+              $ctrImage->getDelete($user->avatar); 
+              //upload new avatar
+              $Path = 'asset/share/uploads/images/personal';
               $Image= new ImagesController();
               $user->avatar =  $Image->store($upload, $Path,'image');  
               $user->update();          
