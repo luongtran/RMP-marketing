@@ -17,6 +17,7 @@ class SharedController extends BaseController{
      CONST ROLE_MANAGER =1;
      CONST ROLE_ADMIN =2;
      CONST ROLE_SUPPER =3;
+     CONST EMAIL_ADMIN = "test@completermp.com";
      
      
      public function getChangeLanguage($lang) {
@@ -177,8 +178,8 @@ class SharedController extends BaseController{
         if($validation->passes()){
           try{
           Mail::send('frontend.contact.requestDemo', $input, function($m){            
-            $m->from('test@completermp.com', Input::get('name'));
-            $m->to('thanhtruyen1001@gmail.com', 'Request Demo');
+            $m->from(EMAIL_ADMIN, Input::get('name'));
+            $m->to(EMAIL_ADMIN, 'Request Demo');
             $m->subject(Input::get('subject'));
             /*save to db*/
             $create = new RequestDemo();
@@ -222,8 +223,8 @@ class SharedController extends BaseController{
           try{
 
           Mail::send('frontend.contact.send_email', $input, function($m){            
-            $m->from('test@completermp.com', Input::get('name'));
-            $m->to('thanhtruyen1001@gmail.com', 'Contact');
+            $m->from(EMAIL_ADMIN, Input::get('name'));
+            $m->to(EMAIL_ADMIN, 'Contact');
             $m->subject(Input::get('subject'));          
             //$message->attach($pathToFile);
             Session::flash('msg_flash', trans('messages.send_contact_success'));         
