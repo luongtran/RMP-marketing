@@ -2,11 +2,12 @@
 
 class PagesController extends BaseController {
 
-      protected $layout = 'backend.layouts.default';      
-      
-      public function __construct() {
-      }
-     
+    protected $layout = 'backend.layouts.default';
+
+    public function __construct() {
+        
+    }
+
     /*
       |--------------------------------------------------------------------------
       | Default Home Controller
@@ -21,158 +22,139 @@ class PagesController extends BaseController {
      */
 
     public function index() {
-        
-        $this->layout->page = "Page";          
-        $getPage = Pages::orderBy('id','desc')->paginate(10);         
-        $this->layout->content = View::make('backend.page.index')->with('getPage',$getPage);
-            
+
+        $this->layout->page = "Page";
+        $getPage = Pages::orderBy('id', 'desc')->paginate(10);
+        $this->layout->content = View::make('backend.page.index')->with('getPage', $getPage);
     }
-     public function postAdd() {       
-        $validation = Validator::make(                
-                Input::all(),
-                array(
-                'name'=> 'required',                
-                )                
-         );
-        
-        if($validation->passes())
-        {
-        $page = new Pages;
-        $page->name = Input::get('name');        
-        $page->link = Input::get('link');    
-        $page->status = Input::get('status');
-        $page->save();        
-        Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.create_message')));  
-        return Redirect::route('backend_page');
+
+    public function postAdd() {
+        $validation = Validator::make(
+                Input::all(), array(
+                'name' => 'required',
+                )
+        );
+
+        if ($validation->passes()) {
+            $page = new Pages;
+            $page->name = Input::get('name');
+            $page->link = Input::get('link');
+            $page->status = Input::get('status');
+            $page->save();
+            Session::flash('msg_flash', CommonHelper::printMsg('success', trans('messages.create_message')));
+            return Redirect::route('backend_page');
         }
-        Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
-        return Redirect::back()->withInput();        
+        Session::flash('msg_flash', CommonHelper::printErrors($validation->messages()));
+        return Redirect::back()->withInput();
     }
-        
-     public function getUpdate($id) {
-        
-        $this->layout->page = "Update page";  
-        $getPage = Pages::where('id','=',$id)->first();  
+
+    public function getUpdate($id) {
+
+        $this->layout->page = "Update page";
+        $getPage = Pages::where('id', '=', $id)->first();
         $mod = DB::table('page_module')
             ->join('pages', 'page_module.page_id', '=', 'pages.id')
             ->join('module', 'page_module.module_id', '=', 'module.id')
-            ->where('module.status','=','publish')
-            ->where('pages.id','=',$id)
+            ->where('module.status', '=', 'publish')
+            ->where('pages.id', '=', $id)
             ->select(DB::raw('module.id,module.name as name,pages.status'))
             ->get();
-        $mods = Modules::orderBy('order','asc')->get();
-        
-        $this->layout->content = View::make('backend.page.update')->with('getPage',$getPage)
-            ->with('mod',$mod)->with('mods',$mods);
-          
+        $mods = Modules::orderBy('order', 'asc')->get();
+
+        $this->layout->content = View::make('backend.page.update')->with('getPage', $getPage)
+                ->with('mod', $mod)->with('mods', $mods);
     }
-    
+
     public function postUpdate($id) {
         //$this->layout->page = "Upadte category";
-        $validation = Validator::make(                
-                Input::all(),
-                array(
-                'name'=> 'required',
-                )                
-         );
-        
-        if($validation->passes())
-        {
-            $pages =Pages::find($id);
+        $validation = Validator::make(
+                Input::all(), array(
+                'name' => 'required',
+                )
+        );
+
+        if ($validation->passes()) {
+            $pages = Pages::find($id);
             $pages->name = Input::get('name');
-            $pages->link = Input::get('link');                
+            $pages->link = Input::get('link');
             $pages->status = Input::get('status');
             $pages->update();
-          
-          if(Input::get('module'))
-          { 
-                
-               PageModules::where('page_id','=',$id)->delete();              
-               foreach (Input::get('module') as $key=>$value)
-               {
-                    $adMod= new PageModules;   
+
+            if (Input::get('module')) {
+
+                PageModules::where('page_id', '=', $id)->delete();
+                foreach (Input::get('module') as $key => $value) {
+                    $adMod = new PageModules;
                     $adMod->page_id = $pages->id;
-                    $adMod->module_id = $value;                              
+                    $adMod->module_id = $value;
                     $adMod->save();
-               }
-          }
-          else
-          {   
-                    PageModules::where('page_id','=',$id)->delete();
-           }
-         
-            
-        
-          
-            Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message')));  
+                }
+            } else {
+                PageModules::where('page_id', '=', $id)->delete();
+            }
+
+
+
+
+            Session::flash('msg_flash', CommonHelper::printMsg('success', trans('messages.update_message')));
             return Redirect::route('backend_page');
         }
-        Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
+        Session::flash('msg_flash', CommonHelper::printErrors($validation->messages()));
         return Redirect::back()->withInput();
     }
-    
+
     public function getDelete($id) {
-             $checkModule = DB::table('menu')
+        $checkModule = DB::table('menu')
             ->join('pages', 'menu.page_id', '=', 'pages.id')
-            ->where('pages.id','=',$id)
-            ->count();  
-             
-          if($checkModule > 0) {            
-            Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.relationship_table',array('name'=>'Menu'))));  
-            return Redirect::back();   
-          }
-          else{
-            $at= Pages::find($id);
+            ->where('pages.id', '=', $id)
+            ->count();
+
+        if ($checkModule > 0) {
+            Session::flash('msg_flash', CommonHelper::printMsg('error', trans('messages.relationship_table', array('name' => 'Menu'))));
+            return Redirect::back();
+        } else {
+            $at = Pages::find($id);
             $at->delete();
-            Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.delete_message')));  
-            return Redirect::route('backend_page');            
-          }
-    }
-    
-     public function action()
-     {
-         $check = Input::get('checkID');
-         if($check)
-         {
-         $getAction = Input::get('action');              
-         switch($getAction)
-         {
-         case'publish':
-             foreach($check as $key=>$value)
-             {               
-               $this->changeStatus($getAction,$value);               
-             }  
-             break;         
-         case'unpublish':
-              foreach($check as $key=>$value)
-             {               
-               $this->changeStatus($getAction,$value);               
-             }  
-             break;           
-         case'delete':             
-             foreach($check as $key=>$value)
-             {               
-               $this->getDelete($value);               
-             }                          
-             break;
-         default:             
-             break;
-         }
-         return Redirect::back();
-         }
-         
-        else {             
-          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.nochoose_message')));   
-         return Redirect::back();   
+            Session::flash('msg_flash', CommonHelper::printMsg('success', trans('messages.delete_message')));
+            return Redirect::route('backend_page');
         }
-     }
-     
-     public function changeStatus($status,$id)
-     {
-         $ar= Pages::find($id);
-         $ar->status = $status;
-         $ar->update();
-         Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.changestatus_message')));   
-     }
+    }
+
+    public function action() {
+        $check = Input::get('checkID');
+        if ($check) {
+            $getAction = Input::get('action');
+            switch ($getAction) {
+                case'publish':
+                    foreach ($check as $key => $value) {
+                        $this->changeStatus($getAction, $value);
+                    }
+                    break;
+                case'unpublish':
+                    foreach ($check as $key => $value) {
+                        $this->changeStatus($getAction, $value);
+                    }
+                    break;
+                case'delete':
+                    foreach ($check as $key => $value) {
+                        $this->getDelete($value);
+                    }
+                    break;
+                default:
+                    break;
+            }
+            return Redirect::back();
+        } else {
+            Session::flash('msg_flash', CommonHelper::printMsg('error', trans('messages.nochoose_message')));
+            return Redirect::back();
+        }
+    }
+
+    public function changeStatus($status, $id) {
+        $ar = Pages::find($id);
+        $ar->status = $status;
+        $ar->update();
+        Session::flash('msg_flash', CommonHelper::printMsg('error', trans('messages.changestatus_message')));
+    }
 
 }

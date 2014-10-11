@@ -1,14 +1,12 @@
 <?php
 
-class Uploads extends Eloquent  {
+class Uploads extends Eloquent {
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'uploads';
-
-  
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'uploads';
 
 }

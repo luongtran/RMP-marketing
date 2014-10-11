@@ -2,7 +2,8 @@
 
 class CategoriesArticlesController extends BaseController {
 
-      protected $layout = 'backend.layouts.default';     
+    protected $layout = 'backend.layouts.default';
+
     /*
       |--------------------------------------------------------------------------
       | Categories Controller
@@ -19,25 +20,25 @@ class CategoriesArticlesController extends BaseController {
     public function index() {
         $this->layout->content = View::make('backend.category.index');
     }
-    
+
     public function getCreate() {
-      //  $this->layout->content = View::make('backend.category.create');
+        //  $this->layout->content = View::make('backend.category.create');
     }
-    
+
     public function store() {
-      //  $this->layout->content = View::make('backend.category.index');
+        //  $this->layout->content = View::make('backend.category.index');
     }
-    
+
     public function getUpdate() {
-      //  $this->layout->content = View::make('backend.category.update');
+        //  $this->layout->content = View::make('backend.category.update');
     }
-    
+
     public function postUpdate() {
-       // $this->layout->content = View::make('backend.category.index');
+        // $this->layout->content = View::make('backend.category.index');
     }
-    
+
     public function getDelete() {
-       // $this->layout->content = View::make('backend.category.index');
+        // $this->layout->content = View::make('backend.category.index');
     }
 
 }

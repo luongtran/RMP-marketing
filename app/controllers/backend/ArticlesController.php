@@ -3,6 +3,7 @@
 class ArticlesController extends BaseController {
 
     protected $layout = 'backend.layouts.default';
+
     /*
       |--------------------------------------------------------------------------
       | Default Home Controller
@@ -15,288 +16,263 @@ class ArticlesController extends BaseController {
       |	Route::get('/', 'HomeController@showWelcome');
       |
      */
-      public function __construct() {
-        
 
-      } 
+    public function __construct() {
+        
+    }
 
     public function index() {
         $this->layout->page = "Article";
-        /*$getList = Articles::all();*/
-        
-        /*get record the fist
-        $getList = Articles::where('articleID', '=', 1)->first();*/
-        
-        /*paging 
-        $getList = Articles::paginate(2);    
+        /* $getList = Articles::all(); */
+
+        /* get record the fist
+          $getList = Articles::where('articleID', '=', 1)->first(); */
+
+        /* paging 
+          $getList = Articles::paginate(2);
           or
-        $getList = Articles::where('articleID', '>', 1)->paginate(1);
+          $getList = Articles::where('articleID', '>', 1)->paginate(1);
           here view  use      <?php echo $listArticle->links(); ?>
-        */
-        /*Articles::find(Input::get('advert_id'));*/
-        
+         */
+        /* Articles::find(Input::get('advert_id')); */
+
         $getList = DB::table('categories_articles')
             ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
-            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')   
+            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')
             ->join('users', 'articles.user_id', '=', 'users.id')
-            ->orderBy('articles.id', 'desc') 
+            ->orderBy('articles.id', 'desc')
             ->select(DB::raw(' DISTINCT articles_id as id,title,articles.permalink,users.username as create_by,articles.status as status'))
             ->paginate(10);
-        $filterCategories =  Categories::all();
-        
-        $this->layout->content = View::make('backend.articles.index')->with('listArticles',$getList)
-             ->with('filterCategory',$filterCategories);
+        $filterCategories = Categories::all();
+
+        $this->layout->content = View::make('backend.articles.index')->with('listArticles', $getList)
+            ->with('filterCategory', $filterCategories);
         //$this->layout->content = View::make('front_end.vacancies', compact('vacancies'), compact('clients'))->with('fairs', $fairs);
     }
-     public function getArticle($id)
-    {    
-        $this->layout->page = "View article";  
-        $article=DB::table('categories_articles')
+
+    public function getArticle($id) {
+        $this->layout->page = "View article";
+        $article = DB::table('categories_articles')
             ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
-            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')   
+            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')
             ->join('users', 'articles.user_id', '=', 'users.id')
-            ->where('articles.id','=',$id)  
+            ->where('articles.id', '=', $id)
             ->select(DB::raw('articles_id as id,title,articles.permalink,content,articles.description,keyword,users.username as create_by,articles.status as status,articles.created_at'))
-            ->first();            
-        
+            ->first();
+
         $lCategories = DB::table('categories_articles')
-            ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
-            ->where('categories_articles.articles_id','=',$id)    
-            ->select(DB::raw('categories.id,categories.name'))->get();  
-        
-        $getImages = Uploads::where('article_id','=',$article->id)->get();
-        
+                ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
+                ->where('categories_articles.articles_id', '=', $id)
+                ->select(DB::raw('categories.id,categories.name'))->get();
+
+        $getImages = Uploads::where('article_id', '=', $article->id)->get();
+
         $this->layout->content = View::make('backend.articles.view')
-             ->with('article',$article)
-             ->with('listCategories',$lCategories)
-        ->with('getImages',$getImages);
-    }    
-    public function getAdd()
-    {    
-        $this->layout->page = "Add a new article";         
-        $categories = Categories::where('status','=','publish')->get();      
-        $this->layout->content = View::make('backend.articles.add')->with('categories',$categories);
+            ->with('article', $article)
+            ->with('listCategories', $lCategories)
+            ->with('getImages', $getImages);
     }
-    
-    public function postAdd()
-    {       
+
+    public function getAdd() {
+        $this->layout->page = "Add a new article";
+        $categories = Categories::where('status', '=', 'publish')->get();
+        $this->layout->content = View::make('backend.articles.add')->with('categories', $categories);
+    }
+
+    public function postAdd() {
         $validation = Validator::make(
-            Input::all(),
-            array(
-                'title'=> 'required|min:5',
-                'permalink'=> 'unique:articles',                
-                'content'=> 'min:10',
-                'category'=> 'required',
-                'keyword'=> 'max:50',
-                'group_uploads'=>'image',
-            )
+                Input::all(), array(
+                'title' => 'required|min:5',
+                'permalink' => 'unique:articles',
+                'content' => 'min:10',
+                'category' => 'required',
+                'keyword' => 'max:50',
+                'group_uploads' => 'image',
+                )
         );
-        
-        if ($validation->passes())
-        {        
+
+        if ($validation->passes()) {
             $article = new Articles;
             $article->title = Input::get('title');
-            if(Input::get('permalink') == ""){
-                              /* use hellper string ->  Str::slug('My First Blog Post!')   
-                               * >result-my-first-blog-post
-                               */ 
-            $article->permalink = CommonHelper::transPermalink(Input::get('title'));
-            }else{
-            $article->permalink = CommonHelper::transPermalink(Input::get('permalink'));  
+            if (Input::get('permalink') == "") {
+                /* use hellper string ->  Str::slug('My First Blog Post!')   
+                 * >result-my-first-blog-post
+                 */
+                $article->permalink = CommonHelper::transPermalink(Input::get('title'));
+            } else {
+                $article->permalink = CommonHelper::transPermalink(Input::get('permalink'));
             }
             $article->content = Input::get('content');
             $article->description = Input::get('description');
             $article->keyword = Input::get('keyword');
             $article->user_id = Session::get('userID');
             $article->status = Input::get('status');
-            $article->save();            
-            /*save category*/
+            $article->save();
+            /* save category */
             $select = Input::get('category');
-            if($select){                                 
-            foreach($select as $key=>$value)
-              {
-               $CA= new CategoriesArticles;    
-               $CA->articles_id = $article->id;
-               $CA->categories_id = $value;                              
-               $CA->save();
-              }
-             }
-            /*upload image*/
-            $upload = Input::file('fileimages');              
-            if( CommonHelper::check_files_empty($upload))
-            {
-              $Path = "asset/share/uploads/images/article";      
-              $Image= new ImagesController();
-              $Image->storeMulti(Input::file('fileimages'), $Path,$article->id,'article_id','image');            
+            if ($select) {
+                foreach ($select as $key => $value) {
+                    $CA = new CategoriesArticles;
+                    $CA->articles_id = $article->id;
+                    $CA->categories_id = $value;
+                    $CA->save();
+                }
             }
-            
-            $msg_success= CommonHelper::printMsg('success',trans('messages.create_message'));            
-            Session::flash('msg_flash',$msg_success);            
-            return Redirect::route('backend_article'); 
-           
-        }
-        /* Messages validation*/
-         Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
-         return Redirect::back()->withInput();
-    }
-    
-      public function getupdate($id)
-    {        
-        $this->layout->page = "Upadte article";           
-        $getArticle = Articles::where('id','=',$id)->first(); 
-        $category = DB::table('categories_articles')
-            ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
-            ->where('categories_articles.articles_id','=',$id)    
-            ->select(DB::raw('categories.id,categories.name'))->get(); 
-        $categories = Categories::where('status','=','publish')->get();  
-        
-        $getImages = Uploads::where('article_id','=',$id)->get();
-        
-        $this->layout->content = View::make('backend.articles.update')->with('article',$getArticle)
-             ->with('categories',$categories)
-             ->with('category',$category)
-             ->with('getImages',$getImages);
-          
-    }
-      public function postUpdate($id)
-    {       
-          $validation = Validator::make(
-            Input::all(),
-            array(
-                'title'=> 'required|min:5',
-                //'permalink'=> 'unique:articles',                
-                'content'=> 'min:10',
-                'category'=> 'required',
-                'keyword'=> 'max:50',
-                'group_uploads'=>'image',
-            )
-        );
-        
-        if ($validation->passes())
-        {   
-          $ar=Articles::find($id);
-          $ar->title=Input::get('title');
-          $ar->content=Input::get('content');
-          $ar->permalink=Input::get('permalink');
-          $ar->description=Input::get('description');
-          $ar->keyword=Input::get('keyword');
-          $ar->status=Input::get('status');          
-          $ar->update(); 
-          /*Update category*/
-          $categoryArticle = CategoriesArticles::where('articles_id','=',$id)->get();
-          foreach($categoryArticle as $ctA)
-          {
-             CategoriesArticles::where('articles_id','=',$ctA->articles_id)->delete();
-          }
-          foreach (Input::get('category') as $key=>$value)
-          {
-               $CA= new CategoriesArticles;    
-               $CA->articles_id = $ar->id;
-               $CA->categories_id = $value;                              
-               $CA->save();
-          }
-          /* Update image */          
-          $upload = Input::file('fileimages');              
-            if( CommonHelper::check_files_empty($upload))
-            {
-              //delete old image
-              $check_list_upload = Uploads::where('article_id','=',$id)->get();
-              $ctrImage = new ImagesController();         
-              foreach ($check_list_upload as $upload) {             
-                 $ctrImage->getDelete($upload->id); 
-              }  
-              // upload new image
-              $Path = "asset/share/uploads/images/article";
-              $Image= new ImagesController();
-              $Image->storeMulti(Input::file('fileimages'), $Path,$id,'article_id','image');            
+            /* upload image */
+            $upload = Input::file('fileimages');
+            if (CommonHelper::check_files_empty($upload)) {
+                $Path = "asset/share/uploads/images/article";
+                $Image = new ImagesController();
+                $Image->storeMulti(Input::file('fileimages'), $Path, $article->id, 'article_id', 'image');
             }
-                      
-          Session::flash('msg_flash',CommonHelper::printMsg('success',trans('messages.update_message'))); 
-          return Redirect::route('article_view',array('id'=>$id));
+
+            $msg_success = CommonHelper::printMsg('success', trans('messages.create_message'));
+            Session::flash('msg_flash', $msg_success);
+            return Redirect::route('backend_article');
         }
-        Session::flash('msg_flash',  CommonHelper::printErrors($validation->messages()));
+        /* Messages validation */
+        Session::flash('msg_flash', CommonHelper::printErrors($validation->messages()));
         return Redirect::back()->withInput();
-     }
-     
-      public function getDelete($id)
-    {      
-          /*delete category in article*/
-          $deCt =  CategoriesArticles::where('articles_id','=',$id)->delete();
-          /* delete article */
-          $ar=Articles::where('id','=',$id)->delete();          
-          //delete image of the article
-          $check_list_upload = Uploads::where('article_id','=',$id)->get();
-          $ctrImage = new ImagesController();         
-          foreach ($check_list_upload as $upload) {             
-             $ctrImage->getDelete($upload->id); 
-          }       
-          //
-          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.delete_message'))); 
-          return Redirect::route('backend_article');
-     }
-    
-     public function filter($id)
-     {
-        $this->layout->page = "Article filter";        
+    }
+
+    public function getupdate($id) {
+        $this->layout->page = "Upadte article";
+        $getArticle = Articles::where('id', '=', $id)->first();
+        $category = DB::table('categories_articles')
+                ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
+                ->where('categories_articles.articles_id', '=', $id)
+                ->select(DB::raw('categories.id,categories.name'))->get();
+        $categories = Categories::where('status', '=', 'publish')->get();
+
+        $getImages = Uploads::where('article_id', '=', $id)->get();
+
+        $this->layout->content = View::make('backend.articles.update')->with('article', $getArticle)
+            ->with('categories', $categories)
+            ->with('category', $category)
+            ->with('getImages', $getImages);
+    }
+
+    public function postUpdate($id) {
+        $validation = Validator::make(
+                Input::all(), array(
+                'title' => 'required|min:5',
+                //'permalink'=> 'unique:articles',                
+                'content' => 'min:10',
+                'category' => 'required',
+                'keyword' => 'max:50',
+                'group_uploads' => 'image',
+                )
+        );
+
+        if ($validation->passes()) {
+            $ar = Articles::find($id);
+            $ar->title = Input::get('title');
+            $ar->content = Input::get('content');
+            $ar->permalink = Input::get('permalink');
+            $ar->description = Input::get('description');
+            $ar->keyword = Input::get('keyword');
+            $ar->status = Input::get('status');
+            $ar->update();
+            /* Update category */
+            $categoryArticle = CategoriesArticles::where('articles_id', '=', $id)->get();
+            foreach ($categoryArticle as $ctA) {
+                CategoriesArticles::where('articles_id', '=', $ctA->articles_id)->delete();
+            }
+            foreach (Input::get('category') as $key => $value) {
+                $CA = new CategoriesArticles;
+                $CA->articles_id = $ar->id;
+                $CA->categories_id = $value;
+                $CA->save();
+            }
+            /* Update image */
+            $upload = Input::file('fileimages');
+            if (CommonHelper::check_files_empty($upload)) {
+                //delete old image
+                $check_list_upload = Uploads::where('article_id', '=', $id)->get();
+                $ctrImage = new ImagesController();
+                foreach ($check_list_upload as $upload) {
+                    $ctrImage->getDelete($upload->id);
+                }
+                // upload new image
+                $Path = "asset/share/uploads/images/article";
+                $Image = new ImagesController();
+                $Image->storeMulti(Input::file('fileimages'), $Path, $id, 'article_id', 'image');
+            }
+
+            Session::flash('msg_flash', CommonHelper::printMsg('success', trans('messages.update_message')));
+            return Redirect::route('article_view', array('id' => $id));
+        }
+        Session::flash('msg_flash', CommonHelper::printErrors($validation->messages()));
+        return Redirect::back()->withInput();
+    }
+
+    public function getDelete($id) {
+        /* delete category in article */
+        $deCt = CategoriesArticles::where('articles_id', '=', $id)->delete();
+        /* delete article */
+        $ar = Articles::where('id', '=', $id)->delete();
+        //delete image of the article
+        $check_list_upload = Uploads::where('article_id', '=', $id)->get();
+        $ctrImage = new ImagesController();
+        foreach ($check_list_upload as $upload) {
+            $ctrImage->getDelete($upload->id);
+        }
+        //
+        Session::flash('msg_flash', CommonHelper::printMsg('error', trans('messages.delete_message')));
+        return Redirect::route('backend_article');
+    }
+
+    public function filter($id) {
+        $this->layout->page = "Article filter";
         $getList = DB::table('categories_articles')
             ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
-            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')   
+            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')
             ->join('users', 'articles.user_id', '=', 'users.id')
-            ->where('categories_id','=',$id)
-            ->orderBy('articles.id', 'desc') 
+            ->where('categories_id', '=', $id)
+            ->orderBy('articles.id', 'desc')
             ->select(DB::raw(' DISTINCT articles_id as id,title,articles.permalink,users.username as create_by,articles.status as status'))
             ->paginate(10);
-        $filterCategories =  Categories::all();        
-        $this->layout->content = View::make('backend.articles.index')->with('listArticles',$getList)
-             ->with('filterCategory',$filterCategories);  
-     }
-     
-     public function action()
-     {
-         $check = Input::get('checkID');
-         if($check)
-         {
-         $getAction = Input::get('action');          
-         switch($getAction)
-         {
-         case'publish':
-             foreach($check as $key=>$value)
-             {               
-               $this->changeStatus($getAction,$value);               
-             }  
-             break;         
-         case'unpublish':
-              foreach($check as $key=>$value)
-             {               
-               $this->changeStatus($getAction,$value);               
-             }  
-             break;           
-         case'delete':             
-             foreach($check as $key=>$value)
-             {               
-               $this->getDelete($value);               
-             }                          
-             break;
-         default:             
-             break;
-         }
-         return Redirect::back();
-         }
-         
-        else {             
-          Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.nochoose_message')));   
-         return Redirect::back();   
-        }
-     }
-     
-     public function changeStatus($status,$id)
-     {
-         $ar= Articles::find($id);
-         $ar->status = $status;
-         $ar->update();
-         Session::flash('msg_flash',CommonHelper::printMsg('error',trans('messages.changestatus_message')));   
-     }
+        $filterCategories = Categories::all();
+        $this->layout->content = View::make('backend.articles.index')->with('listArticles', $getList)
+            ->with('filterCategory', $filterCategories);
+    }
 
+    public function action() {
+        $check = Input::get('checkID');
+        if ($check) {
+            $getAction = Input::get('action');
+            switch ($getAction) {
+                case'publish':
+                    foreach ($check as $key => $value) {
+                        $this->changeStatus($getAction, $value);
+                    }
+                    break;
+                case'unpublish':
+                    foreach ($check as $key => $value) {
+                        $this->changeStatus($getAction, $value);
+                    }
+                    break;
+                case'delete':
+                    foreach ($check as $key => $value) {
+                        $this->getDelete($value);
+                    }
+                    break;
+                default:
+                    break;
+            }
+            return Redirect::back();
+        } else {
+            Session::flash('msg_flash', CommonHelper::printMsg('error', trans('messages.nochoose_message')));
+            return Redirect::back();
+        }
+    }
+
+    public function changeStatus($status, $id) {
+        $ar = Articles::find($id);
+        $ar->status = $status;
+        $ar->update();
+        Session::flash('msg_flash', CommonHelper::printMsg('error', trans('messages.changestatus_message')));
+    }
 
 //     
 //    
@@ -366,23 +342,21 @@ class ArticlesController extends BaseController {
 //     }
 //     
 //     
-     
-     
- public function search() {
-        $this->layout->page = "Result article";        
+
+
+    public function search() {
+        $this->layout->page = "Result article";
         $getList = DB::table('categories_articles')
             ->join('categories', 'categories_articles.categories_id', '=', 'categories.id')
-            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')   
+            ->join('articles', 'categories_articles.articles_id', '=', 'articles.id')
             ->join('users', 'articles.user_id', '=', 'users.id')
-            ->orderBy('articles.id', 'desc') 
-            ->where('title', 'like','%'.Input::get('keyfind').'%') 
+            ->orderBy('articles.id', 'desc')
+            ->where('title', 'like', '%' . Input::get('keyfind') . '%')
             ->select(DB::raw(' DISTINCT articles_id as id,title,articles.permalink,users.username as create_by,articles.status as status'))
             ->paginate(10);
-        $filterCategories  =  Categories::all();        
-        $this->layout->content = View::make('backend.articles.index')->with('listArticles',$getList)
-             ->with('filterCategory',$filterCategories);
-       
-    }     
-   
+        $filterCategories = Categories::all();
+        $this->layout->content = View::make('backend.articles.index')->with('listArticles', $getList)
+            ->with('filterCategory', $filterCategories);
+    }
 
 }

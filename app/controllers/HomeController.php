@@ -2,7 +2,6 @@
 
 class HomeController extends BaseController {
 
- 
     protected $layout = 'frontend.layouts.default';
 
     /*
@@ -26,32 +25,27 @@ class HomeController extends BaseController {
     //         ->where('slider.status','=','publish')
     //         ->select(DB::raw('title,caption,link,uploads.name'))
     //         ->get();
-        
     //     $reason = DB::table('reasons')               
     //         ->leftjoin('uploads', 'uploads.id', '=', 'reasons.image')            
     //         ->where('reasons.status','=','publish')
     //         ->select(DB::raw('title,caption,uploads.name as image'))
     //         ->get();
-        
     //     $this->layout->content = View::make('frontend.page.index')->with('slider',$slider)
     //         ->with('reason',$reason);
     // }
     // public function about() {
     //     $this->layout->page = "About us";
     //     $page_title = Pages::where('link','=','about')->first();
-        
     //     $content = Articles::where('permalink','=','about')->first(); 
     //     if(!$content)
     //     {
     //         return Redirect::route('frontend');
     //     }
     //     $getImages = Uploads::where('article_id','=',$content->id)->get();
-       
     //     $this->layout->content = View::make('frontend.page.about')
     //          ->with('content',$content)
     //          ->with('getImages',$getImages)
     //          ->with('page_title',$page_title);
-                
     // }        
     //   public function features() {
     //     $this->layout->page = "Features";
@@ -73,67 +67,59 @@ class HomeController extends BaseController {
     //     $this->layout->page = "Contact";
     //     $this->layout->content = View::make('frontend.page.contact');
     // }
-    
+
     public function view($id) {
-        
-        $content = ModuleData::where('status','=','publish')->where('id','=',$id)->first();
+
+        $content = ModuleData::where('status', '=', 'publish')->where('id', '=', $id)->first();
         $document = null;
         $image = null;
-        if($content)
-        {
+        if ($content) {
             $this->layout->page = $content->title;
-            $image = Uploads::where('modData_id','=',$id)->where('type_file','=','image');
-            $document = Uploads::where('modData_id','=',$id)->where('type_file','=','file');
-        }
-        else
-        {
-             return Redirect::route('view_page_notfound');
+            $image = Uploads::where('modData_id', '=', $id)->where('type_file', '=', 'image');
+            $document = Uploads::where('modData_id', '=', $id)->where('type_file', '=', 'file');
+        } else {
+            return Redirect::route('view_page_notfound');
         }
 
         $this->layout->content = View::make('frontend.page.view')
-             ->with('content',$content)
-             ->with('image',$image)
-             ->with('document',$document);
-                
+            ->with('content', $content)
+            ->with('image', $image)
+            ->with('document', $document);
     }
 
-    public function notFound()
-    {
+    public function notFound() {
         $this->layout->page = "Not found!";
         $this->layout->content = View::make('frontend.page.notfound');
     }
 
-     public function msg()
-    {
+    public function msg() {
         $this->layout->page = "Message";
         $this->layout->content = View::make('frontend.page.msg');
     }
-    
-    
-    public function pageview($page='home'){       
-            
-            
-            $mod = DB::table('page_module')
+
+    public function pageview($page = 'home') {
+
+
+        $mod = DB::table('page_module')
             ->join('pages', 'page_module.page_id', '=', 'pages.id')
             ->join('module', 'page_module.module_id', '=', 'module.id')
-            ->where('module.status','=','publish')
-            ->where('pages.link','=',$page)
-            ->orderBy('module.order','asc')
+            ->where('module.status', '=', 'publish')
+            ->where('pages.link', '=', $page)
+            ->orderBy('module.order', 'asc')
             ->select(DB::raw('module.id,module.name as name,module.position,module.mod'))
             ->get();
-       
-            $pageinfo = Pages::where('link','=',$page)->first();                
-            
-            if($pageinfo){
+
+        $pageinfo = Pages::where('link', '=', $page)->first();
+
+        if ($pageinfo) {
             $this->layout->page = $pageinfo->name;
-            $this->layout->content = View::make('frontend.page.pageview')->with('mod',$mod)->with('pageinfo',$pageinfo);
-            }
+            $this->layout->content = View::make('frontend.page.pageview')->with('mod', $mod)->with('pageinfo', $pageinfo);
+        }
     }
 
+    /* test */
 
-    /*test*/
-
-       public function feature() {
+    public function feature() {
         $this->layout->page = "Features";
         $this->layout->content = View::make('frontend.page._features');
     }

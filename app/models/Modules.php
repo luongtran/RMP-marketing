@@ -1,13 +1,12 @@
 <?php
 
-class Modules extends Eloquent  {
+class Modules extends Eloquent {
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'module';
-
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'module';
 
 }
