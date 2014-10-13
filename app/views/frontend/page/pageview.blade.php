@@ -7,6 +7,7 @@
      @endif
   @endforeach
 @stop
+
 @section('header')
     @foreach($mod as $incMod)
     @if($incMod->position == 'header')
@@ -16,6 +17,7 @@
      @endif
   @endforeach 
 @stop
+
 @section('top')
  @foreach($mod as $incMod)
             @if($incMod->position == 'top') 
@@ -28,36 +30,17 @@
              @endif 
   @endforeach           
 @stop
+
+
 @section('content')
+<!-- Start content section -->
           @foreach( $mod as $incMod )          
+          <!-- Module <?php echo $incMod->mod ?>-->
             @if($incMod->position == 'content')
-                @if($incMod->mod=='mod_RequestDemo')
-                    @include('frontend.module.mod_RequestDemo')
-                @endif 
-                @if($incMod->mod=='mod_Reason')
-                    @include('frontend.module.mod_Reason')
-                @endif
-                @if($incMod->mod=='mod_About')
-                    @include('frontend.module.mod_About')
-                @endif
-                @if($incMod->mod=='mod_Service')
-                    @include('frontend.module.mod_Service')
-                @endif
-                @if($incMod->mod=='mod_Support')
-                    @include('frontend.module.mod_Support')
-                @endif
-                 @if($incMod->mod=='mod_Contact')
-                    @include('frontend.module.mod_Contact')
-                @endif
-                @if($incMod->mod=='mod_Tutorial')
-                    @include('frontend.module.mod_Tutorial')
-                @endif
-                @if($incMod->mod=='mod_SubmitRequestDemo')
-                    @include('frontend.module.mod_SubmitRequestDemo')
-                @endif
-              
-             @endif
-          @endforeach   
+                @include('frontend.module.' . $incMod->mod)
+            @endif
+          @endforeach  
+<!-- End content section -->          
 @stop
 
 @section('bottom')
@@ -65,10 +48,7 @@
             @if($incMod->position == 'bottom')  
                 @if($incMod->mod=='mod_UserInterface')
                     @include('frontend.module.mod_UserInterface')
-                @endif
-                @if($incMod->mod=='mod_HappyClient')
-                    @include('frontend.module.mod_HappyClient')
-                @endif  
+                @endif 
              @endif
     @endforeach
 @stop

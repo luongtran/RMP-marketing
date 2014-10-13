@@ -9,4 +9,11 @@ class ModuleData extends Eloquent {
      */
     protected $table = 'module_data';
 
+    public static function boot() {
+        parent::boot();
+        static::creating(function($module) {
+            $module->order = 9999;
+        });
+    }
+
 }

@@ -1,36 +1,26 @@
-<footer>
- <!-- FOOTER 
-  ============================================= -->
-  <div class="footer">
-    <!-- Copyright Area -->
-    <div class="b-copyright">
-      <div class="layout">
-        <!-- Copyright Text -->
-        <span class="copy"><?php echo CommonHelper::getSetting('footer_text');?></span>
-        <!-- Social Icons -->
-        <ul class="b-social bot">
-          <li>Follow Us:</li>
-          <li><a class="fb" href="#"><i class="icon-facebook"></i></a></li>
-          <li><a class="tw" href="#"><i class="icon-twitter"></i></a></li>
-          <li><a class="gl" href="#"><i class="icon-google-plus"></i></a></li>
-          <li><a class="dr" href="#"><i class="icon-dribbble"></i></a></li>
-          <li><a class="sk" href="#"><i class="icon-skype"></i></a></li>
-          <li><a class="rss" href="#"><i class="icon-rss"></i></a></li>
-          <!-- 
-          <li><a class="yt" href="#"><i class="icon-youtube"></i></a></li>
-          <li><a class="tl" href="#"><i class="icon-tumblr"></i></a></li>
-          <li><a class="is" href="#"><i class="icon-instagram"></i></a></li>
-          <li><a class="pt" href="#"><i class="icon-pinterest"></i></a></li>
-          <li><a class="lin" href="#"><i class="icon-linkedin"></i></a></li>
-          <li><a class="vk" href="#"><i class="icon-vk"></i></a></li>
-          <li><a class="dx" href="#"><i class="icon-dropbox"></i></a></li>
-          <li><a class="fs" href="#"><i class="icon-foursquare"></i></a></li>
-          <li><a class="gh" href="#"><i class="icon-github-alt"></i></a></li>
-          <li><a class="mx" href="#"><i class="icon-maxcdn"></i></a></li>-->
-        </ul>
-      </div>
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- BEGIN COPYRIGHT -->
+            <div class="col-md-6 col-sm-6 padding-top-10">
+                <?php echo CommonHelper::getSetting('footer_text'); ?>
+            </div>
+            <!-- END COPYRIGHT -->
+            <!-- BEGIN PAYMENTS -->
+            <div class="col-md-6 col-sm-6">
+                <ul class="social-footer list-unstyled list-inline pull-right">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dropbox"></i></a></li>
+                </ul>  
+            </div>
+            <!-- END PAYMENTS -->
+        </div>
     </div>
-  </div>
-  <!-- END FOOTER 
-  ============================================= -->
-</footer>
+</div>

@@ -1,32 +1,27 @@
-
-<div class="content gray-content">
-    <div style="padding-bottom: 8px;" class="layout">
-      <div class="row">
-         <?php   $Feature_content = DB::table('page_module')
-                   ->leftjoin("pages","page_module.page_id","=","pages.id")
-                   ->leftjoin("module","page_module.module_id","=","module.id")
-                   ->leftjoin("module_data","module_data.module_id","=","module.id")
-                   ->where("module_data.status","=","publish")                   
-                   ->where("module.mod","=","mod_Feature")
-                   ->where("module_data.lang_id","=",Session::get('current_locale'))
-                   ->where("page_module.page_id","=",$pageinfo->id) 
-                   ->orderBy("module_data.id","desc")                  
-                   ->take(3)
-                   ->select(DB::raw("module_data.title,module_data.sumary,module_data.icon,module_data.link"))
-                   ->get(); 
-    foreach($Feature_content as $list):?>
-        <div class="row-item col-1_3">
-          <!-- Icon Box -->
-          <div class="icon-box medium">
-            <i class="<?php echo $list->icon;?>"></i>
-            <h4><a class="dark-link" href="#"><?php echo $list->title;?></a></h4>
+<div class="row service-box margin-bottom-40">
+    <?php
+    $Feature_content = DB::table('page_module')
+        ->leftjoin("pages", "page_module.page_id", "=", "pages.id")
+        ->leftjoin("module", "page_module.module_id", "=", "module.id")
+        ->leftjoin("module_data", "module_data.module_id", "=", "module.id")
+        ->where("module_data.status", "=", "publish")
+        ->where("module.mod", "=", "mod_Feature")
+        ->where("module_data.lang_id", "=", Session::get('current_locale'))
+        ->where("page_module.page_id", "=", $pageinfo->id)
+        ->orderBy("module_data.id", "desc")
+        ->take(3)
+        ->select(DB::raw("module_data.title,module_data.sumary,module_data.icon,module_data.link"))
+        ->get();
+    ?>
+    <?php foreach ($Feature_content as $list): ?>
+        <div class="col-md-4 col-sm-4">
+            <div class="service-box-heading">
+                <em><i class="fa fa-location-arrow blue <?php echo $list->icon; ?>"></i></em>
+                <span><?php echo $list->title; ?></span>
+            </div>
             <p>
-               <?php echo $list->sumary;?>
+                <?php echo $list->sumary; ?>
             </p>
-          </div>
-          <!-- End Icon Box -->
         </div>
-    <?php endforeach;?>
-      </div>
-    </div>
+    <?php endforeach; ?>
 </div>

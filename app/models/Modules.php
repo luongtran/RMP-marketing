@@ -9,4 +9,5 @@ class Modules extends Eloquent {
      */
     protected $table = 'module';
 
+
 }
