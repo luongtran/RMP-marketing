@@ -8,13 +8,13 @@
         </title>
         <meta title="keyword" content="completermp, @if( isset( $page )) {{$page}}   @endif ">
         <link rel="Shortcut Icon" type="image/ico" href="{{asset('favicon.ico')}}"/>        
-        <link href="{{asset('asset/frontend/css/style.css')}}" media="screen" rel="stylesheet" type="text/css" />     
-        <link rel="stylesheet" href="{{asset('asset/frontend/css/main.css')}}">
-        <link rel="stylesheet" href="{{asset('asset/frontend/css/custom.css')}}">  
-        <link rel="stylesheet" href="{{asset('asset/frontend/css/responsive.css')}}">
-        <link rel="stylesheet" href="{{asset('asset/frontend/css/prettyPhoto.css')}}">
-        <link rel="stylesheet" href="{{asset('asset/frontend/css/settings.css')}}" />
-        <link rel="stylesheet" href="{{asset('asset/frontend/css/turquoise.css')}}">
+        <link href="{{asset('asset/frontend-old/css/style.css')}}" media="screen" rel="stylesheet" type="text/css" />     
+        <link rel="stylesheet" href="{{asset('asset/frontend-old/css/main.css')}}">
+        <link rel="stylesheet" href="{{asset('asset/frontend-old/css/custom.css')}}">  
+        <link rel="stylesheet" href="{{asset('asset/frontend-old/css/responsive.css')}}">
+        <link rel="stylesheet" href="{{asset('asset/frontend-old/css/prettyPhoto.css')}}">
+        <link rel="stylesheet" href="{{asset('asset/frontend-old/css/settings.css')}}" />
+        <link rel="stylesheet" href="{{asset('asset/frontend-old/css/turquoise.css')}}">
         <!-- in style -->
         @section('style') 
         @show   
@@ -59,14 +59,14 @@
         <!-- in javascript -->
         @section('js')  
         @show  
-        <script src="{{ asset('asset/frontend/js/jquery-1.9.1.min.js')}}"></script>
+        <script src="{{ asset('asset/frontend-old/js/jquery-1.9.1.min.js')}}"></script>
         <!-- Revolution Slider -->
-        <script src="{{ asset('asset/frontend/js/jquery.themepunch.plugins.min.js')}}"></script>
-        <script src="{{ asset('asset/frontend/js/jquery.themepunch.revolution.min.js')}}"></script>
-        <script src="{{ asset('asset/frontend/js/revolution-slider-options.js')}}"></script>
+        <script src="{{ asset('asset/frontend-old/js/jquery.themepunch.plugins.min.js')}}"></script>
+        <script src="{{ asset('asset/frontend-old/js/jquery.themepunch.revolution.min.js')}}"></script>
+        <script src="{{ asset('asset/frontend-old/js/revolution-slider-options.js')}}"></script>
         <!-- Prety photo -->
-        <script src="{{ asset('asset/frontend/js/jquery.prettyPhoto.js')}}"></script>    
-        <script src="{{ asset('asset/frontend/js/main.js')}}"></script>     
+        <script src="{{ asset('asset/frontend-old/js/jquery.prettyPhoto.js')}}"></script>    
+        <script src="{{ asset('asset/frontend-old/js/main.js')}}"></script>     
         <script type="text/javascript">
             $(function() {
                 $("#changeLangague").change(function() {
