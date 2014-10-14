@@ -13,25 +13,25 @@
         <!-- Fonts END -->
 
         <!-- Global styles START -->          
-        <link href="/asset/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/asset/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{asset('asset/global/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+        <link href="{{asset('asset/global/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
         <!-- Global styles END -->       
 
         <!-- Page level plugin styles START -->
-        <link href="/asset/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
-        <link href="/asset/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css" rel="stylesheet">
-        <link href="/asset/global/plugins/slider-revolution-slider/rs-plugin/css/settings.css" rel="stylesheet">
+        <link href="{{asset('asset/global/plugins/fancybox/source/jquery.fancybox.css')}}" rel="stylesheet">
+        <link href="{{asset('asset/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css')}}" rel="stylesheet">
+        <link href="{{asset('asset/global/plugins/slider-revolution-slider/rs-plugin/css/settings.css')}}" rel="stylesheet">
         <!-- Page level plugin styles END -->  
 
         <!-- Theme styles START -->
-        <link href="/asset/global/css/components.css" rel="stylesheet">
-        <link href="/asset/frontend/layout/css/style.css" rel="stylesheet">
+        <link href="{{asset('asset/global/css/components.css')}}" rel="stylesheet">
+        <link href="{{asset('asset/frontend/layout/css/style.css')}}" rel="stylesheet">
         <!-- metronic revo slider styles -->
-        <link href="/asset/frontend/pages/css/style-revolution-slider.css" rel="stylesheet">
-        <link href="/asset/frontend/pages/css/portfolio.css" rel="stylesheet">
-        <link href="/asset/frontend/layout/css/style-responsive.css" rel="stylesheet">
-        <link href="/asset/frontend/layout/css/themes/turquoise.css" rel="stylesheet" id="style-color">
-        <link href="/asset/frontend/layout/css/custom.css" rel="stylesheet">
+        <link href="{{asset('asset/frontend/pages/css/style-revolution-slider.css')}}" rel="stylesheet">
+        <link href="{{asset('asset/frontend/pages/css/portfolio.css')}}" rel="stylesheet">
+        <link href="{{asset('asset/frontend/layout/css/style-responsive.css')}}" rel="stylesheet">
+        <link href="{{asset('asset/frontend/layout/css/themes/turquoise.css')}}" rel="stylesheet" id="style-color">
+        <link href="{{asset('asset/frontend/layout/css/custom.css')}}" rel="stylesheet">
         <!-- Theme styles END -->
         
         <!-- Extra stylesheets -->
@@ -84,25 +84,25 @@
         <!--[if lt IE 9]>
         <script src="/asset/global/plugins/respond.min.js"></script>
         <![endif]--> 
-        <script src="/asset/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
-        <script src="/asset/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-        <script src="/asset/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
-        <script src="/asset/frontend/layout/scripts/back-to-top.js" type="text/javascript"></script>
+        <script src="{{asset('asset/global/plugins/jquery-1.11.0.min.js')}}" type="text/javascript"></script>
+        <script src="{{asset('asset/global/plugins/jquery-migrate-1.2.1.min.js')}}" type="text/javascript"></script>
+        <script src="{{asset('asset/global/plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>      
+        <script src="{{asset('asset/frontend/layout/scripts/back-to-top.js')}}" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
 
         <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
-        <script src="/asset/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-        <script src="/asset/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+        <script src="{{asset('asset/global/plugins/fancybox/source/jquery.fancybox.pack.js')}}" type="text/javascript"></script><!-- pop up -->
+        <script src="{{asset('asset/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js')}}" type="text/javascript"></script><!-- slider for products -->
 
         <!-- BEGIN RevolutionSlider -->
 
-        <script src="/asset/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.plugins.min.js" type="text/javascript"></script>
-        <script src="/asset/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script> 
-        <script src="/asset/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js" type="text/javascript"></script> 
-        <script src="/asset/frontend/pages/scripts/revo-slider-init.js" type="text/javascript"></script>
+        <script src="{{asset('asset/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.plugins.min.js')}}" type="text/javascript"></script>
+        <script src="{{asset('asset/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js')}}" type="text/javascript"></script> 
+        <script src="{{asset('asset/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js')}}" type="text/javascript"></script> 
+        <script src="{{asset('asset/frontend/pages/scripts/revo-slider-init.js')}}" type="text/javascript"></script>
         <!-- END RevolutionSlider -->
 
-        <script src="/asset/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+        <script src="{{asset('asset/frontend/layout/scripts/layout.js')}}" type="text/javascript"></script>
         <script type="text/javascript">
             jQuery(document).ready(function() {
                 Layout.init();
