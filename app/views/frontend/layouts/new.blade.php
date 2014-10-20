@@ -32,6 +32,7 @@
         <link href="{{asset('asset/frontend/layout/css/style-responsive.css')}}" rel="stylesheet">
         <link href="{{asset('asset/frontend/layout/css/themes/turquoise.css')}}" rel="stylesheet" id="style-color">
         <link href="{{asset('asset/frontend/layout/css/custom.css')}}" rel="stylesheet">
+        <link href="{{asset('asset/frontend/layout/css/main.css')}}" rel="stylesheet">
         <!-- Theme styles END -->
         
         <!-- Extra stylesheets -->

@@ -22,30 +22,25 @@ $Feature_content = DB::table('module_data')
 ?>  
 @foreach($Feature_content as $list)     
 
-<div class="content">
+<div class="container">
     <div class="layout">
-        <div class="text-center">
-            <h2><?php echo $list->title; ?></h2>
+        <div class="text-center clearfix">
+            <h1><?php echo $list->title; ?></h1>
             <p><?php echo $list->sumary; ?></p>
         </div>       
-
-        <div class="b-carousel">
-            <div class="carousel-content box-show-feature">
-                <?php
-                $getImage = Uploads::where('modData_id', '=', $list->id)->get();
-                foreach ($getImage as $img):
-                    ?>
-                    <img alt="" src="<?php echo asset($img->path . '/' . $img->name); ?>" class="carousel-item"  >          
-                <?php endforeach; ?>
-            </div>
+        <div class="owl-carousel owl-theme">
+            <?php
+            $getImage = Uploads::where('modData_id', '=', $list->id)->get();
+            foreach ($getImage as $img):
+                ?>
+                <div class="item">
+                    <img src="<?php echo asset($img->path . '/' . $img->name); ?>" alt="The Last of us">
+                </div>
+            <?php endforeach; ?>
         </div>
-
-
     </div>
 </div>                 
-<div class="content gray-content">
-    <div class="layout"></div>
-</div>
+
 @endforeach
 
 

@@ -23,7 +23,7 @@ $(document).ready(function() {
         );
 
     }
-    $("a[rel^='prettyPhoto']").prettyPhoto();
+//    $("a[rel^='prettyPhoto']").prettyPhoto();
     // MENU
 
     if ($(this).width() > 990) {
@@ -244,7 +244,19 @@ $(document).ready(function() {
     });
 
     // CAROUSEL
+    $(".owl-carousel").owlCarousel({
+        navigation: true, // Show next and prev buttons
+        slideSpeed: 300,
+        paginationSpeed: 400,
+        singleItem: true
+          // "singleItem:true" is a shortcut for:
+          // items : 1, 
+          // itemsDesktop : false,
+          // itemsDesktopSmall : false,
+          // itemsTablet: false,
+          // itemsMobile : false
 
+    });
     $.fn.carousel = function(op) {
         var op, ui = {};
 
