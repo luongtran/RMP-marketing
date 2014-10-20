@@ -1,4 +1,16 @@
 $(document).ready(function() {
+    $('#map_canvas').gMap({
+        maptype: 'ROADMAP',
+        scrollwheel: false,
+        zoom: 18,
+        markers: [
+            {
+                address: 'New York', // Your Adress Here
+                html: '',
+                popup: false,
+            }
+        ],
+    });
     if ($('html').hasClass('csstransforms3d')) {
 
         $('.thumb').removeClass('scroll').addClass('flip');

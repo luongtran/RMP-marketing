@@ -36,6 +36,8 @@
         <!-- Theme styles END -->
         
         <!-- Extra stylesheets -->
+        
+        <script src="{{asset('asset/global/plugins/jquery-1.11.0.min.js')}}" type="text/javascript"></script>
         @section('style') 
         @show   
         <script type="text/javascript">
@@ -85,7 +87,6 @@
         <!--[if lt IE 9]>
         <script src="/asset/global/plugins/respond.min.js"></script>
         <![endif]--> 
-        <script src="{{asset('asset/global/plugins/jquery-1.11.0.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('asset/global/plugins/jquery-migrate-1.2.1.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('asset/global/plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>      
         <script src="{{asset('asset/frontend/layout/scripts/back-to-top.js')}}" type="text/javascript"></script>
