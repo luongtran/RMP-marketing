@@ -56,11 +56,11 @@
             <h3 class="lined">Follow Us</h3>
         </div>
 
-        <ul class="list-unstyled list-inline">
-            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a></li>
-            <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a></li>
-            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a></li>
-            <li><a href="#"><i class="fa fa-2x fa-google-plus-square"></i></a></li>
+        <ul class="social-icons social-icons-color">
+            <li><a class="facebook" data-original-title="Facebook" href="#"></a></li>
+            <li><a class="twitter" data-original-title="Twitter" href="#"></a></li>
+            <li><a class="googleplus" data-original-title="Goole Plus" href="#"></a></li>
+            <li><a class="linkedin" data-original-title="Linkedin" href="#"></a></li>
         </ul>
     </div>
 </div>
